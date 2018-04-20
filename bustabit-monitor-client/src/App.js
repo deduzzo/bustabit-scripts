@@ -3,6 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import {AreaChart, CartesianGrid, XAxis, Tooltip, YAxis, Area, ResponsiveContainer} from 'recharts'
 
+const mult = 900;
+const bet = 1;
+
 class App extends Component {
 
   constructor(props)
@@ -56,8 +59,9 @@ class App extends Component {
     });
     avg = avg / data.length;
     console.log("avg:" + avg);
-    this.calculateAvgTimes(2000,data)
-    return data;
+    //this.calculateAvgTimes(mult,bet,data);
+      this.bestBets(100,1000,100, bet,data)
+      return data;
   }
 
   dateFormat(date)
@@ -66,19 +70,52 @@ class App extends Component {
     date.getHours() + ":" + date.getMinutes();
   }
 
-  calculateAvgTimes(val,data)
+  calculateAvgTimes(val,bet,betData)
   {
-    var data2 = data.slice();
+    var data = []
+    var data2 = betData.slice();
     data2 = data2.filter(p => p.bust >= val);
     console.log('d' + data2.length);
     var space = 0;
     for (var i = data2.length;i>1; i--)
     {
-      console.log('1: ' + data2[i- 1].id + ' bust1:' +  data2[i- 1].bust + ' 2:' + data2[i -2].id + ' bust2:' +  data2[i -2].bust + ' diff:' + (data2[i- 1].id - data2[i -2].id));
+      var dataT = {id1: data2[i- 1].id, bust1: data2[i- 1].bust, id2:data2[i -2].id, bust2: data2[i -2].bust, diff: data2[i- 1].id - data2[i -2].id}
+      console.log('1: ' + dataT.id1 + ' bust1:' +  dataT.bust1 + ' 2:' + dataT.id2 + ' bust2:' +  dataT.bust2 + ' diff:' + dataT.diff);
+      data.push(dataT);
       space += data2[i- 1].id - data2[i -2].id;
     }
     space = space / (data2.length -1);
     console.log('midspace: ' + space);
+
+    return this.simulateBets(data,bet,space,val)
+  }
+
+  simulateBets(data,bet,mid,val)
+  {
+      var totalWins = 0;
+      data.forEach(b=>
+      {
+          var balance = 0;
+          if (b.diff >= mid) {
+              balance = (val * bet) - ((b.diff - mid) * bet);
+              console.log('start id:' + b.id1 +' bet, and win ' + balance)
+              totalWins += balance;
+          }
+          else
+            console.log('not bet')
+      });
+      console.log('totalwins:' + totalWins)
+      return totalWins;
+  }
+
+  bestBets(minMult, maxMult, step, bet, data)
+  {
+    var results=[]
+    for (var i = minMult; i<=maxMult; i+=step)
+      {
+        results.push({mult: i, balance: this.calculateAvgTimes(i,bet,data)});
+      }
+      console.log(results);
   }
 
   renderData(maxValue)
@@ -141,7 +178,7 @@ class App extends Component {
               <Area type='monotone' dataKey='totalWins' stackId="3" stroke='#BABABA' fill='#141414' />
             </AreaChart>
           </ResponsiveContainer>
-            {this.renderData(17)}
+            {this.renderData(mult)}
         </div>
       </div>
     );
