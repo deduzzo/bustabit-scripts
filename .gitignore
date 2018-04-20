@@ -1,0 +1,36 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/bustabit-monitor-client/node_modules
+/bustabit-monitor-server/node_modules
+
+# testing
+/bustabit-monitor-client/coverage
+/bustabit-monitor-server/coverage
+
+# production
+/bustabit-monitor-client/build
+/bustabit-monitor-server/build
+
+#idea
+
+/bustabit-monitor-client/.idea
+/bustabit-monitor-server/.idea
+
+# misc
+/bustabit-monitor-client/.DS_Store
+/bustabit-monitor-client/.env.local
+/bustabit-monitor-client/.env.development.local
+/bustabit-monitor-client/.env.test.local
+/bustabit-monitor-client/.env.production.local
+/bustabit-monitor-server/.DS_Store
+/bustabit-monitor-server/.env.local
+/bustabit-monitor-server/.env.development.local
+/bustabit-monitor-server/.env.test.local
+/bustabit-monitor-server/.env.production.local
+
+npm-debug.log*
+/bustabit-monitor-client/yarn-debug.log*
+/bustabit-monitor-client/yarn-error.log*
+/bustabit-monitor-server/yarn-debug.log*
+/bustabit-monitor-server/yarn-error.log*
