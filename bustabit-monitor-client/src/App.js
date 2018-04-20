@@ -70,6 +70,7 @@ class App extends Component {
     date.getHours() + ":" + date.getMinutes();
   }
 
+
   calculateAvgTimes(val,bet,betData)
   {
     var data = []
