@@ -1,10 +1,16 @@
 var mongoose = require('mongoose');
 
 var ProductSchema = new mongoose.Schema({
-    id: Number,
+    id: {
+            type: Number,
+            unique: true
+    },
     bust: Number,
     hash: String,
-    date: { type: Date, default: Date.now },
+    date: {
+        type: Date,
+        default: Date.now
+    },
     bets: mongoose.Schema.Types.Mixed
 });
 

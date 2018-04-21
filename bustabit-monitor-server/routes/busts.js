@@ -21,7 +21,7 @@ router.get('/get/:id', function(req, res, next) {
 
 router.get('/add', function(req, res, next) {
     var d;
-    try{
+    try {
         d= JSON.parse(req.query.data);
     }
     catch(e)
@@ -29,21 +29,11 @@ router.get('/add', function(req, res, next) {
         return next(e);
     }
     console.log('id:' + d.id);
-    Bust.find({id : d.id }, (err1, post) => {
-        if (err1) return next(err1);
-        if (!post.length)
-        {
-            Bust.create(JSON.parse(req.query.data), function (err, post) {
-                if (err) return next(err);
-                console.log('OK '+ d.id + ' ' + d.date);
-                res.json({'ok': d.id});
-            });
-        }
-        else
-        {
-            console.log('id ' + d.id + ' esistente');
-            res.json({'error': d.id + " exists"});
-        }
+    Bust.create(JSON.parse(req.query.data), function (err, post) {
+        if (err)
+            return res.json({status: 'error', msg: {code: err.code, msg: err.errmsg} });
+        console.log('OK '+ d.id + ' ' + d.date);
+        res.json({status: 'ok', msg: 'succ. add id'+ d.id});
     });
 });
 
