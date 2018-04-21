@@ -34,7 +34,6 @@ class App extends Component {
       console.log('data:' + data)
       var dataEdit = self.transformData(data);
       that.setState({ vals: dataEdit.slice() });
-      console.log(dataEdit);
     });
   }
 
@@ -88,7 +87,7 @@ class App extends Component {
     space = space / (data2.length -1);
     console.log('midspace: ' + space);
 
-    return this.simulateBets(data,bet,space,val)
+    return {mid: space, balance: this.simulateBets(data,bet,space,val)}
   }
 
   simulateBets(data,bet,mid,val)
@@ -114,7 +113,7 @@ class App extends Component {
     var results=[]
     for (var i = minMult; i<=maxMult; i+=step)
       {
-        results.push({mult: i, balance: this.calculateAvgTimes(i,bet,data)});
+        results.push({mult: i, ...this.calculateAvgTimes(i,bet,data)});
       }
       console.log(results);
   }
