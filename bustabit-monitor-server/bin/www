@@ -21,17 +21,17 @@ var fs = require('fs');
  * Create HTTP server.
  */
 
-var options = {
-    key: fs.readFileSync('./ssl/privkey1.pem'),
-    cert: fs.readFileSync('./ssl/cert1.pem'),
-};
+//var options = {
+//    key: fs.readFileSync('./ssl/privkey1.pem'),
+//    cert: fs.readFileSync('./ssl/cert1.pem'),
+//};
 
 var portHttps = 3001;
 var portHttp = 3000;
 
-var serverHttps = https.createServer(options, app).listen(portHttps, function(){
-    console.log("Express https server listening on port " + portHttps);
-});
+//var serverHttps = https.createServer(options, app).listen(portHttps, function(){
+//    console.log("Express https server listening on port " + portHttps);
+//});
 var serverHttp = http.createServer(app).listen(portHttp, function(){
         console.log("Express http server listening on port " + portHttp);
 });

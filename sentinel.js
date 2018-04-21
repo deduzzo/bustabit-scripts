@@ -13,7 +13,6 @@ engine.on('GAME_ENDED', onGameEnded);
 
 function onGameStarted() {
 currentBets = new Map(engine.playing);
-   log('Bets:' , currentBets);
 }
 
 
@@ -21,16 +20,24 @@ function onGameEnded() {
   totalTimes++;
   log("°°°FINE TURNO ",totalTimes,'°°°')
   var lastGame = engine.history.first();
-  log('Last:',lastGame);
   if (currentBets.size != 0)
   {
     var toUpload = lastGame;
     toUpload.bets = map_to_object(currentBets);
     toUpload.date = new Date();
-    log('Uploading: ',JSON.stringify(toUpload));
-    fetch('https://server2.erainformatica.it:3001/busts/add?data=' + JSON.stringify(toUpload));
+    setTimeout(fetchData, getRandomInt(1000,3000),toUpload);
     currentBets = {};
   }
+}
+
+function fetchData(toUpload)
+{
+    fetch('https://server2.erainformatica.it:3001/busts/add?data=' + JSON.stringify(toUpload)).
+    then(function() {
+        console.log("fetch ok");
+    }).catch(function() {
+        console.log("error");
+    });
 }
 
 function map_to_object(map) {
@@ -44,4 +51,11 @@ function map_to_object(map) {
     }
   })
   return out
+}
+
+//The maximum is inclusive and the minimum is inclusive
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }

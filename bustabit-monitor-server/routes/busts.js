@@ -20,10 +20,30 @@ router.get('/get/:id', function(req, res, next) {
 });
 
 router.get('/add', function(req, res, next) {
-    console.log(req.query.data);
-    Bust.create(JSON.parse(req.query.data), function (err, post) {
-        if (err) return next(err);
-        res.json(post);
+    var d;
+    try{
+        d= JSON.parse(req.query.data);
+    }
+    catch(e)
+    {
+        return next(e);
+    }
+    console.log('id:' + d.id);
+    Bust.find({id : d.id }, (err1, post) => {
+        if (err1) return next(err1);
+        if (!post.length)
+        {
+            Bust.create(JSON.parse(req.query.data), function (err, post) {
+                if (err) return next(err);
+                console.log('OK '+ d.id + ' ' + d.date);
+                res.json({'ok': d.id});
+            });
+        }
+        else
+        {
+            console.log('id ' + d.id + ' esistente');
+            res.json({'error': d.id + " exists"});
+        }
     });
 });
 
