@@ -158,7 +158,7 @@ class App extends Component {
             <AreaChart data={this.state.vals}
                   margin={{top: 10, right: 30, left: 0, bottom: 0}}>
               <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis />
+              <XAxis dataKey='id' />
               <YAxis scale="sqrt" domain={[1,100]} allowDataOverflow={true} />
               <Tooltip/>
               <Area type='monotone' dataKey='bust' stackId="1" stroke='#ACAACAC' fill='#ACAACAC' />
@@ -168,7 +168,7 @@ class App extends Component {
             <AreaChart width={1500} height={300} data={this.state.vals}
                   margin={{top: 10, right: 30, left: 0, bottom: 0}}>
               <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis />
+              <XAxis dataKey='id' />
               <YAxis scale="sqrt"/>
               <Tooltip/>
               <Area type='monotone' dataKey='totalBets' stackId="2" stroke='#8884d8' fill='#8884d8' />
@@ -178,7 +178,7 @@ class App extends Component {
             <AreaChart width={1500} height={300} data={this.state.vals}
                   margin={{top: 10, right: 30, left: 0, bottom: 0}}>
               <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis />
+              <XAxis dataKey='id' />
               <YAxis scale="sqrt"/>
               <Tooltip/>
               <Area type='monotone' dataKey='totalLosts' stackId="4" stroke='#CACACA' fill='#CACACA' />
