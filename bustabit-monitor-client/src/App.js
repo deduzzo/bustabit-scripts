@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {AreaChart, CartesianGrid, XAxis, Tooltip, YAxis, Area, ResponsiveContainer} from 'recharts'
 
-const mult = 900;
+const mult = 700;
 const bet = 1;
 
 class App extends Component {
@@ -31,17 +31,20 @@ class App extends Component {
       return response.json();
     })
     .then(function(data) {
-      console.log('data:' + data)
-      var dataEdit = self.transformData(data);
+      var dataEdit = self.transformData(data.sort((p1, p2)=>
+      {
+        if(p1.id > p2.id)
+          return 1
+        else return -1
+      }));
+      console.log('%c data integrity:' + self.checkDataIntegrity(dataEdit),'background: yellow; color: red')
       that.setState({ vals: dataEdit.slice() });
     });
   }
 
   transformData(data)
   {
-    var avg = 0;
     data.forEach(bust => {
-      avg += bust.bust;
       var totalBets = 0;
       var totalWins = 0;
       var totalLosts = 0;
@@ -56,10 +59,8 @@ class App extends Component {
       bust.totalWins = totalWins;
       bust.totalLosts = totalLosts;
     });
-    avg = avg / data.length;
-    console.log("avg:" + avg);
     //this.calculateAvgTimes(mult,bet,data);
-      this.bestBets(100,1000,100, bet,data)
+      this.bestBets(100,2000,100, bet,data)
       return data;
   }
 
@@ -75,7 +76,7 @@ class App extends Component {
     var data = []
     var data2 = betData.slice();
     data2 = data2.filter(p => p.bust >= val);
-    console.log('d' + data2.length);
+    console.log('%c ---------- mult ----------  ' + val, 'background: #222; color: #bada55');
     var space = 0;
     for (var i = data2.length;i>1; i--)
     {
@@ -87,25 +88,40 @@ class App extends Component {
     space = space / (data2.length -1);
     console.log('midspace: ' + space);
 
-    return {mid: space, balance: this.simulateBets(data,bet,space,val)}
+    return {mid: space, balance: this.simulateBets(data2,bet,space,val), points: data2.length}
   }
 
   simulateBets(data,bet,mid,val)
   {
       var totalWins = 0;
-      data.forEach(b=>
+      for (var i=0; i<data.length-1; i++)
       {
           var balance = 0;
-          if (b.diff >= mid) {
-              balance = (val * bet) - ((b.diff - mid) * bet);
-              console.log('start id:' + b.id1 +' bet, and win ' + balance)
+          var diff;
+          diff = (data[i+1].id - data[i].id)
+          if (diff >= mid) {
+              balance = (val * bet) - ((diff - mid) * bet);
+              console.log('start id:' + data[i+1].id +' bet, and win ' + balance + '(dopo ' + (diff - mid) + ' puntate)')
               totalWins += balance;
           }
           else
-            console.log('not bet')
-      });
-      console.log('totalwins:' + totalWins)
+            console.log(data[i].id + ' not bet (' + diff +'<' + mid + ')')
+      };
+      console.log('%c totalwins:' + totalWins, totalWins >0 ?'background: blue; color: yellow' : 'background: red; color: orange')
       return totalWins;
+  }
+
+  checkDataIntegrity(data)
+  {
+    var notOK = false;
+    for (var i=0; i<data.length -1; i++)
+        if (data[i].id - data[i+1].id >1)
+        {
+            notOK = true;
+            console.log(data[i].id + ' ' + data[i+1].id)
+        }
+
+    return !notOK;
   }
 
   bestBets(minMult, maxMult, step, bet, data)
