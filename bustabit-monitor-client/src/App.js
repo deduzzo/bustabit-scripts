@@ -5,6 +5,7 @@ import {AreaChart, CartesianGrid, XAxis, Tooltip, YAxis, Area, ResponsiveContain
 
 const mult = 700;
 const bet = 1;
+const correction = false;
 
 class App extends Component {
 
@@ -140,7 +141,7 @@ class App extends Component {
     var results=[]
     for (var i = minMult; i<=maxMult; i+=step)
       {
-        results.push({mult: i, ...this.calculateAvgTimes(i,bet,data,false)});
+        results.push({mult: i, ...this.calculateAvgTimes(i,bet,data,correction)});
       }
       console.log(results);
   }
