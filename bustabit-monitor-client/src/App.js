@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {AreaChart, CartesianGrid, XAxis, Tooltip, YAxis, Area, ResponsiveContainer} from 'recharts'
 
-const mult = 700;
+const mult = 600;
 const bet = 1;
 const correction = false;
 
@@ -39,6 +39,7 @@ class App extends Component {
         else return -1
       }));
       console.log('%c data integrity:' + self.checkDataIntegrity(dataEdit),'background: yellow; color: red')
+      console.log('%c ' + dataEdit.length + ' ' + self.checkDataIntegrity(dataEdit),'background: green; color: white')
       that.setState({ vals: dataEdit.slice() });
     });
   }
