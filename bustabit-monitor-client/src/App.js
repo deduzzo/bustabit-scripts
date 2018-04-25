@@ -126,14 +126,15 @@ class App extends Component {
 
   checkDataIntegrity(data)
   {
-    var notOK = false;
-    for (var i=0; i<data.length -1; i++)
-        if (data[i].id - data[i+1].id >1)
-        {
-            notOK = true;
-            console.log(data[i].id + ' ' + data[i+1].id)
-        }
-
+      var notOK = false;
+      var values = [];
+      for (var i=0; i<data.length -1; i++)
+          if (data[i+1].id - data[i].id >1)
+          {
+              notOK = true;
+              console.log(data[i].id + ' ' + data[i+1].id)
+              values.push(data[i+1].id);
+          }
     return !notOK;
   }
 
@@ -145,6 +146,7 @@ class App extends Component {
         results.push({mult: i, ...this.calculateAvgTimes(i,bet,data,correction)});
       }
       console.log(results);
+    return results;
   }
 
   renderData(maxValue)
