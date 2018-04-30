@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {AreaChart, CartesianGrid, XAxis, Tooltip, YAxis, Area, ResponsiveContainer} from 'recharts'
 
-const mult = 600;
+const mult = 14000;
 const bet = 1;
 const correction = false;
 
@@ -50,6 +50,8 @@ class App extends Component {
       var totalBets = 0;
       var totalWins = 0;
       var totalLosts = 0;
+      if (bust.bets === undefined)
+        bust.bets = {}
       for (const key of Object.keys(bust.bets)) {
         if (bust.bust >= bust.bets[key].payout)
           totalWins += ((bust.bets[key].wager / 100) * bust.bets[key].payout) - (bust.bets[key].wager /100);
@@ -62,7 +64,7 @@ class App extends Component {
       bust.totalLosts = totalLosts;
     });
     //this.calculateAvgTimes(mult,bet,data);
-      this.bestBets(100,2000,100, bet,data)
+      this.bestBets(600,5000,100, bet,data)
       return data;
   }
 
