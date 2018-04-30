@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {AreaChart, CartesianGrid, XAxis, Tooltip, YAxis, Area, ResponsiveContainer} from 'recharts'
 
-const mult = 14000;
+const mult = 10000;
 const bet = 1;
 const correction = false;
 
@@ -161,61 +161,113 @@ class App extends Component {
         : ''
     ));
   }
-  
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <div>
-          <ResponsiveContainer width="100%" height={600}>
-            <AreaChart data={this.state.vals}
-                  margin={{top: 10, right: 30, left: 0, bottom: 0}}>
-              <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis dataKey='id' />
-              <YAxis scale="sqrt" domain={[1,100]} allowDataOverflow={true} />
-              <Tooltip/>
-              <Area type='monotone' dataKey='bust' stackId="1" stroke='#ACAACAC' fill='#ACAACAC' />
-            </AreaChart>
-          </ResponsiveContainer>
-          <ResponsiveContainer width="100%" height={300}>
-            <AreaChart width={1500} height={300} data={this.state.vals}
-                  margin={{top: 10, right: 30, left: 0, bottom: 0}}>
-              <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis dataKey='id' />
-              <YAxis scale="sqrt"/>
-              <Tooltip/>
-              <Area type='monotone' dataKey='totalBets' stackId="2" stroke='#8884d8' fill='#8884d8' />
-            </AreaChart>
-          </ResponsiveContainer>
-          <ResponsiveContainer width="100%" height={300}>
-            <AreaChart width={1500} height={300} data={this.state.vals}
-                  margin={{top: 10, right: 30, left: 0, bottom: 0}}>
-              <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis dataKey='id' />
-              <YAxis scale="sqrt"/>
-              <Tooltip/>
-              <Area type='monotone' dataKey='totalLosts' stackId="4" stroke='#CACACA' fill='#CACACA' />
-            </AreaChart>
-          </ResponsiveContainer>
-          <ResponsiveContainer width="100%" height={300}>
-            <AreaChart width={1500} height={300} data={this.state.vals}
-                  margin={{top: 10, right: 30, left: 0, bottom: 0}}>
-              <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis />
-              <YAxis scale="sqrt"/>
-              <Tooltip/>
-              <Area type='monotone' dataKey='totalWins' stackId="3" stroke='#BABABA' fill='#141414' />
-            </AreaChart>
-          </ResponsiveContainer>
-            {this.renderData(mult)}
-        </div>
-      </div>
-    );
-  }
+
+    render() {
+        var last100 = this.state.vals.slice(this.state.vals.length -1000, this.state.vals.length)
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <h1 className="App-title">Welcome to React</h1>
+                </header>
+                <div>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <AreaChart data={last100}
+                                   margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey='id' />
+                            <YAxis scale="sqrt" />
+                            <Tooltip/>
+                            <Area type='monotone' dataKey='bust' stackId="1" stroke='#ACAACAC' fill='#ACAACAC' />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <AreaChart width={1500} height={300} data={last100}
+                                   margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey='id' />
+                            <YAxis scale="sqrt"/>
+                            <Tooltip/>
+                            <Area type='monotone' dataKey='totalBets' stackId="2" stroke='#8884d8' fill='#8884d8' />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <AreaChart width={1500} height={300} data={last100}
+                                   margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey='id' />
+                            <YAxis scale="sqrt"/>
+                            <Tooltip/>
+                            <Area type='monotone' dataKey='totalLosts' stackId="4" stroke='#CACACA' fill='#CACACA' />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <AreaChart width={1500} height={300} data={last100}
+                                   margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis />
+                            <YAxis scale="sqrt"/>
+                            <Tooltip/>
+                            <Area type='monotone' dataKey='totalWins' stackId="3" stroke='#BABABA' fill='#141414' />
+                        </AreaChart>
+                    </ResponsiveContainer>
+
+                    <ResponsiveContainer width="100%" height={600}>
+                        <AreaChart data={this.state.vals}
+                                   margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey='id' />
+                            <YAxis scale="sqrt" domain={[1,100]} allowDataOverflow={true} />
+                            <Tooltip/>
+                            <Area type='monotone' dataKey='bust' stackId="1" stroke='#ACAACAC' fill='#ACAACAC' />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                    <ResponsiveContainer width="100%" height={600}>
+                        <AreaChart data={this.state.vals}
+                                   margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey='id' />
+                            <YAxis scale="sqrt" domain={[1,100]} allowDataOverflow={true} />
+                            <Tooltip/>
+                            <Area type='monotone' dataKey='bust' stackId="1" stroke='#ACAACAC' fill='#ACAACAC' />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <AreaChart width={1500} height={300} data={this.state.vals}
+                                   margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey='id' />
+                            <YAxis scale="sqrt"/>
+                            <Tooltip/>
+                            <Area type='monotone' dataKey='totalBets' stackId="2" stroke='#8884d8' fill='#8884d8' />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <AreaChart width={1500} height={300} data={this.state.vals}
+                                   margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey='id' />
+                            <YAxis scale="sqrt"/>
+                            <Tooltip/>
+                            <Area type='monotone' dataKey='totalLosts' stackId="4" stroke='#CACACA' fill='#CACACA' />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <AreaChart width={1500} height={300} data={this.state.vals}
+                                   margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis />
+                            <YAxis scale="sqrt"/>
+                            <Tooltip/>
+                            <Area type='monotone' dataKey='totalWins' stackId="3" stroke='#BABABA' fill='#141414' />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                    {this.renderData(mult)}
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
