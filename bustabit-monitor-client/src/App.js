@@ -64,7 +64,7 @@ class App extends Component {
       bust.totalLosts = totalLosts;
     });
     //this.calculateAvgTimes(mult,bet,data);
-      this.bestBets(600,5000,100, bet,data)
+      this.bestBets(600,3000,200, bet,data)
       return data;
   }
 
