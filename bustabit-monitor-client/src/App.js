@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {AreaChart, CartesianGrid, XAxis, Tooltip, YAxis, Area, ResponsiveContainer} from 'recharts'
 
-const mult = 10000;
+const mult = 800;
 const bet = 1;
 const correction = false;
 
