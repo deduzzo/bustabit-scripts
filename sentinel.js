@@ -2,7 +2,7 @@ var config = {
 };
 
 var totalTimes = 0;
-var currentBets = {}
+var currentOtherBets = {}
 
 log('AVVIO sentinel');
 
@@ -12,7 +12,7 @@ engine.on('GAME_STARTED', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
 
 function onGameStarted() {
-currentBets = new Map(engine.playing);
+currentOtherBets = new Map(engine.playing);
 }
 
 
@@ -20,13 +20,13 @@ function onGameEnded() {
   totalTimes++;
   log("°°°FINE TURNO ",totalTimes,'°°°')
   var lastGame = engine.history.first();
-  if (currentBets.size != 0)
+  if (currentOtherBets.size != 0)
   {
     var toUpload = lastGame;
-    toUpload.bets = map_to_object(currentBets);
+    toUpload.bets = map_to_object(currentOtherBets);
     toUpload.date = new Date();
     setTimeout(fetchData, getRandomInt(1000,3000),toUpload);
-    currentBets = {};
+    currentOtherBets = {};
   }
 }
 

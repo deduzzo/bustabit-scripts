@@ -1,10 +1,10 @@
 var config = {
-    baseBet: { type: 'balance', label: 'Bet (MIN 10, none for AUTO):', optional: true, },
-    multMax: { value: 1.9, type: 'multiplier', label: 'Max Mult'},
-    multMin: { value: 1.01, type: 'multiplier', label: 'Min Mult'},
-    numMinRandomRetry: { value: 2, type: 'multiplier', label: 'Min Random Retry'},
-    numMaxRandomRetry: { value: 3, type: 'multiplier', label: 'Max Random Retry'},
-    maxRandomMultiply: { value: 16, type: 'multiplier', label: 'Max Multiply for random '},
+    baseBet: { value: 1000, type: 'balance', label: 'Bet (MIN 10, none for AUTO):', optional: true, },
+    multMax: { value: 1.99, type: 'multiplier', label: 'Max Mult'},
+    multMin: { value: 1.11, type: 'multiplier', label: 'Min Mult'},
+    numMinRandomRetry: { value: 15, type: 'multiplier', label: 'Min Random Retry'},
+    numMaxRandomRetry: { value: 18, type: 'multiplier', label: 'Max Random Retry'},
+    maxRandomMultiply: { value: 20, type: 'multiplier', label: 'Max Multiply for random '},
     minRandomMultiply: { value: 8, type: 'multiplier', label: 'Min Multiply for random '},
     strategyOnLoss: {
     value: 'x100', type: 'radio', label: 'Strategy in Recovery LOSS',
@@ -13,8 +13,8 @@ var config = {
       x1000: { value: 'x1000', type: 'noop', label: 'x1000 Bet / 1.01 Payout (Suggested)' },
       }
     },
-    numMaxLostRetry: { value: 1, type: 'multiplier', label: 'Max Lost Retry'},
-    recalibrateEveryCicle: { value: 10, type: 'multiplier', label: 'Recalibrate base bet every x cicle (none to disable calibration)', optional: true,},
+    numMaxLostRetry: { value: 2, type: 'multiplier', label: 'Max Lost Retry'},
+    recalibrateEveryCicle: { type: 'multiplier', label: 'Recalibrate base bet every x cicle (none to disable calibration)', optional: true,},
     recalibrationCoefficent: { value: 4, type: 'multiplier', label: 'Recalibration Coefficent', optional: true,},
 };
 
@@ -31,7 +31,7 @@ const recalibrateEveryCicle = config.recalibrateEveryCicle.value;
 const recalibrationCoefficent = config.recalibrationCoefficent.value;
 
 var currentBet = config.baseBet.value;
-var calibrationEnabled = currentBet == undefined;
+var calibrationEnabled = currentBet == undefined ? false : recalibrateEveryCicle == undefined ? false : true;
 var retry = 0;
 var losts = 0;
 var lostsBalance = 0.0;
@@ -54,7 +54,7 @@ if (numMaxLostRetry == -1)
   calibrationEnabled = 0;
 
 
-log('AVVIO ', numMaxLostRetry == -1 ? "NO EMERGENCY" : strategyOnLoss, 'mode');
+log('AVVIO ', numMaxLostRetry == -1 ? "NO EMERGENCY" : strategyOnLoss, 'mode calib: ', calibrationEnabled);
 
 //fetch('https://jsonplaceholder.typicode.com/posts/1')
 //  .then(response => response.json())
@@ -114,10 +114,6 @@ function onGameEnded() {
   totalTimes++;
   log("°°°FINE TURNO ",totalTimes,'°°°')
   var lastGame = engine.history.first();
-
-  fetch('https://server2.erainformatica.it:3001/busts/add?data=' + JSON.stringify(lastGame))
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
 
   var l = {n: totalTimes, bust: lastGame.bust};
   if (lastGame.bust >= statsValues.lowHigher)
