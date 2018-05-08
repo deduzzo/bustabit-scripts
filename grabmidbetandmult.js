@@ -73,15 +73,18 @@ function onGameEnded() {
         return;
     }
 
-    if (lastGame.cashedAt) {
-        var profit = Math.round((config.wager.value * config.payout.value - config.wager.value) / 100)
-        totalProfits+= profit - partialBets;
-        stats.push({status: 'wins', bets: realPartialTimesBets, date: new Date(), balance: profit - partialBets , mid: mid});
-        log('WINSSS ', profit, ' bits , ROUND BALANCE: ', Math.round(profit - partialBets) /100, ', TOTAL PROFIT: ', Math.round(totalProfits /100));
-        succBets++;
-        waitAndGrab();
+    if (lastGame.cashedAt !== 0) {
+        var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
+        log('WINSSS ', profit /100, ' bits , ROUND BALANCE: ', (profit - partialBets) /100, ', TOTAL PROFIT: ', totalProfits /100);
+        if (lastGame.bust >= config.mult.value) {
+            totalProfits+= profit - partialBets;
+            succBets++;
+            stats.push({status: 'wins', bets: realPartialTimesBets, date: new Date(), balance: profit - partialBets , mid: mid});
+            waitAndGrab();
+        }
+        else partialBets -= profit;
     } else {
-        log('LOST, road to wins', Math.round(config.wager.value / 100) * config.payout.value, ' bits - BET TIMES: [',realPartialTimesBets, '] MID: [', mid,'] -  PART BETS: [', Math.round(partialBets /100), ']');
+        partialBets += currentBaseBet;
     }
 }
 
@@ -92,9 +95,8 @@ function adjustCurrentBaseBet()
 
 function makeBet() {
     if (!test) engine.bet(currentBaseBet, config.mult.value);
-    partialBets += currentBaseBet;
     realPartialTimesBets++;
-    log('[', currentTimes  ,'<> BET ',realPartialTimesBets,'] Betting', Math.round(currentBaseBet / 100), 'on', config.mult.value, 'x, ');
+    log('[', currentTimes  ,'<> BET ',realPartialTimesBets,'] ', currentBaseBet / 100, 'x', config.mult.value, 'x (',(currentBaseBet / 100) * config.mult.value, ') - [PARTIAL: ', partialBets /100, ']');
 }
 
 function fetchData() {
