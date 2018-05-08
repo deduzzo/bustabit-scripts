@@ -96,7 +96,7 @@ function adjustCurrentBaseBet()
 function makeBet() {
     if (!test) engine.bet(currentBaseBet, config.mult.value);
     realPartialTimesBets++;
-    log('[', currentTimes  ,'<> BET ',realPartialTimesBets,'] ', currentBaseBet / 100, 'x', config.mult.value, 'x (',(currentBaseBet / 100) * config.mult.value, ') - [PARTIAL: ', partialBets /100, ']');
+    log('[', currentTimes  ,'<> BET ',realPartialTimesBets,'] ', currentBaseBet / 100, 'x', config.mult.value, 'x (',(currentBaseBet / 100) * config.mult.value, ') - [PARTIAL: ', (partialBets /100).toFixed(2), ']');
 }
 
 function fetchData() {
@@ -131,6 +131,8 @@ function waitAndGrab()
 
 function showStats()
 {
-    log('*** STATS ***');
-    log(stats);
+    if (stats.length>0) {
+        log('*** STATS ***');
+        log(stats);
+    }
 }
