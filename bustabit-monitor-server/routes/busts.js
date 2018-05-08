@@ -77,7 +77,7 @@ router.get('/stats', function(req, res, next) {
                 return 1
             else return -1
         });
-        var results =bestBets(100,2000,100, 1,dataEdit,false).sort((p1, p2)=>
+        var results =bestBets(100,10000,100, 1,dataEdit,false).sort((p1, p2)=>
         {
             if(p1.balance < p2.balance)
                 return 1

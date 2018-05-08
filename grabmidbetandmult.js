@@ -57,7 +57,7 @@ function onGameStarted() {
 function onGameEnded() {
     var lastGame = engine.history.first();
     if(started) currentTimes++;
-    if (currentTimes % 50 == 0) showStats();
+    if (currentTimes % 50 == 0 && started) showStats();
     if (!lastGame.wager) {
         if (lastGame.bust >= config.mult.value)
         {
@@ -123,6 +123,7 @@ function waitAndGrab()
     partialBets = 0;
     midFetched = false;
     currentTimesFetched = false;
+    started = false;
     setTimeout(fetchData, 10000);
 }
 
