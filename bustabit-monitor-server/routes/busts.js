@@ -52,6 +52,16 @@ router.get('/last/:bust', function(req, res, next) {
     });
 });
 
+/!* GET SINGLE PRODUCT BY ID *!/
+router.get('/all/:bust', function(req, res, next) {
+    var query = {bust: { $gt: req.params.bust}};
+    Bust.find(query).sort({ date: -1 }).select({ id: 1, date: 1,bust:1}).
+    exec(function (err, post) {
+        if (err) return next(err);
+        res.json(post);
+    });
+});
+
 router.get('/fromLastBust/:bust', async function(req, res, next) {
     try
     {
