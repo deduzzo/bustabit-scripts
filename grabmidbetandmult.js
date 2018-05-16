@@ -1,15 +1,26 @@
 var config = {
     mult: {
-        value: 1300, type: 'multiplier', label: 'Des Mult (none for best)'
+        value: 600, type: 'multiplier', label: 'Mult (none for best)'
+    },
+    antPercent: {
+        value: 20, type: 'multiplier', label: 'Start % before'
+    },
+    max: {
+        value: 100, type: 'multiplier', label: 'Max bet % (none for unlimited)'
+    },
+    multAfterKo: {
+        value: 2, type: 'multiplier', label: 'Multiply bet for x after ko max bets'
     },
     baseBet: {
         value: 100, type: 'balance', label: 'Base Bet'
     },
     multAmount: {
-         type: 'multiplier', label: 'Mult base bet after mid*2 bets (none to disable)', optional: true,
+         value: 2, type: 'multiplier', label: 'Mult base bet after mid*2 bets (none to disable)', optional: true,
     }
 };
 
+var timesBefore = (config.mult.value /100) * config.antPercent.value;
+var multipler = 1;
 var currentTimesFetched = false;
 var midFetched = false;
 var started = false;
@@ -34,7 +45,7 @@ fetchData();
 
 function onGameStarted() {
     if (!started && midFetched && currentTimesFetched) {
-        log("READY TO START! ", config.mult.value, 'x, mid: ', mid)
+        log("READY TO START! ", config.mult.value, 'x, mid: ', mid, ' ant:', timesBefore)
         started = true;
     }
     else
@@ -42,14 +53,20 @@ function onGameStarted() {
 
     if (started)
     {
-        if (currentTimes > mid)
+        if (currentTimes > (mid - timesBefore))
         {
             adjustCurrentBaseBet();
-            makeBet();
+            if (((realPartialTimesBets  * 100) / config.mult.value) < config.mult.value)
+                makeBet();
+            else {
+                multipler *= config.multAmount.value;
+                log('skipping because ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), '% >', config.multAmount.value, '% selected, multipler: ', multipler, ' new base bet: ', config.baseBet.value * multipler, ' bit')
+                stats.push({status: 'skip', bets: currentTimes, realBets: realPartialTimesBets, date: new Date(), balance: - realPartialTimesBets * config.baseBet.value, mid: mid});
+            }
         }
         else
         {
-            log('skipping for other ', mid - currentTimes, ' times')
+            log('skipping for other ', mid - currentTimes - timesBefore, ' times')
         }
     }
 }
@@ -62,7 +79,7 @@ function onGameEnded() {
         if (lastGame.bust >= config.mult.value)
         {
             log('bust: ',lastGame.bust, 'x :( resetting count');
-            stats.push({status: 'skip', bets: currentTimes, date: new Date(), balance: 0, mid: mid});
+            stats.push({status: 'skip', bets: currentTimes, realBets: realPartialTimesBets, date: new Date(), balance: 0, mid: mid});
             skippedBets++;
             waitAndGrab();
         }
@@ -77,6 +94,7 @@ function onGameEnded() {
         var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
         log('WINSSS ', profit /100, ' bits , ROUND BALANCE: ', (profit - partialBets) /100, ', TOTAL PROFIT: ', totalProfits /100);
         if (lastGame.bust >= config.mult.value) {
+            multipler = 1;
             totalProfits+= profit - partialBets;
             succBets++;
             stats.push({status: 'wins', bets: realPartialTimesBets, date: new Date(), balance: profit - partialBets , mid: mid});
@@ -94,9 +112,9 @@ function adjustCurrentBaseBet()
 }
 
 function makeBet() {
-    if (!test) engine.bet(currentBaseBet, config.mult.value);
+    if (!test) engine.bet(currentBaseBet * multipler, config.mult.value);
     realPartialTimesBets++;
-    log('[', currentTimes  ,'<> BET ',realPartialTimesBets,'] ', currentBaseBet / 100, 'x', config.mult.value, 'x (',(currentBaseBet / 100) * config.mult.value, ') - [PARTIAL: ', (partialBets /100).toFixed(2), ']');
+    log('[', currentTimes  ,'<> BET ',realPartialTimesBets,'] ', (currentBaseBet * multipler) / 100, ' bit', config.mult.value, 'x (',(currentBaseBet / 100) * config.mult.value, ') - [PARTIAL: ', (partialBets /100).toFixed(2), '] [% ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), ']');
 }
 
 function fetchData() {
