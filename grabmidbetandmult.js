@@ -59,8 +59,8 @@ function onGameStarted() {
             if (((realPartialTimesBets  * 100) / config.mult.value) < config.mult.value)
                 makeBet();
             else {
-                multipler *= config.multAmount.value;
-                log('skipping because ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), '% >', config.multAmount.value, '% selected, multipler: ', multipler, ' new base bet: ', config.baseBet.value * multipler, ' bit')
+                multipler *= config.multAfterKo.value;
+                log('skipping because ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), '% >', config.mult.value, '% selected, multipler: ', multipler, ' new base bet: ', config.baseBet.value * multipler, ' bit')
                 stats.push({status: 'skip', bets: currentTimes, realBets: realPartialTimesBets, date: new Date(), balance: - realPartialTimesBets * config.baseBet.value, mid: mid});
             }
         }
