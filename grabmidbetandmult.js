@@ -20,11 +20,10 @@ var config = {
 };
 
 var timesBefore = (config.mult.value /100) * config.antPercent.value;
-var multipler = 1;
 var currentTimesFetched = false;
 var midFetched = false;
 var started = false;
-
+var incremented = false;
 var currentTimes = 0;
 var mid = 0;
 
@@ -59,9 +58,19 @@ function onGameStarted() {
             if (((realPartialTimesBets  * 100) / config.mult.value) < config.mult.value)
                 makeBet();
             else {
-                multipler *= config.multAfterKo.value;
-                log('skipping because ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), '% >', config.mult.value, '% selected, multipler: ', multipler, ' new base bet: ', config.baseBet.value * multipler, ' bit')
-                stats.push({status: 'skip', bets: currentTimes, realBets: realPartialTimesBets, date: new Date(), balance: - realPartialTimesBets * config.baseBet.value, mid: mid});
+                if (!incremented) {
+                    incremented = true;
+                    currentBaseBet *= config.multAfterKo.value;
+                    stats.push({
+                        status: 'skip',
+                        bets: currentTimes,
+                        realBets: realPartialTimesBets,
+                        date: new Date(),
+                        balance: -realPartialTimesBets * config.baseBet.value,
+                        mid: mid
+                    });
+                }
+                log('skipping because ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), '%, selected, multipler: ', config.multAfterKo.value, ' new base bet: ', currentBaseBet, ' bit')
             }
         }
         else
@@ -78,6 +87,7 @@ function onGameEnded() {
     if (!lastGame.wager) {
         if (lastGame.bust >= config.mult.value)
         {
+            incremented = false;
             log('bust: ',lastGame.bust, 'x :( resetting count');
             stats.push({status: 'skip', bets: currentTimes, realBets: realPartialTimesBets, date: new Date(), balance: 0, mid: mid});
             skippedBets++;
@@ -93,8 +103,12 @@ function onGameEnded() {
     if (lastGame.cashedAt !== 0) {
         var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
         log('WINSSS ', profit /100, ' bits , ROUND BALANCE: ', (profit - partialBets) /100, ', TOTAL PROFIT: ', totalProfits /100);
-        if (lastGame.bust >= config.mult.value) {
-            multipler = 1;
+        if (lastGame.cashedAt >= config.mult.value) {
+            if (config.baseBet.value < currentBaseBet)
+            {
+                incremented = false;
+                currentBaseBet = config.baseBet.value;
+            }
             totalProfits+= profit - partialBets;
             succBets++;
             stats.push({status: 'wins', bets: realPartialTimesBets, date: new Date(), balance: profit - partialBets , mid: mid});
@@ -112,9 +126,9 @@ function adjustCurrentBaseBet()
 }
 
 function makeBet() {
-    if (!test) engine.bet(currentBaseBet * multipler, config.mult.value);
+    if (!test) engine.bet(currentBaseBet, config.mult.value);
     realPartialTimesBets++;
-    log('[', currentTimes  ,'<> BET ',realPartialTimesBets,'] ', (currentBaseBet * multipler) / 100, ' bit', config.mult.value, 'x (',(currentBaseBet / 100) * config.mult.value, ') - [PARTIAL: ', (partialBets /100).toFixed(2), '] [% ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), ']');
+    log('[', currentTimes  ,'<> BET ',realPartialTimesBets,'] ', currentBaseBet  / 100, ' bit', config.mult.value, 'x (',(currentBaseBet / 100) * config.mult.value, ') - [PARTIAL: ', (partialBets /100).toFixed(2), '] [% ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), ']');
 }
 
 function fetchData() {
