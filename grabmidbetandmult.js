@@ -9,14 +9,11 @@ var config = {
         value: 100, type: 'multiplier', label: 'Max bet % (none for unlimited)'
     },
     multAfterKo: {
-        value: 2, type: 'multiplier', label: 'Multiply bet for x after ko max bets'
+        value: 5, type: 'multiplier', label: 'Multiply bet for x after ko max bets'
     },
     baseBet: {
         value: 100, type: 'balance', label: 'Base Bet'
     },
-    multAmount: {
-         value: 2, type: 'multiplier', label: 'Mult base bet after mid*2 bets (none to disable)', optional: true,
-    }
 };
 
 var timesBefore = (config.mult.value /100) * config.antPercent.value;
@@ -54,23 +51,22 @@ function onGameStarted() {
     {
         if (currentTimes > (mid - timesBefore))
         {
-            adjustCurrentBaseBet();
-            if (((realPartialTimesBets  * 100) / config.mult.value) < config.mult.value)
+            if (((realPartialTimesBets  * 100) / config.mult.value) < config.max.value)
                 makeBet();
             else {
                 if (!incremented) {
                     incremented = true;
                     currentBaseBet *= config.multAfterKo.value;
                     stats.push({
-                        status: 'skip',
+                        status: 'lost',
                         bets: currentTimes,
                         realBets: realPartialTimesBets,
                         date: new Date(),
-                        balance: -realPartialTimesBets * config.baseBet.value,
+                        balance: ((-realPartialTimesBets * config.baseBet.value) / 100).toFixed(2),
                         mid: mid
                     });
                 }
-                log('skipping because ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), '%, selected, multipler: ', config.multAfterKo.value, ' new base bet: ', currentBaseBet, ' bit')
+                log('skipping because ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), '% >', config.max.value, ' - multipler: ', config.multAfterKo.value, ' new base bet: ', currentBaseBet, ' bit')
             }
         }
         else
@@ -118,11 +114,6 @@ function onGameEnded() {
     } else {
         partialBets += currentBaseBet;
     }
-}
-
-function adjustCurrentBaseBet()
-{
-
 }
 
 function makeBet() {
