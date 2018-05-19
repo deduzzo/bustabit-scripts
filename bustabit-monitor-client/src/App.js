@@ -6,6 +6,7 @@ import {AreaChart, CartesianGrid, XAxis, Tooltip, YAxis, Area, ResponsiveContain
 const mult = 1200;
 const bet = 1;
 const correction = false;
+const minBust = 400
 
 class App extends Component {
 
@@ -22,7 +23,7 @@ class App extends Component {
 
   componentDidMount() {    
     var that = this;
-    var url = 'http://server2.erainformatica.it:3000/busts/'
+    var url = 'http://server2.erainformatica.it:3000/busts/all/' + minBust
     var self = this;
     fetch(url)
     .then(function(response) {
@@ -38,9 +39,9 @@ class App extends Component {
           return 1
         else return -1
       }));
-      console.log('%c data integrity:' + self.checkDataIntegrity(dataEdit),'background: yellow; color: red')
-      console.log('%c ' + dataEdit.length + ' ' + self.checkDataIntegrity(dataEdit),'background: green; color: white')
-      console.log(self.checkLongestBadSeries(dataEdit, 2))
+      //console.log('%c data integrity:' + self.checkDataIntegrity(dataEdit),'background: yellow; color: red')
+      //console.log('%c ' + dataEdit.length + ' ' + self.checkDataIntegrity(dataEdit),'background: green; color: white')
+      //console.log(self.checkLongestBadSeries(dataEdit, 2))
       that.setState({ vals: dataEdit.slice() });
     });
   }
@@ -65,7 +66,7 @@ class App extends Component {
       bust.totalLosts = totalLosts;
     });
     //this.calculateAvgTimes(mult,bet,data);
-      this.bestBets(400,5000,100, bet,data)
+      this.bestBets(minBust,5000,200, bet,data)
       return data;
   }
 
