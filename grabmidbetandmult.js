@@ -5,11 +5,12 @@ var config = {
     antPercent: {
         value: 20, type: 'multiplier', label: 'Start % before'
     },
-    max: {
-        value: 100, type: 'multiplier', label: 'Max bet % (none for unlimited)'
-    },
-    multAfterKo: {
-        value: 5, type: 'multiplier', label: 'Multiply bet for x after ko max bets'
+    strategy: {
+        value: 'perc80x5', type: 'radio', label: 'Strategy',
+        options: {
+            perc80x5: { value: 'perc80x5', type: 'noop', label: 'bet for 80% - mult 5x after loss' },
+            perc90x10: { value: 'perc90x10', type: 'noop', label: 'bet for 90% - mult 10x after loss' },
+        }
     },
     baseBet: {
         value: 100, type: 'balance', label: 'Base Bet'
@@ -23,6 +24,8 @@ var started = false;
 var incremented = false;
 var currentTimes = 0;
 var mid = 0;
+var max = config.strategy.value === 'perc80x5' ? 80 : 90;
+var multAfterKo = config.strategy.value === 'perc80x5' ? 5 : 10;
 
 var realPartialTimesBets = 0;
 var partialBets = 0;
@@ -41,7 +44,7 @@ fetchData();
 
 function onGameStarted() {
     if (!started && midFetched && currentTimesFetched) {
-        log("READY TO START! ", config.mult.value, 'x, mid: ', mid, ' ant:', timesBefore)
+        log("READY TO START! ", config.mult.value, 'x, mid: ', mid, ' ant:', timesBefore, ' max% =', max,' mult after ko:', multAfterKo);
         started = true;
     }
     else
@@ -51,12 +54,12 @@ function onGameStarted() {
     {
         if (currentTimes > (mid - timesBefore))
         {
-            if (((realPartialTimesBets  * 100) / config.mult.value) < config.max.value)
+            if (((realPartialTimesBets  * 100) / config.mult.value) < max)
                 makeBet();
             else {
                 if (!incremented) {
                     incremented = true;
-                    currentBaseBet *= config.multAfterKo.value;
+                    currentBaseBet *= multAfterKo;
                     stats.push({
                         status: 'lost',
                         bets: currentTimes,
@@ -66,7 +69,7 @@ function onGameStarted() {
                         mid: mid
                     });
                 }
-                log('skipping because ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), '% >', config.max.value, ' - multipler: ', config.multAfterKo.value, ' new base bet: ', currentBaseBet, ' bit')
+                log('skipping because % >', max, ' - multipler: ', multAfterKo, ' new base bet: ', currentBaseBet, ' bit')
             }
         }
         else
@@ -107,7 +110,7 @@ function onGameEnded() {
             }
             totalProfits+= profit - partialBets;
             succBets++;
-            stats.push({status: 'wins', bets: realPartialTimesBets, date: new Date(), balance: profit - partialBets , mid: mid});
+            stats.push({status: 'wins', bets: realPartialTimesBets, date: new Date(), balance: (profit - partialBets) /100 , mid: mid});
             waitAndGrab();
         }
         else partialBets -= profit;
