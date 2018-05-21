@@ -2,8 +2,8 @@ var config = {
     mult: {
         value: 600, type: 'multiplier', label: 'Mult (none for best)'
     },
-    antPercent: {
-        value: 20, type: 'multiplier', label: 'Start % before'
+    percent: {
+        value: 80, type: 'multiplier', label: 'Start %'
     },
     strategy: {
         value: 'perc80x5', type: 'radio', label: 'Strategy',
@@ -17,7 +17,7 @@ var config = {
     },
 };
 
-var timesBefore = (config.mult.value /100) * config.antPercent.value;
+var percentToStart = config.percent.value;
 var currentTimesFetched = false;
 var midFetched = false;
 var started = false;
@@ -44,7 +44,7 @@ fetchData();
 
 function onGameStarted() {
     if (!started && midFetched && currentTimesFetched) {
-        log("READY TO START! ", config.mult.value, 'x, mid: ', mid, ' ant:', timesBefore, ' max% =', max,' mult after ko:', multAfterKo);
+        log("READY TO START! ", config.mult.value, 'x, mid: ', mid, ' start at:', Math.round((mid /100) * percentToStart), '(', percentToStart,'%) - max% =', max,' mult after ko:', multAfterKo);
         started = true;
     }
     else
@@ -52,7 +52,7 @@ function onGameStarted() {
 
     if (started)
     {
-        if (currentTimes > (mid - timesBefore))
+        if (currentTimes > Math.round(((mid /100) * percentToStart)))
         {
             if (((realPartialTimesBets  * 100) / config.mult.value) < max)
                 makeBet();
@@ -74,7 +74,7 @@ function onGameStarted() {
         }
         else
         {
-            log('skipping for other ', mid - currentTimes - timesBefore, ' times')
+            log('skipping for other ', Math.round((mid /100) * percentToStart) - currentTimes, ' times')
         }
     }
 }
