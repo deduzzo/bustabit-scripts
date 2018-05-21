@@ -69,7 +69,7 @@ function onGameStarted() {
                         mid: mid
                     });
                 }
-                log('skipping because % >', max, ' - multipler: ', multAfterKo, ' new base bet: ', currentBaseBet, ' bit')
+                log('skipping because % >', max, ' - multipler: ', multAfterKo, ' new base bet: ', currentBaseBet /100, ' bit')
             }
         }
         else
