@@ -23,7 +23,7 @@ function onGameEnded() {
   if (currentOtherBets.size != 0)
   {
     var toUpload = lastGame;
-    toUpload.bets = map_to_object(currentOtherBets);
+    //toUpload.bets = map_to_object(currentOtherBets);
     toUpload.date = new Date();
     setTimeout(fetchData, getRandomInt(1000,3000),toUpload);
     currentOtherBets = {};
