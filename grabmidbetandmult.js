@@ -6,10 +6,17 @@ var config = {
         value: 80, type: 'multiplier', label: 'Start %'
     },
     strategy: {
-        value: 'perc80x5', type: 'radio', label: 'Strategy',
+        value: 'perc80x5', type: 'radio', label: 'Strategy:',
         options: {
             perc80x5: { value: 'perc80x5', type: 'noop', label: 'bet for 80% - mult 5x after loss' },
             perc90x10: { value: 'perc90x10', type: 'noop', label: 'bet for 90% - mult 10x after loss' },
+        }
+    },
+    midMethod: {
+        value: 'mult', type: 'radio', label: 'Mid method;',
+        options: {
+            mult: { value: 'mult', type: 'noop', label: 'Use Mult' },
+            grab: { value: 'grab', type: 'noop', label: 'Grab Online' },
         }
     },
     baseBet: {
@@ -40,7 +47,7 @@ var test = false;
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
 
-fetchData();
+fetchData(config.midMethod.value === 'grab');
 
 function onGameStarted() {
     if (!started && midFetched && currentTimesFetched) {
@@ -126,20 +133,33 @@ function makeBet() {
 }
 
 function fetchData() {
-
-    fetch('https://server2.erainformatica.it:3001/busts/stats').then(response => response.json())
-        .then(json => {
-            var res = json.results;
-            mid = Math.floor(res.filter(p => p.mult == config.mult.value)[0].mid);
-            midFetched = true;
-            log('mid = ', mid)
-            fetch('https://server2.erainformatica.it:3001/busts/fromLastBust/' + config.mult.value).then(response => response.json())
-                .then(json => {
-                    currentTimes = json.times;
-                    currentTimesFetched = true;
-                    log('currentTimes = ', currentTimes)
-                });
-        });
+    if (config.midMethod.value === 'grab') {
+        fetch('https://server2.erainformatica.it:3001/busts/stats').then(response => response.json())
+            .then(json => {
+                var res = json.results;
+                mid = Math.floor(res.filter(p => p.mult == config.mult.value)[0].mid);
+                midFetched = true;
+                log('mid = ', mid)
+                fetch('https://server2.erainformatica.it:3001/busts/fromLastBust/' + config.mult.value).then(response => response.json())
+                    .then(json => {
+                        currentTimes = json.times;
+                        currentTimesFetched = true;
+                        log('currentTimes = ', currentTimes)
+                    });
+            });
+    }
+    else
+    {
+        mid = config.mult.value;
+        midFetched = true;
+        log('mid = ', mid)
+        fetch('https://server2.erainformatica.it:3001/busts/fromLastBust/' + config.mult.value).then(response => response.json())
+            .then(json => {
+                currentTimes = json.times;
+                currentTimesFetched = true;
+                log('currentTimes = ', currentTimes)
+            });
+    }
 }
 
 function waitAndGrab()
