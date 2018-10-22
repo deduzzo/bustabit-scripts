@@ -117,19 +117,26 @@ function onGameEnded() {
     if(started) currentTimes++;
     if (currentTimes % 50 == 0 && started) showStats();
 
-    if (lastGame.bust >= config.mult.value && !(lastGame.cashedAt !== 0))
-    {
-        incremented = false;
-        log('bust: ',lastGame.bust, 'x :( resetting count');
-        stats.push({status: 'skip', bets: currentTimes, realBets: realPartialTimesBets, date: new Date(), balance: 0, mid: mid});
-        skippedBets++;
-        waitAndGrab(config.midMethod.value === 'grab' || config.midMethod.value === 'multg');
+    if (lastGame.cashedAt === 0) {
+        if (lastGame.bust >= config.mult.value) {
+            incremented = false;
+            log('bust: ', lastGame.bust, 'x :( resetting count');
+            stats.push({
+                status: 'skip',
+                bets: currentTimes,
+                realBets: realPartialTimesBets,
+                date: new Date(),
+                balance: 0,
+                mid: mid
+            });
+            skippedBets++;
+            waitAndGrab(config.midMethod.value === 'grab' || config.midMethod.value === 'multg');
+        }
+        else {
+            log('bust:', lastGame.bust, 'x.. ');
+        }
+        return;
     }
-    else if (!(lastGame.cashedAt !== 0))
-    {
-        log('bust:', lastGame.bust, 'x.. ');
-    }
-    return;
 
     if (lastGame.cashedAt !== 0) {
         var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
