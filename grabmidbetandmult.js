@@ -1,9 +1,9 @@
 var config = {
     mult: {
-        value: 600, type: 'multiplier', label: 'Mult (none for best)'
+        value: 10, type: 'multiplier', label: 'Mult (none for best)'
     },
     percent: {
-        value: 80, type: 'multiplier', label: 'Start %'
+        value: 40, type: 'multiplier', label: 'Start %'
     },
     strategy: {
         value: 'perc80x5', type: 'radio', label: 'Strategy:',
@@ -15,9 +15,16 @@ var config = {
     midMethod: {
         value: 'mult', type: 'radio', label: 'Mid method;',
         options: {
-            mult: { value: 'mult', type: 'noop', label: 'Use Mult' },
-            grab: { value: 'grab', type: 'noop', label: 'Grab Online' },
+            mult: { value: 'mult', type: 'noop', label: 'Use Mult (no online)' },
+            multg: { value: 'multg', type: 'noop', label: 'Use Mult (online times check)' },
+            grab: { value: 'grab', type: 'noop', label: 'Grab All Online' },
         }
+    },
+    maxiterations: {
+        value: 6, type: 'multiplier', label: 'Max Iterations (disaster recovery)'
+    },
+    percentinc: {
+        value: 10, type: 'multiplier', label: 'Percent inc per iterations'
     },
     baseBet: {
         value: 100, type: 'balance', label: 'Base Bet'
@@ -33,6 +40,7 @@ var currentTimes = 0;
 var mid = 0;
 var max = config.strategy.value === 'perc80x5' ? 80 : 90;
 var multAfterKo = config.strategy.value === 'perc80x5' ? 5 : 10;
+var iteration = 1;
 
 var realPartialTimesBets = 0;
 var partialBets = 0;
@@ -59,22 +67,40 @@ function onGameStarted() {
 
     if (started)
     {
-        if (currentTimes > Math.round(((mid /100) * percentToStart)))
+        if (currentTimes >= Math.round(((mid /100) * percentToStart)))
         {
             if (((realPartialTimesBets  * 100) / config.mult.value) < max)
                 makeBet();
             else {
                 if (!incremented) {
-                    incremented = true;
-                    currentBaseBet *= multAfterKo;
-                    stats.push({
-                        status: 'lost',
-                        bets: currentTimes,
-                        realBets: realPartialTimesBets,
-                        date: new Date(),
-                        balance: ((-realPartialTimesBets * config.baseBet.value) / 100).toFixed(2),
-                        mid: mid
-                    });
+                    if (iteration < config.maxiterations.value) {
+                        iteration++;
+                        incremented = true;
+                        currentBaseBet *= multAfterKo;
+                        percentToStart += config.percentinc.value;
+                        stats.push({
+                            status: 'lost',
+                            bets: currentTimes,
+                            realBets: realPartialTimesBets,
+                            date: new Date(),
+                            balance: ((-realPartialTimesBets * config.baseBet.value) / 100).toFixed(2),
+                            mid: mid
+                        });
+                    }
+                    else
+                    {
+                        log('Max Number of iteration reached, restart!!!');
+                        if (config.baseBet.value < currentBaseBet)
+                        {
+                            incremented = false;
+                            currentBaseBet = config.baseBet.value;
+                        }
+                        totalProfits+= profit - partialBets;
+                        percentToStart = config.percent.value;
+                        iteration = 0;
+                        stats.push({status: 'reset', bets: realPartialTimesBets, date: new Date(), balance: (profit - partialBets) /100 , mid: mid});
+                        waitAndGrab(config.midMethod.value === 'mult' || config.midMethod.value === 'multg');
+                    }
                 }
                 log('skipping because % >', max, ' - multipler: ', multAfterKo, ' new base bet: ', currentBaseBet /100, ' bit')
             }
@@ -90,21 +116,20 @@ function onGameEnded() {
     var lastGame = engine.history.first();
     if(started) currentTimes++;
     if (currentTimes % 50 == 0 && started) showStats();
-    if (!lastGame.wager) {
-        if (lastGame.bust >= config.mult.value)
-        {
-            incremented = false;
-            log('bust: ',lastGame.bust, 'x :( resetting count');
-            stats.push({status: 'skip', bets: currentTimes, realBets: realPartialTimesBets, date: new Date(), balance: 0, mid: mid});
-            skippedBets++;
-            waitAndGrab();
-        }
-        else
-        {
-            log('bust:', lastGame.bust, 'x.. ');
-        }
-        return;
+
+    if (lastGame.bust >= config.mult.value)
+    {
+        incremented = false;
+        log('bust: ',lastGame.bust, 'x :( resetting count');
+        stats.push({status: 'skip', bets: currentTimes, realBets: realPartialTimesBets, date: new Date(), balance: 0, mid: mid});
+        skippedBets++;
+        waitAndGrab(config.midMethod.value === 'mult' || config.midMethod.value === 'multg');
     }
+    else
+    {
+        log('bust:', lastGame.bust, 'x.. ');
+    }
+    return;
 
     if (lastGame.cashedAt !== 0) {
         var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
@@ -117,8 +142,10 @@ function onGameEnded() {
             }
             totalProfits+= profit - partialBets;
             succBets++;
+            percentToStart = config.percent.value;
+            iteration = 1;
             stats.push({status: 'wins', bets: realPartialTimesBets, date: new Date(), balance: (profit - partialBets) /100 , mid: mid});
-            waitAndGrab();
+            waitAndGrab(config.midMethod.value === 'mult' || config.midMethod.value === 'multg');
         }
         else partialBets -= profit;
     } else {
@@ -129,7 +156,7 @@ function onGameEnded() {
 function makeBet() {
     if (!test) engine.bet(currentBaseBet, config.mult.value);
     realPartialTimesBets++;
-    log('[', currentTimes  ,'<> BET ',realPartialTimesBets,'] ', currentBaseBet  / 100, ' bit', config.mult.value, 'x (',(currentBaseBet / 100) * config.mult.value, ') - [PARTIAL: ', (partialBets /100).toFixed(2), '] [% ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), ']');
+    log('[', currentTimes  ,'<> BET ',realPartialTimesBets,' IT:',iteration,'] ', currentBaseBet  / 100, ' bit', config.mult.value, 'x (',(currentBaseBet / 100) * config.mult.value, ') - [PARTIAL: ', (partialBets /100).toFixed(2), '] [% ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), ']');
 }
 
 function fetchData() {
@@ -152,19 +179,25 @@ function fetchData() {
     {
         mid = config.mult.value;
         midFetched = true;
-        log('mid = ', mid)
-        fetch('https://server2.erainformatica.it:3001/busts/fromLastBust/' + config.mult.value).then(response => response.json())
-            .then(json => {
-                currentTimes = json.times;
-                currentTimesFetched = true;
-                log('currentTimes = ', currentTimes)
-            });
+        log('mid = ', mid);
+        if (config.midMethod.value === 'mult')
+        {
+            currentTimes = 0;
+            currentTimesFetched = true;
+            log('currentTimes = ', currentTimes)
+        }
+        else
+            fetch('https://server2.erainformatica.it:3001/busts/fromLastBust/' + config.mult.value).then(response => response.json())
+                .then(json => {
+                    currentTimes = json.times;
+                    currentTimesFetched = true;
+                    log('currentTimes = ', currentTimes)
+                });
     }
 }
 
-function waitAndGrab()
+function waitAndGrab(grab)
 {
-    log("10 sec to reload data...");
     mid = 0;
     currentTimes = 0;
     realPartialTimesBets = 0;
@@ -172,7 +205,12 @@ function waitAndGrab()
     midFetched = false;
     currentTimesFetched = false;
     started = false;
-    setTimeout(fetchData, 10000);
+    if (grab) {
+        log("10 sec to reload data...");
+        setTimeout(fetchData, 10000);
+    }
+    else
+        fetchData();
 }
 
 function showStats()
