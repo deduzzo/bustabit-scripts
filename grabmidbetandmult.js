@@ -102,7 +102,7 @@ function onGameStarted() {
                         waitAndGrab(config.midMethod.value === 'mult' || config.midMethod.value === 'multg');
                     }
                 }
-                log('skipping because % >', max, ' - multipler: ', multAfterKo, ' new base bet: ', currentBaseBet /100, ' bit')
+                log('skipping because % >', max, ' - multipler: ', multAfterKo, ' new base bet: ', currentBaseBet /100, ' bit, perc:', percentToStart,'% - IT:', iteration +1)
             }
         }
         else
@@ -117,15 +117,15 @@ function onGameEnded() {
     if(started) currentTimes++;
     if (currentTimes % 50 == 0 && started) showStats();
 
-    if (lastGame.bust >= config.mult.value)
+    if (lastGame.bust >= config.mult.value && !(lastGame.cashedAt !== 0))
     {
         incremented = false;
         log('bust: ',lastGame.bust, 'x :( resetting count');
         stats.push({status: 'skip', bets: currentTimes, realBets: realPartialTimesBets, date: new Date(), balance: 0, mid: mid});
         skippedBets++;
-        waitAndGrab(config.midMethod.value === 'mult' || config.midMethod.value === 'multg');
+        waitAndGrab(config.midMethod.value === 'grab' || config.midMethod.value === 'multg');
     }
-    else
+    else if (!(lastGame.cashedAt !== 0))
     {
         log('bust:', lastGame.bust, 'x.. ');
     }
@@ -145,7 +145,7 @@ function onGameEnded() {
             percentToStart = config.percent.value;
             iteration = 1;
             stats.push({status: 'wins', bets: realPartialTimesBets, date: new Date(), balance: (profit - partialBets) /100 , mid: mid});
-            waitAndGrab(config.midMethod.value === 'mult' || config.midMethod.value === 'multg');
+            waitAndGrab(config.midMethod.value === 'grab' || config.midMethod.value === 'multg');
         }
         else partialBets -= profit;
     } else {
@@ -166,12 +166,12 @@ function fetchData() {
                 var res = json.results;
                 mid = Math.floor(res.filter(p => p.mult == config.mult.value)[0].mid);
                 midFetched = true;
-                log('mid = ', mid)
+                log('[ONLINE] mid = ', mid)
                 fetch('https://server2.erainformatica.it:3001/busts/fromLastBust/' + config.mult.value).then(response => response.json())
                     .then(json => {
                         currentTimes = json.times;
                         currentTimesFetched = true;
-                        log('currentTimes = ', currentTimes)
+                        log('[ONLINE] currentTimes = ', currentTimes)
                     });
             });
     }
@@ -179,19 +179,19 @@ function fetchData() {
     {
         mid = config.mult.value;
         midFetched = true;
-        log('mid = ', mid);
+        log('[NO ONLINE] mid = ', mid);
         if (config.midMethod.value === 'mult')
         {
             currentTimes = 0;
             currentTimesFetched = true;
-            log('currentTimes = ', currentTimes)
+            log('[NO ONLINE] - currentTimes = ', currentTimes)
         }
         else
             fetch('https://server2.erainformatica.it:3001/busts/fromLastBust/' + config.mult.value).then(response => response.json())
                 .then(json => {
                     currentTimes = json.times;
                     currentTimesFetched = true;
-                    log('currentTimes = ', currentTimes)
+                    log('[ONLINE] currentTimes = ', currentTimes)
                 });
     }
 }
