@@ -59,7 +59,7 @@ fetchData(config.midMethod.value === 'grab');
 
 function onGameStarted() {
     if (!started && midFetched && currentTimesFetched) {
-        log("READY TO START! ", config.mult.value, 'x, mid: ', mid, ' start at:', Math.round((mid /100) * percentToStart), '(', percentToStart,'%) - max% =', max,' mult after ko:', multAfterKo);
+        log("READY! ", config.mult.value, 'x, mid: ', mid, ' start:', Math.round((mid /100) * percentToStart), '(', percentToStart,'%) - max% =', max,' mult after ko:', multAfterKo);
         started = true;
     }
     else
@@ -97,12 +97,12 @@ function onGameStarted() {
                         }
                         totalProfits+= profit - partialBets;
                         percentToStart = config.percent.value;
-                        iteration = 0;
+                        iteration = 1;
                         stats.push({status: 'reset', bets: realPartialTimesBets, date: new Date(), balance: (profit - partialBets) /100 , mid: mid});
-                        waitAndGrab(config.midMethod.value === 'mult' || config.midMethod.value === 'multg');
+                        waitAndGrab(config.midMethod.value === 'grab' || config.midMethod.value === 'multg');
                     }
                 }
-                log('skipping because % >', max, ' - multipler: ', multAfterKo, ' new base bet: ', currentBaseBet /100, ' bit, perc:', percentToStart,'% - IT:', iteration +1)
+                log('skip % >', max, ' - mult: ', multAfterKo, ' new bet: ', currentBaseBet /100, ' bit, perc:', percentToStart,'% - IT:', iteration)
             }
         }
         else
@@ -140,7 +140,7 @@ function onGameEnded() {
 
     if (lastGame.cashedAt !== 0) {
         var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
-        log('WINSSS ', profit /100, ' bits , ROUND BALANCE: ', (profit - partialBets) /100, ', TOTAL PROFIT: ', totalProfits /100);
+        log('WIN ', profit /100, ' bits , BALANCE: ', (profit - partialBets) /100, ', TOTAL: ', totalProfits /100);
         if (lastGame.cashedAt >= config.mult.value) {
             if (config.baseBet.value < currentBaseBet)
             {
@@ -163,7 +163,7 @@ function onGameEnded() {
 function makeBet() {
     if (!test) engine.bet(currentBaseBet, config.mult.value);
     realPartialTimesBets++;
-    log('[', currentTimes  ,'<> BET ',realPartialTimesBets,' IT:',iteration,'] ', currentBaseBet  / 100, ' bit', config.mult.value, 'x (',(currentBaseBet / 100) * config.mult.value, ') - [PARTIAL: ', (partialBets /100).toFixed(2), '] [% ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), ']');
+    log('[', currentTimes  ,'<> BET ',realPartialTimesBets,' IT:',iteration,'] ', currentBaseBet  / 100, ' bit', config.mult.value, 'x (',(currentBaseBet / 100) * config.mult.value, ') - [PART: ', (partialBets /100).toFixed(2), '] [% ', ((realPartialTimesBets * 100) / config.mult.value).toFixed(2), ']');
 }
 
 function fetchData() {
