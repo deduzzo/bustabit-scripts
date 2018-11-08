@@ -1,15 +1,15 @@
 var config = {
-    payout: { value: 3, type: 'multiplier', label: 'payout' },
-    baseBet: { value: 1000, type: 'balance', label: 'base bet' },
-    mult: { value: 1.5, type: 'multiplier', label: 'mult after ko' },
+    payout: { value: 3, type: 'multiplier', label: 'Mult' },
+    baseBet: { value: 1000, type: 'balance', label: 'Base Bet' },
+    mult: { value: 1.5, type: 'multiplier', label: 'x after KO' },
     strategy: {
         value: 'times', type: 'radio', label: 'Strategy:',
         options: {
-            times: { value: '11', type: 'multiplier', label: 'times' },
-            maxBets: { value: '1000000', type: 'balance', label: 'value' },
+            times: { value: '11', type: 'multiplier', label: 'Max Times' },
+            maxBets: { value: '1000000', type: 'balance', label: 'Max Bet' },
         }
     },
-    lateTimes: { value: 0, type: 'multiplier', label: 'times to late' },
+    lateTimes: { value: 0, type: 'multiplier', label: 'Late by x times' },
 };
 
 const payout = config.payout.value;
@@ -26,7 +26,7 @@ const betLimit = config.strategy.options.maxBets.value;
 const maxTimes = config.strategy.options.times.value;
 const lateTimes = config.lateTimes.value;
 let maxTimesEver = 0;
-let currentTimes = 1;
+let currentTimes = 0;
 let timesToStart = lateTimes;
 
 showStats(currentBet,increaseMult);
@@ -63,7 +63,7 @@ function onGameEnded() {
         // we won..
         if (lastGame.cashedAt) {
             currentBet = config.baseBet.value;
-            currentTimes = 1;
+            currentTimes = 0;
             log('We won, so next bet will be', currentBet / 100, 'bits')
             if (lateTimes >0) timesToStart = lateTimes;
         } else {
@@ -72,14 +72,14 @@ function onGameEnded() {
             if (strategy == 'maxBets' && currentBet > betLimit) {
                 log('Was about to bet', currentBet, '> betlimit ', betLimit / 100, ', so restart.. :(');
                 disaster++;
-                currentTimes = 1;
+                currentTimes = 0;
                 currentBet = config.baseBet.value;
                 if (lateTimes >0) timesToStart = lateTimes;
             }
             else if (strategy == 'times' && currentTimes > maxTimes) {
                 log('Was about to bet', currentTimes, '> max bet times, so restart.. :(');
                 disaster++;
-                currentTimes = 1;
+                currentTimes = 0;
                 currentBet = config.baseBet.value;
                 if (lateTimes >0) timesToStart = lateTimes;
             }
@@ -88,10 +88,10 @@ function onGameEnded() {
                 if (currentBet > maxBets) {
                     maxBets = currentBet;
                 }
-                if (currentTimes > maxTimes)
-                    maxTimes = currentTimes;
+                if (currentTimes > maxTimesEver)
+                    maxTimesEver = currentTimes;
             }
-            log('LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, strategy == 'times' ? (' - MAXT:' + maxTimes) : ('MAXBET:' + betLimit / 100))
+            log('LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, strategy == 'times' ? (' - MAXT:' + maxTimesEver) : ('MAXBET:' + betLimit / 100))
         }
     }
 
