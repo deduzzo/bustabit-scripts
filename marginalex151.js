@@ -69,14 +69,14 @@ function onGameEnded() {
         } else {
             currentBet = Math.round((currentBet / 100) * increaseMult) * 100;
 
-            if (strategy == 'maxBets' && currentBet > betLimit) {
+            if (strategy == 'maxBets' && currentBet >= betLimit) {
                 log('Was about to bet', currentBet, '> betlimit ', betLimit / 100, ', so restart.. :(');
                 disaster++;
                 currentTimes = 0;
                 currentBet = config.baseBet.value;
                 if (lateTimes >0) timesToStart = lateTimes;
             }
-            else if (strategy == 'times' && currentTimes > maxTimes) {
+            else if (strategy == 'times' && currentTimes >= maxTimes) {
                 log('Was about to bet', currentTimes, '> max bet times, so restart.. :(');
                 disaster++;
                 currentTimes = 0;
@@ -103,7 +103,7 @@ function showStats(initBet, mult)
     let count = 0;
     let bet = initBet;
     log("------ INFO -----")
-    for (i =1; i<30; i++)
+    for (i =0; i<30; i++)
     {
         count+=bet;
         log('T:',i,' - bet:', (bet /100).toLocaleString('de-DE'), ' - tot: ', (count /100) .toLocaleString('de-DE'));
