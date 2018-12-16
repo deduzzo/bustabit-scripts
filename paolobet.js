@@ -76,7 +76,7 @@ function onGameEnded() {
                 mult++;
                 normalBets--;
                 if (normalBets == 0) {
-                    mult /= multFactor;
+                    mult = (mult / multFactor) + 1;
                     baseBet *= multFactor;
                 }
             }
