@@ -39,6 +39,7 @@ var multFactor = config.multFactor.value;
 var normalBets = config.normalBets.value;
 var failBets = 0;
 var highResult = 0;
+var negativeChanges = 0;
 
 
 engine.on('GAME_STARTING', onGameStarted);
@@ -54,7 +55,7 @@ function onGameStarted() {
     }
     else
     {
-        log ("Punto", baseBet/100, " a ", mult, "x");
+        log ("Punto", baseBet/100, " a ", parseFloat(mult).toFixed(2), "x");
         engine.bet(baseBet, mult);
     }
 }
@@ -67,7 +68,8 @@ function onGameEnded() {
             if (normalBets == 0) {
                 failBets++;
                 if (failBets % timesToChange == 0) {
-                    mult /= multFactor;
+                    negativeChanges++;
+                    mult = (mult / multFactor) + negativeChanges;
                     baseBet *= multFactor;
                 } else {
                     mult++;
@@ -76,7 +78,8 @@ function onGameEnded() {
                 mult++;
                 normalBets--;
                 if (normalBets == 0) {
-                    mult = (mult / multFactor) + 1;
+                    negativeChanges = 1;
+                    mult = (mult / multFactor) + negativeChanges;
                     baseBet *= multFactor;
                 }
             }
@@ -97,6 +100,7 @@ function onGameEnded() {
         baseBet = config.bet.value;
         failBets = 0;
         normalBets = config.normalBets.value;
+        negativeChanges = 0;
     }
 
 
