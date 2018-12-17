@@ -62,46 +62,47 @@ function onGameStarted() {
 
 function onGameEnded() {
     var lastGame = engine.history.first();
-    if (lastGame.wager) {
-        if (lastGame.cashedAt === 0) {
-            //PERSO
-            if (normalBets == 0) {
-                failBets++;
-                if (failBets % timesToChange == 0) {
-                    negativeChanges++;
-                    mult = (mult / multFactor) + negativeChanges;
-                    baseBet *= multFactor;
+
+    if (lastGame.bust >= highValue && strategyOnHigh == "stop") {
+        log("PUNTEGGIO ALTO, ASPETTO...");
+        highResult = timesToStop;
+    }
+    else {
+        if (lastGame.wager) {
+            if (lastGame.cashedAt === 0) {
+                //PERSO
+                if (normalBets == 0) {
+                    failBets++;
+                    if (failBets % timesToChange == 0) {
+                        negativeChanges++;
+                        mult = (mult / multFactor) + negativeChanges;
+                        baseBet *= multFactor;
+                    } else {
+                        mult++;
+                    }
                 } else {
                     mult++;
+                    normalBets--;
+                    if (normalBets == 0) {
+                        negativeChanges = 1;
+                        mult = (mult / multFactor) + negativeChanges;
+                        baseBet *= multFactor;
+                    }
                 }
-            } else {
-                mult++;
-                normalBets--;
-                if (normalBets == 0) {
-                    negativeChanges = 1;
-                    mult = (mult / multFactor) + negativeChanges;
-                    baseBet *= multFactor;
-                }
+
             }
+        }
 
+        if (lastGame.cashedAt !== 0) {
+            //VINTO
+            log("vinto!!, riparto!");
+            var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
+            mult = config.mult.value;
+            baseBet = config.bet.value;
+            failBets = 0;
+            normalBets = config.normalBets.value;
+            negativeChanges = 0;
         }
     }
-
-    if (lastGame.cashedAt !== 0) {
-        //VINTO
-        log ("vinto!!, riparto!");
-        var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
-
-        if (lastGame.bust >= highValue && strategyOnHigh == "stop") {
-            log("PUNTEGGIO ALTO, ASPETTO...");
-            highResult = timesToStop;
-        }
-        mult = config.mult.value;
-        baseBet = config.bet.value;
-        failBets = 0;
-        normalBets = config.normalBets.value;
-        negativeChanges = 0;
-    }
-
 
 }
