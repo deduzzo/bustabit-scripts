@@ -27,6 +27,9 @@ var config = {
     multFactor: {
         value: 2, type: 'multiplier', label: 'fattore di moltiplicazione / divisione'
     },
+    maxBets: {
+        value: 300, type: 'multiplier', label: 'max volte prima di ricominciare'
+    },
 };
 
 var mult = config.mult.value;
@@ -40,6 +43,7 @@ var normalBets = config.normalBets.value;
 var failBets = 0;
 var highResult = 0;
 var negativeChanges = 0;
+var maxBets = config.maxBets.value;
 
 
 engine.on('GAME_STARTING', onGameStarted);
@@ -55,7 +59,12 @@ function onGameStarted() {
     }
     else
     {
-        log ("Punto", baseBet/100, " a ", parseFloat(mult).toFixed(2), "x");
+        if (maxBets == 0)
+        {
+            reset();
+            log("MAX TENTATIVI ESEGUITI, RESETTO");
+        }
+        log ("Punto", baseBet/100, " a ", parseFloat(mult).toFixed(2), "x [ -", maxBets,"]");
         engine.bet(baseBet, mult);
     }
 }
@@ -89,20 +98,25 @@ function onGameEnded() {
                         baseBet *= multFactor;
                     }
                 }
-
+                maxBets--;
             }
         }
-
-        if (lastGame.cashedAt !== 0) {
-            //VINTO
-            log("vinto!!, riparto!");
-            var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
-            mult = config.mult.value;
-            baseBet = config.bet.value;
-            failBets = 0;
-            normalBets = config.normalBets.value;
-            negativeChanges = 0;
-        }
+    }
+    if (lastGame.cashedAt !== 0) {
+        //VINTO
+        log("vinto!!, riparto!");
+        var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
+        reset();
     }
 
+}
+
+function reset()
+{
+    mult = config.mult.value;
+    baseBet = config.bet.value;
+    failBets = 0;
+    normalBets = config.normalBets.value;
+    negativeChanges = 0;
+    maxBets = config.maxBets.value;
 }
