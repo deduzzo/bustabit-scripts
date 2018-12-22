@@ -24,11 +24,18 @@ var config = {
     timesToChange: {
         value: 16, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
     },
+    strategyOnLoss: {
+        value: 'recoveryValue', type: 'radio', label: 'cosa fai in caso non vinci x volte?',
+        options: {
+            x2div2: { value: 'x2div2', type: 'noop', label: 'raddoppia e dimezza' },
+            recoveryValue: { value: 'recoveryValue', type: 'noop', label: 'recupera puntando ad un valore fisso' },
+        }
+    },
     multFactor: {
-        value: 2, type: 'multiplier', label: 'fattore di moltiplicazione / divisione'
+        value: 2, type: 'multiplier', label: 'fattore di moltiplicazione / divisione o di recupero'
     },
     maxBets: {
-        value: 300, type: 'multiplier', label: 'max volte prima di ricominciare'
+        value: 300, type: 'multiplier', label: 'max volte prima di ricominciare dal principio'
     },
 };
 
@@ -44,6 +51,7 @@ var failBets = 0;
 var highResult = 0;
 var negativeChanges = 0;
 var maxBets = config.maxBets.value;
+var multRecovered = 0;
 
 
 engine.on('GAME_STARTING', onGameStarted);
@@ -64,8 +72,10 @@ function onGameStarted() {
             reset();
             log("MAX TENTATIVI ESEGUITI, RESETTO");
         }
-        log ("Punto", baseBet/100, " a ", parseFloat(mult).toFixed(2), "x [ -", maxBets,"]");
-        engine.bet(baseBet, mult);
+        log ("Punto", baseBet/100, " a ", parseFloat(config.strategyOnLoss.value == 'recoveryValue' && multRecovered>0 ?
+            multFactor : mult).toFixed(2), "x [ -", maxBets,"]");
+        if (config.strategyOnLoss.value == 'recoveryValue' && multRecovered) log("RESTANO ", multRecovered, 'da recuperare')
+        engine.bet(baseBet, config.strategyOnLoss.value == 'recoveryValue' && multRecovered>0 ? multFactor : mult);
     }
 }
 
@@ -75,40 +85,61 @@ function onGameEnded() {
     if (lastGame.bust >= highValue && strategyOnHigh == "stop") {
         log("PUNTEGGIO ALTO, ASPETTO...");
         highResult = timesToStop;
-    }
-    else {
+    } else {
         if (lastGame.wager) {
             if (lastGame.cashedAt === 0) {
                 //PERSO
                 if (normalBets == 0) {
                     failBets++;
-                    if (failBets % timesToChange == 0) {
-                        negativeChanges++;
-                        mult = (mult / multFactor) + negativeChanges;
-                        baseBet *= multFactor;
-                    } else {
-                        mult++;
+                    if (config.strategyOnLoss.value == 'x2div2') {
+                        if (failBets % timesToChange == 0) {
+                            negativeChanges++;
+                            mult = (mult / multFactor) + negativeChanges;
+                            baseBet *= multFactor;
+                        } else {
+                            mult++;
+                        }
+                    } else if (config.strategyOnLoss.value == 'recoveryValue') {
+                        if (multRecovered == 0 && normalBets == 0) multRecovered = mult;
+                        multRecovered++;
                     }
                 } else {
                     mult++;
                     normalBets--;
                     if (normalBets == 0) {
-                        negativeChanges = 1;
-                        mult = (mult / multFactor) + negativeChanges;
-                        baseBet *= multFactor;
+                        if (config.strategyOnLoss.value == 'x2div') {
+                            negativeChanges = 1;
+                            mult = (mult / multFactor) + negativeChanges;
+                            baseBet *= multFactor;
+                        } else if (config.strategyOnLoss.value == 'recoveryValue') {
+                            if (multRecovered == 0 && normalBets == 0) multRecovered = mult;
+                            multRecovered++;
+                        }
                     }
                 }
                 maxBets--;
             }
+            if (lastGame.cashedAt !== 0) {
+                //VINTO
+                if (config.strategyOnLoss.value == 'x2div2' || (config.strategyOnLoss.value == 'recoveryValue' && multRecovered == 0) ) {
+                    log("vinto!!, riparto!");
+                    var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
+                    reset();
+                } else {
+                    multRecovered -= lastGame.cashedAt;
+                    if (multRecovered > 0)
+                        log('Vinto, restano ', multRecovered, 'x da recuperare!')
+                    else if (multRecovered <0)
+                    {
+                        log('Recuperato! Ripartiamo!');
+                        reset();
+                    }
+
+                }
+            }
+
         }
     }
-    if (lastGame.cashedAt !== 0) {
-        //VINTO
-        log("vinto!!, riparto!");
-        var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
-        reset();
-    }
-
 }
 
 function reset()
@@ -119,4 +150,5 @@ function reset()
     normalBets = config.normalBets.value;
     negativeChanges = 0;
     maxBets = config.maxBets.value;
+    multRecovered = 0;
 }
