@@ -3,10 +3,10 @@ var config = {
         value: 1.12, type: 'multiplier', label: 'Moltiplicatore'
     },
     bet: {
-        value: 6000, type: 'balance', label: 'Puntata iniziale'
+        value: 7000, type: 'balance', label: 'Puntata iniziale'
     },
     highValue: {
-        value: 60, type: 'multiplier', label: 'Punteggio Alto'
+        value: 80, type: 'multiplier', label: 'Punteggio Alto'
     },
     timesToStop: {
         value: 3, type: 'multiplier', label: 'n giocate di stop in caso di punteggio alto'
@@ -19,7 +19,7 @@ var config = {
         }
     },
     normalBets: {
-        value: 100, type: 'multiplier', label: 'Quante volte fare una puntata normale'
+        value: 120, type: 'multiplier', label: 'Quante volte fare una puntata normale'
     },
     timesToChange: {
         value: 0, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
@@ -32,16 +32,15 @@ var config = {
         }
     },
     multFactor: {
-        value: 45, type: 'multiplier', label: 'fattore di moltiplicazione / divisione o di recupero'
+        value: 40, type: 'multiplier', label: 'fattore di moltiplicazione / divisione o di recupero'
     },
     maxBets: {
-        value: 200, type: 'multiplier', label: 'max volte prima di ricominciare dal principio'
+        value: 250, type: 'multiplier', label: 'max volte prima di ricominciare dal principio'
     },
 };
 
 var mult = config.mult.value;
 var baseBet = config.bet.value;
-var strategyOnHigh = config.strategyOnHigh.value;
 var timesToStop = config.timesToStop.value;
 var highValue = config.highValue.value;
 var timesToChange = config.timesToChange.value;
@@ -82,7 +81,7 @@ function onGameStarted() {
 function onGameEnded() {
     var lastGame = engine.history.first();
 
-    if (lastGame.bust >= highValue && strategyOnHigh == "stop" && (config.strategyOnLoss.value == 'recoveryValue' && multRecovered != 0)) {
+    if (lastGame.bust >= highValue && multRecovered == 0 && config.strategyOnHigh.value == "stop") {
         log("PUNTEGGIO ALTO, ASPETTO...");
         highResult = timesToStop;
     } else {
@@ -121,7 +120,7 @@ function onGameEnded() {
             }
             if (lastGame.cashedAt !== 0) {
                 //VINTO
-                if (config.strategyOnLoss.value == 'x2div2' || (config.strategyOnLoss.value == 'recoveryValue' && multRecovered == 0) ) {
+                if (config.strategyOnLoss.value == 'x2div2' || (config.strategyOnLoss.value == 'recoveryValue' && multRecovered == 0)) {
                     log("vinto!!, riparto!");
                     var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
                     reset();
