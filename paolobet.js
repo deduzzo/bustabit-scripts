@@ -82,7 +82,7 @@ function onGameStarted() {
 function onGameEnded() {
     var lastGame = engine.history.first();
 
-    if (lastGame.bust >= highValue && strategyOnHigh == "stop") {
+    if (lastGame.bust >= highValue && strategyOnHigh == "stop" && (config.strategyOnLoss.value == 'recoveryValue' && multRecovered == 0)) {
         log("PUNTEGGIO ALTO, ASPETTO...");
         highResult = timesToStop;
     } else {
@@ -129,7 +129,7 @@ function onGameEnded() {
                     multRecovered -= lastGame.cashedAt;
                     if (multRecovered > 0)
                         log('Vinto, restano ', multRecovered, 'x da recuperare!')
-                    else if (multRecovered <0)
+                    else
                     {
                         log('Recuperato! Ripartiamo!');
                         reset();
