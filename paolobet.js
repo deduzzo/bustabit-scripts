@@ -84,7 +84,7 @@ function onGameEnded() {
     if (lastGame.bust >= highValue && multRecovered == 0 && config.strategyOnHigh.value == "stop") {
         log("PUNTEGGIO ALTO, ASPETTO...");
         highResult = timesToStop;
-    } else {
+    }
         if (lastGame.wager) {
             if (lastGame.cashedAt === 0) {
                 //PERSO
@@ -138,7 +138,6 @@ function onGameEnded() {
             }
 
         }
-    }
 }
 
 function reset()
