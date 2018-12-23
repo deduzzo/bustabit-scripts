@@ -1,9 +1,9 @@
 var config = {
     mult: {
-        value: 1.10, type: 'multiplier', label: 'Moltiplicatore'
+        value: 1.12, type: 'multiplier', label: 'Moltiplicatore'
     },
     bet: {
-        value: 20000, type: 'balance', label: 'Puntata iniziale'
+        value: 6000, type: 'balance', label: 'Puntata iniziale'
     },
     highValue: {
         value: 60, type: 'multiplier', label: 'Punteggio Alto'
@@ -19,10 +19,10 @@ var config = {
         }
     },
     normalBets: {
-        value: 3, type: 'multiplier', label: 'Quante volte fare una puntata normale'
+        value: 100, type: 'multiplier', label: 'Quante volte fare una puntata normale'
     },
     timesToChange: {
-        value: 16, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
+        value: 0, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
     },
     strategyOnLoss: {
         value: 'recoveryValue', type: 'radio', label: 'cosa fai in caso non vinci x volte?',
@@ -32,10 +32,10 @@ var config = {
         }
     },
     multFactor: {
-        value: 2, type: 'multiplier', label: 'fattore di moltiplicazione / divisione o di recupero'
+        value: 45, type: 'multiplier', label: 'fattore di moltiplicazione / divisione o di recupero'
     },
     maxBets: {
-        value: 300, type: 'multiplier', label: 'max volte prima di ricominciare dal principio'
+        value: 200, type: 'multiplier', label: 'max volte prima di ricominciare dal principio'
     },
 };
 
@@ -82,7 +82,7 @@ function onGameStarted() {
 function onGameEnded() {
     var lastGame = engine.history.first();
 
-    if (lastGame.bust >= highValue && strategyOnHigh == "stop" && (config.strategyOnLoss.value == 'recoveryValue' && multRecovered == 0)) {
+    if (lastGame.bust >= highValue && strategyOnHigh == "stop" && (config.strategyOnLoss.value == 'recoveryValue' && multRecovered != 0)) {
         log("PUNTEGGIO ALTO, ASPETTO...");
         highResult = timesToStop;
     } else {
