@@ -7,6 +7,7 @@ var config = {
         options: {
             times: { value: '11', type: 'multiplier', label: 'Max Times' },
             maxBets: { value: '1000000', type: 'balance', label: 'Max Bet' },
+            freeze: { value: '6', type: 'multiplier', label: 'Last T before flat bet' },
         }
     },
     lateTimes: { value: 0, type: 'multiplier', label: 'Late by x times' },
@@ -24,6 +25,7 @@ let maxBets = 0;
 const strategy = config.strategy.value;
 const betLimit = config.strategy.options.maxBets.value;
 const maxTimes = config.strategy.options.times.value;
+const freezeFrom = config.strategy.options.freeze.value;
 const lateTimes = config.lateTimes.value;
 let maxTimesEver = 0;
 let currentTimes = 0;
@@ -67,7 +69,8 @@ function onGameEnded() {
             log('We won, so next bet will be', currentBet / 100, 'bits')
             if (lateTimes >0) timesToStart = lateTimes;
         } else {
-            currentBet = Math.round((currentBet / 100) * increaseMult) * 100;
+            if (strategy == 'freeze' && currentTimes < freezeFrom)
+                currentBet = Math.round((currentBet / 100) * increaseMult) * 100;
 
             if (strategy == 'maxBets' && currentBet >= betLimit) {
                 log('Was about to bet', currentBet, '> betlimit ', betLimit / 100, ', so restart.. :(');
@@ -91,7 +94,7 @@ function onGameEnded() {
                 if (currentTimes > maxTimesEver)
                     maxTimesEver = currentTimes;
             }
-            log('LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, strategy == 'times' ? (' - MAXT:' + maxTimesEver) : ('MAXBET:' + betLimit / 100))
+            log('LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, strategy == 'times' ? (' - MAXT:' + maxTimesEver) : strategy == 'maxBets' ? ('MAXBET: ' + betLimit / 100) : (('FREEZE AT: ' + freezeFrom)))
         }
     }
 
