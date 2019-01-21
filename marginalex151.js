@@ -94,7 +94,7 @@ function onGameEnded() {
                 if (currentTimes > maxTimesEver)
                     maxTimesEver = currentTimes;
             }
-            log('LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, strategy == 'times' ? (' - MAXT:' + maxTimesEver) : strategy == 'maxBets' ? ('MAXBET: ' + betLimit / 100) : (('FREEZE AT: ' + freezeFrom)))
+            log('LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, ' - MAXT:' + maxTimesEver , strategy == 'maxBets' ? (' MAXBET: ' + betLimit / 100) : (strategy == 'freeze') ? ('FREEZE AT: ' + freezeFrom) : (''))
         }
     }
 
