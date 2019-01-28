@@ -33,6 +33,7 @@ let maxTimesEver = 0;
 let currentTimes = 0;
 let timesToStart = lateTimes;
 let disasterToStart = 0;
+let freezing = false;
 
 showStats(currentBet,increaseMult);
 
@@ -59,7 +60,7 @@ function onGameEnded() {
 
     // If we wagered, it means we played
     if (!lastGame.wager) {
-        if (lateTimes > 0 || lastGame.bust >= payout) {
+        if ((lateTimes > 0 || lastGame.bust >= payout) && !freezing) {
             if (lastGame.bust >= payout) {
                 timesToStart = lateTimes;
                 log('bust ', lastGame.bust, ' resetting late time, wait for other ', timesToStart)
@@ -75,6 +76,8 @@ function onGameEnded() {
         if (lastGame.cashedAt) {
             currentBet = config.baseBet.value;
             currentTimes = 0;
+            if (disasterWaits >0 && freezing) disasterToStart = disasterWaits;
+            freezing = false;
             log('We won, so next bet will be', currentBet / 100, 'bits')
             if (lateTimes >0) timesToStart = lateTimes;
         } else if (maxTimes >0 && currentTimes >= maxTimes) {
@@ -88,9 +91,12 @@ function onGameEnded() {
         else {
             if (!(strategy == 'freeze' && currentTimes >= freezeFrom))
                 currentBet = Math.round((currentBet / 100) * increaseMult) * 100;
+            else
+                freezing = true;
             if (strategy == 'maxBets' && currentBet >= betLimit) {
                 log('Was about to bet', currentBet, '> betlimit ', betLimit / 100, ', so restart.. :(');
                 disaster++;
+                freezing = false;
                 if (disasterWaits >0) disasterToStart = disasterWaits;
                 currentTimes = 0;
                 currentBet = config.baseBet.value;
