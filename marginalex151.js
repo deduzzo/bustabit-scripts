@@ -1,16 +1,17 @@
 var config = {
-    payout: { value: 3, type: 'multiplier', label: 'Mult' },
-    baseBet: { value: 1000, type: 'balance', label: 'Base Bet' },
-    mult: { value: 1.5, type: 'multiplier', label: 'x after KO' },
+    payout: { value: 2.25, type: 'multiplier', label: 'Mult' },
+    baseBet: { value: 100, type: 'balance', label: 'Base Bet' },
+    mult: { value: 3, type: 'multiplier', label: 'x after KO' },
     strategy: {
-        value: 'maxBets', type: 'radio', label: 'Strategy:',
+        value: 'freeze', type: 'radio', label: 'Strategy:',
         options: {
-            maxBets: { value: '1000000000000', type: 'balance', label: 'Max Bet' },
+            maxBets: { value: '100', type: 'multiplier', label: 'Max Bet' },
             freeze: { value: '6', type: 'multiplier', label: 'Last T before flat bet' },
         }
     },
-    maxTimes: { value: 0, type:'multiplier', label: 'Max Times'},
+    maxTimes: { value: 8, type:'multiplier', label: 'Max Times'},
     lateTimes: { value: 0, type: 'multiplier', label: 'Late by x times' },
+    disasterWaits: {value: 50, type:'multiplier', label: 'Disaster waits:'}
 };
 
 const payout = config.payout.value;
@@ -27,9 +28,11 @@ const betLimit = config.strategy.options.maxBets.value;
 const freezeFrom = config.strategy.options.freeze.value;
 const lateTimes = config.lateTimes.value;
 const maxTimes = config.maxTimes.value;
+const disasterWaits  = config.disasterWaits.value;
 let maxTimesEver = 0;
 let currentTimes = 0;
 let timesToStart = lateTimes;
+let disasterToStart = 0;
 
 showStats(currentBet,increaseMult);
 
@@ -39,9 +42,15 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    if (timesToStart==0) {
-        log('ROUND ', ++currentRound, ' - DIS: ', disaster, ' - betting', Math.round(currentBet / 100), 'on', payout, 'x');
-        engine.bet(currentBet, payout);
+    if (disasterToStart == 0) {
+        if (timesToStart == 0) {
+            log('ROUND ', ++currentRound, ' - DIS: ', disaster, ' - betting', Math.round(currentBet / 100), 'on', payout, 'x');
+            engine.bet(currentBet, payout);
+        }
+    }
+    else
+    {
+        log('DISASTER WAIT, ', disasterToStart--, ' games to start - DIS: ', disaster);
     }
 }
 
@@ -70,6 +79,7 @@ function onGameEnded() {
             if (lateTimes >0) timesToStart = lateTimes;
         } else if (maxTimes >0 && currentTimes >= maxTimes) {
             log('Was about to bet', currentTimes, '> max bet times, so restart.. :(');
+            if (disasterWaits >0) disasterToStart = disasterWaits;
             disaster++;
             currentTimes = 0;
             currentBet = config.baseBet.value;
@@ -81,6 +91,7 @@ function onGameEnded() {
             if (strategy == 'maxBets' && currentBet >= betLimit) {
                 log('Was about to bet', currentBet, '> betlimit ', betLimit / 100, ', so restart.. :(');
                 disaster++;
+                if (disasterWaits >0) disasterToStart = disasterWaits;
                 currentTimes = 0;
                 currentBet = config.baseBet.value;
                 if (lateTimes > 0) timesToStart = lateTimes;
@@ -93,7 +104,8 @@ function onGameEnded() {
                     maxTimesEver = currentTimes;
             }
         }
-        log('LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, ' - MAXT:' + maxTimesEver , strategy == 'maxBets' ? (' MAXBET: ' + betLimit / 100) : (strategy == 'freeze') ? ('FREEZE AT: ' + freezeFrom) : (''))
+        if (disasterToStart == 0)
+            log('LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, ' - MAXT:' + maxTimesEver , strategy == 'maxBets' ? (' MAXBET: ' + betLimit / 100) : (strategy == 'freeze') ? ('FREEZE AT: ' + freezeFrom) : (''))
         }
 }
 
