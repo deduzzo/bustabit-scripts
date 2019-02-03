@@ -1,9 +1,9 @@
 var config = {
-    payout: { value: 1.15, type: 'multiplier', label: 'Mult' },
+    payout: { value: 1.20, type: 'multiplier', label: 'Mult' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game' },
     baseBet2: { value: 30000, type: 'balance', label: 'Base Bet for 3x Game' },
     startGame2After: { value: 8, type: 'multiplier', label: 'Play at game 2 after x lost' },
-    minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum Lost times to start' },
+    minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum game 1 losts before to start' },
 };
 
 const mult1 = config.payout.value;
@@ -34,7 +34,7 @@ function onGameStarted() {
         log('ROUND ', ++currentRound, 'GAME 2 - betting', Math.round(currentBet2 / 100), 'on', mult2, 'x T=', currentTimes);
         engine.bet(currentBet2, mult2);
     }
-    else (currentGameType == 1)
+    else if (currentGameType == 1)
     {
         // flat game
         log('ROUND ', ++currentRound, 'GAME 1 - betting', Math.round(basebet1 / 100), 'on', mult1, 'x, virtualT:', game2VirtualLosts, ' to recover: ',game1Losts);
@@ -52,23 +52,23 @@ function onGameEnded() {
         else
             game2VirtualLosts = 0;
         // If we wagered, it means we played
+
         if (lastGame.cashedAt) {
             // we win
             if (currentGameType == 2) {
-                game1losts -= minimumLostTimesToStart;
+                game1Losts -= minimumLostTimesToStart;
                 currentGameType = 1;
                 currentBet2 = config.baseBet2.value;
                 currentTimes = 0;
+                game2VirtualLosts = 0;
             }
             log ('WIN!! :D');
         } else {
             // we lost
             if (currentGameType == 1) {
                 game1Losts++;
-                if ((game1Losts / minimumLostTimesToStart >= 1) && game2VirtualLosts > startGame2After) {
-                    currentGameType = 2;
-                }
-            } else {
+            }
+            else if (currentGameType == 2) {
                 currentTimes++;
                 currentBet2 = Math.round((currentBet2 / 100) * 1.5) * 100;
             }
@@ -78,6 +78,13 @@ function onGameEnded() {
             } else if (currentGameType == 1)
                 log('LOST, to recover: ', game1Losts)
         }
+
+        if (currentGameType == 1) {
+            if ((game1Losts / minimumLostTimesToStart >= 1) && game2VirtualLosts > startGame2After) {
+                currentGameType = 2;
+            }
+        }
+
     }
 }
 
