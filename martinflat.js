@@ -1,9 +1,10 @@
 var config = {
     payout: { value: 1.20, type: 'multiplier', label: 'Mult' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game' },
-    baseBet2: { value: 30000, type: 'balance', label: 'Base Bet for 3x Game' },
-    startGame2After: { value: 8, type: 'multiplier', label: 'Play at game 2 after x lost' },
+    baseBet2: { value: 25000, type: 'balance', label: 'Base Bet for 3x Game' },
+    startGame2After: { value: 9, type: 'multiplier', label: 'Play at game 2 after x lost' },
     minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum game 1 losts before to start' },
+    offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Offset to start Game 2 Always' },
 };
 
 const mult1 = config.payout.value;
@@ -11,6 +12,7 @@ const mult2 = 3;
 const basebet1 = config.baseBet1.value;
 const startGame2After = config.startGame2After.value;
 const minimumLostTimesToStart = config.minimumLostTimesToStart.value;
+const offsetAlwaysStart = config.offsetAlwaysStart.value
 
 log('Script is running..');
 
@@ -80,7 +82,7 @@ function onGameEnded() {
         }
 
         if (currentGameType == 1) {
-            if ((game1Losts / minimumLostTimesToStart >= 1) && game2VirtualLosts > startGame2After) {
+            if (((game1Losts / minimumLostTimesToStart >= 1) && game2VirtualLosts > startGame2After) || (game2VirtualLosts > (startGame2After + offsetAlwaysStart)) ) {
                 currentGameType = 2;
             }
         }
