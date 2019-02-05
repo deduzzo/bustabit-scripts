@@ -11,7 +11,7 @@ var config = {
     startGame2After: { value: 9, type: 'multiplier', label: 'Play at game 2 after x lost' },
     minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum game 1 losts before to start' },
     offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Offset to start Game 2 Always' },
-    updateBetAfter: { value: 200, type: 'multiplier', label: 'Auto bet after x times' },
+    updateBetAfter: { value: 100, type: 'multiplier', label: 'Auto bet after x times' },
 };
 
 let simulate = false;
@@ -28,6 +28,7 @@ let currentBet2 = config.strategy.value == 'manual' ? config.strategy.options.ma
     calculateMaxGame2Bets(balance, 1000, startGame2After +1, config.strategy.options.maxT.value);
 let basebet1 = config.strategy.value == 'manual' ? config.baseBet1.value : Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1));
 const offsetAlwaysStart = config.offsetAlwaysStart.value;
+let currentBet2Default = currentBet2;
 
 log('Script is running..');
 
@@ -39,7 +40,7 @@ let currentGameType = 1;
 
 //log(showStats(25000,1.5, 0, 23, true));
 
-showStats(currentBet2,1.5, startGame2After+1, -1, true);
+showStats(currentBet2Default,1.5, startGame2After+1, -1, true);
 
 log ('GAME 2 BET: ', Math.round(currentBet2 / 100), ' - GAME 1 BET:', Math.round(basebet1 / 100));
 
@@ -51,7 +52,7 @@ function onGameStarted() {
     if (currentGameType == 2)
     {
         // game 2
-        log('ROUND ', ++currentRound, 'GAME 2 - betting', Math.round(currentBet2 / 100), 'on', mult2, 'x T=', currentTimes);
+        log('ROUND ', ++currentRound, 'GAME 2 - betting', Math.round(currentBet2 / 100), 'on', mult2, ' - virtualT:', game2VirtualLosts, ' realT:', currentTimes);
         engine.bet(Math.round(currentBet2/ 100) * 100, mult2);
     }
     else if (currentGameType == 1)
@@ -79,7 +80,7 @@ function onGameEnded() {
             if (currentGameType == 2) {
                 game1Losts -= minimumLostTimesToStart;
                 currentGameType = 1;
-                currentBet2 = config.baseBet2.value;
+                currentBet2 = currentBet2Default;
                 currentTimes = 0;
                 game2VirtualLosts = 0;
             }
@@ -100,7 +101,7 @@ function onGameEnded() {
             }
 
             if (currentGameType == 2) {
-                log('LOST :( GAME 2!! ', currentBet2 / 100, 'bits- virtualT:', game2VirtualLosts, ' realT:', currentTimes)
+                log('LOST :( GAME 2!! ')
             } else if (currentGameType == 1)
                 log('LOST, to recover: ', game1Losts)
         }
@@ -143,7 +144,8 @@ function calculateMaxGame2Bets(balance, step, currentT, desideredT)
 
 function updateBet()
 {
-    currentBet2 = calculateMaxGame2Bets(balance, 1000, startGame2After +1, config.strategy.options.maxT.value);
+    currentBet2Default = calculateMaxGame2Bets(balance, 1000, startGame2After +1, config.strategy.options.maxT.value);
+    currentBet2 = currentBet2Default;
     basebet1 = Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1))
     log ('BET UPDATED: game2 BET: ', Math.round(currentBet2 / 100),' - game1 BET:', Math.round(basebet1 / 100));
 }
