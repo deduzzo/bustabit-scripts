@@ -1,20 +1,21 @@
 var config = {
-    payout: { value: 1.20, type: 'multiplier', label: 'Mult' },
+    payout: { value: 1.16, type: 'multiplier', label: 'Mult' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
     strategy: {
         value: 'maxT', type: 'radio', label: 'Strategy:',
         options: {
             manual: { value: '25000', type: 'balance', label: 'Manual base bet for Game 2 (3x)' },
-            maxT: { value: '24', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
+            maxT: { value: '23', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
         }
     },
     startGame2After: { value: 9, type: 'multiplier', label: 'Play at game 2 after x lost' },
     minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum game 1 losts before to start' },
     offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Offset to start Game 2 Always' },
-    updateBetAfter: { value: 300, type: 'multiplier', label: 'Auto bet after x times' },
+    updateBetAfter: { value: 200, type: 'multiplier', label: 'Auto bet after x times' },
 };
 
 let simulate = false;
+let toRecalibrate = false;
 
 let balance = simulate ? 30000000: userInfo.balance;
 
@@ -59,6 +60,7 @@ function onGameStarted() {
         log('ROUND ', ++currentRound, 'GAME 1 - betting', Math.round(basebet1 / 100), 'on', mult1, 'x, virtualT:', game2VirtualLosts, ' to recover: ',game1Losts);
         engine.bet(Math.round(basebet1 / 100) * 100, mult1);
     }
+    if (currentRound % updateBetAfter == 0) toRecalibrate = true;
 }
 
 function onGameEnded() {
@@ -80,6 +82,11 @@ function onGameEnded() {
                 currentBet2 = config.baseBet2.value;
                 currentTimes = 0;
                 game2VirtualLosts = 0;
+            }
+            if (toRecalibrate)
+            {
+                updateBet();
+                toRecalibrate = false;
             }
             log ('WIN!! :D');
         } else {
@@ -103,7 +110,6 @@ function onGameEnded() {
                 currentGameType = 2;
             }
         }
-        if (currentRound % updateBetAfter == 0) updateBet();
     }
 }
 
