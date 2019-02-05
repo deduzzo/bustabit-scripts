@@ -1,5 +1,5 @@
 var config = {
-    payout: { value: 1.16, type: 'multiplier', label: 'Mult' },
+    payout: { value: 1.11, type: 'multiplier', label: 'Mult' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
     strategy: {
         value: 'maxT', type: 'radio', label: 'Strategy:',
@@ -8,10 +8,10 @@ var config = {
             maxT: { value: '23', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
         }
     },
-    startGame2After: { value: 9, type: 'multiplier', label: 'Play at game 2 after x lost' },
-    minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum game 1 losts before to start' },
-    offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Offset to start Game 2 Always' },
-    updateBetAfter: { value: 100, type: 'multiplier', label: 'Auto bet after x times' },
+    startGame2After: { value: 9, type: 'multiplier', label: 'XLost to Activate game 2' },
+    minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
+    offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
+    updateBetAfter: { value: 100, type: 'multiplier', label: 'Update bets after x times' },
 };
 
 let simulate = false;
@@ -37,6 +37,7 @@ let game2VirtualLosts = 0;
 let currentTimes = 0;
 let currentRound = 0;
 let currentGameType = 1;
+
 
 //log(showStats(25000,1.5, 0, 23, true));
 
@@ -148,4 +149,5 @@ function updateBet()
     currentBet2 = currentBet2Default;
     basebet1 = Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1))
     log ('BET UPDATED: game2 BET: ', Math.round(currentBet2 / 100),' - game1 BET:', Math.round(basebet1 / 100));
+    showStats(currentBet2Default,1.5, startGame2After+1, -1, true);
 }
