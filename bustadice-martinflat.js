@@ -1,9 +1,9 @@
 var config = {
-    payout: { value: 1.09, type: 'multiplier', label: 'Mult' },
-    maxT: { value: '23', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
-    startGame2After: { value: 7, type: 'multiplier', label: 'XLost to Activate game 2' },
+    payout: { value: 1.07, type: 'multiplier', label: 'Mult' },
+    maxT: { value: '25', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
+    startGame2After: { value: 5, type: 'multiplier', label: 'XLost to Activate game 2' },
     minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
-    offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
+    offsetAlwaysStart: { value: 6, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
     updateBetAfter: { value: 100, type: 'multiplier', label: 'Update bets after x times' },
 }
 
@@ -126,7 +126,7 @@ function calculateMaxGame2Bets(balance, step, currentT, desideredT, self)
 
 function updateBet(self)
 {
-    currentBet2Default = calculateMaxGame2Bets(balance, 1000, startGame2After +1, config.maxT.value, self);
+    currentBet2Default = calculateMaxGame2Bets(balanceTot, 1000, startGame2After +1, config.maxT.value, self);
     currentBet2 = currentBet2Default;
     basebet1 = Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1))
     self.log ('BET UPDATED: game2 BET: ', Math.round(currentBet2 / 100),' - game1 BET:', Math.round(basebet1 / 100));
