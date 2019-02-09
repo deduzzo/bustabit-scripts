@@ -32,18 +32,18 @@ let currentGameType = 1;
 
 showStats(currentBet2Default,1.5, startGame2After+1, -1, true, this);
 
-this.log ('GAME 2 BET: ', Math.round(currentBet2 / 100), ' - GAME 1 BET:', Math.round(basebet1 / 100));
+this.log ('G2 BET: ', Math.round(currentBet2 / 100), ' - G1 BET:', Math.round(basebet1 / 100));
 
 while (true){
     if (currentGameType == 2)
     {
         // game 2
-        this.log('ROUND ', ++currentRound, 'GAME 2 - betting', Math.round(currentBet2 / 100), 'on', mult2, ' - virtualT:', game2VirtualLosts, ' realT:', currentTimes);
+        this.log('R', ++currentRound, 'G2 -', Math.round(currentBet2 / 100), 'on', mult2, ' - vT:', game2VirtualLosts, ' rT:', currentTimes);
     }
     else if (currentGameType == 1)
     {
         // flat game
-        this.log('ROUND ', ++currentRound, 'GAME 1 - betting', Math.round(basebet1 / 100), 'on', mult1, 'x, virtualT:', game2VirtualLosts, ' to recover: ',game1Losts);
+        this.log('R', ++currentRound, 'G1 -', Math.round(basebet1 / 100), 'on', mult1, 'x, vT:', game2VirtualLosts, ' rest: ',game1Losts);
     }
     const { multiplier, balance } = currentGameType == 2 ?  await this.bet(Math.round(currentBet2/ 100) * 100, mult2) : await this.bet(Math.round(basebet1 / 100) * 100, mult1);
     balanceTot = balance;
@@ -72,7 +72,6 @@ while (true){
             updateBet(this);
             toRecalibrate = false;
         }
-        this.log ('WIN!! :D');
     } else {
         // we lost
         if (currentGameType == 1) {
@@ -86,7 +85,7 @@ while (true){
         if (currentGameType == 2) {
             this.log('LOST :( GAME 2!! ')
         } else if (currentGameType == 1)
-            this.log('LOST, to recover: ', game1Losts)
+            this.log('LOST, rest: ', game1Losts)
     }
 
     if (currentGameType == 1) {
@@ -129,6 +128,5 @@ function updateBet(self)
     currentBet2Default = calculateMaxGame2Bets(balanceTot, 1000, startGame2After +1, config.maxT.value, self);
     currentBet2 = currentBet2Default;
     basebet1 = Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1))
-    self.log ('BET UPDATED: game2 BET: ', Math.round(currentBet2 / 100),' - game1 BET:', Math.round(basebet1 / 100));
-    showStats(currentBet2Default,1.5, startGame2After+1, -1, true, self);
+    self.log ('BET UPDATED: g2 BET: ', Math.round(currentBet2 / 100),' - g1 BET:', Math.round(basebet1 / 100));
 }
