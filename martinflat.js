@@ -1,5 +1,5 @@
 var config = {
-    payout: { value: 1.11, type: 'multiplier', label: 'Mult' },
+    payout: { value: 1.50, type: 'multiplier', label: 'Mult' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
     strategy: {
         value: 'maxT', type: 'radio', label: 'Strategy:',
@@ -8,16 +8,13 @@ var config = {
             maxT: { value: '23', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
         }
     },
-    startGame2After: { value: 9, type: 'multiplier', label: 'XLost to Activate game 2' },
+    startGame2After: { value: 4, type: 'multiplier', label: 'XLost to Activate game 2' },
     minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
     offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
     updateBetAfter: { value: 100, type: 'multiplier', label: 'Update bets after x times' },
 };
 
-let simulate = false;
 let toRecalibrate = false;
-
-let balance = simulate ? 30000000: userInfo.balance;
 
 const updateBetAfter = config.updateBetAfter.value;
 const mult1 = config.payout.value;
@@ -25,10 +22,13 @@ const mult2 = 3;
 const minimumLostTimesToStart = config.minimumLostTimesToStart.value;
 const startGame2After = config.startGame2After.value;
 let currentBet2 = config.strategy.value == 'manual' ? config.strategy.options.manual.value :
-    calculateMaxGame2Bets(balance, 1000, startGame2After +1, config.strategy.options.maxT.value);
+    calculateMaxGame2Bets(1000, startGame2After +1, config.strategy.options.maxT.value);
+if (config.strategy.value == 'maxT') log("Next STEP at ", currentBet2.nextTotal / 100, ' bit');
+if (config.strategy.value == 'maxT') currentBet2 = currentBet2.bet;
 let basebet1 = config.strategy.value == 'manual' ? config.baseBet1.value : Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1));
 const offsetAlwaysStart = config.offsetAlwaysStart.value;
 let currentBet2Default = currentBet2;
+let safebets = 0;
 
 log('Script is running..');
 
@@ -62,6 +62,8 @@ function onGameStarted() {
         log('ROUND ', ++currentRound, 'GAME 1 - betting', Math.round(basebet1 / 100), 'on', mult1, 'x, virtualT:', game2VirtualLosts, ' to recover: ',game1Losts);
         engine.bet(Math.round(basebet1 / 100) * 100, mult1);
     }
+    if (game1Losts < minimumLostTimesToStart) safebets++;
+    if (currentRound % 10 == 0) showSmallStats();
     if (currentRound % updateBetAfter == 0) toRecalibrate = true;
 }
 
@@ -132,22 +134,26 @@ function showStats(initBet, mult, currentT, returnT, verbose)
     return desideredTtotal;
 }
 
-function calculateMaxGame2Bets(balance, step, currentT, desideredT)
+function showSmallStats(){
+    log("BALANCE: ", userInfo.balance / 100, ' bits, safe%= ', ((safebets * 100) / currentRound ).toFixed(2));
+}
+
+function calculateMaxGame2Bets(step, currentT, desideredT)
 {
     let bet = 0;
     let tempTotal = 0;
     do {
         bet +=step;
         tempTotal = showStats(bet,1.5, currentT ,desideredT, false);
-    } while (balance > tempTotal)
-    return bet - step;
+    } while (userInfo.balance > tempTotal)
+    return { bet: bet - step, nextTotal: tempTotal };
 }
 
 function updateBet()
 {
-    currentBet2Default = calculateMaxGame2Bets(balance, 1000, startGame2After +1, config.strategy.options.maxT.value);
-    currentBet2 = currentBet2Default;
+    currentBet2Default = calculateMaxGame2Bets(1000, startGame2After +1, config.strategy.options.maxT.value);
+    currentBet2 = currentBet2Default.bet;
     basebet1 = Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1))
-    log ('BET UPDATED: game2 BET: ', Math.round(currentBet2 / 100),' - game1 BET:', Math.round(basebet1 / 100));
-    showStats(currentBet2Default,1.5, startGame2After+1, -1, true);
+    log ('BET UPDATED: game2 BET: ', Math.round(currentBet2 / 100),' - game1 BET:', Math.round(basebet1 / 100), ' NEXT STEP AT ',currentBet2Default.nextTotal / 100);
+    showStats(currentBet2,1.5, startGame2After+1, -1, true);
 }
