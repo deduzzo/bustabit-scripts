@@ -25,7 +25,7 @@ let currentBet2 = config.strategy.value == 'manual' ? config.strategy.options.ma
     calculateMaxGame2Bets(1000, startGame2After +1, config.strategy.options.maxT.value);
 if (config.strategy.value == 'maxT') log("Next STEP at ", currentBet2.nextTotal / 100, ' bit');
 if (config.strategy.value == 'maxT') currentBet2 = currentBet2.bet;
-let basebet1 = config.strategy.value == 'manual' ? config.baseBet1.value : Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1));
+let basebet1 = config.strategy.value == 'manual' ? config.baseBet1.value : (Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1)) / 100).toFixed(0) * 100;
 const offsetAlwaysStart = config.offsetAlwaysStart.value;
 let currentBet2Default = currentBet2;
 let safebets = 0;
@@ -54,13 +54,13 @@ function onGameStarted() {
     {
         // game 2
         log('ROUND ', ++currentRound, 'GAME 2 - betting', Math.round(currentBet2 / 100), 'on', mult2, ' - virtualT:', game2VirtualLosts, ' realT:', currentTimes);
-        engine.bet(Math.round(currentBet2 / 100) * 100 , mult2);
+        engine.bet(currentBet2, mult2);
     }
     else if (currentGameType == 1)
     {
         // flat game
         log('ROUND ', ++currentRound, 'GAME 1 - betting', Math.round(basebet1 /100), 'on', mult1, 'x, virtualT:', game2VirtualLosts, ' to recover: ',game1Losts);
-        engine.bet(Math.round(basebet1 / 100) * 100, mult1);
+        engine.bet(basebet1, mult1);
     }
     if (game1Losts < minimumLostTimesToStart) safebets++;
     if (currentRound % 10 == 0) showSmallStats();
@@ -146,14 +146,14 @@ function calculateMaxGame2Bets(step, currentT, desideredT)
         bet +=step;
         tempTotal = showStats(bet,1.5, currentT ,desideredT, false);
     } while (userInfo.balance > tempTotal)
-    return { bet: bet - step, nextTotal: tempTotal };
+    return { bet: (Math.round((bet - step) / 100)).toFixed(0) * 100 , nextTotal: tempTotal };
 }
 
 function updateBet()
 {
     currentBet2Default = calculateMaxGame2Bets(1000, startGame2After +1, config.strategy.options.maxT.value);
-    currentBet2 = Math.round(currentBet2Default.bet / 100) * 100;
-    basebet1 = Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1))
-    log ('BET UPDATED: game2 BET: ', Math.round(currentBet2 / 100),' - game1 BET:', Math.round(basebet1 / 100), ' NEXT STEP AT ',currentBet2Default.nextTotal / 100);
+    currentBet2 = currentBet2Default.bet;
+    basebet1 = (Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1)) / 100).toFixed(0) * 100;
+    log ('BET UPDATED: game2 BET: ', currentBet2 / 100,' - game1 BET:', basebet1 / 100, ' NEXT STEP AT ',currentBet2Default.nextTotal / 100);
     showStats(currentBet2,1.5, startGame2After+1, -1, true);
 }
