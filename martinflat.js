@@ -1,13 +1,7 @@
 var config = {
     payout: { value: 1.50, type: 'multiplier', label: 'Mult' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
-    strategy: {
-        value: 'maxT', type: 'radio', label: 'Strategy:',
-        options: {
-            manual: { value: '25000', type: 'balance', label: 'Manual base bet for Game 2 (3x)' },
-            maxT: { value: '23', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
-        }
-    },
+    maxT: { value: '23', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
     startGame2After: { value: 4, type: 'multiplier', label: 'XLost to Activate game 2' },
     minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
     offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
@@ -21,11 +15,8 @@ const mult1 = config.payout.value;
 const mult2 = 3;
 const minimumLostTimesToStart = config.minimumLostTimesToStart.value;
 const startGame2After = config.startGame2After.value;
-let currentBet2 = config.strategy.value == 'manual' ? config.strategy.options.manual.value :
-    calculateMaxGame2Bets(1000, startGame2After +1, config.strategy.options.maxT.value);
-if (config.strategy.value == 'maxT') log("Next STEP at ", currentBet2.nextTotal / 100, ' bit');
-if (config.strategy.value == 'maxT') currentBet2 = currentBet2.bet;
-let basebet1 = config.strategy.value == 'manual' ? config.baseBet1.value : (Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1)) / 100).toFixed(0) * 100;
+let currentBet2 = 0;
+let basebet1 = 0;
 const offsetAlwaysStart = config.offsetAlwaysStart.value;
 let currentBet2Default = currentBet2;
 let safebets = 0;
@@ -41,9 +32,7 @@ let currentGameType = 1;
 
 //log(showStats(25000,1.5, 0, 23, true));
 
-showStats(currentBet2Default,1.5, startGame2After+1, -1, true);
-
-log ('GAME 2 BET: ', Math.round(currentBet2 / 100), ' - GAME 1 BET:', Math.round(basebet1 / 100));
+updateBet(true);
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -89,7 +78,7 @@ function onGameEnded() {
             }
             if (toRecalibrate)
             {
-                updateBet();
+                updateBet(false);
                 toRecalibrate = false;
             }
             log ('WIN!! :D');
@@ -149,11 +138,11 @@ function calculateMaxGame2Bets(step, currentT, desideredT)
     return { bet: (Math.round((bet - step) / 100)).toFixed(0) * 100 , nextTotal: tempTotal };
 }
 
-function updateBet()
+function updateBet(showDetail)
 {
-    currentBet2Default = calculateMaxGame2Bets(1000, startGame2After +1, config.strategy.options.maxT.value);
+    currentBet2Default = calculateMaxGame2Bets(1000, startGame2After +1, config.maxT.value);
     currentBet2 = currentBet2Default.bet;
     basebet1 = (Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1)) / 100).toFixed(0) * 100;
     log ('BET UPDATED: game2 BET: ', currentBet2 / 100,' - game1 BET:', basebet1 / 100, ' NEXT STEP AT ',currentBet2Default.nextTotal / 100);
-    showStats(currentBet2,1.5, startGame2After+1, -1, true);
+    showStats(currentBet2,1.5, startGame2After+1, -1, showDetail);
 }
