@@ -1,11 +1,11 @@
 var config = {
-    payout: { value: 1.50, type: 'multiplier', label: 'Mult' },
+    payout: { value: 1.90, type: 'multiplier', label: 'Mult' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
-    maxT: { value: '23', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
-    startGame2After: { value: 4, type: 'multiplier', label: 'XLost to Activate game 2' },
-    initialBuffer: { value: 50, type: 'multiplier', label: 'Initial Buffer' },
+    maxT: { value: '22', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
+    startGame2After: { value: 3, type: 'multiplier', label: 'XLost to Activate game 2' },
+    initialBuffer: { value: 100, type: 'multiplier', label: 'Initial Buffer' },
     minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
-    offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
+    offsetAlwaysStart: { value: 3, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
     updateBetAfter: { value: 100, type: 'multiplier', label: 'Update bets after x times' },
 };
 
