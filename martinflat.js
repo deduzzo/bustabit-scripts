@@ -3,6 +3,7 @@ var config = {
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
     maxT: { value: '23', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
     startGame2After: { value: 4, type: 'multiplier', label: 'XLost to Activate game 2' },
+    initialBuffer: { value: 50, type: 'multiplier', label: 'Initial Buffer' },
     minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
     offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
     updateBetAfter: { value: 100, type: 'multiplier', label: 'Update bets after x times' },
@@ -23,7 +24,7 @@ let safebets = 0;
 
 log('Script is running..');
 
-let game1Losts = 0;
+let game1Losts = -config.initialBuffer.value;
 let game2VirtualLosts = 0;
 let currentTimes = 0;
 let currentRound = 0;
@@ -140,9 +141,10 @@ function calculateMaxGame2Bets(step, currentT, desideredT)
 
 function updateBet(showDetail)
 {
-    currentBet2Default = calculateMaxGame2Bets(1000, startGame2After +1, config.maxT.value);
-    currentBet2 = currentBet2Default.bet;
+    let currentBet2Default2 = calculateMaxGame2Bets(1000, startGame2After +1, config.maxT.value);
+    currentBet2Default= currentBet2Default2.bet;
+    currentBet2 = currentBet2Default2.bet;
     basebet1 = (Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1)) / 100).toFixed(0) * 100;
-    log ('BET UPDATED: game2 BET: ', currentBet2 / 100,' - game1 BET:', basebet1 / 100, ' NEXT STEP AT ',currentBet2Default.nextTotal / 100);
+    log ('BET UPDATED: game2 BET: ', currentBet2 / 100,' - game1 BET:', basebet1 / 100, ' NEXT STEP AT ',currentBet2Default2.nextTotal / 100);
     showStats(currentBet2,1.5, startGame2After+1, -1, showDetail);
 }
