@@ -1,5 +1,7 @@
 var config = {
     payout: { value: 1.9, type: 'multiplier', label: 'Mult' },
+    mult2: { value: 3, type: 'multiplier', label: 'Game 2 Mult' },
+    multiply2: { value: 1.5, type: 'multiplier', label: 'Game 2 Iteration Multiply' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
     maxT: { value: '20', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
     startGame2After: { value: 3, type: 'multiplier', label: 'XLost to Activate game 2' },
@@ -7,7 +9,6 @@ var config = {
     minimumLostTimesToStart: { value: 12, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
     offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
     updateBetAfter: { value: 100, type: 'multiplier', label: 'Update bets after x times' },
-    stop10: { value: 5, type: 'multiplier', label: 'Times to stop after 10 ' },
     stopDefinitive: { value: 12000, type: 'multiplier', label: 'Stop script after this times' },
 };
 
@@ -16,7 +17,8 @@ let toRecalibrate = false;
 
 const updateBetAfter = config.updateBetAfter.value;
 const mult1 = config.payout.value;
-const mult2 = 3;
+const mult2 = config.mult2.value;
+const multiply2 = config.multiply2.value;
 const minimumLostTimesToStart = config.minimumLostTimesToStart.value;
 const startGame2After = config.startGame2After.value;
 let currentBet2 = 0;
@@ -24,7 +26,6 @@ let basebet1 = 0;
 const offsetAlwaysStart = config.offsetAlwaysStart.value;
 let currentBet2Default = currentBet2;
 let safebets = 0;
-const stop10 = config.stop10.value;
 
 log('Script is running..');
 
@@ -33,8 +34,8 @@ let game2VirtualLosts = 0;
 let currentTimes = 0;
 let currentRound = 0;
 let currentGameType = 1;
-let toStop = stop10;
 const stopDefinitive = config.stopDefinitive.value;
+let stopped = false;
 
 //log(showStats(25000,1.5, 0, 23, true));
 
@@ -45,25 +46,17 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    if (currentRound < stopDefinitive) {
-        let played = false;
+    if (!stopped) {
         if (currentGameType == 2) {
             // game 2
-            if (game2VirtualLosts % 10 != 0 || toStop == 0) {
                 log('ROUND ', ++currentRound, 'GAME 2 - betting', Math.round(currentBet2 / 100), 'on', mult2, ' - virtualT:', game2VirtualLosts, ' realT:', currentTimes);
                 engine.bet(currentBet2, mult2);
-                played = true;
-                if (toStop == 0) toStop = stop10;
-            } else {
-                log('STOP for ', toStop--, ' times');
-            }
         } else if (currentGameType == 1) {
             // flat game
             log('ROUND ', ++currentRound, 'GAME 1 - betting', Math.round(basebet1 / 100), 'on', mult1, 'x, virtualT:', game2VirtualLosts, ' to recover: ', game1Losts);
             engine.bet(basebet1, mult1);
-            played = true;
         }
-        if (game1Losts < minimumLostTimesToStart && played) safebets++;
+        if (game1Losts < minimumLostTimesToStart) safebets++;
         if (currentRound % 10 == 0) showSmallStats();
         if (currentRound % updateBetAfter == 0) toRecalibrate = true;
     }
@@ -99,6 +92,7 @@ function onGameEnded() {
                 toRecalibrate = false;
             }
             log ('WIN!! :D');
+            if (currentRound > stopDefinitive) stopped = true;
         } else {
             // we lost
             if (currentGameType == 1) {
@@ -106,7 +100,7 @@ function onGameEnded() {
             }
             else if (currentGameType == 2) {
                 currentTimes++;
-                currentBet2 = Math.round((currentBet2 / 100) * 1.5) * 100;
+                currentBet2 = Math.round((currentBet2 / 100) * multiply2) * 100;
             }
 
             if (currentGameType == 2) {
@@ -150,7 +144,7 @@ function calculateMaxGame2Bets(step, currentT, desideredT)
     let tempTotal = 0;
     do {
         bet +=step;
-        tempTotal = showStats(bet,1.5, currentT ,desideredT, false);
+        tempTotal = showStats(bet,multiply2, currentT ,desideredT, false);
     } while (userInfo.balance > tempTotal)
     return { bet: (Math.round((bet - step) / 100)).toFixed(0) * 100 , nextTotal: tempTotal };
 }
@@ -162,5 +156,5 @@ function updateBet(showDetail)
     currentBet2 = currentBet2Default2.bet;
     basebet1 = (Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1)) / 100).toFixed(0) * 100;
     log ('BET UPDATED: game2 BET: ', currentBet2 / 100,' - game1 BET:', basebet1 / 100, ' NEXT STEP AT ',currentBet2Default2.nextTotal / 100);
-    showStats(currentBet2,1.5, startGame2After+1, -1, showDetail);
+    showStats(currentBet2,multiply2, startGame2After+1, -1, showDetail);
 }

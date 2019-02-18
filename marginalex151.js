@@ -1,17 +1,17 @@
 var config = {
-    payout: { value: 2.25, type: 'multiplier', label: 'Mult' },
-    baseBet: { value: 100, type: 'balance', label: 'Base Bet' },
-    mult: { value: 3, type: 'multiplier', label: 'x after KO' },
+    payout: { value: 1.16, type: 'multiplier', label: 'Mult' },
+    baseBet: { value: 1000, type: 'balance', label: 'Base Bet' },
+    mult: { value: 7.3, type: 'multiplier', label: 'x after KO' },
     strategy: {
         value: 'freeze', type: 'radio', label: 'Strategy:',
         options: {
-            maxBets: { value: '100', type: 'multiplier', label: 'Max Bet' },
-            freeze: { value: '6', type: 'multiplier', label: 'Last T before flat bet' },
+            maxBets: { value: '10000,00', type: 'multiplier', label: 'Max Bet' },
+            freeze: { value: '60', type: 'multiplier', label: 'Last T before flat bet' },
         }
     },
     maxTimes: { value: 8, type:'multiplier', label: 'Max Times'},
     lateTimes: { value: 0, type: 'multiplier', label: 'Late by x times' },
-    disasterWaits: {value: 50, type:'multiplier', label: 'Disaster waits:'}
+    disasterWaits: {value: 0, type:'multiplier', label: 'Disaster waits:'}
 };
 
 const payout = config.payout.value;
