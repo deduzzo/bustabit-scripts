@@ -11,6 +11,7 @@ var config = {
     stopDefinitive: { value: 12000, type: 'multiplier', label: 'Stop script after this times' },
 };
 
+
 let toRecalibrate = false;
 
 const updateBetAfter = config.updateBetAfter.value;
