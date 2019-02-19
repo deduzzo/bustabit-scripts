@@ -9,7 +9,8 @@ var config = {
     minimumLostTimesToStart: { value: 12, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
     offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
     updateBetAfter: { value: 100, type: 'multiplier', label: 'Update bets after x times' },
-    stopDefinitive: { value: 12000, type: 'multiplier', label: 'Stop script after this times' },
+    stopDefinitive: { value: 12000, type: 'multiplier', label: 'Script iteration number of games' },
+    initBalance: { value: 10000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
 
@@ -36,6 +37,10 @@ let currentRound = 0;
 let currentGameType = 1;
 const stopDefinitive = config.stopDefinitive.value;
 let stopped = false;
+let balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
+let initBalance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
+let itTotal = 0;
+let disaseter = 0;
 
 //log(showStats(25000,1.5, 0, 23, true));
 
@@ -49,11 +54,11 @@ function onGameStarted() {
     if (!stopped) {
         if (currentGameType == 2) {
             // game 2
-                log('ROUND ', ++currentRound, 'GAME 2 - betting', Math.round(currentBet2 / 100), 'on', mult2, ' - virtualT:', game2VirtualLosts, ' realT:', currentTimes);
+                log('IT ', itTotal +1,  ' - ROUND ', ++currentRound, 'GAME 2 - betting', Math.round(currentBet2 / 100), 'on', mult2, ' - virtualT:', game2VirtualLosts, ' realT:', currentTimes);
                 engine.bet(currentBet2, mult2);
         } else if (currentGameType == 1) {
             // flat game
-            log('ROUND ', ++currentRound, 'GAME 1 - betting', Math.round(basebet1 / 100), 'on', mult1, 'x, virtualT:', game2VirtualLosts, ' to recover: ', game1Losts);
+            log('IT ', itTotal +1,  ' - ROUND ', ++currentRound, 'GAME 1 - betting', Math.round(basebet1 / 100), 'on', mult1, 'x, virtualT:', game2VirtualLosts, ' to recover: ', game1Losts);
             engine.bet(basebet1, mult1);
         }
         if (game1Losts < minimumLostTimesToStart) safebets++;
@@ -62,7 +67,17 @@ function onGameStarted() {
     }
     else
     {
-        log('Definitive STOP!!! :D');
+        log('Definitive STOP!!!, reboot!!! :D');
+        itTotal++;
+        game1Losts = -config.initialBuffer.value;
+        currentGameType = 1;
+        currentBet2 = currentBet2Default;
+        currentTimes = 0;
+        game2VirtualLosts = 0;
+        balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
+        initBalance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
+        currentRound = 0;
+        updateBet(true);
     }
 }
 
@@ -79,6 +94,8 @@ function onGameEnded() {
 
         if (lastGame.cashedAt) {
             // we win
+            // balance update
+            balance+= Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
             if (currentGameType == 2) {
                 game1Losts -= minimumLostTimesToStart;
                 currentGameType = 1;
@@ -94,6 +111,8 @@ function onGameEnded() {
             log ('WIN!! :D');
             if (currentRound > stopDefinitive) stopped = true;
         } else {
+            //balance update
+            balance-= lastGame.wager;
             // we lost
             if (currentGameType == 1) {
                 game1Losts++;
@@ -135,7 +154,7 @@ function showStats(initBet, mult, currentT, returnT, verbose)
 }
 
 function showSmallStats(){
-    log("BALANCE: ", userInfo.balance / 100, ' bits, safe%= ', ((safebets * 100) / currentRound ).toFixed(2));
+    log("DIS:", disaseter, ' WINS: ', itTotal - disaseter, 'BALANCE: ', balance / 100, ' - gain ', (initBalance - balance) / 100,  ' safe%= ', ((safebets * 100) / currentRound ).toFixed(2));
 }
 
 function calculateMaxGame2Bets(step, currentT, desideredT)
@@ -145,7 +164,7 @@ function calculateMaxGame2Bets(step, currentT, desideredT)
     do {
         bet +=step;
         tempTotal = showStats(bet,multiply2, currentT ,desideredT, false);
-    } while (userInfo.balance > tempTotal)
+    } while (balance > tempTotal)
     return { bet: (Math.round((bet - step) / 100)).toFixed(0) * 100 , nextTotal: tempTotal };
 }
 
