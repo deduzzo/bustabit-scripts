@@ -40,7 +40,7 @@ let stopped = false;
 let balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
 let initBalance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
 let itTotal = 0;
-let disaseter = 0;
+let disaster = 0;
 
 //log(showStats(25000,1.5, 0, 23, true));
 
@@ -51,7 +51,7 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    if (!stopped) {
+    if (!stopped && (game2VirtualLosts < config.maxT.value + offsetAlwaysStart) || ((game1Losts / minimumLostTimesToStart >= 1) && game2VirtualLosts > config.maxT.value) ) {
         if (currentGameType == 2) {
             // game 2
                 log('IT ', itTotal +1,  ' - ROUND ', ++currentRound, 'GAME 2 - betting', Math.round(currentBet2 / 100), 'on', mult2, ' - virtualT:', game2VirtualLosts, ' realT:', currentTimes);
@@ -67,7 +67,16 @@ function onGameStarted() {
     }
     else
     {
-        log('Definitive STOP!!!, reboot!!! :D');
+        if (stopped)
+        {
+            log('Definitive STOP!!!, reboot!!! :D');
+            stopped = false;
+        }
+        else
+        {
+            log('Disaster!!  :( Reboot');
+            disaster++;
+        }
         itTotal++;
         game1Losts = -config.initialBuffer.value;
         currentGameType = 1;
@@ -154,7 +163,7 @@ function showStats(initBet, mult, currentT, returnT, verbose)
 }
 
 function showSmallStats(){
-    log("DIS:", disaseter, ' WINS: ', itTotal - disaseter, 'BALANCE: ', balance / 100, ' - gain ', (initBalance - balance) / 100,  ' safe%= ', ((safebets * 100) / currentRound ).toFixed(2));
+    log("DIS:", disaster, ' WINS: ', itTotal - disaster, 'BALANCE: ', balance / 100, ' - gain ', (initBalance - balance) / 100,  ' safe%= ', ((safebets * 100) / currentRound ).toFixed(2));
 }
 
 function calculateMaxGame2Bets(step, currentT, desideredT)
