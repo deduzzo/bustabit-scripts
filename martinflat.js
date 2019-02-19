@@ -1,15 +1,15 @@
 var config = {
-    payout: { value: 1.9, type: 'multiplier', label: 'Mult' },
+    payout: { value: 1.5, type: 'multiplier', label: 'Mult' },
     mult2: { value: 3, type: 'multiplier', label: 'Game 2 Mult' },
     multiply2: { value: 1.5, type: 'multiplier', label: 'Game 2 Iteration Multiply' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
-    maxT: { value: '20', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
-    startGame2After: { value: 3, type: 'multiplier', label: 'XLost to Activate game 2' },
-    initialBuffer: { value: 1000, type: 'multiplier', label: 'Initial Buffer' },
-    minimumLostTimesToStart: { value: 12, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
-    offsetAlwaysStart: { value: 2, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
+    maxT: { value: '17', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
+    startGame2After: { value: 2, type: 'multiplier', label: 'XLost to Activate game 2' },
+    initialBuffer: { value: 50, type: 'multiplier', label: 'Initial Buffer' },
+    minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
+    offsetAlwaysStart: { value: 5, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
     updateBetAfter: { value: 100, type: 'multiplier', label: 'Update bets after x times' },
-    stopDefinitive: { value: 12000, type: 'multiplier', label: 'Script iteration number of games' },
+    stopDefinitive: { value: 8000, type: 'multiplier', label: 'Script iteration number of games' },
     initBalance: { value: 10000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
@@ -51,7 +51,7 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    if (!stopped && (game2VirtualLosts < config.maxT.value + offsetAlwaysStart) || ((game1Losts / minimumLostTimesToStart >= 1) && game2VirtualLosts > config.maxT.value) ) {
+    if (!stopped && !(game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) && !((game1Losts / minimumLostTimesToStart >= 1) && game2VirtualLosts > config.maxT.value)) {
         if (currentGameType == 2) {
             // game 2
                 log('IT ', itTotal +1,  ' - ROUND ', ++currentRound, 'GAME 2 - betting', Math.round(currentBet2 / 100), 'on', mult2, ' - virtualT:', game2VirtualLosts, ' realT:', currentTimes);
@@ -78,6 +78,7 @@ function onGameStarted() {
             disaster++;
         }
         itTotal++;
+        safebets = 0;
         game1Losts = -config.initialBuffer.value;
         currentGameType = 1;
         currentBet2 = currentBet2Default;
