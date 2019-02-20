@@ -3,7 +3,7 @@ var config = {
     mult2: { value: 3, type: 'multiplier', label: 'Game 2 Mult' },
     multiply2: { value: 1.5, type: 'multiplier', label: 'Game 2 Iteration Multiply' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
-    maxT: { value: '17', type: 'multiplier', label: 'T to recover (auto value calculated) ' },
+    maxT: { value: 17, type: 'multiplier', label: 'T to recover (auto value calculated) ' },
     startGame2After: { value: 2, type: 'multiplier', label: 'XLost to Activate game 2' },
     initialBuffer: { value: 50, type: 'multiplier', label: 'Initial Buffer' },
     minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
@@ -51,7 +51,34 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    if (!stopped && !(game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) && !((game1Losts / minimumLostTimesToStart >= 1) && game2VirtualLosts > config.maxT.value)) {
+    if (stopped ||
+        (currentGameType == 2 &&
+            (((game1Losts / minimumLostTimesToStart <= 1) && game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) ||
+                ((game1Losts / minimumLostTimesToStart >= 1) && game2VirtualLosts > config.maxT.value)))) {
+            if (stopped)
+            {
+                log('Definitive STOP!!!, reboot!!! :D');
+                stopped = false;
+            }
+            else
+            {
+                log('Disaster!!  :( Reboot');
+                disaster++;
+            }
+            itTotal++;
+            safebets = 0;
+            game1Losts = -config.initialBuffer.value;
+            currentGameType = 1;
+            currentBet2 = currentBet2Default;
+            currentTimes = 0;
+            game2VirtualLosts = 0;
+            balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
+            initBalance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
+            currentRound = 0;
+            updateBet(true);
+        }
+    else
+    {
         if (currentGameType == 2) {
             // game 2
                 log('IT ', itTotal +1,  ' - ROUND ', ++currentRound, 'GAME 2 - betting', Math.round(currentBet2 / 100), 'on', mult2, ' - virtualT:', game2VirtualLosts, ' realT:', currentTimes);
@@ -64,30 +91,6 @@ function onGameStarted() {
         if (game1Losts < minimumLostTimesToStart) safebets++;
         if (currentRound % 10 == 0) showSmallStats();
         if (currentRound % updateBetAfter == 0) toRecalibrate = true;
-    }
-    else
-    {
-        if (stopped)
-        {
-            log('Definitive STOP!!!, reboot!!! :D');
-            stopped = false;
-        }
-        else
-        {
-            log('Disaster!!  :( Reboot');
-            disaster++;
-        }
-        itTotal++;
-        safebets = 0;
-        game1Losts = -config.initialBuffer.value;
-        currentGameType = 1;
-        currentBet2 = currentBet2Default;
-        currentTimes = 0;
-        game2VirtualLosts = 0;
-        balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
-        initBalance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
-        currentRound = 0;
-        updateBet(true);
     }
 }
 
