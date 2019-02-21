@@ -1,15 +1,15 @@
 var config = {
-    payout: { value: 1.5, type: 'multiplier', label: 'Mult' },
+    payout: { value: 1.9, type: 'multiplier', label: 'Mult' },
     mult2: { value: 3, type: 'multiplier', label: 'Game 2 Mult' },
     multiply2: { value: 1.5, type: 'multiplier', label: 'Game 2 Iteration Multiply' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
-    maxT: { value: 17, type: 'multiplier', label: 'T to recover (auto value calculated) ' },
+    maxT: { value: 19, type: 'multiplier', label: 'T to recover (auto value calculated) ' },
     startGame2After: { value: 2, type: 'multiplier', label: 'XLost to Activate game 2' },
-    initialBuffer: { value: 50, type: 'multiplier', label: 'Initial Buffer' },
+    initialBuffer: { value: 20, type: 'multiplier', label: 'Initial Buffer' },
     minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
-    offsetAlwaysStart: { value: 5, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
-    updateBetAfter: { value: 100, type: 'multiplier', label: 'Update bets after x times' },
-    stopDefinitive: { value: 8000, type: 'multiplier', label: 'Script iteration number of games' },
+    offsetAlwaysStart: { value: 4, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
+    updateBetAfter: { value: 40, type: 'multiplier', label: 'Update bets after x times' },
+    stopDefinitive: { value: 28000, type: 'multiplier', label: 'Script iteration number of games' },
     initBalance: { value: 10000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
@@ -53,8 +53,11 @@ engine.on('GAME_ENDED', onGameEnded);
 function onGameStarted() {
     if (stopped ||
         (currentGameType == 2 &&
-            (((game1Losts / minimumLostTimesToStart <= 1) && game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) ||
-                ((game1Losts / minimumLostTimesToStart >= 1) && game2VirtualLosts > config.maxT.value)))) {
+            (
+                (((game1Losts / minimumLostTimesToStart) <= 1) && game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) ||
+                (((game1Losts / minimumLostTimesToStart) >= 1) && game2VirtualLosts > config.maxT.value)
+            )
+        )) {
             if (stopped)
             {
                 log('Definitive STOP!!!, reboot!!! :D');
@@ -63,6 +66,7 @@ function onGameStarted() {
             else
             {
                 log('Disaster!!  :( Reboot');
+                log('g1l:', game1Losts, ' minimttst:', minimumLostTimesToStart, ' game2vl:', game2VirtualLosts, ' maxT', config.maxT.value, ' offats:', offsetAlwaysStart);
                 disaster++;
             }
             itTotal++;
