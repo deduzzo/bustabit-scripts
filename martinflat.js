@@ -171,7 +171,7 @@ function showStats(initBet, mult, currentT, returnT, verbose)
 }
 
 function showSmallStats(){
-    log("DIS:", disaster, ' WINS: ', itTotal - disaster, 'BALANCE: ', balance / 100, ' - gain ', (initBalance - balance) / 100,  ' safe%= ', ((safebets * 100) / currentRound ).toFixed(2));
+    log("DIS:", disaster, ' WINS: ', itTotal - disaster, 'BALANCE: ', balance / 100, ' - gain ', (balance - initBalance) / 100,  ' safe%= ', ((safebets * 100) / currentRound ).toFixed(2));
 }
 
 function calculateMaxGame2Bets(step, currentT, desideredT)
