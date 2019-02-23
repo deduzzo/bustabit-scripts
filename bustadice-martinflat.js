@@ -10,7 +10,7 @@ var config = {
     minimumLostTimesToStart: { value: 20, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
     offsetAlwaysStart: { value: 7, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
     updateBetAfter: { value: 50, type: 'multiplier', label: 'Update bets after x times' },
-    stopDefinitive: { value: 30000, type: 'multiplier', label: 'Script iteration number of games' },
+    stopDefinitive: { value: 3000, type: 'multiplier', label: 'Script iteration number of games' },
     initBalance: { value: 550000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
