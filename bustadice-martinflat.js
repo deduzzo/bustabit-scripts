@@ -50,7 +50,7 @@ updateBet(true, this);
 while (true){
     let currentMult = 0;
     if (stopped ||
-        (currentGameType == 2 && currentBet2 != currentBet2Default && currentTimes > config.maxT.value &&
+        (currentGameType == 2 && currentBet2 != currentBet2Default && currentTimes > (config.maxT.value - config.startGame2After.value) &&
             (
                 (((game1Losts / minimumLostTimesToStart) <= 1) && game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) ||
                 (((game1Losts / minimumLostTimesToStart) >= 1) && game2VirtualLosts > config.maxT.value)
