@@ -4,14 +4,14 @@ var config = {
     mult2: { value: 3, type: 'multiplier', label: 'Game 2 Mult' },
     multiply2: { value: 1.5, type: 'multiplier', label: 'Game 2 Iteration Multiply' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
-    maxT: { value: 19, type: 'multiplier', label: 'T to recover (auto value calculated) ' },
+    maxT: { value: 12, type: 'multiplier', label: 'T to recover (auto value calculated) ' },
     startGame2After: { value: 2, type: 'multiplier', label: 'XLost to Activate game 2' },
     initialBuffer: { value: 20, type: 'multiplier', label: 'Initial Buffer' },
-    minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
-    offsetAlwaysStart: { value: 4, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
-    updateBetAfter: { value: 150, type: 'multiplier', label: 'Update bets after x times' },
-    stopDefinitive: { value: 16000, type: 'multiplier', label: 'Script iteration number of games' },
-    initBalance: { value: 5500000, type: 'balance', label: 'Iteration Balance (0 for all)' },
+    minimumLostTimesToStart: { value: 20, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
+    offsetAlwaysStart: { value: 7, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
+    updateBetAfter: { value: 50, type: 'multiplier', label: 'Update bets after x times' },
+    stopDefinitive: { value: 30000, type: 'multiplier', label: 'Script iteration number of games' },
+    initBalance: { value: 550000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
 const simulation = config.simulation.value == 1 ? true : false;
@@ -50,7 +50,7 @@ updateBet(true, this);
 while (true){
     let currentMult = 0;
     if (stopped ||
-        (currentGameType == 2 &&
+        (currentGameType == 2 && currentBet2 != currentBet2Default && currentTimes > config.maxT.value &&
             (
                 (((game1Losts / minimumLostTimesToStart) <= 1) && game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) ||
                 (((game1Losts / minimumLostTimesToStart) >= 1) && game2VirtualLosts > config.maxT.value)
