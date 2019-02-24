@@ -181,7 +181,7 @@ function updateBet(showDetail, self)
     let currentBet2Default2 = calculateMaxGame2Bets(1000, startGame2After +1, config.maxT.value, self);
     currentBet2Default= currentBet2Default2.bet;
     currentBet2 = currentBet2Default2.bet;
-    basebet1 = (Math.round((currentBet2 * 2) / (minimumLostTimesToStart +1)) / 100).toFixed(0) * 100;
+    basebet1 = (Math.round((currentBet2 * (mult2 -1)) / (minimumLostTimesToStart +1)) / 100).toFixed(0) * 100;
     self.log ('BET UPDATED: game2 BET: ', currentBet2 / 100,' - game1 BET:', basebet1 / 100, ' NEXT STEP AT ',currentBet2Default2.nextTotal / 100);
     showStats(currentBet2,multiply2, startGame2After+1, -1, showDetail, self);
 }
