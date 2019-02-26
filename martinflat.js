@@ -52,8 +52,8 @@ function onGameStarted() {
     if (stopped ||
         (currentGameType == 2 && currentBet2 != currentBet2Default && currentTimes >= (config.maxT.value - config.startGame2After.value) &&
             (
-                (((game1Losts / minimumLostTimesToStart) <= 1) && game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) ||
-                (((game1Losts / minimumLostTimesToStart) >= 1) && game2VirtualLosts > config.maxT.value)
+                (((game1Losts / minimumLostTimesToStart) < 1) && game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) ||
+                (((game1Losts / minimumLostTimesToStart) > 1) && game2VirtualLosts > config.maxT.value)
             )
         )) {
         if (stopped)
@@ -138,7 +138,7 @@ function onGameEnded() {
         }
 
         if (currentGameType == 1) {
-            if (((game1Losts / minimumLostTimesToStart >= 1) && game2VirtualLosts > startGame2After) || (game2VirtualLosts > (startGame2After + offsetAlwaysStart))) {
+            if (((game1Losts / minimumLostTimesToStart > 1) && game2VirtualLosts > startGame2After) || (game2VirtualLosts > (startGame2After + offsetAlwaysStart))) {
                 currentGameType = 2;
             }
         }
