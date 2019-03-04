@@ -51,6 +51,8 @@ var skippedBets = 0;
 var stats = [];
 var test = false;
 
+var grabStats = false;
+
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -78,14 +80,15 @@ function onGameStarted() {
                         incremented = true;
                         currentBaseBet *= multAfterKo;
                         percentToStart += config.percentinc.value;
-                        stats.push({
-                            status: 'lost',
-                            bets: currentTimes,
-                            realBets: realPartialTimesBets,
-                            date: new Date(),
-                            balance: ((-realPartialTimesBets * config.baseBet.value) / 100).toFixed(2),
-                            mid: mid
-                        });
+                        if (grabStats)
+                            stats.push({
+                                status: 'lost',
+                                bets: currentTimes,
+                                realBets: realPartialTimesBets,
+                                date: new Date(),
+                                balance: ((-realPartialTimesBets * config.baseBet.value) / 100).toFixed(2),
+                                mid: mid
+                            });
                     }
                     else
                     {
@@ -95,10 +98,8 @@ function onGameStarted() {
                             incremented = false;
                             currentBaseBet = config.baseBet.value;
                         }
-                        totalProfits+= profit - partialBets;
                         percentToStart = config.percent.value;
                         iteration = 1;
-                        stats.push({status: 'reset', bets: realPartialTimesBets, date: new Date(), balance: (profit - partialBets) /100 , mid: mid});
                         waitAndGrab(config.midMethod.value === 'grab' || config.midMethod.value === 'multg');
                     }
                 }
@@ -115,20 +116,23 @@ function onGameStarted() {
 function onGameEnded() {
     var lastGame = engine.history.first();
     if(started) currentTimes++;
-    if (currentTimes % 50 == 0 && started) showStats();
+    if (grabStats) {
+        if (currentTimes % 50 == 0 && started) showStats();
+    }
 
     if (lastGame.cashedAt === 0) {
         if (lastGame.bust >= config.mult.value) {
             incremented = false;
             log('bust: ', lastGame.bust, 'x :( resetting count');
-            stats.push({
-                status: 'skip',
-                bets: currentTimes,
-                realBets: realPartialTimesBets,
-                date: new Date(),
-                balance: 0,
-                mid: mid
-            });
+            if (grabStats)
+                stats.push({
+                    status: 'skip',
+                    bets: currentTimes,
+                    realBets: realPartialTimesBets,
+                    date: new Date(),
+                    balance: 0,
+                    mid: mid
+                });
             skippedBets++;
             waitAndGrab(config.midMethod.value === 'grab' || config.midMethod.value === 'multg');
         }
@@ -151,7 +155,8 @@ function onGameEnded() {
             succBets++;
             percentToStart = config.percent.value;
             iteration = 1;
-            stats.push({status: 'wins', bets: realPartialTimesBets, date: new Date(), balance: (profit - partialBets) /100 , mid: mid});
+            if (grabStats)
+                stats.push({status: 'wins', bets: realPartialTimesBets, date: new Date(), balance: (profit - partialBets) /100 , mid: mid});
             waitAndGrab(config.midMethod.value === 'grab' || config.midMethod.value === 'multg');
         }
         else partialBets -= profit;
