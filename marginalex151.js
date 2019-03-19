@@ -90,7 +90,7 @@ function onGameEnded() {
             }
         else {
             if (!(strategy == 'freeze' && currentTimes >= freezeFrom))
-                currentBet = Math.round((currentBet / 100) * increaseMult) * 100;
+                currentBet = Math.ceil((currentBet / 100) * increaseMult) * 100;
             else
                 freezing = true;
             if (strategy == 'maxBets' && currentBet >= betLimit) {
@@ -121,10 +121,10 @@ function showStats(initBet, mult)
     let count = 0;
     let bet = initBet;
     log("------ INFO -----")
-    for (i =0; i<30; i++)
+    for (i =0; i<60; i++)
     {
         count+=bet;
         log('T:',i,' - bet:', (bet /100).toLocaleString('de-DE'), ' - tot: ', (count /100) .toLocaleString('de-DE'));
-        bet = Math.round((bet /100) * mult) * 100;
+        bet = Math.ceil((bet /100) * mult) * 100;
     }
 }

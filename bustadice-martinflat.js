@@ -14,7 +14,7 @@ var config = {
     initBalance: { value: 550000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
-const simulation = config.simulation.value == 1 ? true : false;
+const simulation = config.simulation.value === 1;
 
 let toRecalibrate = false;
 
