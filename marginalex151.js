@@ -14,6 +14,7 @@ var config = {
     disasterWaits: {value: 0, type:'multiplier', label: 'Disaster waits:'}
 };
 
+
 const payout = config.payout.value;
 const increaseMult = config.mult.value;
 let disaster = 0;
