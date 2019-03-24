@@ -1,16 +1,16 @@
 var config = {
-    payout: { value: 1.6, type: 'multiplier', label: 'Mult' },
-    mult2: { value: 3, type: 'multiplier', label: 'Game 2 Mult' },
-    multiply2: { value: 1.5, type: 'multiplier', label: 'Game 2 Iteration Multiply' },
+    payout: { value: 1.9, type: 'multiplier', label: 'Mult' },
+    mult2: { value: 1.5, type: 'multiplier', label: 'Game 2 Mult' },
+    multiply2: { value: 3, type: 'multiplier', label: 'Game 2 Iteration Multiply' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
-    maxT: { value: 20, type: 'multiplier', label: 'T to recover (auto value calculated) ' },
-    startGame2After: { value: 2, type: 'multiplier', label: 'XLost to Activate game 2' },
+    maxT: { value: 7, type: 'multiplier', label: 'T to recover (auto value calculated) ' },
+    startGame2After: { value: 1, type: 'multiplier', label: 'XLost to Activate game 2' },
     initialBuffer: { value: 20, type: 'multiplier', label: 'Initial Buffer' },
     minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
-    offsetAlwaysStart: { value: 3, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
+    offsetAlwaysStart: { value: 4, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
     updateBetAfter: { value: 50, type: 'multiplier', label: 'Update bets after x times' },
-    stopDefinitive: { value: 60000, type: 'multiplier', label: 'Script iteration number of games' },
-    initBalance: { value: 15000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
+    stopDefinitive: { value: 30000, type: 'multiplier', label: 'Script iteration number of games' },
+    initBalance: { value: 5000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
 let toRecalibrate = false;
@@ -135,7 +135,7 @@ function onGameEnded() {
                 game1Losts++;
             } else if (currentGameType == 2) {
                 currentTimes++;
-                currentBet2 = Math.round((currentBet2 / 100) * multiply2) * 100;
+                currentBet2 = Math.ceil((currentBet2 / 100) * multiply2) * 100;
             }
 
         }
@@ -158,12 +158,12 @@ function showStats(initBet, mult, currentT, returnT, verbose)
     let bet = initBet;
     let desideredTtotal = 0;
     if (verbose) log("------ INFO -----")
-    for (i =currentT; i<30; i++)
+    for (i =currentT; i<50; i++)
     {
         count+=bet;
         if (verbose) log('T:',i,' - bet:', (bet /100).toLocaleString('de-DE'), ' - tot: ', (count /100) .toLocaleString('de-DE'));
         if (i == returnT) desideredTtotal = count;
-        bet = Math.round((bet /100) * mult) * 100;
+        bet = Math.ceil((bet /100) * mult) * 100;
     }
     return desideredTtotal;
 }
