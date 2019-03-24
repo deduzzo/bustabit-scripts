@@ -1,17 +1,17 @@
 var config = {
     simulation: { value: 1, type: 'multiplier', label: 'Simulate?' },
     payout: { value: 1.9, type: 'multiplier', label: 'Mult' },
-    mult2: { value: 3, type: 'multiplier', label: 'Game 2 Mult' },
-    multiply2: { value: 1.5, type: 'multiplier', label: 'Game 2 Iteration Multiply' },
+    mult2: { value: 1.5, type: 'multiplier', label: 'Game 2 Mult' },
+    multiply2: { value: 3, type: 'multiplier', label: 'Game 2 Iteration Multiply' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
-    maxT: { value: 12, type: 'multiplier', label: 'T to recover (auto value calculated) ' },
-    startGame2After: { value: 2, type: 'multiplier', label: 'XLost to Activate game 2' },
+    maxT: { value: 7, type: 'multiplier', label: 'T to recover (auto value calculated) ' },
+    startGame2After: { value: 1, type: 'multiplier', label: 'XLost to Activate game 2' },
     initialBuffer: { value: 20, type: 'multiplier', label: 'Initial Buffer' },
-    minimumLostTimesToStart: { value: 20, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
-    offsetAlwaysStart: { value: 7, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
+    minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
+    offsetAlwaysStart: { value: 4, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
     updateBetAfter: { value: 50, type: 'multiplier', label: 'Update bets after x times' },
-    stopDefinitive: { value: 3000, type: 'multiplier', label: 'Script iteration number of games' },
-    initBalance: { value: 550000, type: 'balance', label: 'Iteration Balance (0 for all)' },
+    stopDefinitive: { value: 30000, type: 'multiplier', label: 'Script iteration number of games' },
+    initBalance: { value: 15000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
 const simulation = config.simulation.value === 1;
@@ -44,16 +44,18 @@ let initBalance = balance;
 let totalGain = 0;
 let itTotal = 0;
 let disaster = 0;
+let g2safe = false;
 
 updateBet(true, this);
+
 
 while (true){
     let currentMult = 0;
     if (stopped ||
         (currentGameType == 2 && currentBet2 != currentBet2Default && currentTimes >= (config.maxT.value - config.startGame2After.value) &&
             (
-                (((game1Losts / minimumLostTimesToStart) <= 1) && game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) ||
-                (((game1Losts / minimumLostTimesToStart) >= 1) && game2VirtualLosts > config.maxT.value)
+                (g2safe && game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) ||
+                (!g2safe && game2VirtualLosts > config.maxT.value)
             )
         )) {
         if (stopped)
@@ -71,13 +73,14 @@ while (true){
         safebets = 0;
         game1Losts = -config.initialBuffer.value;
         currentGameType = 1;
+        g2safe = false;
         currentBet2 = currentBet2Default;
         currentTimes = 0;
         game2VirtualLosts = 0;
         balance = config.initBalance.value == 0 ? (await this.bet(100, 1.01)).balance : config.initBalance.value;
         initBalance = config.initBalance.value == 0 ? balance : config.initBalance.value;
         currentRound = 0;
-        updateBet(true, this);
+        updateBet(true,this);
     }
     else
     {
@@ -99,50 +102,51 @@ while (true){
     }
     let currentB = currentGameType == 2 ? currentBet2 : basebet1;
     let currentM = currentGameType == 2 ? mult2 : mult1;
-        if (currentMult < mult2) {
-            // virtual ko
-            game2VirtualLosts++;
-        }
-        else
+    if (currentMult < mult2) {
+        // virtual ko
+        game2VirtualLosts++;
+    } else
+        game2VirtualLosts = 0;
+
+    if ((currentGameType == 2 && currentMult >= mult2) || currentGameType == 1 && currentMult >= mult1) {
+        // we win
+        // balance update
+        balance += Math.floor(currentM * currentB) - currentB;
+        if (currentGameType == 2) {
+            game1Losts -= minimumLostTimesToStart;
+            currentGameType = 1;
+            currentBet2 = currentBet2Default;
+            currentTimes = 0;
+            g2safe = false;
             game2VirtualLosts = 0;
-
-        if ((currentGameType == 2 && currentMult>= mult2) || currentGameType == 1 && currentMult >= mult1) {
-            // we win
-            // balance update
-            balance+= Math.floor(currentM * currentB) - currentB;
-            if (currentGameType == 2) {
-                game1Losts -= minimumLostTimesToStart;
-                currentGameType = 1;
-                currentBet2 = currentBet2Default;
-                currentTimes = 0;
-                game2VirtualLosts = 0;
-            }
-            if (toRecalibrate)
-            {
-                updateBet(false, this);
-                toRecalibrate = false;
-            }
-            if (currentRound > stopDefinitive) stopped = true;
-        } else {
-            //balance update
-            balance-= currentB;
-            // we lost
-            if (currentGameType == 1) {
-                game1Losts++;
-            }
-            else if (currentGameType == 2) {
-                currentTimes++;
-                currentBet2 = Math.round((currentBet2 / 100) * multiply2) * 100;
-            }
-
         }
-
+        if (toRecalibrate) {
+            updateBet(false, this);
+            toRecalibrate = false;
+        }
+        if (currentRound > stopDefinitive) stopped = true;
+    } else {
+        //balance update
+        balance -= currentB;
+        // we lost
         if (currentGameType == 1) {
-            if (((game1Losts / minimumLostTimesToStart >= 1) && game2VirtualLosts > startGame2After) || (game2VirtualLosts > (startGame2After + offsetAlwaysStart)) ) {
-                currentGameType = 2;
-            }
+            game1Losts++;
+        } else if (currentGameType == 2) {
+            currentTimes++;
+            currentBet2 = Math.round((currentBet2 / 100) * multiply2) * 100;
         }
+
+    }
+
+    if (currentGameType == 1) {
+        if (((game1Losts / minimumLostTimesToStart > 1) && game2VirtualLosts > startGame2After) || (game2VirtualLosts > (startGame2After + offsetAlwaysStart))) {
+            currentGameType = 2;
+            g2safe = (game1Losts / minimumLostTimesToStart) < 1;
+        }
+    }
 }
+
+
 
 function showStats(initBet, mult, currentT, returnT, verbose, self)
 {
@@ -165,23 +169,24 @@ function showSmallStats(self){
     self.log("DIS:", disaster, ' WINS: ', itTotal - disaster, 'BALANCE: ', balance / 100, ' - gain ', (balance - initBalance) / 100,  ' safe%= ', ((safebets * 100) / currentRound ).toFixed(2));
 }
 
-function calculateMaxGame2Bets(step, currentT, desideredT, self)
+function calculateMaxGame2Bets(step, currentT, desideredT,self)
 {
     let bet = 0;
     let tempTotal = 0;
     do {
         bet +=step;
-        tempTotal = showStats(bet,multiply2, currentT ,desideredT, false, self);
+        tempTotal = showStats(bet,multiply2, currentT ,desideredT, false,self);
     } while (balance > tempTotal)
     return { bet: (Math.round((bet - step) / 100)).toFixed(0) * 100 , nextTotal: tempTotal };
 }
 
-function updateBet(showDetail, self)
+function updateBet(showDetail,self)
 {
-    let currentBet2Default2 = calculateMaxGame2Bets(1000, startGame2After +1, config.maxT.value, self);
+    let currentBet2Default2 = calculateMaxGame2Bets(1000, startGame2After +1, config.maxT.value,self);
     currentBet2Default= currentBet2Default2.bet;
     currentBet2 = currentBet2Default2.bet;
     basebet1 = (Math.round((currentBet2 * (mult2 -1)) / (minimumLostTimesToStart +1)) / 100).toFixed(0) * 100;
     self.log ('BET UPDATED: game2 BET: ', currentBet2 / 100,' - game1 BET:', basebet1 / 100, ' NEXT STEP AT ',currentBet2Default2.nextTotal / 100);
-    showStats(currentBet2,multiply2, startGame2After+1, -1, showDetail, self);
+    showStats(currentBet2,multiply2, startGame2After+1, -1, showDetail,self);
 }
+
