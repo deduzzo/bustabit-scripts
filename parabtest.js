@@ -3,15 +3,10 @@ var config = {
         value: 100,
         type: 'balance'
     },
-    parabFactor: {
-        value: 1.04,
-        type: 'multiplier',
-        label: 'parab factor'
-    },
     gainFactor: {
         value: 6,
         type: 'multiplier',
-        label: 'parab factor'
+        label: 'gain factor'
     },
     basePayout: {
         value: 2,
@@ -31,7 +26,7 @@ log('Script is running..');
 var currentBaseBet = config.bet.value;
 var basePayout = config.basePayout.value;
 var totbet = 0;
-var late =
+var n = 0;
 
 // Always try to bet when script is started
 engine.bet(currentBaseBet, basePayout);
@@ -47,6 +42,7 @@ function onGameStarted() {
 function onGameEnded(info) {
     var lastGame = engine.history.first()
     totbet +=lastGame.wager;
+    n++;
     // If we wagered, it means we played
     if (!lastGame.wager) {
         return;
@@ -55,10 +51,12 @@ function onGameEnded(info) {
     // we won..
     if (lastGame.cashedAt) {
         totbet = 0;
+        n=0;
         currentBaseBet = config.bet.value;
         basePayout = config.basePayout.value;
     } else {
-        currentBaseBet *= config.parabFactor.value;
+        currentBaseBet *= 1 + Math.pow(2, -8.4 + (n / 100));
+        log(1 + Math.pow(2, -8.4 - (n / 1000)));
         basePayout = (totbet / currentBaseBet) + config.gainFactor.value;
     }
 
