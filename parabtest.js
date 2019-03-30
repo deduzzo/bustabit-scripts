@@ -1,47 +1,67 @@
 var config = {
     bet: {
-        value: 100,
+        value: 3000,
         type: 'balance'
     },
-    mult: { value: 10, type: 'multiplier', label: 'Max Mult'},
 };
 
 
 log('Script is running..');
 
+const min = 111;
+const max = 1599;
+let currentx = (Math.floor(Math.random() * (max - min)) + min) / 100;
+let progression = calculateBets(currentx, config.bet.value,Math.round(currentx * 13), false);
+let i = 0;
 
-// Always try to bet when script is started
-engine.bet(1, 1.01);
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
 
-calculateBets(config.mult.value, config.bet.value,Math.round(config.mult.value * 12.22));
 
 
 function onGameStarted() {
-
+    log ("T", i , " - Bet ", roundBit(progression[i]) / 100, " on", currentx);
+    engine.bet(roundBit(progression[i]), currentx);
 }
 
 function onGameEnded(info) {
+    var lastGame = engine.history.first()
+    // If we wagered, it means we played
+    if (!lastGame.wager) {
+        return;
+    }
 
+    // we won..
+    if (lastGame.cashedAt) {
+        currentx = (Math.floor(Math.random() * (max - min)) + min) / 100;
+        progression = calculateBets(currentx, config.bet.value,Math.round(currentx * 13), false);
+        i = 0;
+    } else {
+        i++;
+    }
 }
 
-function calculateBets(mult,initBet,desideredT)
+function calculateBets(mult,initBet,desideredT, verbose)
 {
+    let progression = [];
+    progression[0] = initBet;
     let i;
-    let gain = (mult * initBet) - mult;
-    let amount = initBet;
-    let lastBet = 0;
-    let nextBet = 0;
-    log("T:", 0, " - bet: ", printBit(initBet, 0), " - TOT:", printBit(initBet, 1));
-    for (i=1; i<desideredT; i++)
+    let gain = (mult * initBet) - initBet;
+    let amount = 0;
+    let lastBet = initBet;
+    for (i=0; i<desideredT; i++)
     {
-        lastBet = nextBet;
         amount += lastBet;
-        nextBet = roundBit((amount + gain) / mult);
-        log("T:", i, " - bet: ", printBit(nextBet, 0), " - TOT:", printBit(amount, 1));
+        if (verbose) log("T:", i, " - bet: ", printBit(lastBet), " - TOT:", printBit(amount), "G:",printBit((lastBet * mult) - amount));
+        let tempBet = (amount) / mult;
+        do {
+                tempBet+= 100;
+        } while (((tempBet * mult) - tempBet - amount) <= gain)
+        lastBet = roundBit(tempBet);
+        progression[i+1] = lastBet;
     }
+    return progression;
 }
 
 function roundBit(bet) {
@@ -49,11 +69,11 @@ function roundBit(bet) {
 }
 
 
-function printBit(bet, fixed) {
+function printBit(bet) {
     let suffix = "";
     if (bet > 10000000 && bet <100000000)
         suffix = "k";
     else if (bet >100000000)
         suffix = "M";
-    return (bet / (suffix == "" ? 100 : (suffix == "k" ? 100000 : (suffix == "M" ? 100000000 : "")))).toFixed(fixed).toLocaleString('de-DE') + suffix;
+    return (bet / (suffix == "" ? 100 : (suffix == "k" ? 100000 : (suffix == "M" ? 100000000 : "")))).toLocaleString('de-DE') + suffix;
 }
