@@ -5,7 +5,6 @@ var config = {
     },
 };
 
-
 log('Script is running..');
 
 const values = {
@@ -29,6 +28,7 @@ let currentxIndex = "1.30";
 for (let key of Object.keys(values))
     values[key] = calculateBets(parseFloat(key) , config.bet.value,parseFloat(key) * 12, false);
 let i = 0;
+let sequences = [];
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -42,6 +42,9 @@ function onGameStarted() {
 
 function onGameEnded(info) {
     var lastGame = engine.history.first();
+    sequences.unshift(lastGame.bust);
+    if (sequences.length> 1000)
+        sequences.pop();
     // If we wagered, it means we played
     if (!lastGame.wager) {
         return;
@@ -49,7 +52,7 @@ function onGameEnded(info) {
 
     // we won..
     if (lastGame.cashedAt) {
-        currentxIndex = Object.keys(values)[getRandomInt(0,Object.keys(values).length -1)];
+        currentxIndex = getNextBets(sequences,values, currentxIndex);
         i = 0;
     } else {
         i++;
@@ -99,4 +102,20 @@ function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
+}
+
+function getNextBets(sequenc,defValues, lastBet)
+{
+    let cIndex;
+    if (lastBet > 15)
+    {
+
+    }
+    else {
+        let lastIndex = sequenc.findIndex(p => p >= lastBet);
+        let last14 = sequenc.findIndex(p => p >= 14);
+        cIndex = Object.keys(val)[getRandomInt(0, Object.keys(val).length - 1)];
+    }
+
+    return cIndex;
 }
