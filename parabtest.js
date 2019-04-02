@@ -57,6 +57,7 @@ function onGameEnded(info) {
 
     if (gameType == SENTINEL)
     {
+        log("last: ", lastGame.bust, "x");
         i--;
         if (i == 0) {
             gameType = PARABOLIC;
@@ -66,26 +67,28 @@ function onGameEnded(info) {
     else {
         // we won..
         if (lastGame.cashedAt) {
-            // 20% gioco parabolico, 80% sentinel
-            if (getRandomInt(0, 100) < 20) {
+            let percParabolic;
+            if (lastGame.bust >= 15)
+                percParabolic = 10;
+            else
+                percParabolic = 90;
+            if (getRandomInt(0, 100) < percParabolic) {
                 // PARABOLIC
                 gameType = PARABOLIC;
                 precIndex = currentxIndex;
                 currentxIndex = getNextBets(sequences, values, precIndex);
                 i = 0;
-            }
-            else
-            {
+            } else {
                 //SENTINEL
                 gameType = SENTINEL;
                 precIndex = currentxIndex;
-                let nextBetTemp = Object.keys(values).filter(p=> parseFloat(p) <= initMaxBet);
+                let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMaxBet);
                 currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
-                i = getRandomInt(2,8);
+                i = getRandomInt(2, 8);
             }
-            log("WIN: last: ", lastGame.bust, "x");
+            log(lastGame.bust,"x WIN!!");
         } else {
-            log("Lost, bust: ", lastGame.bust);
+            log(lastGame.bust,"x Lose :(");
             i++;
         }
     }
@@ -138,10 +141,12 @@ function getRandomInt(min, max) {
 
 function getNextBets(sequenc,defValues, lastBet)
 {
+    lastBet = parseFloat(lastBet);
     let nextBet;
-    let lastIndex = sequenc.findIndex(p => p >= lastBet);
-    let maxOfSeries = Math.max(...sequences.slice(0,lastIndex));
-    let last14 = sequenc.findIndex(p => p >= 14);
+    let lastIndex = sequenc.findIndex(p => p > lastBet);
+    if (lastIndex == -1) lastIndex == sequenc.length- 1;
+    let maxOfSeries = Math.max(...sequenc.slice(0,lastIndex));
+    let last14 = sequenc.findIndex(p =>p >= 14);
     let last15 = sequenc.findIndex(p => p >= 15);
     let last10 = sequenc.findIndex(p => p >= 10);
     if (last15 == 0)
@@ -164,9 +169,9 @@ function getNextBets(sequenc,defValues, lastBet)
     {
         // TODO: implementare il random per valori alti
         let offset = 0;
-        let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) >= maxOfSeries && p<= lastBet +3);
+        let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) >= maxOfSeries && parseFloat(p)<= lastBet +5);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
-
+    log("next:", nextBet)
     return nextBet;
 }
