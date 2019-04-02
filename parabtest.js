@@ -41,7 +41,7 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    log ("T", i , " - Bet ", roundBit(values[currentxIndex][i]) / 100, " on", currentxIndex, " ", gameType);
+    log ("T", i , " - Bet ",gameType == SENTINEL ? roundBit(config.bet.value) / 100 : roundBit(values[currentxIndex][i]) / 100, " on", currentxIndex, " ", gameType);
     engine.bet(gameType == SENTINEL ? roundBit(config.bet.value) : roundBit(values[currentxIndex][i]), parseFloat(currentxIndex));
 }
 
@@ -79,7 +79,8 @@ function onGameEnded(info) {
                 //SENTINEL
                 gameType = SENTINEL;
                 precIndex = currentxIndex;
-                currentxIndex = Object.keys(values).filter(p=> parseFloat(p) <= initMaxBet);
+                let nextBetTemp = Object.keys(values).filter(p=> parseFloat(p) <= initMaxBet);
+                currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
                 i = getRandomInt(2,8);
             }
             log("WIN: last: ", lastGame.bust, "x");
@@ -94,14 +95,14 @@ function calculateBets(mult,initBet,desideredT, verbose)
 {
     let progression = [];
     progression[0] = initBet;
-    let i;
+    let k;
     let gain = mult > 1.12 ? (mult * initBet) - initBet : 10000;
     let amount = 0;
     let lastBet = initBet;
-    for (i=0; i<desideredT; i++)
+    for (k=0; k<desideredT; k++)
     {
         amount += lastBet;
-        if (verbose) log("T:", i, " - bet: ", printBit(lastBet), " - TOT:", printBit(amount), "G:",printBit((lastBet * mult) - amount));
+        if (verbose) log("T:", k, " - bet: ", printBit(lastBet), " - TOT:", printBit(amount), "G:",printBit((lastBet * mult) - amount));
         let tempBet = (amount) / mult;
         do {
             if (mult <2)
@@ -110,7 +111,7 @@ function calculateBets(mult,initBet,desideredT, verbose)
                 tempBet+= 100;
         } while (((tempBet * mult) - tempBet - amount) <= gain)
         lastBet = roundBit(tempBet);
-        progression[i+1] = lastBet;
+        progression[k+1] = lastBet;
     }
     return progression;
 }
