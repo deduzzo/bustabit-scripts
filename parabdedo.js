@@ -113,7 +113,7 @@ function onGameEnded(info) {
     else {
         // we won..
         if (lastGame.cashedAt) {
-            let percParabolic = 60;
+            let percParabolic = 70;
             roundBets = 0;
             if (currentRound > config.stopDefinitive.value) {
                 stopped = true;
@@ -130,9 +130,9 @@ function onGameEnded(info) {
                 //SENTINEL
                 gameType = SENTINEL;
                 precIndex = currentxIndex;
-                let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMaxBet);
+                let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMaxBet * 2);
                 currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
-                i = getRandomInt(2, 10);
+                i = getRandomInt(2, 20);
             }
             log(lastGame.bust, "x WIN!!");
         }
@@ -224,7 +224,7 @@ function getNextBets(sequenc,defValues, lastBet)
         // TODO: implementare il random per valori alti
         let maxOfSeries = Math.max(...sequenc.slice(0,last15));
         //&& parseFloat(p)<= lastBet +5
-        let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOfSeries + 6);
+        let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOfSeries + 4);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
     return nextBet;
