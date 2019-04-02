@@ -7,6 +7,9 @@ var config = {
 
 log('Script is running..');
 
+const PARABOLIC = "PARABOLIC";
+const SENTINEL = "SENTINEL";
+const initMaxBet = 3;
 const values = {
     "1.30": [], "1.43": [], "1.71": [], "1.90": [],
     "2.12": [], "2.31": [], "2.63": [], "2.78": [],
@@ -25,10 +28,12 @@ const values = {
     "15.12":[], "15.19":[], "15.45":[], "15.82":[],
 };
 let currentxIndex = "1.30";
+let precIndex = currentxIndex;
 for (let key of Object.keys(values))
     values[key] = calculateBets(parseFloat(key) , config.bet.value,parseFloat(key) * 12, false);
-let i = 0;
 let sequences = [];
+let gameType = SENTINEL;
+let i = getRandomInt(2,8);
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -36,8 +41,8 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    log ("T", i , " - Bet ", roundBit(values[currentxIndex][i]) / 100, " on", currentxIndex);
-    engine.bet(roundBit(values[currentxIndex][i]), parseFloat(currentxIndex));
+    log ("T", i , " - Bet ", roundBit(values[currentxIndex][i]) / 100, " on", currentxIndex, " ", gameType);
+    engine.bet(gameType == SENTINEL ? roundBit(config.bet.value) : roundBit(values[currentxIndex][i]), parseFloat(currentxIndex));
 }
 
 function onGameEnded(info) {
@@ -50,12 +55,38 @@ function onGameEnded(info) {
         return;
     }
 
-    // we won..
-    if (lastGame.cashedAt) {
-        currentxIndex = getNextBets(sequences,values, currentxIndex);
-        i = 0;
-    } else {
-        i++;
+    if (gameType == SENTINEL)
+    {
+        i--;
+        if (i == 0) {
+            gameType = PARABOLIC;
+            currentxIndex = getNextBets(sequences, values, precIndex);
+        }
+    }
+    else {
+        // we won..
+        if (lastGame.cashedAt) {
+            // 20% gioco parabolico, 80% sentinel
+            if (getRandomInt(0, 100) < 20) {
+                // PARABOLIC
+                gameType = PARABOLIC;
+                precIndex = currentxIndex;
+                currentxIndex = getNextBets(sequences, values, precIndex);
+                i = 0;
+            }
+            else
+            {
+                //SENTINEL
+                gameType = SENTINEL;
+                precIndex = currentxIndex;
+                currentxIndex = Object.keys(values).filter(p=> parseFloat(p) <= initMaxBet);
+                i = getRandomInt(2,8);
+            }
+            log("WIN: last: ", lastGame.bust, "x");
+        } else {
+            log("Lost, bust: ", lastGame.bust);
+            i++;
+        }
     }
 }
 
@@ -106,16 +137,35 @@ function getRandomInt(min, max) {
 
 function getNextBets(sequenc,defValues, lastBet)
 {
-    let cIndex;
-    if (lastBet > 15)
+    let nextBet;
+    let lastIndex = sequenc.findIndex(p => p >= lastBet);
+    let maxOfSeries = Math.max(...sequences.slice(0,lastIndex));
+    let last14 = sequenc.findIndex(p => p >= 14);
+    let last15 = sequenc.findIndex(p => p >= 15);
+    let last10 = sequenc.findIndex(p => p >= 10);
+    if (last15 == 0)
     {
-
+        // è uscito il 15, 10% di possibilità di giocare nuovamente
+        if (getRandomInt(0,100)<20)
+        {
+            // includo tutti i valori
+            nextBet = Object.keys(defValues)[getRandomInt(0, Object.keys(defValues).length - 1)];
+        }
+        else
+        {
+            //TODO: implementare l'attesa a 1.11 o altro valore
+            // per ora gioco fino a 6
+            let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) <= initMaxBet)
+            nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
+        }
     }
-    else {
-        let lastIndex = sequenc.findIndex(p => p >= lastBet);
-        let last14 = sequenc.findIndex(p => p >= 14);
-        cIndex = Object.keys(val)[getRandomInt(0, Object.keys(val).length - 1)];
+    else
+    {
+        // TODO: implementare il random per valori alti
+        let offset = 0;
+        let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) >= maxOfSeries && p<= lastBet +3);
+        nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
 
-    return cIndex;
+    return nextBet;
 }
