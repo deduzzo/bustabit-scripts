@@ -113,7 +113,7 @@ function onGameEnded(info) {
     else {
         // we won..
         if (lastGame.cashedAt) {
-            let percParabolic = 70;
+            let percParabolic = 90;
             roundBets = 0;
             if (currentRound > config.stopDefinitive.value) {
                 stopped = true;
@@ -132,7 +132,7 @@ function onGameEnded(info) {
                 precIndex = currentxIndex;
                 let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMaxBet * 2);
                 currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
-                i = getRandomInt(2, 20);
+                i = getRandomInt(1, 5);
             }
             log(lastGame.bust, "x WIN!!");
         }
