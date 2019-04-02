@@ -1,17 +1,16 @@
 var config = {
-    bet: {
-        value: 3000,
-        type: 'balance'
-    },
-    stopDefinitive: { value: 10000, type: 'multiplier', label: 'Script iteration number of games' },
-    initBalance: { value: 5000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
+    bet: { value: 1000, type: 'balance' },
+    stopDefinitive: { value: 6000, type: 'multiplier', label: 'Script iteration number of games' },
+    increaseAmount: { value: 100, type: 'balance', label: 'Increase amount' },
+    increaseEvery: { value: 0, type: 'multiplier', label: 'Increase every x game' },
+    initBalance: { value: 10000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
 log('Script is running..');
 
 const PARABOLIC = "PARABOLIC";
 const SENTINEL = "SENTINEL";
-const initMaxBet = 3;
+const initMaxBet = 2;
 const values = {
     "1.30": [], "1.43": [], "1.71": [], "1.90": [],
     "2.12": [], "2.31": [], "2.63": [], "2.78": [],
@@ -30,9 +29,10 @@ const values = {
     "15.12":[], "15.19":[], "15.45":[], "15.82":[],
 };
 let currentxIndex = "1.30";
+let bet = config.bet.value;
 let precIndex = currentxIndex;
 for (let key of Object.keys(values))
-    values[key] = calculateBets(parseFloat(key) , config.bet.value,parseFloat(key) * 12, false);
+    values[key] = calculateBets(parseFloat(key) , bet,parseFloat(key) * 12, false);
 let sequences = [];
 let gameType = SENTINEL;
 let i = getRandomInt(2,8);
@@ -44,6 +44,7 @@ let itTotal = 0;
 let disaster = 0;
 let stopped = false;
 let roundBets = 0;
+let currentRound = 0;
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -51,8 +52,21 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    if (roundBets + roundBit(values[currentxIndex][i]) >balance || (currentRound >config.stopDefinitive.value && stopped))
+    //|| (currentRound >config.stopDefinitive.value && stopped)
+    if ((gameType == PARABOLIC && values[currentxIndex][i] >balance) || (currentRound >config.stopDefinitive.value && stopped))
     {
+        if (stopped) {
+
+            log("Iteration OKK!");
+        }
+        else
+        {
+            disaster++;
+            log("Disaster :(")
+        }
+        stopped = false;
+        bet = config.bet.value;
+        roundBets = 0;
         totalGain += balance - initBalance;
         itTotal++;
         balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
@@ -65,14 +79,15 @@ function onGameStarted() {
         precIndex = currentxIndex;
         let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMaxBet);
         currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
-        if (currentRound > config.stopDefinitive.value && stopped) {
-
-            log("DISASTER :(");
-            disaster++;
-        }
     }
-    log("IT:", itTotal, "|", ((totalGain + (balance - initBalance)) / 100000).toFixed(2),"$ | C:",++currentRound, " | T", i, " - Bet ", gameType == SENTINEL ? roundBit(config.bet.value) / 100 : roundBit(values[currentxIndex][i]) / 100, " on", currentxIndex, " ", gameType);
-    engine.bet(gameType == SENTINEL ? roundBit(config.bet.value) : roundBit(values[currentxIndex][i]), parseFloat(currentxIndex));
+    log("IT:", itTotal, "|", printBit(totalGain + (balance - initBalance)),"$ | C:",++currentRound, " | T", i, " - Bet ", gameType == SENTINEL ? roundBit(config.bet.value) / 100 : roundBit(values[currentxIndex][i]) / 100, " on", currentxIndex, " ", gameType);
+    engine.bet(gameType == SENTINEL ? roundBit(bet) : roundBit(values[currentxIndex][i]), parseFloat(currentxIndex));
+    if (config.increaseEvery != 0 && currentRound % config.increaseEvery.value == 0) {
+
+        bet += config.increaseAmount.value;
+        for (let key of Object.keys(values))
+            values[key] = calculateBets(parseFloat(key) , bet,parseFloat(key) * 12, false);
+    }
 }
 
 function onGameEnded(info) {
@@ -91,23 +106,20 @@ function onGameEnded(info) {
         i--;
         if (i == 0) {
             gameType = PARABOLIC;
-            currentxIndex = roundBit(sequences, values, precIndex);
+            log("ciao");
+            currentxIndex = getNextBets(sequences, values, precIndex);
         }
     }
     else {
         // we won..
         if (lastGame.cashedAt) {
-            if (currentRound >config.stopDefinitive.value)
+            let percParabolic = 60;
+            roundBets = 0;
+            if (currentRound > config.stopDefinitive.value) {
                 stopped = true;
-            else
-            let percParabolic;
+            }
+            balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
 
-            balance += Math.floor(currentM * values[currentxIndex][i]) - values[currentxIndex][i];
-
-            if (lastGame.bust >= 15)
-                percParabolic = 10;
-            else
-                percParabolic = 90;
             if (getRandomInt(0, 100) < percParabolic) {
                 // PARABOLIC
                 gameType = PARABOLIC;
@@ -120,16 +132,18 @@ function onGameEnded(info) {
                 precIndex = currentxIndex;
                 let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMaxBet);
                 currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
-                i = getRandomInt(2, 8);
+                i = getRandomInt(2, 10);
             }
-            log(lastGame.bust,"x WIN!!");
-        } else {
-            balance -= values[currentxIndex][i];
-            roundBets += values[currentxIndex][i];
-            log(lastGame.bust,"x Lose :(");
+            log(lastGame.bust, "x WIN!!");
+        }
+        else {
+            balance -= lastGame.wager;
+            roundBets += lastGame.wager;
+            log(lastGame.bust, "x Lose :(");
             i++;
         }
     }
+
 }
 
 function calculateBets(mult,initBet,desideredT, verbose)
@@ -179,18 +193,20 @@ function getRandomInt(min, max) {
 
 function getNextBets(sequenc,defValues, lastBet)
 {
+
     lastBet = parseFloat(lastBet);
     let nextBet;
-    let lastIndex = sequenc.findIndex(p => p > lastBet);
-    if (lastIndex == -1) lastIndex == sequenc.length- 1;
-    let maxOfSeries = Math.max(...sequenc.slice(0,lastIndex));
-    let last14 = sequenc.findIndex(p =>p >= 14);
+    let lastIndex;
     let last15 = sequenc.findIndex(p => p >= 15);
+    log("lastIndex:",last15);
+    if (last15 == -1)
+        last15 = sequenc.length- 1;
+
+    let last14 = sequenc.findIndex(p =>p >= 14);
     let last10 = sequenc.findIndex(p => p >= 10);
     if (last15 == 0)
     {
-        // è uscito il 15, 10% di possibilità di giocare nuovamente
-        if (getRandomInt(0,100)<20)
+        if (getRandomInt(0,100)<10)
         {
             // includo tutti i valori
             nextBet = Object.keys(defValues)[getRandomInt(0, Object.keys(defValues).length - 1)];
@@ -198,7 +214,7 @@ function getNextBets(sequenc,defValues, lastBet)
         else
         {
             //TODO: implementare l'attesa a 1.11 o altro valore
-            // per ora gioco fino a 6
+
             let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) <= initMaxBet)
             nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
         }
@@ -206,10 +222,10 @@ function getNextBets(sequenc,defValues, lastBet)
     else
     {
         // TODO: implementare il random per valori alti
-        let offset = 0;
-        let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) >= maxOfSeries && parseFloat(p)<= lastBet +5);
+        let maxOfSeries = Math.max(...sequenc.slice(0,last15));
+        //&& parseFloat(p)<= lastBet +5
+        let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOfSeries + 6);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
-    log("next:", nextBet)
     return nextBet;
 }
