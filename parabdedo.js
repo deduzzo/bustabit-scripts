@@ -1,19 +1,20 @@
 var config = {
     bet: { value: 1000, type: 'balance' },
-    percParabolic: { value: 90, type: 'multiplier', label: '%parabolic' },
+    percParabolic: { value: 60, type: 'multiplier', label: '%parabolic' },
+    initMaxBet: { value: 4, type: 'multiplier', label: 'Init Max Bets' },
     last10: { value: 20, type: 'multiplier', label: 'Min times for bet >10' },
     last15: { value: 30, type: 'multiplier', label: 'Min times for bet >15' },
-    stopDefinitive: { value: 6000, type: 'multiplier', label: 'Script iteration number of games' },
+    stopDefinitive: { value: 10000, type: 'multiplier', label: 'Script iteration number of games' },
     increaseAmount: { value: 100, type: 'balance', label: 'Increase amount' },
     increaseEvery: { value: 0, type: 'multiplier', label: 'Increase every x game' },
-    initBalance: { value: 10000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
+    initBalance: { value: 20000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
 log('Script is running..');
 
 const PARABOLIC = "PARABOLIC";
 const SENTINEL = "SENTINEL";
-const initMaxBet = 2;
+const initMaxBet = 4;
 const values = {
     "1.30": [], "1.43": [], "1.71": [], "1.90": [],
     "2.12": [], "2.31": [], "2.63": [], "2.78": [],
@@ -83,7 +84,7 @@ function onGameStarted() {
         let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMaxBet);
         currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
-    log("IT:", itTotal, "|", printBit(totalGain + (balance - initBalance)),"$ | C:",++currentRound, " | T", i, " - Bet ", gameType == SENTINEL ? roundBit(config.bet.value) / 100 : roundBit(values[currentxIndex][i]) / 100, " on", currentxIndex, " ", gameType);
+    log("IT:", itTotal, "/",disaster, " | " , " | R:",++currentRound," | G:",  printBit(totalGain + (balance - initBalance)),"$ | T", i, " - Bet ", gameType == SENTINEL ? roundBit(config.bet.value) / 100 : roundBit(values[currentxIndex][i]) / 100, " on", currentxIndex, " ", gameType);
     engine.bet(gameType == SENTINEL ? roundBit(bet) : roundBit(values[currentxIndex][i]), parseFloat(currentxIndex));
     if (config.increaseEvery != 0 && currentRound % config.increaseEvery.value == 0) {
 
