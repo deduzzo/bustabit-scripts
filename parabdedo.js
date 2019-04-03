@@ -1,5 +1,8 @@
 var config = {
     bet: { value: 1000, type: 'balance' },
+    percParabolic: { value: 90, type: 'multiplier', label: '%parabolic' },
+    last10: { value: 20, type: 'multiplier', label: 'Min times for bet >10' },
+    last15: { value: 30, type: 'multiplier', label: 'Min times for bet >15' },
     stopDefinitive: { value: 6000, type: 'multiplier', label: 'Script iteration number of games' },
     increaseAmount: { value: 100, type: 'balance', label: 'Increase amount' },
     increaseEvery: { value: 0, type: 'multiplier', label: 'Increase every x game' },
@@ -113,14 +116,13 @@ function onGameEnded(info) {
     else {
         // we won..
         if (lastGame.cashedAt) {
-            let percParabolic = 90;
             roundBets = 0;
             if (currentRound > config.stopDefinitive.value) {
                 stopped = true;
             }
             balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
 
-            if (getRandomInt(0, 100) < percParabolic) {
+            if (getRandomInt(0, 100) < config.percParabolic.value) {
                 // PARABOLIC
                 gameType = PARABOLIC;
                 precIndex = currentxIndex;
@@ -193,18 +195,15 @@ function getRandomInt(min, max) {
 
 function getNextBets(sequenc,defValues, lastBet)
 {
-
-    lastBet = parseFloat(lastBet);
     let nextBet;
-    let lastIndex;
     let last15 = sequenc.findIndex(p => p >= 15);
     log("lastIndex:",last15);
     if (last15 == -1)
         last15 = sequenc.length- 1;
-
-    let last14 = sequenc.findIndex(p =>p >= 14);
     let last10 = sequenc.findIndex(p => p >= 10);
-    if (last15 == 0)
+    if (last10 == -1)
+        last10 = sequenc.length- 1;
+    if (last10 == 0 && last15 < config.last15.value)
     {
         if (getRandomInt(0,100)<10)
         {
@@ -223,8 +222,12 @@ function getNextBets(sequenc,defValues, lastBet)
     {
         // TODO: implementare il random per valori alti
         let maxOfSeries = Math.max(...sequenc.slice(0,last15));
-        //&& parseFloat(p)<= lastBet +5
-        let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOfSeries + 4);
+        let sequencCopy = [...sequenc];
+        if (last10 < config.last10.value) {
+            maxOfSeries = 2;
+        }
+            //&& parseFloat(p)<= lastBet +5
+        let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOfSeries + 3);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
     return nextBet;
