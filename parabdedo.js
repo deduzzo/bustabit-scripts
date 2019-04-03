@@ -134,7 +134,7 @@ function onGameEnded(info) {
                 precIndex = currentxIndex;
                 let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMaxBet * 2);
                 currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
-                i = getRandomInt(1, 5);
+                i = getRandomInt(2, 9);
             }
             log(lastGame.bust, "x WIN!!");
         }
