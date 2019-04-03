@@ -2,8 +2,9 @@ var config = {
     bet: { value: 500, type: 'balance' },
     percParabolic: { value: 20, type: 'multiplier', label: '%parabolic' },
     initMaxBet: { value: 3, type: 'multiplier', label: 'Init Max Bets' },
-    last10: { value: 10, type: 'multiplier', label: 'Min times for bet >10' },
-    last15: { value: 15, type: 'multiplier', label: 'Min times for bet >15' },
+    last5: { value: 10, type: 'multiplier', label: 'Min times for bet >5' },
+    last10: { value: 15, type: 'multiplier', label: 'Min times for bet >10' },
+    last15: { value: 25, type: 'multiplier', label: 'Min times for bet >15' },
     maxSentinelTimes: { value: 6, type: 'multiplier', label: 'Max Sentinel Times' },
     maxSentinelValues: { value: 3, type: 'multiplier', label: 'Max Sentinel Values' },
     stopDefinitive: { value: 20000, type: 'multiplier', label: 'Script iteration number of games' },
@@ -204,6 +205,9 @@ function getNextBets(sequenc,defValues)
     let last10 = sequenc.findIndex(p => p >= 10);
     if (last10 == -1)
         last10 = sequenc.length- 1;
+    let last5 = sequenc.findIndex(p => p >= 5);
+    if (last5 == -1)
+        last5 = sequenc.length- 1;
     if (last15 ==0)
     {
         if (getRandomInt(0,100)<10)
@@ -222,19 +226,31 @@ function getNextBets(sequenc,defValues)
     else
     {
         // TODO: implementare il random per valori alti
-        let maxOfSeries = Math.max(...sequenc.slice(0,last15));
+        let maxOfSeries;
         //let sequencCopy = [...sequenc];
         let maxOffset;
-        if (last15 > config.last15.value)
+        if (last15 > config.last15.value) {
             maxOffset = 16;
-        else if (last10 >config.last10.value)
+            maxOfSeries = Math.max(...sequenc.slice(0,last15));
+        }
+        else if (last10 >config.last10.value) {
             maxOffset = 11;
-        else
+            maxOfSeries = Math.max(...sequenc.slice(0,last10));
+        }
+        else if (last5 > config.last5.value) {
+            maxOffset = 6;
+            maxOfSeries = Math.max(...sequenc.slice(0,last5));
+        }
+        else {
             maxOffset = initMaxBet;
-        if ( maxOffset<maxOfSeries )
-            maxOffset = maxOfSeries +3;
-            //&& parseFloat(p)<= lastBet +5
-        let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= (maxOffset == initMaxBet ? 1 : maxOfSeries) && parseFloat(p) <= maxOffset);
+            maxOfSeries = 2;
+        }
+        if ((maxOffset - maxOfSeries) < 0.9)
+        {
+            maxOfSeries = maxOfSeries-1;
+        }
+        console.log("maxoffset:", maxOffset, " maxseries:", maxOfSeries)
+        let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOffset);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
     return nextBet;
