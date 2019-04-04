@@ -1,9 +1,9 @@
 var config = {
-    bet: { value: 100, type: 'balance' },
-    percParabolic: { value: 80, type: 'multiplier', label: '%parabolic' },
+    bet: { value: 1000, type: 'balance' },
+    percParabolic: { value: 95, type: 'multiplier', label: '%parabolic' },
     initMaxBet: { value: 4, type: 'multiplier', label: 'Init Max Bets' },
-    last2: { value: 5, type: 'multiplier', label: 'Min times for bet <2' },
-    last5: { value: 8, type: 'multiplier', label: 'Min times for bet <5' },
+    last2: { value: 6, type: 'multiplier', label: 'Min times for bet <2' },
+    last5: { value: 10, type: 'multiplier', label: 'Min times for bet <5' },
     last10: { value: 20, type: 'multiplier', label: 'Min times for bet <10' },
     last15: { value: 40, type: 'multiplier', label: 'Min times for bet <15' },
     percNotSignificativeValue: { value: 10, type: 'multiplier', label: '% Not Significative Value' },
@@ -12,7 +12,7 @@ var config = {
     maxSentinelValues: { value: 3, type: 'multiplier', label: 'Max Sentinel Values' },
     stopDefinitive: { value: 4000, type: 'multiplier', label: 'Script iteration number of games' },
     increaseAmount: { value: 10, type: 'multiplier', label: 'Increase amount %' },
-    increaseEvery: { value: 300, type: 'multiplier', label: 'Increase every x game' },
+    increaseEvery: { value: 100, type: 'multiplier', label: 'Increase every x game' },
     initBalance: { value: 10000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
@@ -125,8 +125,8 @@ function onGameEnded(info) {
     if ((lastGame.cashedAt && !finishSentinel) || finishSentinel) {
         if (gameType == PARABOLIC || finishSentinel)
             currentxIndex = getNextBets(sequences, values);
-        log ("currentIndex ",currentxIndex)
-        log (finishSentinel)
+        //log ("currentIndex ",currentxIndex)
+        //log (finishSentinel)
         roundBets = 0;
         if (currentRound > config.stopDefinitive.value) {
             stopped = true;
@@ -263,7 +263,7 @@ function getNextBets(sequenc,defValues)
         {
             maxOfSeries = maxOfSeries-1;
         }
-        console.log("maxoffset:", maxOffset, " maxseries:", maxOfSeries)
+        //console.log("maxoffset:", maxOffset, " maxseries:", maxOfSeries)
         let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOffset);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
