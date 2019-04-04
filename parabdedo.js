@@ -1,17 +1,18 @@
 var config = {
     bet: { value: 100, type: 'balance' },
-    percParabolic: { value: 95, type: 'multiplier', label: '%parabolic' },
+    percParabolic: { value: 80, type: 'multiplier', label: '%parabolic' },
     initMaxBet: { value: 4, type: 'multiplier', label: 'Init Max Bets' },
-    last5: { value: 10, type: 'multiplier', label: 'Min times for bet >5' },
-    last10: { value: 20, type: 'multiplier', label: 'Min times for bet >10' },
-    last15: { value: 40, type: 'multiplier', label: 'Min times for bet >15' },
+    last2: { value: 5, type: 'multiplier', label: 'Min times for bet <2' },
+    last5: { value: 8, type: 'multiplier', label: 'Min times for bet <5' },
+    last10: { value: 20, type: 'multiplier', label: 'Min times for bet <10' },
+    last15: { value: 40, type: 'multiplier', label: 'Min times for bet <15' },
     percNotSignificativeValue: { value: 10, type: 'multiplier', label: '% Not Significative Value' },
-    minSentinelTimes: { value: 4, type: 'multiplier', label: 'Min Sentinel Times' },
-    maxSentinelTimes: { value: 8, type: 'multiplier', label: 'Max Sentinel Times' },
-    maxSentinelValues: { value: 2, type: 'multiplier', label: 'Max Sentinel Values' },
+    minSentinelTimes: { value: 2, type: 'multiplier', label: 'Min Sentinel Times' },
+    maxSentinelTimes: { value: 6, type: 'multiplier', label: 'Max Sentinel Times' },
+    maxSentinelValues: { value: 3, type: 'multiplier', label: 'Max Sentinel Values' },
     stopDefinitive: { value: 4000, type: 'multiplier', label: 'Script iteration number of games' },
     increaseAmount: { value: 10, type: 'multiplier', label: 'Increase amount %' },
-    increaseEvery: { value: 100, type: 'multiplier', label: 'Increase every x game' },
+    increaseEvery: { value: 300, type: 'multiplier', label: 'Increase every x game' },
     initBalance: { value: 10000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
@@ -213,6 +214,9 @@ function getNextBets(sequenc,defValues)
     let last5 = sequenc.findIndex(p => p >= 5);
     if (last5 == -1)
         last5 = sequenc.length- 1;
+    let last2 = sequenc.findIndex(p => p >= 2);
+    if (last2 == -1)
+        last2 = sequenc.length- 1;
     if (last15 ==0)
     {
         if (getRandomInt(0,100)>config.percNotSignificativeValue.value)
@@ -245,6 +249,10 @@ function getNextBets(sequenc,defValues)
         else if (last5 > config.last5.value) {
             maxOffset = 6;
             maxOfSeries = Math.max(...sequenc.slice(0,last5));
+        }
+        else if (last2 > config.last2.value) {
+            maxOffset = 2;
+            maxOfSeries = Math.max(...sequenc.slice(0,last2));
         }
         else {
             maxOffset = initMaxBet;
