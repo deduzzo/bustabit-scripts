@@ -219,7 +219,7 @@ function getNextBets(sequenc,defValues)
         last2 = sequenc.length- 1;
     if (last15 ==0)
     {
-        if (getRandomInt(0,100)>config.percNotSignificativeValue.value)
+        if (getRandomInt(0,100)<config.percNotSignificativeValue.value)
         {   // includo tutti i valori
             log("SPECIAL!");
             nextBet = Object.keys(defValues)[getRandomInt(0, Object.keys(defValues).length - 1)];
@@ -263,7 +263,7 @@ function getNextBets(sequenc,defValues)
         {
             maxOfSeries = maxOfSeries-1;
         }
-        //console.log("maxoffset:", maxOffset, " maxseries:", maxOfSeries)
+        console.log("maxoffset:", maxOffset, " maxseries:", maxOfSeries)
         let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOffset);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
