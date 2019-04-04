@@ -1,17 +1,17 @@
 var config = {
-    bet: { value: 500, type: 'balance' },
-    percParabolic: { value: 20, type: 'multiplier', label: '%parabolic' },
-    initMaxBet: { value: 3, type: 'multiplier', label: 'Init Max Bets' },
+    bet: { value: 100, type: 'balance' },
+    percParabolic: { value: 95, type: 'multiplier', label: '%parabolic' },
+    initMaxBet: { value: 4, type: 'multiplier', label: 'Init Max Bets' },
     last5: { value: 10, type: 'multiplier', label: 'Min times for bet >5' },
-    last10: { value: 15, type: 'multiplier', label: 'Min times for bet >10' },
-    last15: { value: 25, type: 'multiplier', label: 'Min times for bet >15' },
-    percNotSignificativeValue: { value: 70, type: 'multiplier', label: '% Not Significative Value' },
-    minSentinelTimes: { value: 5, type: 'multiplier', label: 'Max Sentinel Times' },
-    maxSentinelTimes: { value: 10, type: 'multiplier', label: 'Max Sentinel Times' },
-    maxSentinelValues: { value: 3, type: 'multiplier', label: 'Max Sentinel Values' },
-    stopDefinitive: { value: 20000, type: 'multiplier', label: 'Script iteration number of games' },
+    last10: { value: 20, type: 'multiplier', label: 'Min times for bet >10' },
+    last15: { value: 40, type: 'multiplier', label: 'Min times for bet >15' },
+    percNotSignificativeValue: { value: 10, type: 'multiplier', label: '% Not Significative Value' },
+    minSentinelTimes: { value: 4, type: 'multiplier', label: 'Min Sentinel Times' },
+    maxSentinelTimes: { value: 8, type: 'multiplier', label: 'Max Sentinel Times' },
+    maxSentinelValues: { value: 2, type: 'multiplier', label: 'Max Sentinel Values' },
+    stopDefinitive: { value: 4000, type: 'multiplier', label: 'Script iteration number of games' },
     increaseAmount: { value: 10, type: 'multiplier', label: 'Increase amount %' },
-    increaseEvery: { value: 1000, type: 'multiplier', label: 'Increase every x game' },
+    increaseEvery: { value: 100, type: 'multiplier', label: 'Increase every x game' },
     initBalance: { value: 10000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
@@ -122,32 +122,36 @@ function onGameEnded(info) {
     }
     // we won..
     if ((lastGame.cashedAt && !finishSentinel) || finishSentinel) {
-        currentxIndex = getNextBets(sequences, values);
+        if (gameType == PARABOLIC || finishSentinel)
+            currentxIndex = getNextBets(sequences, values);
         log ("currentIndex ",currentxIndex)
+        log (finishSentinel)
         roundBets = 0;
         if (currentRound > config.stopDefinitive.value) {
             stopped = true;
         }
-        if (lastGame.cashedAt && !finishSentinel)
+        if (lastGame.cashedAt)
             balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
-        let perc = getRandomInt(0, 100);
-        if (perc < config.percParabolic.value && currentxIndex != "-1") {
-            // PARABOLIC
-            gameType = PARABOLIC;
-            i = 0;
-        } else {
-            //SENTINEL
-            gameType = SENTINEL;
-            let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= config.maxSentinelValues.value);
-            currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
-            i = getRandomInt(config.minSentinelTimes.value, config.maxSentinelTimes.value);
+        if (gameType == PARABOLIC || finishSentinel) {
+            let perc = getRandomInt(0, 100);
+            if ((perc < config.percParabolic.value) && currentxIndex != "-1") {
+                // PARABOLIC
+                gameType = PARABOLIC;
+                i = 0;
+            } else {
+                //SENTINEL
+                gameType = SENTINEL;
+                let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= config.maxSentinelValues.value);
+                currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
+                i = getRandomInt(config.minSentinelTimes.value, config.maxSentinelTimes.value);
+            }
         }
         log(lastGame.bust, "x WIN!!");
-    } else if (!finishSentinel) {
+    } else if (!finishSentinel && gameType == PARABOLIC) {
         balance -= lastGame.wager;
         roundBets += lastGame.wager;
-        log(lastGame.bust, "x Lose :(");
         i++;
+        log(lastGame.bust, "x Lose :(");
     }
 }
 
@@ -211,7 +215,7 @@ function getNextBets(sequenc,defValues)
         last5 = sequenc.length- 1;
     if (last15 ==0)
     {
-        if (getRandomInt(0,100)<10)
+        if (getRandomInt(0,100)>config.percNotSignificativeValue.value)
         {   // includo tutti i valori
             log("SPECIAL!");
             nextBet = Object.keys(defValues)[getRandomInt(0, Object.keys(defValues).length - 1)];
@@ -255,5 +259,5 @@ function getNextBets(sequenc,defValues)
         let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOffset);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
-    return notSignificativeValues ? getRandomInt(0, 100)<config.percNotSignificativeValue.value ? "-1" : nextBet : nextBet;
+    return notSignificativeValues ? (getRandomInt(0, 100)>config.percNotSignificativeValue.value ? "-1" : nextBet) : nextBet;
 }
