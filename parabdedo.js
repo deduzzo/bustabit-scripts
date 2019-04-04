@@ -5,7 +5,9 @@ var config = {
     last5: { value: 10, type: 'multiplier', label: 'Min times for bet >5' },
     last10: { value: 15, type: 'multiplier', label: 'Min times for bet >10' },
     last15: { value: 25, type: 'multiplier', label: 'Min times for bet >15' },
-    maxSentinelTimes: { value: 6, type: 'multiplier', label: 'Max Sentinel Times' },
+    percNotSignificativeValue: { value: 70, type: 'multiplier', label: '% Not Significative Value' },
+    minSentinelTimes: { value: 5, type: 'multiplier', label: 'Max Sentinel Times' },
+    maxSentinelTimes: { value: 10, type: 'multiplier', label: 'Max Sentinel Times' },
     maxSentinelValues: { value: 3, type: 'multiplier', label: 'Max Sentinel Values' },
     stopDefinitive: { value: 20000, type: 'multiplier', label: 'Script iteration number of games' },
     increaseAmount: { value: 10, type: 'multiplier', label: 'Increase amount %' },
@@ -37,7 +39,6 @@ const values = {
 };
 let currentxIndex = "1.30";
 let bet = config.bet.value;
-let precIndex = currentxIndex;
 for (let key of Object.keys(values))
     values[key] = calculateBets(parseFloat(key) , bet,parseFloat(key) * 12, false);
 let sequences = [];
@@ -61,7 +62,8 @@ engine.on('GAME_ENDED', onGameEnded);
 
 function onGameStarted() {
     //|| (currentRound >config.stopDefinitive.value && stopped)
-    if ((gameType == PARABOLIC && values[currentxIndex][i] >balance) || (currentRound >config.stopDefinitive.value && stopped))
+    log(gameType);
+    if ((gameType != SENTINEL && (gameType == PARABOLIC && values[currentxIndex][i] >balance)) || (currentRound >config.stopDefinitive.value && stopped))
     {
         if (stopped) {
 
@@ -85,7 +87,6 @@ function onGameStarted() {
         gameType = SENTINEL;
         i = getRandomInt(2,8);
         currentxIndex = "1.30";
-        precIndex = currentxIndex;
         let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMaxBet);
         currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
@@ -106,49 +107,48 @@ function onGameEnded(info) {
     if (!lastGame.wager) {
         return;
     }
-
-    if (gameType == SENTINEL)
-    {
+    let finishSentinel = false;
+    if (gameType == SENTINEL) {
+        if (lastGame.cashedAt)
+            balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
+        else
+            balance -= lastGame.wager;
         log("last: ", lastGame.bust, "x");
         i--;
         if (i == 0) {
             gameType = PARABOLIC;
-            currentxIndex = getNextBets(sequences, values);
+            finishSentinel = true;
         }
     }
-    else {
-        // we won..
-        if (lastGame.cashedAt) {
-            roundBets = 0;
-            if (currentRound > config.stopDefinitive.value) {
-                stopped = true;
-            }
+    // we won..
+    if ((lastGame.cashedAt && !finishSentinel) || finishSentinel) {
+        currentxIndex = getNextBets(sequences, values);
+        log ("currentIndex ",currentxIndex)
+        roundBets = 0;
+        if (currentRound > config.stopDefinitive.value) {
+            stopped = true;
+        }
+        if (lastGame.cashedAt && !finishSentinel)
             balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
-
-            if (getRandomInt(0, 100) < config.percParabolic.value) {
-                // PARABOLIC
-                gameType = PARABOLIC;
-                precIndex = currentxIndex;
-                currentxIndex = getNextBets(sequences, values);
-                i = 0;
-            } else {
-                //SENTINEL
-                gameType = SENTINEL;
-                precIndex = currentxIndex;
-                let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= config.maxSentinelValues.value);
-                currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
-                i = getRandomInt(2, config.maxSentinelTimes.value);
-            }
-            log(lastGame.bust, "x WIN!!");
+        let perc = getRandomInt(0, 100);
+        if (perc < config.percParabolic.value && currentxIndex != "-1") {
+            // PARABOLIC
+            gameType = PARABOLIC;
+            i = 0;
+        } else {
+            //SENTINEL
+            gameType = SENTINEL;
+            let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= config.maxSentinelValues.value);
+            currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
+            i = getRandomInt(config.minSentinelTimes.value, config.maxSentinelTimes.value);
         }
-        else {
-            balance -= lastGame.wager;
-            roundBets += lastGame.wager;
-            log(lastGame.bust, "x Lose :(");
-            i++;
-        }
+        log(lastGame.bust, "x WIN!!");
+    } else if (!finishSentinel) {
+        balance -= lastGame.wager;
+        roundBets += lastGame.wager;
+        log(lastGame.bust, "x Lose :(");
+        i++;
     }
-
 }
 
 function calculateBets(mult,initBet,desideredT, verbose)
@@ -198,6 +198,7 @@ function getRandomInt(min, max) {
 
 function getNextBets(sequenc,defValues)
 {
+    let notSignificativeValues = false;
     let nextBet;
     let last15 = sequenc.findIndex(p => p >= 15);
     if (last15 == -1)
@@ -243,7 +244,8 @@ function getNextBets(sequenc,defValues)
         }
         else {
             maxOffset = initMaxBet;
-            maxOfSeries = 2;
+            maxOfSeries = initMaxBet -2;
+            notSignificativeValues = true;
         }
         if ((maxOffset - maxOfSeries) < 0.9)
         {
@@ -253,5 +255,5 @@ function getNextBets(sequenc,defValues)
         let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOffset);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
-    return nextBet;
+    return notSignificativeValues ? getRandomInt(0, 100)<config.percNotSignificativeValue.value ? "-1" : nextBet : nextBet;
 }
