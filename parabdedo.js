@@ -1,19 +1,20 @@
 var config = {
-    bet: { value: 1000, type: 'balance' },
+    bet: { value: 800, type: 'balance' },
     percParabolic: { value: 95, type: 'multiplier', label: '%parabolic' },
-    initMaxBet: { value: 4, type: 'multiplier', label: 'Init Max Bets' },
-    last2: { value: 6, type: 'multiplier', label: 'Min times for bet <2' },
-    last5: { value: 10, type: 'multiplier', label: 'Min times for bet <5' },
-    last10: { value: 20, type: 'multiplier', label: 'Min times for bet <10' },
-    last15: { value: 40, type: 'multiplier', label: 'Min times for bet <15' },
-    percNotSignificativeValue: { value: 10, type: 'multiplier', label: '% Not Significative Value' },
-    minSentinelTimes: { value: 2, type: 'multiplier', label: 'Min Sentinel Times' },
-    maxSentinelTimes: { value: 6, type: 'multiplier', label: 'Max Sentinel Times' },
+    initMaxBet: { value: 2, type: 'multiplier', label: 'Init Max Bets' },
+    last1dot6: { value: 5, type: 'multiplier', label: 'Min times for bet <1,5' },
+    last3: { value: 6, type: 'multiplier', label: 'Min times for bet <3' },
+    last5: { value: 8, type: 'multiplier', label: 'Min times for bet <5' },
+    last10: { value: 11, type: 'multiplier', label: 'Min times for bet <10' },
+    last15: { value: 23, type: 'multiplier', label: 'Min times for bet <15' },
+    percNotSignificativeValue: { value: 0, type: 'multiplier', label: '% Not Significative Value' },
+    minSentinelTimes: { value: 1, type: 'multiplier', label: 'Min Sentinel Times' },
+    maxSentinelTimes: { value: 3, type: 'multiplier', label: 'Max Sentinel Times' },
     maxSentinelValues: { value: 3, type: 'multiplier', label: 'Max Sentinel Values' },
     stopDefinitive: { value: 4000, type: 'multiplier', label: 'Script iteration number of games' },
     increaseAmount: { value: 10, type: 'multiplier', label: 'Increase amount %' },
-    increaseEvery: { value: 100, type: 'multiplier', label: 'Increase every x game' },
-    initBalance: { value: 10000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
+    increaseEvery: { value: 1000, type: 'multiplier', label: 'Increase every x game' },
+    initBalance: { value: 15000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
 log('Script is running..');
@@ -22,7 +23,7 @@ const PARABOLIC = "PARABOLIC";
 const SENTINEL = "SENTINEL";
 const initMaxBet = config.initMaxBet.value;
 const values = {
-    "1.30": [], "1.43": [], "1.71": [], "1.90": [],
+    "1.45": [], "1.53": [], "1.81": [], "1.95": [],
     "2.12": [], "2.31": [], "2.63": [], "2.78": [],
     "3.16": [], "3.29": [], "3.62": [], "3.80": [],
     "4.11": [], "4.21": [], "4.32": [], "4.78": [],
@@ -110,15 +111,18 @@ function onGameEnded(info) {
     }
     let finishSentinel = false;
     if (gameType == SENTINEL) {
-        if (lastGame.cashedAt)
-            balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
-        else
-            balance -= lastGame.wager;
         log("last: ", lastGame.bust, "x");
         i--;
         if (i == 0) {
             gameType = PARABOLIC;
             finishSentinel = true;
+        }
+        else
+        {
+            if (lastGame.cashedAt)
+                balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
+            else
+                balance -= lastGame.wager;
         }
     }
     // we won..
@@ -214,9 +218,13 @@ function getNextBets(sequenc,defValues)
     let last5 = sequenc.findIndex(p => p >= 5);
     if (last5 == -1)
         last5 = sequenc.length- 1;
-    let last2 = sequenc.findIndex(p => p >= 2);
-    if (last2 == -1)
-        last2 = sequenc.length- 1;
+    let last3 = sequenc.findIndex(p => p >= 3);
+    if (last3 == -1)
+        last3 = sequenc.length- 1;
+    let last1dot6 = sequenc.findIndex(p => p >= 1.5);
+    if (last1dot6 == -1)
+        last1dot6 = sequenc.length- 1;
+
     if (last15 ==0)
     {
         if (getRandomInt(0,100)<config.percNotSignificativeValue.value)
@@ -227,9 +235,9 @@ function getNextBets(sequenc,defValues)
         else
         {
             //TODO: implementare l'attesa a 1.11 o altro valore
-
             let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) <= initMaxBet)
             nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
+            notSignificativeValues = true;
         }
     }
     else
@@ -250,9 +258,13 @@ function getNextBets(sequenc,defValues)
             maxOffset = 6;
             maxOfSeries = Math.max(...sequenc.slice(0,last5));
         }
-        else if (last2 > config.last2.value) {
-            maxOffset = 2;
-            maxOfSeries = Math.max(...sequenc.slice(0,last2));
+        else if (last3 > config.last3.value) {
+            maxOffset = 4;
+            maxOfSeries = Math.max(...sequenc.slice(0,last3));
+        }
+        else if (last1dot6 > config.last1dot6.value) {
+            maxOffset = 2.5;
+            maxOfSeries = Math.max(...sequenc.slice(0, last1dot6));
         }
         else {
             maxOffset = initMaxBet;
@@ -267,5 +279,7 @@ function getNextBets(sequenc,defValues)
         let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOffset);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
-    return notSignificativeValues ? (getRandomInt(0, 100)>config.percNotSignificativeValue.value ? "-1" : nextBet) : nextBet;
+    let ret = notSignificativeValues ? (getRandomInt(0, 100)>config.percNotSignificativeValue.value ? "-1" : nextBet) : nextBet;
+    log("not significative:", notSignificativeValues, " ret:", ret);
+    return ret;
 }
