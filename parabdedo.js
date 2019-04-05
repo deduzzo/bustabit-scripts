@@ -1,13 +1,13 @@
 var config = {
     bet: { value: 800, type: 'balance' },
     percParabolic: { value: 95, type: 'multiplier', label: '%parabolic' },
-    initMaxBet: { value: 2, type: 'multiplier', label: 'Init Max Bets' },
-    last1dot6: { value: 5, type: 'multiplier', label: 'Min times for bet <1,5' },
-    last3: { value: 6, type: 'multiplier', label: 'Min times for bet <3' },
-    last5: { value: 8, type: 'multiplier', label: 'Min times for bet <5' },
-    last10: { value: 11, type: 'multiplier', label: 'Min times for bet <10' },
-    last15: { value: 23, type: 'multiplier', label: 'Min times for bet <15' },
-    percNotSignificativeValue: { value: 0, type: 'multiplier', label: '% Not Significative Value' },
+    initMinBet: { value: 3, type: 'multiplier', label: 'Init Min Bets' },
+    last2: { value: 6, type: 'multiplier', label: 'Min times for 2' },
+    last4: { value: 7, type: 'multiplier', label: 'Min times for 4 ' },
+    last8: { value: 9, type: 'multiplier', label: 'Min times for 8' },
+    last11: { value: 12, type: 'multiplier', label: 'Min times for 11' },
+    last16: { value: 25, type: 'multiplier', label: 'Min times for 16' },
+    percNotSignificativeValue: { value: 15, type: 'multiplier', label: '% Not Significative Value' },
     minSentinelTimes: { value: 1, type: 'multiplier', label: 'Min Sentinel Times' },
     maxSentinelTimes: { value: 3, type: 'multiplier', label: 'Max Sentinel Times' },
     maxSentinelValues: { value: 3, type: 'multiplier', label: 'Max Sentinel Values' },
@@ -21,7 +21,7 @@ log('Script is running..');
 
 const PARABOLIC = "PARABOLIC";
 const SENTINEL = "SENTINEL";
-const initMaxBet = config.initMaxBet.value;
+const initMinBet = config.initMinBet.value;
 const values = {
     "1.45": [], "1.53": [], "1.81": [], "1.95": [],
     "2.12": [], "2.31": [], "2.63": [], "2.78": [],
@@ -89,7 +89,7 @@ function onGameStarted() {
         gameType = SENTINEL;
         i = getRandomInt(2,8);
         currentxIndex = "1.30";
-        let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMaxBet);
+        let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) >= initMinBet);
         currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
     let molt =  incCounter>1 ? (1 + ((incCounter * config.increaseAmount.value)) / 100) : 1;
@@ -209,36 +209,28 @@ function getNextBets(sequenc,defValues)
 {
     let notSignificativeValues = false;
     let nextBet;
-    let last15 = sequenc.findIndex(p => p >= 15);
-    if (last15 == -1)
-        last15 = sequenc.length- 1;
-    let last10 = sequenc.findIndex(p => p >= 10);
-    if (last10 == -1)
-        last10 = sequenc.length- 1;
-    let last5 = sequenc.findIndex(p => p >= 5);
-    if (last5 == -1)
-        last5 = sequenc.length- 1;
-    let last3 = sequenc.findIndex(p => p >= 3);
-    if (last3 == -1)
-        last3 = sequenc.length- 1;
-    let last1dot6 = sequenc.findIndex(p => p >= 1.5);
-    if (last1dot6 == -1)
-        last1dot6 = sequenc.length- 1;
+    let last16 = sequenc.findIndex(p => p >= 16);
+    if (last16 == -1)
+        last16 = sequenc.length- 1;
+    let last11 = sequenc.findIndex(p => p >= 11);
+    if (last11 == -1)
+        last11 = sequenc.length- 1;
+    let last8 = sequenc.findIndex(p => p >= 8);
+    if (last8 == -1)
+        last8 = sequenc.length- 1;
+    let last4 = sequenc.findIndex(p => p >= 4);
+    if (last4 == -1)
+        last4 = sequenc.length- 1;
+    let last2 = sequenc.findIndex(p => p >= 2);
+    if (last2 == -1)
+        last2 = sequenc.length- 1;
 
-    if (last15 ==0)
+    if (last16 ==0 && getRandomInt(0,100)<config.percNotSignificativeValue.value)
     {
-        if (getRandomInt(0,100)<config.percNotSignificativeValue.value)
-        {   // includo tutti i valori
-            log("SPECIAL!");
-            nextBet = Object.keys(defValues)[getRandomInt(0, Object.keys(defValues).length - 1)];
-        }
-        else
-        {
-            //TODO: implementare l'attesa a 1.11 o altro valore
-            let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) <= initMaxBet)
-            nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
-            notSignificativeValues = true;
-        }
+        // includo tutti i valori
+        log("SPECIAL!");
+        let nextBetTemp = Object.keys(defValues).filter(p=> parseFloat(p) >= initMinBet)
+        nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
     else
     {
@@ -246,29 +238,29 @@ function getNextBets(sequenc,defValues)
         let maxOfSeries;
         //let sequencCopy = [...sequenc];
         let maxOffset;
-        if (last15 > config.last15.value) {
+        if (last16 > config.last16.value) {
             maxOffset = 16;
-            maxOfSeries = Math.max(...sequenc.slice(0,last15));
+            maxOfSeries = Math.max(...sequenc.slice(0,last16));
         }
-        else if (last10 >config.last10.value) {
+        else if (last11 >config.last11.value) {
             maxOffset = 11;
-            maxOfSeries = Math.max(...sequenc.slice(0,last10));
+            maxOfSeries = Math.max(...sequenc.slice(0,last11));
         }
-        else if (last5 > config.last5.value) {
-            maxOffset = 6;
-            maxOfSeries = Math.max(...sequenc.slice(0,last5));
+        else if (last8 > config.last8.value) {
+            maxOffset = 8;
+            maxOfSeries = Math.max(...sequenc.slice(0,last8));
         }
-        else if (last3 > config.last3.value) {
+        else if (last4 > config.last4.value) {
             maxOffset = 4;
-            maxOfSeries = Math.max(...sequenc.slice(0,last3));
+            maxOfSeries = Math.max(...sequenc.slice(0,last4));
         }
-        else if (last1dot6 > config.last1dot6.value) {
-            maxOffset = 2.5;
-            maxOfSeries = Math.max(...sequenc.slice(0, last1dot6));
+        else if (last2 > config.last2.value) {
+            maxOffset = 2;
+            maxOfSeries = Math.max(...sequenc.slice(0, last2));
         }
         else {
-            maxOffset = initMaxBet;
-            maxOfSeries = initMaxBet -2;
+            maxOffset = 12;
+            maxOfSeries = 4;
             notSignificativeValues = true;
         }
         if ((maxOffset - maxOfSeries) < 0.9)
