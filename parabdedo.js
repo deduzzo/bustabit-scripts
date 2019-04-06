@@ -1,19 +1,19 @@
 var config = {
-    bet: { value: 800, type: 'balance' },
-    percParabolic: { value: 95, type: 'multiplier', label: '%parabolic' },
+    bet: { value: 1000, type: 'balance' },
+    percParabolic: { value: 90, type: 'multiplier', label: '%parabolic' },
     initMinBet: { value: 3, type: 'multiplier', label: 'Init Min Bets' },
-    last2: { value: 6, type: 'multiplier', label: 'Min times for 2' },
-    last4: { value: 7, type: 'multiplier', label: 'Min times for 4 ' },
-    last8: { value: 9, type: 'multiplier', label: 'Min times for 8' },
-    last11: { value: 12, type: 'multiplier', label: 'Min times for 11' },
-    last16: { value: 25, type: 'multiplier', label: 'Min times for 16' },
-    percNotSignificativeValue: { value: 15, type: 'multiplier', label: '% Not Significative Value' },
-    minSentinelTimes: { value: 1, type: 'multiplier', label: 'Min Sentinel Times' },
-    maxSentinelTimes: { value: 3, type: 'multiplier', label: 'Max Sentinel Times' },
+    last2: { value: 3, type: 'multiplier', label: 'Min times for 2' },
+    last4: { value: 4, type: 'multiplier', label: 'Min times for 4 ' },
+    last8: { value: 15, type: 'multiplier', label: 'Min times for 8' },
+    last11: { value: 20, type: 'multiplier', label: 'Min times for 11' },
+    last16: { value: 28, type: 'multiplier', label: 'Min times for 16' },
+    percNotSignificativeValue: { value: 0, type: 'multiplier', label: '% Not Significative Value' },
+    minSentinelTimes: { value: 2, type: 'multiplier', label: 'Min Sentinel Times' },
+    maxSentinelTimes: { value: 4, type: 'multiplier', label: 'Max Sentinel Times' },
     maxSentinelValues: { value: 3, type: 'multiplier', label: 'Max Sentinel Values' },
-    stopDefinitive: { value: 4000, type: 'multiplier', label: 'Script iteration number of games' },
+    stopDefinitive: { value: 8000, type: 'multiplier', label: 'Script iteration number of games' },
     increaseAmount: { value: 10, type: 'multiplier', label: 'Increase amount %' },
-    increaseEvery: { value: 1000, type: 'multiplier', label: 'Increase every x game' },
+    increaseEvery: { value: 500, type: 'multiplier', label: 'Increase every x game' },
     initBalance: { value: 15000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
@@ -87,9 +87,9 @@ function onGameStarted() {
         currentRound = 0;
         sequences = [];
         gameType = SENTINEL;
-        i = getRandomInt(2,8);
+        i = getRandomInt(config.minSentinelTimes.value, config.maxSentinelTimes.value);
         currentxIndex = "1.30";
-        let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) >= initMinBet);
+        let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMinBet);
         currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
     let molt =  incCounter>1 ? (1 + ((incCounter * config.increaseAmount.value)) / 100) : 1;
@@ -237,35 +237,35 @@ function getNextBets(sequenc,defValues)
         // TODO: implementare il random per valori alti
         let maxOfSeries;
         //let sequencCopy = [...sequenc];
-        let maxOffset;
-        if (last16 > config.last16.value) {
-            maxOffset = 16;
-            maxOfSeries = Math.max(...sequenc.slice(0,last16));
-        }
-        else if (last11 >config.last11.value) {
-            maxOffset = 11;
-            maxOfSeries = Math.max(...sequenc.slice(0,last11));
-        }
-        else if (last8 > config.last8.value) {
-            maxOffset = 8;
-            maxOfSeries = Math.max(...sequenc.slice(0,last8));
-        }
-        else if (last4 > config.last4.value) {
-            maxOffset = 4;
-            maxOfSeries = Math.max(...sequenc.slice(0,last4));
-        }
-        else if (last2 > config.last2.value) {
+        let maxOffset = 0;
+
+        if (last2 > config.last2.value)
             maxOffset = 2;
-            maxOfSeries = Math.max(...sequenc.slice(0, last2));
-        }
-        else {
+
+        if (last4 > config.last4.value)
+            maxOffset = 4;
+
+        if (last8 > config.last8.value)
+            maxOffset = 8;
+
+        if (last11 >config.last11.value)
+            maxOffset = 11;
+
+        if (last16 > config.last16.value)
+            maxOffset = 16;
+
+        log(last16);
+        if (maxOffset == 0) {
             maxOffset = 12;
             maxOfSeries = 4;
             notSignificativeValues = true;
         }
+        else
+            maxOfSeries = Math.max(...sequenc.slice(0,last16));
+
         if ((maxOffset - maxOfSeries) < 0.9)
         {
-            maxOfSeries = maxOfSeries-1;
+            maxOfSeries = maxOffset-2;
         }
         console.log("maxoffset:", maxOffset, " maxseries:", maxOfSeries)
         let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOffset);
