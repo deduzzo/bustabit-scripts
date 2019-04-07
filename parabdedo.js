@@ -2,11 +2,11 @@ var config = {
     bet: { value: 1000, type: 'balance' },
     percParabolic: { value: 90, type: 'multiplier', label: '%parabolic' },
     initMinBet: { value: 3, type: 'multiplier', label: 'Init Min Bets' },
-    last2: { value: 3, type: 'multiplier', label: 'Min times for 2' },
     last4: { value: 4, type: 'multiplier', label: 'Min times for 4 ' },
     last8: { value: 15, type: 'multiplier', label: 'Min times for 8' },
     last11: { value: 20, type: 'multiplier', label: 'Min times for 11' },
     last16: { value: 28, type: 'multiplier', label: 'Min times for 16' },
+    stop1timesEvery: { value: 20, type: 'multiplier', label: 'Stop 1 Times Every' },
     percNotSignificativeValue: { value: 0, type: 'multiplier', label: '% Not Significative Value' },
     minSentinelTimes: { value: 2, type: 'multiplier', label: 'Min Sentinel Times' },
     maxSentinelTimes: { value: 4, type: 'multiplier', label: 'Max Sentinel Times' },
@@ -23,7 +23,6 @@ const PARABOLIC = "PARABOLIC";
 const SENTINEL = "SENTINEL";
 const initMinBet = config.initMinBet.value;
 const values = {
-    "1.45": [], "1.53": [], "1.81": [], "1.95": [],
     "2.12": [], "2.31": [], "2.63": [], "2.78": [],
     "3.16": [], "3.29": [], "3.62": [], "3.80": [],
     "4.11": [], "4.21": [], "4.32": [], "4.78": [],
@@ -56,6 +55,7 @@ let stopped = false;
 let roundBets = 0;
 let currentRound = 0;
 let incCounter = 0;
+let stop1Times = false;
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -63,40 +63,43 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    //|| (currentRound >config.stopDefinitive.value && stopped)
-    log(gameType);
-    if ((gameType != SENTINEL && (gameType == PARABOLIC && values[currentxIndex][i] >balance)) || (currentRound >config.stopDefinitive.value && stopped))
-    {
-        if (stopped) {
+    if (!stop1Times) {
+        //|| (currentRound >config.stopDefinitive.value && stopped)
+        if ((gameType != SENTINEL && (gameType == PARABOLIC && values[currentxIndex][i] > balance)) || (currentRound > config.stopDefinitive.value && stopped)) {
+            if (stopped) {
 
-            log("Iteration OKK!");
+                log("Iteration OKK!");
+            } else {
+                disaster++;
+                log("Disaster :(")
+            }
+            stopped = false;
+            bet = config.bet.value;
+            incCounter = 0;
+            roundBets = 0;
+            totalGain += balance - initBalance;
+            itTotal++;
+            balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
+            initBalance = config.initBalance.value == 0 ? balance : config.initBalance.value;
+            currentRound = 0;
+            sequences = [];
+            gameType = SENTINEL;
+            i = getRandomInt(config.minSentinelTimes.value, config.maxSentinelTimes.value);
+            currentxIndex = "1.30";
+            let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMinBet);
+            currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
         }
-        else
-        {
-            disaster++;
-            log("Disaster :(")
+        let molt = incCounter > 1 ? (1 + ((incCounter * config.increaseAmount.value)) / 100) : 1;
+        log("IT:", itTotal, "/", disaster, " | ", " | R:", ++currentRound, " | G:", printBit(totalGain + (balance - initBalance)), "$ | T", i, " - Bet ", gameType == SENTINEL ? roundBit(bet * molt) / 100 : roundBit(values[currentxIndex][i] * molt) / 100, " on", currentxIndex, " ", gameType);
+        engine.bet(gameType == SENTINEL ? roundBit(bet * molt) : roundBit(values[currentxIndex][i] * molt), parseFloat(currentxIndex));
+        if (config.increaseAmount.value != 0 && currentRound % config.increaseEvery.value == 0) {
+            incCounter++;
         }
-        stopped = false;
-        bet = config.bet.value;
-        incCounter = 0;
-        roundBets = 0;
-        totalGain += balance - initBalance;
-        itTotal++;
-        balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
-        initBalance = config.initBalance.value == 0 ? balance : config.initBalance.value;
-        currentRound = 0;
-        sequences = [];
-        gameType = SENTINEL;
-        i = getRandomInt(config.minSentinelTimes.value, config.maxSentinelTimes.value);
-        currentxIndex = "1.30";
-        let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMinBet);
-        currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
-    let molt =  incCounter>1 ? (1 + ((incCounter * config.increaseAmount.value)) / 100) : 1;
-    log("IT:", itTotal, "/",disaster, " | " , " | R:",++currentRound," | G:",  printBit(totalGain + (balance - initBalance)),"$ | T", i, " - Bet ", gameType == SENTINEL ? roundBit(bet * molt) / 100 : roundBit(values[currentxIndex][i] * molt) / 100, " on", currentxIndex, " ", gameType);
-    engine.bet(gameType == SENTINEL ? roundBit(bet * molt) : roundBit(values[currentxIndex][i] * molt), parseFloat(currentxIndex));
-    if (config.increaseAmount.value != 0 && currentRound % config.increaseEvery.value == 0) {
-        incCounter++;
+    else
+    {
+        log("1 Time stop");
+        stop1Times = false;
     }
 }
 
@@ -155,8 +158,14 @@ function onGameEnded(info) {
     } else if (!finishSentinel && gameType == PARABOLIC) {
         balance -= lastGame.wager;
         roundBets += lastGame.wager;
-        i++;
-        log(lastGame.bust, "x Lose :(");
+        if (i % config.stop1timesEvery == 0)
+        {
+            stop1Times = true;
+        }
+        else {
+            i++;
+            log(lastGame.bust, "x Lose :(");
+        }
     }
 }
 
@@ -221,9 +230,6 @@ function getNextBets(sequenc,defValues)
     let last4 = sequenc.findIndex(p => p >= 4);
     if (last4 == -1)
         last4 = sequenc.length- 1;
-    let last2 = sequenc.findIndex(p => p >= 2);
-    if (last2 == -1)
-        last2 = sequenc.length- 1;
 
     if (last16 ==0 && getRandomInt(0,100)<config.percNotSignificativeValue.value)
     {
@@ -238,9 +244,6 @@ function getNextBets(sequenc,defValues)
         let maxOfSeries;
         //let sequencCopy = [...sequenc];
         let maxOffset = 0;
-
-        if (last2 > config.last2.value)
-            maxOffset = 2;
 
         if (last4 > config.last4.value)
             maxOffset = 4;
