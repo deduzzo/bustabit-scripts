@@ -1,19 +1,20 @@
 var config = {
     bet: { value: 1000, type: 'balance' },
     percParabolic: { value: 90, type: 'multiplier', label: '%parabolic' },
-    initMinBet: { value: 3, type: 'multiplier', label: 'Init Min Bets' },
-    last4: { value: 4, type: 'multiplier', label: 'Min times for 4 ' },
-    last8: { value: 15, type: 'multiplier', label: 'Min times for 8' },
-    last11: { value: 20, type: 'multiplier', label: 'Min times for 11' },
-    last16: { value: 28, type: 'multiplier', label: 'Min times for 16' },
-    stop1timesEvery: { value: 20, type: 'multiplier', label: 'Stop 1 Times Every' },
+    initMinBet: { value: 2.5, type: 'multiplier', label: 'Init Min Bets' },
+    last4: { value: 3, type: 'multiplier', label: 'Min times for 4 ' },
+    last8: { value: 8, type: 'multiplier', label: 'Min times for 8' },
+    last11: { value: 12, type: 'multiplier', label: 'Min times for 11' },
+    last16: { value: 16, type: 'multiplier', label: 'Min times for 16' },
+    late100factor: { value: 4, type: 'multiplier', label: 'Late100 Factor' },
+    stop1timesEvery: { value: 400, type: 'multiplier', label: 'Stop 1 Times Every' },
     percNotSignificativeValue: { value: 0, type: 'multiplier', label: '% Not Significative Value' },
-    minSentinelTimes: { value: 2, type: 'multiplier', label: 'Min Sentinel Times' },
+    minSentinelTimes: { value: 1, type: 'multiplier', label: 'Min Sentinel Times' },
     maxSentinelTimes: { value: 4, type: 'multiplier', label: 'Max Sentinel Times' },
-    maxSentinelValues: { value: 3, type: 'multiplier', label: 'Max Sentinel Values' },
+    maxSentinelValues: { value: 10, type: 'multiplier', label: 'Max Sentinel Values' },
     stopDefinitive: { value: 8000, type: 'multiplier', label: 'Script iteration number of games' },
     increaseAmount: { value: 10, type: 'multiplier', label: 'Increase amount %' },
-    increaseEvery: { value: 500, type: 'multiplier', label: 'Increase every x game' },
+    increaseEvery: { value: 10000, type: 'multiplier', label: 'Increase every x game' },
     initBalance: { value: 15000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
@@ -56,6 +57,9 @@ let roundBets = 0;
 let currentRound = 0;
 let incCounter = 0;
 let stop1Times = false;
+let last100 = 0;
+let last120 = 0;
+let last250 = 0;
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -71,17 +75,17 @@ function onGameStarted() {
                 log("Iteration OKK!");
             } else {
                 disaster++;
-                log("Disaster :(")
+                log("Disaster :( last100:", last100, " last120: ", last120)
             }
             stopped = false;
             bet = config.bet.value;
-            incCounter = 0;
-            roundBets = 0;
             totalGain += balance - initBalance;
             itTotal++;
             balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
             initBalance = config.initBalance.value == 0 ? balance : config.initBalance.value;
             currentRound = 0;
+            last100 = 0;
+            last120 = 0;
             sequences = [];
             gameType = SENTINEL;
             i = getRandomInt(config.minSentinelTimes.value, config.maxSentinelTimes.value);
@@ -105,6 +109,18 @@ function onGameStarted() {
 
 function onGameEnded(info) {
     var lastGame = engine.history.first();
+    if (lastGame.bust >= 100)
+        last100 = 0;
+    else
+        last100++;
+    if (lastGame.bust >= 120)
+        last120 = 0;
+    else
+        last120++;
+    if (lastGame.bust >= 250)
+        last250 = 0;
+    else
+        last250++;
     sequences.unshift(lastGame.bust);
     if (sequences.length> 1000)
         sequences.pop();
@@ -216,6 +232,8 @@ function getRandomInt(min, max) {
 
 function getNextBets(sequenc,defValues)
 {
+    let last100 = sequenc.findIndex(p => p >= 100);
+
     let notSignificativeValues = false;
     let nextBet;
     let last16 = sequenc.findIndex(p => p >= 16);
@@ -245,16 +263,16 @@ function getNextBets(sequenc,defValues)
         //let sequencCopy = [...sequenc];
         let maxOffset = 0;
 
-        if (last4 > config.last4.value)
+        if (last4 > config.last4.value )
             maxOffset = 4;
 
-        if (last8 > config.last8.value)
+        if (last8 > config.last8.value + (last100 / (config.late100factor.value)))
             maxOffset = 8;
 
-        if (last11 >config.last11.value)
+        if (last11 >config.last11.value + (last100 / (config.late100factor.value * 1.5)))
             maxOffset = 11;
 
-        if (last16 > config.last16.value)
+        if (last16 > config.last16.value +  (last100 / config.late100factor.value))
             maxOffset = 16;
 
         log(last16);
