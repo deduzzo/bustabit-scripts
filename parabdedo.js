@@ -3,8 +3,9 @@ var config = {
     percParabolic: { value: 100, type: 'multiplier', label: '%parabolic' },
     initMinBet: { value: 2.5, type: 'multiplier', label: 'Init Min Bets' },
     last3: { value: 3, type: 'multiplier', label: 'Min times for 3 ' },
-    last6: { value: 8, type: 'multiplier', label: 'Min times for 6' },
-    last11: { value: 12, type: 'multiplier', label: 'Min times for 11' },
+    last5: { value: 7, type: 'multiplier', label: 'Min times for 5' },
+    last8: { value: 9, type: 'multiplier', label: 'Min times for 8' },
+    last11: { value: 11, type: 'multiplier', label: 'Min times for 11' },
     last16: { value: 18, type: 'multiplier', label: 'Min times for 16' },
     late100factor: { value: 3, type: 'multiplier', label: 'Late100 Factor' },
     stop1timesEvery: { value: 400, type: 'multiplier', label: 'Stop 1 Times Every' },
@@ -239,9 +240,12 @@ function getNextBets(sequenc,defValues)
     let last11 = sequenc.findIndex(p => p >= 11);
     if (last11 == -1)
         last11 = sequenc.length- 1;
-    let last6 = sequenc.findIndex(p => p >= 6);
-    if (last6 == -1)
-        last6 = sequenc.length- 1;
+    let last8 = sequenc.findIndex(p => p >= 6);
+    if (last8 == -1)
+        last8 = sequenc.length- 1;
+    let last5 = sequenc.findIndex(p => p >= 6);
+    if (last5 == -1)
+        last5 = sequenc.length- 1;
     let last3 = sequenc.findIndex(p => p >= 3);
     if (last3 == -1)
         last3 = sequenc.length- 1;
@@ -263,7 +267,10 @@ function getNextBets(sequenc,defValues)
         if (last3 > config.last3.value )
             maxOffset = 3;
 
-        if (last6 > config.last6.value + (last100 / (config.late100factor.value * 2)))
+        if (last5 > config.last5.value + (last100 / (config.late100factor.value * 2)))
+            maxOffset = 5;
+
+        if (last8 >config.last8.value + (last100 / config.late100factor.value))
             maxOffset = 8;
 
         if (last11 >config.last11.value + (last100 / config.late100factor.value))
