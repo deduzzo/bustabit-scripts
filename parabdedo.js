@@ -1,6 +1,6 @@
 var config = {
     bet: { value: 100, type: 'balance' },
-    percParabolic: { value: 100, type: 'multiplier', label: '%parabolic' },
+    percParabolic: { value: 90, type: 'multiplier', label: '%parabolic' },
     initMinBet: { value: 2.5, type: 'multiplier', label: 'Init Min Bets' },
     last3: { value: 3, type: 'multiplier', label: 'Min times for 3 ' },
     last6: { value: 6, type: 'multiplier', label: 'Min times for 6' },
