@@ -3,10 +3,11 @@ var config = {
     percParabolic: { value: 100, type: 'multiplier', label: '%parabolic' },
     initMinBet: { value: 2.5, type: 'multiplier', label: 'Init Min Bets' },
     last3: { value: 3, type: 'multiplier', label: 'Min times for 3 ' },
-    last5: { value: 7, type: 'multiplier', label: 'Min times for 5' },
-    last8: { value: 9, type: 'multiplier', label: 'Min times for 8' },
+    last5: { value: 6, type: 'multiplier', label: 'Min times for 5' },
+    last8: { value: 8, type: 'multiplier', label: 'Min times for 8' },
     last11: { value: 11, type: 'multiplier', label: 'Min times for 11' },
-    late100factor: { value: 3, type: 'multiplier', label: 'Late100 Factor' },
+    last15: { value: 15, type: 'multiplier', label: 'Min times for 15' },
+    late100factor: { value: 8, type: 'multiplier', label: 'Late100 Factor' },
     stop1timesEvery: { value: 400, type: 'multiplier', label: 'Stop 1 Times Every' },
     percNotSignificativeValue: { value: 0, type: 'multiplier', label: '% Not Significative Value' },
     minSentinelTimes: { value: 1, type: 'multiplier', label: 'Min Sentinel Times' },
@@ -14,8 +15,8 @@ var config = {
     maxSentinelValues: { value: 10, type: 'multiplier', label: 'Max Sentinel Values' },
     stopDefinitive: { value: 12000, type: 'multiplier', label: 'Script iteration number of games' },
     increaseAmount: { value: 10, type: 'multiplier', label: 'Increase amount %' },
-    increaseEvery: { value: 1000, type: 'multiplier', label: 'Increase every x game' },
-    initBalance: { value: 30000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
+    increaseEvery: { value: 100000, type: 'multiplier', label: 'Increase every x game' },
+    initBalance: { value: 5000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
 log('Script is running..');
@@ -60,6 +61,7 @@ let stop1Times = false;
 let last100 = 0;
 let last120 = 0;
 let last250 = 0;
+let last1000 = 0;
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -75,7 +77,7 @@ function onGameStarted() {
                 log("Iteration OKK!");
             } else {
                 disaster++;
-                log("Disaster :( last100:", last100, " last120: ", last120)
+                log("Disaster :( last100:", last100, " last120: ", last120, "last1000", last1000)
             }
             stopped = false;
             bet = config.bet.value;
@@ -121,6 +123,10 @@ function onGameEnded(info) {
         last250 = 0;
     else
         last250++;
+    if (lastGame.bust >= 1000)
+        last1000 = 0;
+    else
+        last1000++;
     sequences.unshift(lastGame.bust);
     if (sequences.length> 1000)
         sequences.pop();
@@ -248,7 +254,7 @@ function getNextBets(sequenc,defValues)
     let last3 = sequenc.findIndex(p => p >= 3);
     if (last3 == -1)
         last3 = sequenc.length- 1;
-
+    log("3:",last3," 5:", last5," 8:", last8," 11:", last11," 15:",last15);
     if (last15 ==0 && getRandomInt(0,100)<config.percNotSignificativeValue.value && last100 <100)
     {
         // includo tutti i valori
@@ -263,16 +269,22 @@ function getNextBets(sequenc,defValues)
         //let sequencCopy = [...sequenc];
         let maxOffset = 0;
 
-        if (last3 > config.last3.value )
-            maxOffset = 5;
+        if (last3 >= config.last3.value )
+            maxOffset = 3;
 
-        if (last5 > config.last5.value)// + (last100 / (config.late100factor.value * 4)))
-            maxOffset = 8;
+        if (last5 >= config.last5.value)// + (last100 / (config.late100factor.value * 4)))
+            if (maxOffset != 3)
+                maxOffset = 5;
 
-        if (last8 >config.last8.value) //+ (last100 / config.late100factor.value))
-            maxOffset = 11;
+        if (last8 >= config.last8.value + (last100 / config.late100factor.value * 6))
+            if (maxOffset != 5)
+                maxOffset = 8;
 
-        if (last11 >config.last11.value)// + (last100 / config.late100factor.value))
+        if (last11 >= config.last11.value + (last100 / config.late100factor.value * 2))
+            if (maxOffset != 8)
+                maxOffset = 11;
+
+        if (last15 >= config.last15.value + (last100 / config.late100factor.value))
             if (maxOffset != 11)
                 maxOffset = 16;
 
@@ -288,7 +300,7 @@ function getNextBets(sequenc,defValues)
         {
             maxOfSeries = maxOffset-2;
         }
-        console.log("maxoffset:", maxOffset, " maxseries:", maxOfSeries)
+        log("maxoffset:", maxOffset, " maxseries:", maxOfSeries)
         let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= maxOfSeries && parseFloat(p) <= maxOffset);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length - 1)];
     }
