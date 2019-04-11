@@ -266,13 +266,13 @@ function getNextBets(sequenc,defValues)
         if (last3 > config.last3.value )
             maxOffset = 5;
 
-        if (last5 > config.last5.value + (last100 / (config.late100factor.value * 4)))
+        if (last5 > config.last5.value)// + (last100 / (config.late100factor.value * 4)))
             maxOffset = 8;
 
-        if (last8 >config.last8.value + (last100 / config.late100factor.value))
+        if (last8 >config.last8.value) //+ (last100 / config.late100factor.value))
             maxOffset = 11;
 
-        if (last11 >config.last11.value + (last100 / config.late100factor.value))
+        if (last11 >config.last11.value)// + (last100 / config.late100factor.value))
             if (maxOffset != 11)
                 maxOffset = 16;
 
