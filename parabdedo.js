@@ -6,7 +6,6 @@ var config = {
     last5: { value: 7, type: 'multiplier', label: 'Min times for 5' },
     last8: { value: 9, type: 'multiplier', label: 'Min times for 8' },
     last11: { value: 11, type: 'multiplier', label: 'Min times for 11' },
-    last16: { value: 18, type: 'multiplier', label: 'Min times for 16' },
     late100factor: { value: 3, type: 'multiplier', label: 'Late100 Factor' },
     stop1timesEvery: { value: 400, type: 'multiplier', label: 'Stop 1 Times Every' },
     percNotSignificativeValue: { value: 0, type: 'multiplier', label: '% Not Significative Value' },
@@ -234,23 +233,23 @@ function getNextBets(sequenc,defValues)
 
     let notSignificativeValues = false;
     let nextBet;
-    let last16 = sequenc.findIndex(p => p >= 16);
-    if (last16 == -1)
-        last16 = sequenc.length- 1;
+    let last15 = sequenc.findIndex(p => p >= 15);
+    if (last15 == -1)
+        last15 = sequenc.length- 1;
     let last11 = sequenc.findIndex(p => p >= 11);
     if (last11 == -1)
         last11 = sequenc.length- 1;
-    let last8 = sequenc.findIndex(p => p >= 6);
+    let last8 = sequenc.findIndex(p => p >= 8);
     if (last8 == -1)
         last8 = sequenc.length- 1;
-    let last5 = sequenc.findIndex(p => p >= 6);
+    let last5 = sequenc.findIndex(p => p >= 5);
     if (last5 == -1)
         last5 = sequenc.length- 1;
     let last3 = sequenc.findIndex(p => p >= 3);
     if (last3 == -1)
         last3 = sequenc.length- 1;
 
-    if (last16 ==0 && getRandomInt(0,100)<config.percNotSignificativeValue.value && last100 <100)
+    if (last15 ==0 && getRandomInt(0,100)<config.percNotSignificativeValue.value && last100 <100)
     {
         // includo tutti i valori
         log("SPECIAL!");
@@ -265,29 +264,25 @@ function getNextBets(sequenc,defValues)
         let maxOffset = 0;
 
         if (last3 > config.last3.value )
-            maxOffset = 3;
-
-        if (last5 > config.last5.value + (last100 / (config.late100factor.value * 2)))
             maxOffset = 5;
 
-        if (last8 >config.last8.value + (last100 / config.late100factor.value))
+        if (last5 > config.last5.value + (last100 / (config.late100factor.value * 4)))
             maxOffset = 8;
 
-        if (last11 >config.last11.value + (last100 / config.late100factor.value))
-                maxOffset = 11;
+        if (last8 >config.last8.value + (last100 / config.late100factor.value))
+            maxOffset = 11;
 
-        if (last16 > config.last16.value +  (last100 / config.late100factor.value))
+        if (last11 >config.last11.value + (last100 / config.late100factor.value))
             if (maxOffset != 11)
                 maxOffset = 16;
 
-        log(last16);
         if (maxOffset == 0) {
             maxOffset = 12;
             maxOfSeries = 4;
             notSignificativeValues = true;
         }
         else
-            maxOfSeries = Math.max(...sequenc.slice(0,last16));
+            maxOfSeries = Math.max(...sequenc.slice(0,last15));
 
         if ((maxOffset - maxOfSeries) < 0.9)
         {
