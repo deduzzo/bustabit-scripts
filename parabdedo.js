@@ -3,10 +3,10 @@ var config = {
     percParabolic: { value: 100, type: 'multiplier', label: '%parabolic' },
     initMinBet: { value: 2.5, type: 'multiplier', label: 'Init Min Bets' },
     last3: { value: 3, type: 'multiplier', label: 'Min times for 3 ' },
-    last5: { value: 6, type: 'multiplier', label: 'Min times for 5' },
-    last8: { value: 9, type: 'multiplier', label: 'Min times for 8' },
-    last11: { value: 12, type: 'multiplier', label: 'Min times for 11' },
-    last15: { value: 13, type: 'multiplier', label: 'Min times for 15' },
+    last5: { value: 5, type: 'multiplier', label: 'Min times for 5' },
+    last8: { value: 7, type: 'multiplier', label: 'Min times for 8' },
+    last11: { value: 11, type: 'multiplier', label: 'Min times for 11' },
+    last15: { value: 15, type: 'multiplier', label: 'Min times for 15' },
     late100factor: { value: 8, type: 'multiplier', label: 'Late100 Factor' },
     stop1timesEvery: { value: 400, type: 'multiplier', label: 'Stop 1 Times Every' },
     percNotSignificativeValue: { value: 0, type: 'multiplier', label: '% Not Significative Value' },
@@ -142,12 +142,12 @@ function onGameEnded(info) {
     else
         balance -= lastGame.wager;
 
-    if (lastGame.cashedAt && gameType == PARABOLIC) {
-        if (lastGame.bust <=15)
-            lastExit = lastGame.bust;
-        else
-            lastExit = -1;
-    }
+
+    if (lastGame.bust <15 && gameType == PARABOLIC)
+        lastExit = lastGame.bust;
+    else if (lastGame.bust >=15)
+        lastExit = -1;
+
 
     let finishSentinel = false;
     if (gameType == SENTINEL) {
