@@ -63,6 +63,7 @@ let last250 = 0;
 let last1000 = 0;
 let lastExit = -1;
 let lastBustOk = -1;
+let maxBustOk = -1;
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -91,6 +92,7 @@ function onGameStarted() {
             last120 = 0;
             lastExit = -1;
             lastBustOk= -1;
+            maxBustOk = -1;
             sequences = [];
             gameType = SENTINEL;
             i = getRandomInt(config.minSentinelTimes.value, config.maxSentinelTimes.value+1);
@@ -150,8 +152,11 @@ function onGameEnded(info) {
     }
     else if (lastGame.bust >=15) {
         lastBustOk = -1;
+        maxBustOk = -1;
         lastExit = -1;
     }
+    if (lastBustOk > maxBustOk)
+        maxBustOk = lastBustOk;
 
 
     let finishSentinel = false;
@@ -167,7 +172,7 @@ function onGameEnded(info) {
     // we won..
     if ((lastGame.cashedAt && !finishSentinel) || finishSentinel) {
         if (gameType == PARABOLIC || finishSentinel)
-            currentxIndex = getNextBets(sequences, values, lastExit, lastBustOk);
+            currentxIndex = getNextBets(sequences, values, lastExit, lastBustOk, maxBustOk);
         //log ("currentIndex ",currentxIndex)
         //log (finishSentinel)
         roundBets = 0;
@@ -247,7 +252,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
 }
 
-function getNextBets(sequenc,defValues, lastExit, lastBustOk)
+function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk)
 {
     let last100 = sequenc.findIndex(p => p >= 100);
 
@@ -263,6 +268,7 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk)
     if (last6 == -1)
         last6 = sequenc.length- 1;
     let last3 = sequenc.findIndex(p => p >= 3);
+    let maxOfSeries = Math.max(...sequenc.slice(0,last15));
     if (last3 == -1)
         last3 = sequenc.length- 1;
     log("3:",last3," 6:", last6," 11:", last11," 15:",last15);
@@ -285,12 +291,12 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk)
         if (last6 >= config.last6.value )
             maxOffset = 6;
 
-        if (lastBustOk<6)
+        if (maxBustOk >4)
             if (last11 >= config.last11.value)// +last100 > 130 ? (last100 / config.late100factor.value * 2) : 0)
                 if (maxOffset != 6)
                     maxOffset = 11;
 
-        if (lastBustOk<11 && lastBustOk > 4)
+        if (maxBustOk >8)
             if (last15 >= config.last15.value)// + last1000 > 130 ? (last100 / config.late100factor.value): 0)
                     maxOffset = 16;
 
@@ -303,7 +309,7 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk)
         //{
         //    maxOfSeries = maxOffset-2;
         //}
-        log("maxoffset:", maxOffset, " lastExit", lastExit, " lastBustOk", lastBustOk);
+        log("maxoffset:", maxOffset, " lastExit", lastExit, " lastBustOk", lastBustOk, "maxbustOk: ",maxBustOk)
         let min = (maxOffset - lastBustOk) > 8 ? lastBustOk + 6 : lastBustOk;
         let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= min && parseFloat(p) <= maxOffset);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length)];
