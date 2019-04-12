@@ -1,11 +1,11 @@
 var config = {
-    bet: { value: 100, type: 'balance' },
+    bet: { value: 500, type: 'balance' },
     percParabolic: { value: 90, type: 'multiplier', label: '%parabolic' },
     initMinBet: { value: 2.5, type: 'multiplier', label: 'Init Min Bets' },
-    last3: { value: 3, type: 'multiplier', label: 'Min times for 3 ' },
+    last3: { value: 4, type: 'multiplier', label: 'Min times for 3 ' },
     last6: { value: 6, type: 'multiplier', label: 'Min times for 6' },
     last11: { value: 12, type: 'multiplier', label: 'Min times for 11' },
-    last15: { value: 16, type: 'multiplier', label: 'Min times for 15' },
+    last15: { value: 18, type: 'multiplier', label: 'Min times for 15' },
     late100factor: { value: 8, type: 'multiplier', label: 'Late100 Factor' },
     stop1timesEvery: { value: 400, type: 'multiplier', label: 'Stop 1 Times Every' },
     percNotSignificativeValue: { value: 0, type: 'multiplier', label: '% Not Significative Value' },
@@ -14,8 +14,8 @@ var config = {
     maxSentinelValues: { value: 10, type: 'multiplier', label: 'Max Sentinel Values' },
     stopDefinitive: { value: 12000, type: 'multiplier', label: 'Script iteration number of games' },
     increaseAmount: { value: 10, type: 'multiplier', label: 'Increase amount %' },
-    increaseEvery: { value: 100000, type: 'multiplier', label: 'Increase every x game' },
-    initBalance: { value: 5000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
+    increaseEvery: { value: 1000, type: 'multiplier', label: 'Increase every x game' },
+    initBalance: { value: 20000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
 };
 
 log('Script is running..');
