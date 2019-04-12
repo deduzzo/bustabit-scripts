@@ -288,17 +288,17 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk)
         if (last3 >= config.last3.value )
             maxOffset = 3;
 
-        if (last6 >= config.last6.value )
-            maxOffset = 6;
+        if (maxBustOk< 5 && maxBustOk >0)
+            if (last6 >= config.last6.value )
+                maxOffset = 6;
 
         if (maxBustOk >4)
             if (last11 >= config.last11.value)// +last100 > 130 ? (last100 / config.late100factor.value * 2) : 0)
-                if (maxOffset != 6)
-                    maxOffset = 11;
+                maxOffset = 11;
 
-        if (maxBustOk >8)
+        if (maxBustOk > 5 && maxBustOk < 14)
             if (last15 >= config.last15.value)// + last1000 > 130 ? (last100 / config.late100factor.value): 0)
-                    maxOffset = 16;
+                maxOffset = 16;
 
         if (maxOffset == 0 || (maxOffset - lastBustOk) <0.9) {
             maxOffset = 12;
