@@ -2,10 +2,10 @@ var config = {
     bet: { value: 500, type: 'balance' },
     percParabolic: { value: 90, type: 'multiplier', label: '%parabolic' },
     initMinBet: { value: 2.5, type: 'multiplier', label: 'Init Min Bets' },
-    last3: { value: 4, type: 'multiplier', label: 'Min times for 3 ' },
-    last6: { value: 6, type: 'multiplier', label: 'Min times for 6' },
-    last11: { value: 11, type: 'multiplier', label: 'Min times for 11' },
-    last15: { value: 18, type: 'multiplier', label: 'Min times for 15' },
+    last3: { value: 2, type: 'multiplier', label: 'Min times for 3 ' },
+    last6: { value: 5, type: 'multiplier', label: 'Min times for 6' },
+    last11: { value: 10, type: 'multiplier', label: 'Min times for 11' },
+    last15: { value: 15, type: 'multiplier', label: 'Min times for 15' },
     late100factor: { value: 8, type: 'multiplier', label: 'Late100 Factor' },
     stop1timesEvery: { value: 400, type: 'multiplier', label: 'Stop 1 Times Every' },
     percNotSignificativeValue: { value: 0, type: 'multiplier', label: '% Not Significative Value' },
@@ -65,6 +65,7 @@ let lastExit = -1;
 let maxExit = -1;
 let lastBustOk = -1;
 let maxBustOk = -1;
+let maxOfSeries = -1;
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -158,12 +159,19 @@ function onGameEnded(info) {
         maxBustOk = -1;
         lastExit = -1;
         maxExit = -1;
+        maxOfSeries = -1;
     }
     if (lastBustOk > maxBustOk)
         maxBustOk = lastBustOk;
     if (lastExit > maxExit)
         maxExit = lastExit;
 
+    if (lastGame.bust <15) {
+        if (lastGame.bust > maxOfSeries)
+            maxOfSeries = lastGame.bust;
+    }
+    else
+        maxOfSeries = -1;
 
     let finishSentinel = false;
     if (gameType == SENTINEL) {
@@ -178,7 +186,7 @@ function onGameEnded(info) {
     // we won..
     if ((lastGame.cashedAt && !finishSentinel) || finishSentinel) {
         if (gameType == PARABOLIC || finishSentinel)
-            currentxIndex = getNextBets(sequences, values, lastExit, lastBustOk, maxBustOk, maxExit);
+            currentxIndex = getNextBets(sequences, values, lastExit, lastBustOk, maxBustOk, maxExit, maxOfSeries);
         //log ("currentIndex ",currentxIndex)
         //log (finishSentinel)
         roundBets = 0;
@@ -258,7 +266,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
 }
 
-function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit)
+function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit, maxOfSeries)
 {
     let last100 = sequenc.findIndex(p => p >= 100);
 
@@ -276,7 +284,6 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit
     if (last6 == -1)
         last6 = sequenc.length- 1;
     let last3 = sequenc.findIndex(p => p >= 3);
-    let maxOfSeries = Math.max(...sequenc.slice(0,last15));
     if (last3 == -1)
         last3 = sequenc.length- 1;
     log("3:",last3," 6:", last6," 11:", last11," 15:",last15);
@@ -320,6 +327,7 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit
         //}
         log("maxoffset:", maxOffset, " lastExit", lastExit, " lastBustOk", lastBustOk, "maxbustOk: ",maxBustOk, " maxExit:", maxExit, "lastBustIndex:", lastBustIndex)
         let min = (maxOffset - lastBustOk) > 8 ? lastBustOk + 6 : lastBustOk;
+        log ("min:", min, "maxOfSeries:",maxOfSeries);
         let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= min && parseFloat(p) <= maxOffset);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length)];
     }
