@@ -2,15 +2,15 @@ var config = {
     bet: { value: 500, type: 'balance' },
     percParabolic: { value: 90, type: 'multiplier', label: '%parabolic' },
     initMinBet: { value: 2.5, type: 'multiplier', label: 'Init Min Bets' },
-    last3: { value: 2, type: 'multiplier', label: 'Min times for 3 ' },
-    last6: { value: 5, type: 'multiplier', label: 'Min times for 6' },
-    last11: { value: 10, type: 'multiplier', label: 'Min times for 11' },
-    last15: { value: 15, type: 'multiplier', label: 'Min times for 15' },
+    last3: { value: 1, type: 'multiplier', label: 'Min times for 3 ' },
+    last6: { value: 4, type: 'multiplier', label: 'Min times for 6' },
+    last11: { value: 8, type: 'multiplier', label: 'Min times for 11' },
+    last15: { value: 12, type: 'multiplier', label: 'Min times for 15' },
     late100factor: { value: 8, type: 'multiplier', label: 'Late100 Factor' },
     stop1timesEvery: { value: 400, type: 'multiplier', label: 'Stop 1 Times Every' },
     percNotSignificativeValue: { value: 0, type: 'multiplier', label: '% Not Significative Value' },
     minSentinelTimes: { value: 1, type: 'multiplier', label: 'Min Sentinel Times' },
-    maxSentinelTimes: { value: 4, type: 'multiplier', label: 'Max Sentinel Times' },
+    maxSentinelTimes: { value: 2, type: 'multiplier', label: 'Max Sentinel Times' },
     maxSentinelValues: { value: 10, type: 'multiplier', label: 'Max Sentinel Values' },
     stopDefinitive: { value: 12000, type: 'multiplier', label: 'Script iteration number of games' },
     increaseAmount: { value: 10, type: 'multiplier', label: 'Increase amount %' },
@@ -24,6 +24,7 @@ const PARABOLIC = "PARABOLIC";
 const SENTINEL = "SENTINEL";
 const initMinBet = config.initMinBet.value;
 const values = {
+    "1.16": [], "1.33": [], "1.79": [], "1.96": [],
     "2.12": [], "2.31": [], "2.63": [], "2.92": [],
     "3.16": [], "3.29": [], "3.62": [], "3.80": [],
     "4.11": [], "4.21": [], "4.32": [], "4.78": [],
@@ -42,7 +43,7 @@ const values = {
 let currentxIndex = "1.30";
 let bet = config.bet.value;
 for (let key of Object.keys(values))
-    values[key] = calculateBets(parseFloat(key) , bet,parseFloat(key) * 12, false);
+    values[key] = calculateBets(parseFloat(key) , bet,parseFloat(key) * 10, false);
 let sequences = [];
 let gameType = SENTINEL;
 let i = getRandomInt(2,8);
@@ -66,6 +67,8 @@ let maxExit = -1;
 let lastBustOk = -1;
 let maxBustOk = -1;
 let maxOfSeries = -1;
+let numParabolic = 0;
+let totalTimes = 0;
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -104,8 +107,11 @@ function onGameStarted() {
             let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMinBet);
             currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length)];
         }
+        totalTimes++;
+        if (gameType==PARABOLIC)
+            numParabolic++;
         let molt = incCounter > 1 ? (1 + ((incCounter * config.increaseAmount.value)) / 100) : 1;
-        log("IT:", itTotal, "/", disaster, " | ", " | R:", ++currentRound, " | G:", printBit(totalGain + (balance - initBalance)), "$ | T", i, " - Bet ", gameType == SENTINEL ? roundBit(bet * molt) / 100 : roundBit(values[currentxIndex][i] * molt) / 100, " on", currentxIndex, " ", gameType);
+        log("IT:", itTotal, "/", disaster, " | ", " | R:", ++currentRound, "|%parab.: ",((100 * numParabolic) / totalTimes).toFixed(2),"% | G:", printBit(totalGain + (balance - initBalance)), "$ | T", i, " - Bet ", gameType == SENTINEL ? roundBit(bet * molt) / 100 : roundBit(values[currentxIndex][i] * molt) / 100, " on", currentxIndex, " ", gameType);
         engine.bet(gameType == SENTINEL ? roundBit(bet * molt) : roundBit(values[currentxIndex][i] * molt), parseFloat(currentxIndex));
         if (config.increaseAmount.value != 0 && currentRound % config.increaseEvery.value == 0) {
             incCounter++;
@@ -303,18 +309,29 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit
         if (last3 >= config.last3.value )
             maxOffset = 3;
 
-        if (maxExit >0  && lastBustIndex >2 && maxBustOk<4)
+        //if (maxExit >0  && lastBustIndex >2 && maxBustOk<4)
+        if (maxExit >0)
             if (last6 >= config.last6.value )
-                maxOffset = 6;
+                if (maxBustOk<4)
+                    maxOffset = 6;
+                else
+                    maxOffset = 8;
 
-        if (maxBustOk >4 && maxExit >0 && maxBustOk<8 && lastBustIndex>3)
+        //if (maxBustOk >4 && maxExit >0 && maxBustOk<8 && lastBustIndex>3)
+        if (maxExit >0 && maxBustOk<8)
             if (last11 >= config.last11.value)// +last100 > 130 ? (last100 / config.late100factor.value * 2) : 0)
-                if (maxOffset != 6)
+                if (maxBustOk >4 )
                     maxOffset = 11;
+                else
+                    maxOffset = 8;
 
-        if (maxBustOk < 12 && maxBustOk > 6 && lastBustIndex >2 && maxExit>4)
+        //if (maxBustOk < 12 && maxBustOk > 6 && lastBustIndex >2 && maxExit>4)
+        if (maxBustOk < 12)
             if (last15 >= config.last15.value)// + last1000 > 130 ? (last100 / config.late100factor.value): 0)
+                if (maxBustOk > 6)
                     maxOffset = 16;
+                else
+                    maxOffset = 12;
 
         if (maxOffset == 0 || (maxOffset - lastBustOk) <0.9) {
             maxOffset = 12;
