@@ -2,8 +2,9 @@ var config = {
     bet: { value: 500, type: 'balance' },
     percParabolic: { value: 90, type: 'multiplier', label: '%parabolic' },
     initMinBet: { value: 2.5, type: 'multiplier', label: 'Init Min Bets' },
-    last3: { value: 1, type: 'multiplier', label: 'Min times for 3 ' },
-    last6: { value: 4, type: 'multiplier', label: 'Min times for 6' },
+    last2: { value: 3, type: 'multiplier', label: 'Min times for 2 ' },
+    last3: { value: 4, type: 'multiplier', label: 'Min times for 3 ' },
+    last6: { value: 5, type: 'multiplier', label: 'Min times for 6' },
     last11: { value: 8, type: 'multiplier', label: 'Min times for 11' },
     last15: { value: 12, type: 'multiplier', label: 'Min times for 15' },
     late100factor: { value: 8, type: 'multiplier', label: 'Late100 Factor' },
@@ -24,7 +25,7 @@ const PARABOLIC = "PARABOLIC";
 const SENTINEL = "SENTINEL";
 const initMinBet = config.initMinBet.value;
 const values = {
-    "1.16": [], "1.33": [], "1.79": [], "1.96": [],
+    "1.16": [], "1.24": [], "1.49": [], "1.72": [],
     "2.12": [], "2.31": [], "2.63": [], "2.92": [],
     "3.16": [], "3.29": [], "3.62": [], "3.80": [],
     "4.11": [], "4.21": [], "4.32": [], "4.78": [],
@@ -292,7 +293,10 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit
     let last3 = sequenc.findIndex(p => p >= 3);
     if (last3 == -1)
         last3 = sequenc.length- 1;
-    log("3:",last3," 6:", last6," 11:", last11," 15:",last15);
+    let last2 = sequenc.findIndex(p => p >= 2);
+    if (last2 == -1)
+        last2 = sequenc.length- 1;
+    log("2:", last2, " 3:",last3," 6:", last6," 11:", last11," 15:",last15);
     if (last15 ==0 && getRandomInt(0,101)<config.percNotSignificativeValue.value && last100 <100)
     {
         // includo tutti i valori
@@ -306,7 +310,11 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit
         //let sequencCopy = [...sequenc];
         let maxOffset = 0;
 
-        if (last3 >= config.last3.value )
+        if (lastBustOk <1.50)
+            if (last2 >= config.last2.value)
+                maxOffset = 2;
+
+        if (last3 >= config.last3.value)
             maxOffset = 3;
 
         //if (maxExit >0  && lastBustIndex >2 && maxBustOk<4)
@@ -326,7 +334,7 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit
                     maxOffset = 8;
 
         //if (maxBustOk < 12 && maxBustOk > 6 && lastBustIndex >2 && maxExit>4)
-        if (maxBustOk < 12)
+        if (maxExit >0 && maxBustOk < 6)
             if (last15 >= config.last15.value)// + last1000 > 130 ? (last100 / config.late100factor.value): 0)
                 if (maxBustOk > 6)
                     maxOffset = 16;
@@ -343,7 +351,13 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit
         //    maxOfSeries = maxOffset-2;
         //}
         log("maxoffset:", maxOffset, " lastExit", lastExit, " lastBustOk", lastBustOk, "maxbustOk: ",maxBustOk, " maxExit:", maxExit, "lastBustIndex:", lastBustIndex)
-        let min = (maxOffset - lastBustOk) > 8 ? lastBustOk + 6 : lastBustOk;
+        let min = 0;
+        if ((maxOffset - lastBustOk) > 5)
+            min = maxOffset -3;
+        else if(lastBustOk < 0)
+            min = 0;
+        //else if (maxOffset - lastBustOk <2)
+
         log ("min:", min, "maxOfSeries:",maxOfSeries);
         let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= min && parseFloat(p) <= maxOffset);
         nextBet = nextBetTemp[getRandomInt(0, nextBetTemp.length)];
