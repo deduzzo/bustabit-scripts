@@ -2,9 +2,9 @@ var config = {
     bet: { value: 2000, type: 'balance' },
     percParabolic: { value: 100, type: 'multiplier', label: '%parabolic' },
     initMinBet: { value: 2.5, type: 'multiplier', label: 'Init Min Bets' },
-    last2: { value: 4, type: 'multiplier', label: 'Min times for 2 ' },
+    last2: { value: 5, type: 'multiplier', label: 'Min times for 2 ' },
     last3: { value: 3, type: 'multiplier', label: 'Min times for 3 ' },
-    last10: { value: 14, type: 'multiplier', label: 'Min times for 10' },
+    last10: { value: 12, type: 'multiplier', label: 'Min times for 10' },
     last15: { value: 15, type: 'multiplier', label: 'Min times for 15' },
     late100factor: { value: 8, type: 'multiplier', label: 'Late100 Factor' },
     stop1timesEvery: { value: 400, type: 'multiplier', label: 'Stop 1 Times Every' },
@@ -69,6 +69,7 @@ let maxBustOk = -1;
 let maxOfSeries = -1;
 let numParabolic = 0;
 let totalTimes = 0;
+let danger =0;
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -295,7 +296,7 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit
     let last2 = sequenc.findIndex(p => p >= 2);
     if (last2 == -1)
         last2 = sequenc.length- 1;
-    log("2:", last2, " 3:",last3," 10:", last10," 15:",last15);
+    log("2:", last2, " 3:",last3," 7:",last7," 10:", last10," 15:",last15);
     if (last15 ==0 && getRandomInt(0,101)<config.percNotSignificativeValue.value && last100 <100)
     {
         // includo tutti i valori
@@ -317,7 +318,7 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit
                 maxOffset = 3;
 
         //if (maxBustOk >4 && maxExit >0 && maxBustOk<8 && lastBustIndex>3)
-        if (maxExit >0 && maxOffset != 2 && last7 >10)
+        if (maxExit >0 && maxOffset != 2 && last7 >5)
             if (last10 >= config.last10.value)// +last100 > 130 ? (last100 / config.late100factor.value * 2) : 0)
                 if (maxBustOk >5)
                     maxOffset = 10;
@@ -325,13 +326,18 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit
                     maxOffset = 8;
 
         //if (maxBustOk < 12 && maxBustOk > 6 && lastBustIndex >2 && maxExit>4)
-        if (maxExit >0 && maxOffset != 2 && maxOffset != 6 && maxOffset != 8 && maxOffset != 10 && last10 >8) // !(lastBustIndex >10 && lastBustOk >=8)
+        if (maxExit >0 && maxOffset != 2 && maxOffset != 6 && maxOffset != 8 && maxOffset != 10) {// && last7 > 5) // !(lastBustIndex >10 && lastBustOk >=8)
+            if (last10< 2)
+            {
+                danger++;
+                log("DANGER:", danger);
+            }
             if (last15 >= config.last15.value)// + last1000 > 130 ? (last100 / config.late100factor.value): 0)
                 if (maxBustOk > 6)
                     maxOffset = 16;
                 else
                     maxOffset = 12;
-
+        }
         if (maxOffset == 0 || (maxOffset - lastBustOk) <0.9 && maxOffset!= 3 && maxOffset != 2) {
             maxOffset = 12;
             notSignificativeValues = true;
@@ -343,14 +349,13 @@ function getNextBets(sequenc,defValues, lastExit, lastBustOk, maxBustOk, maxExit
         //}
         log("maxoffset:", maxOffset, " lastExit", lastExit, " lastBustOk", lastBustOk, "maxbustOk: ",maxBustOk, " maxExit:", maxExit, "lastBustIndex:", lastBustIndex)
         let min = 0;
-        if ((maxOffset - lastBustOk) > 5)
+        if ((maxOffset - lastBustOk) > 5 || (maxOffset < maxBustOk))
             min = maxOffset -3;
-        else if(lastBustOk < 0)
-            min = 0;
-        if (maxOffset>2 && min<=2)
-            min = 2;
-
-        //else if (maxOffset - lastBustOk <2)
+        else if (maxOffset - maxBustOk <1 || maxBustOk == -1)
+            min = maxOffset -1;
+        else min = maxBustOk;
+        //if (maxOffset>2 && min<=2)
+        //    min = 2;
 
         log ("min:", min, "maxOfSeries:",maxOfSeries);
         let nextBetTemp = Object.keys(defValues).filter(p => parseFloat(p) >= min && parseFloat(p) <= maxOffset);
