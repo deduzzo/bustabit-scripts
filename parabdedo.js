@@ -71,6 +71,7 @@ let maxOfSeries = -1;
 let numParabolic = 0;
 let totalTimes = 0;
 let danger =0;
+let toInc = false;
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -116,7 +117,7 @@ function onGameStarted() {
         log("IT:", itTotal, "/", disaster, " | ", " | R:", ++currentRound, "|%p.: ",((100 * numParabolic) / totalTimes).toFixed(2),"% | G:", printBit(totalGain + (balance - initBalance)), "$ | T", i, " - ", gameType == SENTINEL ? roundBit(bet * molt) / 100 : roundBit(values[currentxIndex][i] * molt) / 100, " on", currentxIndex, " ", gameType.substr(0,1));
         engine.bet(gameType == SENTINEL ? roundBit(bet * molt) : roundBit(values[currentxIndex][i] * molt), parseFloat(currentxIndex));
         if (config.increaseAmount.value != 0 && currentRound % config.increaseEvery.value == 0) {
-            incCounter++;
+            toInc = true;
         }
     }
     else
@@ -203,6 +204,10 @@ function onGameEnded(info) {
             stopped = true;
         }
         if (gameType == PARABOLIC || finishSentinel) {
+            if (toInc) {
+                incCounter++;
+                toInc = false;
+            }
             let perc = getRandomInt(0, 101);
             if ((perc < config.percParabolic.value) && currentxIndex != "-1") {
                 // PARABOLIC
