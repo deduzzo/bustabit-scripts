@@ -158,7 +158,7 @@ function showStats(initBet, mult, currentT, returnT, verbose)
     let bet = initBet;
     let desideredTtotal = 0;
     if (verbose) log("------ INFO -----")
-    for (i =currentT; i<50; i++)
+    for (i =currentT; i<config.maxT.value +4; i++)
     {
         count+=bet;
         if (verbose) log('T:',i,' - bet:', (bet /100).toLocaleString('de-DE'), ' - tot: ', (count /100) .toLocaleString('de-DE'));
