@@ -2,6 +2,7 @@ var config = {
     payout: { value: 2, type: 'multiplier' },
     num: { value: 10000, type: 'multiplier' },
     offset: { value: 10, type: 'multiplier' },
+    av: { value: 10, type: 'multiplier' },
 };
 
 
@@ -22,7 +23,7 @@ let values = [];
 let inMedSeq = [];
 let allValues = [];
 const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
-
+const av = config.av.value;
 function onGameStarted() {
     engine.bet(100, config.payout.value);
 }
@@ -47,7 +48,7 @@ function onGameEnded() {
 
     if (i >= config.num.value)
     {
-        let av = average(values);
+        //let av = average(values);
         const offset = config.offset.value;
         //let tempOutOfMed = 0;
         let tempInMed = 1;
@@ -73,7 +74,7 @@ function onGameEnded() {
                         tempInMed--;
                 }
             });
-        log("MaxEver:", maxEver, " Av:", av, "maxInMEd:", maxInMed);
+        log("MaxEver:", maxEver, " Av:", average(values), "maxInMEd:", maxInMed);
         log("OUTMED:", inMedSeq);
         return;
     }
