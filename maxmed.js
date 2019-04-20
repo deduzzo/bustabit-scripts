@@ -17,11 +17,10 @@ engine.on('GAME_ENDED', onGameEnded);
 let max = 0;
 let i = 0;
 let maxEver = 0;
-let maxOutOfMed = 0;
 let maxInMed = 0;
 let values = [];
 let inMedSeq = [];
-let outMedSeq = [];
+let allValues = [];
 const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
 
 function onGameStarted() {
@@ -59,8 +58,8 @@ function onGameEnded() {
                     inMedSeq.push(tempInMed);
                     if (tempInMed > maxInMed) {
                         maxInMed = tempInMed;
-                        tempInMed = 0;
                     }
+                    tempInMed = 0;
                     //outMedSeq.push(tempOutOfMed);
                     //if (tempOutOfMed > maxOutOfMed) {
                     //    maxOutOfMed = tempOutOfMed;
@@ -68,11 +67,13 @@ function onGameEnded() {
                     //}
                 }
                 else {
-                    //tempOutOfMed++;
-                    tempInMed++;
+                    if (p>= (av + offset))
+                        tempInMed++;
+                    else
+                        tempInMed--;
                 }
             });
-        log("MaxEver:", maxEver, " Av:", av);
+        log("MaxEver:", maxEver, " Av:", av, "maxInMEd:", maxInMed);
         log("OUTMED:", inMedSeq);
         return;
     }
