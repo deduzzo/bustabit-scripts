@@ -1,6 +1,7 @@
 var config = {
     bet: { value: 1500, type: 'balance' },
     payout: { value: 15, type: 'multiplier' },
+    maxT: { value: 2, type: 'multiplier' },
 };
 
 
@@ -19,9 +20,17 @@ const bet = config.bet.value;
 let values = calculateBets(parseFloat(payout) , bet,parseFloat(payout) * 10, false);
 
 function onGameStarted() {
+    if (k>config.maxT.value) {
+        log("disaster!");
+        k = 0;
+    }
+    else
+    {
         log(k, " bet ", roundBit(values[k]) / 100);
         engine.bet(values[k], payout);
         k++;
+    }
+
 }
 
 function onGameEnded() {

@@ -88,6 +88,16 @@ function onGameStarted() {
             } else {
                 disaster++;
                 log("Disaster :( last100:", last100, " last120: ", last120, "last1000", last1000)
+                let last15in1000 = sequences.reduce(function(a, e, i) {
+                    if (e >= 15)
+                        a.push(i);
+                    return a;
+                }, []);
+                var result = last15in1000.reduce(function(r, e, i) {
+                    if(last15in1000[i+1]) r.push(Number((last15in1000[i+1] - e).toFixed(2)));
+                    return r;
+                }, []);
+                log("last15in1000", result)
             }
             stopped = false;
             bet = config.bet.value;
