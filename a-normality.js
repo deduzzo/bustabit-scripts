@@ -23,7 +23,7 @@ const payout = config.payout.value;
 const bet = config.bet.value;
 const av = config.av.value;
 const offset = config.offset.value;
-let values = calculateBets(parseFloat(payout) , bet,parseFloat(payout) * 10, false);
+let values = calculateBets(parseFloat(payout) , bet,parseFloat(payout) * 20, false);
 
 function onGameStarted() {
     if (jump<1)
