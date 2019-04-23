@@ -3,6 +3,7 @@ var config = {
     payout: { value: 15, type: 'multiplier' },
     offset: { value: 10, type: 'multiplier' },
     av: { value: 10, type: 'multiplier' },
+    jumpTimes: { value: 2, type: 'multiplier' },
 };
 
 
@@ -17,6 +18,7 @@ engine.on('GAME_ENDED', onGameEnded);
 
 let i = 0;
 let k = 0;
+let jump = 0;
 const payout = config.payout.value;
 const bet = config.bet.value;
 const av = config.av.value;
@@ -24,11 +26,12 @@ const offset = config.offset.value;
 let values = calculateBets(parseFloat(payout) , bet,parseFloat(payout) * 10, false);
 
 function onGameStarted() {
-    if (i>= (av - offset) && i<= (av +offset)) {
-        log("bet", values[k]);
-        engine.bet(values[k], payout);
-        k++;
-    }
+    if (jump<1)
+        if (i>= (av - offset) && i<= (av +offset)) {
+            log("bet", values[k]);
+            engine.bet(values[k], payout);
+            k++;
+        }
 }
 
 function onGameEnded() {
@@ -38,11 +41,24 @@ function onGameEnded() {
     if (lastGame.cashedAt) {
         i=0;
         k=0;
+        jump = 0;
     }
     if (lastGame.bust < payout)
         i++;
-    else
-        i=0;
+    else {
+        if (jump >0) {
+            jump--;
+            log("jump--");
+            if (jump == 0)
+                jump = -1;
+        }
+        i = 0;
+    }
+
+    if (i> (av + offset) && lastGame.wager && jump != -1) {
+        log("jump");
+        jump = config.jumpTimes.value;
+    }
 }
 
 

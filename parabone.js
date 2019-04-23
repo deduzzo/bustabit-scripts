@@ -1,7 +1,8 @@
 var config = {
-    bet: { value: 1500, type: 'balance' },
-    payout: { value: 15, type: 'multiplier' },
-    maxT: { value: 2, type: 'multiplier' },
+    bet: { value: 1500, type: 'balance', label: 'bet'},
+    payout: { value: 15, type: 'multiplier', label: 'Payout' },
+    maxT: { value: 2, type: 'multiplier', label: 'MaxT' },
+    lateByTime: { value: 2, type: 'multiplier', label: 'late by' },
 };
 
 
@@ -15,6 +16,7 @@ engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
 
 let k = 0;
+let i = 0;
 const payout = config.payout.value;
 const bet = config.bet.value;
 let values = calculateBets(parseFloat(payout) , bet,parseFloat(payout) * 10, false);
@@ -26,9 +28,13 @@ function onGameStarted() {
     }
     else
     {
-        log(k, " bet ", roundBit(values[k]) / 100);
-        engine.bet(values[k], payout);
-        k++;
+        if (i>=config.lateByTime.value) {
+            log(k, " bet ", roundBit(values[k]) / 100);
+            engine.bet(values[k], payout);
+            k++;
+        }
+        else
+            i++;
     }
 
 }
@@ -36,6 +42,8 @@ function onGameStarted() {
 function onGameEnded() {
     var lastGame = engine.history.first();
 
+    if (lastGame.bust >= payout)
+        i = 0;
     // we won..
     if (lastGame.cashedAt) {
         k=0;
