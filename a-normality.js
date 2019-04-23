@@ -19,17 +19,18 @@ engine.on('GAME_ENDED', onGameEnded);
 let i = 0;
 let k = 0;
 let jump = 0;
+let betFactor = config.bet.value / 100;
 const payout = config.payout.value;
 const bet = config.bet.value;
 const av = config.av.value;
 const offset = config.offset.value;
-let values = calculateBets(parseFloat(payout) , bet,parseFloat(payout) * 20, false);
+let values = calculateBets(parseFloat(payout) , 100,parseFloat(payout) * 10, false);
 
 function onGameStarted() {
     if (jump<1)
         if (i>= (av - offset) && i<= (av +offset)) {
-            log("bet", values[k]);
-            engine.bet(values[k], payout);
+            log("bet", roundBit(values[k] * betFactor) / 100);
+            engine.bet(roundBit(values[k] * betFactor), payout);
             k++;
         }
 }

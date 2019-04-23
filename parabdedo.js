@@ -43,8 +43,10 @@ const values = {
 };
 let currentxIndex = "1.30";
 let bet = config.bet.value;
+let betFactor = config.bet.value / 100;
+log(betFactor)
 for (let key of Object.keys(values))
-    values[key] = calculateBets(parseFloat(key) , bet,parseFloat(key) * 10, false);
+    values[key] = calculateBets(parseFloat(key) , 100,parseFloat(key) * 10, false);
 let sequences = [];
 let gameType = SENTINEL;
 let i = getRandomInt(2,8);
@@ -100,7 +102,6 @@ function onGameStarted() {
                 log("last15in1000", result)
             }
             stopped = false;
-            bet = config.bet.value;
             totalGain += balance - initBalance;
             itTotal++;
             balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
@@ -116,7 +117,6 @@ function onGameStarted() {
             sequences = [];
             gameType = SENTINEL;
             i = getRandomInt(config.minSentinelTimes.value, config.maxSentinelTimes.value+1);
-            currentxIndex = "1.30";
             let nextBetTemp = Object.keys(values).filter(p => parseFloat(p) <= initMinBet);
             currentxIndex = nextBetTemp[getRandomInt(0, nextBetTemp.length)];
         }
@@ -124,8 +124,8 @@ function onGameStarted() {
         if (gameType==PARABOLIC)
             numParabolic++;
         let molt = incCounter > 1 ? (1 + ((incCounter * config.increaseAmount.value)) / 100) : 1;
-        log("IT:", itTotal, "/", disaster, " | ", " | R:", ++currentRound, "|%p.: ",((100 * numParabolic) / totalTimes).toFixed(2),"% | G:", printBit(totalGain + (balance - initBalance)), "$ | T", i, " - ", gameType == SENTINEL ? roundBit(bet * molt) / 100 : roundBit(values[currentxIndex][i] * molt) / 100, " on", currentxIndex, " ", gameType.substr(0,1));
-        engine.bet(gameType == SENTINEL ? roundBit(bet * molt) : roundBit(values[currentxIndex][i] * molt), parseFloat(currentxIndex));
+        log("IT:", itTotal, "/", disaster, " | ", " | R:", ++currentRound, "|%p.: ",((100 * numParabolic) / totalTimes).toFixed(2),"% | G:", printBit(totalGain + (balance - initBalance)), "$ | T", i, " - ", gameType == SENTINEL ? roundBit( molt * betFactor * 100) / 100 : roundBit(values[currentxIndex][i] * molt * betFactor) / 100, " on", currentxIndex, " ", gameType.substr(0,1));
+        engine.bet(gameType == SENTINEL ? roundBit(molt * betFactor * 100) : roundBit(values[currentxIndex][i] * molt * betFactor), parseFloat(currentxIndex));
         if (config.increaseAmount.value != 0 && currentRound % config.increaseEvery.value == 0) {
             toInc = true;
         }
