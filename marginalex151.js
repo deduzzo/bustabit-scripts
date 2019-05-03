@@ -9,7 +9,9 @@ var config = {
             freeze: { value: '60', type: 'multiplier', label: 'Last T before flat bet' },
         }
     },
-    maxTimes: { value: 8, type:'multiplier', label: 'Max Times'},
+    maxTimes: { value: 7, type:'multiplier', label: 'Max Times'},
+    stopEvery: { value: 3, type:'multiplier', label: 'Stop Every'},
+    stopAmount: { value: 3, type:'multiplier', label: 'Stop amount'},
     lateTimes: { value: 0, type: 'multiplier', label: 'Late by x times' },
     disasterWaits: {value: 0, type:'multiplier', label: 'Disaster waits:'}
 };
@@ -35,6 +37,7 @@ let currentTimes = 0;
 let timesToStart = lateTimes;
 let disasterToStart = 0;
 let freezing = false;
+let stopTime = config.stopAmount.value;
 
 showStats(currentBet,increaseMult);
 
@@ -44,15 +47,21 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    if (disasterToStart == 0) {
-        if (timesToStart == 0) {
-            log('ROUND ', ++currentRound, ' - DIS: ', disaster, ' - betting', Math.round(currentBet / 100), 'on', payout, 'x');
-            engine.bet(currentBet, payout);
-        }
+    if ((stopTime >0 || stopTime != config.stopAmount.value) && currentTimes != 0 && currentTimes % config.stopEvery.value == 0) {
+        log("WAIT for other");
+        stopTime--;
     }
-    else
-    {
-        log('DISASTER WAIT, ', disasterToStart--, ' games to start - DIS: ', disaster);
+    else {
+        if (stopTime == 0) stopTime = config.stopAmount.value;
+        if (disasterToStart == 0) {
+            if (timesToStart == 0) {
+                log('ROUND ', ++currentRound, ' - DIS: ', disaster, ' - betting', Math.round(currentBet / 100), 'on', payout, 'x');
+                engine.bet(currentBet, payout);
+            }
+        } else {
+            if (currentTimes)
+                log('DISASTER WAIT, ', disasterToStart--, ' games to start - DIS: ', disaster);
+        }
     }
 }
 
