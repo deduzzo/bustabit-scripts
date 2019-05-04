@@ -34,7 +34,7 @@ function onGameStarted() {
     if (waitTime == 0) {
         if (currentRound > config.start2After.value) {
             currentBet = calcBaseBet(roundBets);
-            payout = (currentRound - 1) % (config.payout2Every.value + 1) == 0 ? config.payout.value : config.payout2.value
+            payout = (currentRound) % (config.payout2Every.value + 1) == 0 ? config.payout.value : config.payout2.value
         }
         log('R', ++currentRound, ' - D: ', disaster, ' - ', Math.round(currentBet / 100), 'on', payout, 'x');
         if (currentRound == config.start2After.value)
