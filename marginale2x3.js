@@ -1,9 +1,10 @@
 var config = {
     payout: { value: 3, type: 'multiplier', label: 'Mult' },
-    payout2: { value: 1.8, type: 'multiplier', label: 'Mult 2' },
-    baseBet: { value: 1000, type: 'balance', label: 'Base Bet' },
+    payout2: { value: 2, type: 'multiplier', label: 'Mult 2' },
+    payout2Every: { value: 1, type: 'multiplier', label: 'Mult 1 Every' },
+    baseBet: { value: 200, type: 'balance', label: 'Base Bet' },
     mult: { value: 1.5, type: 'multiplier', label: 'x after KO' },
-    start2After: { value: 15, type:'multiplier', label: 'Start 2 after'},
+    start2After: { value: 20, type:'multiplier', label: 'Start 2 after'},
 };
 
 
@@ -30,9 +31,9 @@ engine.on('GAME_ENDED', onGameEnded);
 function onGameStarted() {
     if (currentRound > config.start2After.value) {
         currentBet = calcBaseBet(roundBets);
-        payout = currentRound % 3 == 0 ? config.payout.value : config.payout2.value
+        payout = currentRound % (config.payout2Every.value +1) == 0 ? config.payout.value : config.payout2.value
     }
-    log('ROUND ', ++currentRound, ' - DIS: ', disaster, ' - betting', Math.round(currentBet / 100), 'on', payout, 'x');
+    log('R', ++currentRound, ' - D: ', disaster, ' - ', Math.round(currentBet / 100), 'on', payout, 'x');
     engine.bet(currentBet, payout);
 }
 
@@ -64,7 +65,7 @@ function onGameEnded() {
                 }
                 if (currentTimes > maxTimesEver)
                     maxTimesEver = currentTimes;
-                log('LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, ' - MAXT:', maxTimesEver, "R:", (roundBets / 100).toFixed(2))
+                log(lastGame.bust,' LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, ' - MAXT:', maxTimesEver, "R:", (roundBets / 100).toFixed(2))
         }
 
 }
