@@ -1,10 +1,11 @@
 var config = {
-    payout: { value: 3, type: 'multiplier', label: 'Mult' },
-    payout2: { value: 2, type: 'multiplier', label: 'Mult 2' },
+    payout: { value: 3, type: 'multiplier', label: 'Mult Normal' },
+    payout2: { value: 1.9, type: 'multiplier', label: 'Mult 2' },
+    waitTime: { value: 4, type: 'multiplier', label: 'Wait Time' },
     payout2Every: { value: 1, type: 'multiplier', label: 'Mult 1 Every' },
-    baseBet: { value: 200, type: 'balance', label: 'Base Bet' },
+    baseBet: { value: 100, type: 'balance', label: 'Base Bet' },
     mult: { value: 1.5, type: 'multiplier', label: 'x after KO' },
-    start2After: { value: 20, type:'multiplier', label: 'Start 2 after'},
+    start2After: { value: 21, type:'multiplier', label: 'Start 2 after'},
 };
 
 
@@ -20,6 +21,7 @@ let maxBets = 0;
 let maxTimesEver = 0;
 let currentTimes = 0;
 let roundBets = 0;
+let waitTime = 0;
 
 showStats(currentBet,increaseMult);
 
@@ -29,44 +31,51 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    if (currentRound > config.start2After.value) {
-        currentBet = calcBaseBet(roundBets);
-        payout = currentRound % (config.payout2Every.value +1) == 0 ? config.payout.value : config.payout2.value
+    if (waitTime == 0) {
+        if (currentRound > config.start2After.value) {
+            currentBet = calcBaseBet(roundBets);
+            payout = (currentRound - 1) % (config.payout2Every.value + 1) == 0 ? config.payout.value : config.payout2.value
+        }
+        log('R', ++currentRound, ' - D: ', disaster, ' - ', Math.round(currentBet / 100), 'on', payout, 'x');
+        if (currentRound == config.start2After.value)
+            waitTime = config.waitTime.value;
+        engine.bet(currentBet, payout);
     }
-    log('R', ++currentRound, ' - D: ', disaster, ' - ', Math.round(currentBet / 100), 'on', payout, 'x');
-    engine.bet(currentBet, payout);
+    else
+        log("Wait for other, ", waitTime--);
 }
 
 function onGameEnded() {
     var lastGame = engine.history.first()
 
+    if (lastGame.wager) {
         // we won..
-        if (lastGame.cashedAt || roundBets<0 )
-        {
-            if (roundBets<0 || lastGame.cashedAt >= 3) {
+        if (lastGame.cashedAt || roundBets < 0.0) {
+            if (roundBets < 0.0 || lastGame.cashedAt >= config.payout.value) {
                 currentBet = config.baseBet.value;
                 payout = config.payout.value;
                 currentTimes = 0;
                 roundBets = 0;
                 currentRound = 0;
                 log('We won, so next bet will be', currentBet / 100, 'bits')
-            }
-            else {
+            } else {
                 roundBets -= Math.floor(lastGame.wager * lastGame.cashedAt) - lastGame.wager;
-                log("WIN: Bust: ", lastGame.bust, " R:", (roundBets / 100).toFixed(2))
+                log("WIN: Bust: ", lastGame.bust, " R:",roundBets, " ", (roundBets / 100).toFixed(2))
             }
+        } else {
+            roundBets += lastGame.wager;
+            currentBet = Math.ceil((currentBet / 100) * increaseMult) * 100;
+            currentTimes++;
+            if (currentBet > maxBets) {
+                maxBets = currentBet;
+            }
+            if (currentTimes > maxTimesEver)
+                maxTimesEver = currentTimes;
+            log(lastGame.bust, ' LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, ' - MAXT:', maxTimesEver, "R:", (roundBets / 100).toFixed(2))
         }
-        else {
-                roundBets += lastGame.wager;
-                currentBet = Math.ceil((currentBet / 100) * increaseMult) * 100;
-                currentTimes++;
-                if (currentBet > maxBets) {
-                    maxBets = currentBet;
-                }
-                if (currentTimes > maxTimesEver)
-                    maxTimesEver = currentTimes;
-                log(lastGame.bust,' LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, ' - MAXT:', maxTimesEver, "R:", (roundBets / 100).toFixed(2))
-        }
+    }
+    else
+        log("bust:", lastGame.bust)
 
 }
 
@@ -86,5 +95,5 @@ function showStats(initBet, mult)
 
 function calcBaseBet(amount)
 {
-    return (amount / 2) + config.baseBet.value;
+    return (amount / (config.payout.value -1)) + config.baseBet.value;
 }
