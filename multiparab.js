@@ -46,7 +46,7 @@ let multFactor = 1;
 
 for (let i =1; i<11; i++) {
     let st = "p" + i.toString();
-    values[(config[st].value).toString()] = calculateBets(config[st].value, 100, config[st].value * 15, false);
+    values[(config[st].value).toString()] = calculateBets(config[st].value, 100, config[st].value * 10, false);
 }
 
 for (let key of Object.keys(values)) {
