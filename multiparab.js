@@ -11,54 +11,55 @@ var config = {
     p4: { value: 3, type: 'multiplier', label: '===> P4' },
     r4: { value: 20, type: 'multiplier', label: 'Late 4' },
     b4: { value: 12000, type: 'balance', label: 'Bet 4'},
-    p5: { value: 10, type: 'multiplier', label: '===> P5' },
-    r5: { value: 50, type: 'multiplier', label: 'Late 5' },
-    b5: { value: 1000, type: 'balance', label: 'Bet 5'},
-    p6: { value: 15, type: 'multiplier', label: '===> P6' },
-    r6: { value: 75, type: 'multiplier', label: 'Late 6' },
-    b6: { value: 1000, type: 'balance', label: 'Bet 6'},
+    p5: { value: 5, type: 'multiplier', label: '===> P5' },
+    r5: { value: 34, type: 'multiplier', label: 'Late 5' },
+    b5: { value: 10000, type: 'balance', label: 'Bet 5'},
+    p6: { value: 10, type: 'multiplier', label: '===> P6' },
+    r6: { value: 66, type: 'multiplier', label: 'Late 6' },
+    b6: { value: 10000, type: 'balance', label: 'Bet 6'},
     p7: { value: 20, type: 'multiplier', label: '===> P7' },
-    r7: { value: 100, type: 'multiplier', label: 'Late 7' },
-    b7: { value: 1000, type: 'balance', label: 'Bet 7'},
-    p8: { value: 30, type: 'multiplier', label: '===> P8' },
-    r8: { value: 120, type: 'multiplier', label: 'Late 8' },
-    b8: { value: 1000, type: 'balance', label: 'Bet 8'},
+    r7: { value: 166, type: 'multiplier', label: 'Late 7' },
+    b7: { value: 10000, type: 'balance', label: 'Bet 7'},
+    p8: { value: 40, type: 'multiplier', label: '===> P8' },
+    r8: { value: 300, type: 'multiplier', label: 'Late 8' },
+    b8: { value: 4000, type: 'balance', label: 'Bet 8'},
     p9: { value: 50, type: 'multiplier', label: '===> P9' },
-    r9: { value: 150, type: 'multiplier', label: 'Late 9' },
-    b9: { value: 1000, type: 'balance', label: 'Bet 9'},
+    r9: { value: 351, type: 'multiplier', label: 'Late 9' },
+    b9: { value: 4000, type: 'balance', label: 'Bet 9'},
     p10: { value: 100, type: 'multiplier', label: '===> P10' },
-    r10: { value: 300, type: 'multiplier', label: 'Late 10' },
-    b10: { value: 1000, type: 'balance', label: 'Bet 10'},
-    p11: { value: 2, type: 'multiplier', label: '===> P11' },
-    r11: { value: 6, type: 'multiplier', label: 'Late 11' },
-    b11: { value: 1000, type: 'balance', label: 'Bet 11'},
-    p12: { value: 3, type: 'multiplier', label: '===> P12' },
-    r12: { value: 15, type: 'multiplier', label: 'Late 12' },
-    b12: { value: 1000, type: 'balance', label: 'Bet 12'},
-    p13: { value: 5, type: 'multiplier', label: '===> P13' },
-    r13: { value: 20, type: 'multiplier', label: 'Late 13' },
+    r10: { value: 800, type: 'multiplier', label: 'Late 10' },
+    b10: { value: 2000, type: 'balance', label: 'Bet 10'},
+    p11: { value: 200, type: 'multiplier', label: '===> P11' },
+    r11: { value: 1400, type: 'multiplier', label: 'Late 11' },
+    b11: { value: 1200, type: 'balance', label: 'Bet 11'},
+    p12: { value: 300, type: 'multiplier', label: '===> P12' },
+    r12: { value: 1850, type: 'multiplier', label: 'Late 12' },
+    b12: { value: 1200, type: 'balance', label: 'Bet 12'},
+    p13: { value: 500, type: 'multiplier', label: '===> P13' },
+    r13: { value: 2450, type: 'multiplier', label: 'Late 13' },
     b13: { value: 1000, type: 'balance', label: 'Bet 13'},
-    p14: { value: 8, type: 'multiplier', label: '===> P14' },
-    r14: { value: 40, type: 'multiplier', label: 'Late 14' },
+    p14: { value: 600, type: 'multiplier', label: '===> P14' },
+    r14: { value: 3200, type: 'multiplier', label: 'Late 14' },
     b14: { value: 1000, type: 'balance', label: 'Bet 14'},
-    p15: { value: 10, type: 'multiplier', label: '===> P15' },
-    r15: { value: 50, type: 'multiplier', label: 'Late 15' },
+    p15: { value: 800, type: 'multiplier', label: '===> P15' },
+    r15: { value: 3900, type: 'multiplier', label: 'Late 15' },
     b15: { value: 1000, type: 'balance', label: 'Bet 15'},
-    p16: { value: 15, type: 'multiplier', label: '===> P16' },
-    r16: { value: 75, type: 'multiplier', label: 'Late 16' },
+    p16: { value: 1000, type: 'multiplier', label: '===> P16' },
+    r16: { value: 4400, type: 'multiplier', label: 'Late 16' },
     b16: { value: 1000, type: 'balance', label: 'Bet 16'},
-    p17: { value: 20, type: 'multiplier', label: '===> P17' },
-    r17: { value: 100, type: 'multiplier', label: 'Late 17' },
-    b17: { value: 1000, type: 'balance', label: 'Bet 17'},
-    p18: { value: 30, type: 'multiplier', label: '===> P18' },
-    r18: { value: 120, type: 'multiplier', label: 'Late 18' },
-    b18: { value: 1000, type: 'balance', label: 'Bet 18'},
-    p19: { value: 50, type: 'multiplier', label: '===> P19' },
-    r19: { value: 150, type: 'multiplier', label: 'Late 19' },
-    b19: { value: 1000, type: 'balance', label: 'Bet 19'},
-    p20: { value: 100, type: 'multiplier', label: '===> P20' },
-    r20: { value: 300, type: 'multiplier', label: 'Late 20' },
-    b20: { value: 1000, type: 'balance', label: 'Bet 20'},
+    p17: { value: 2000, type: 'multiplier', label: '===> P17' },
+    r17: { value: 10000, type: 'multiplier', label: 'Late 17' },
+    b17: { value: 500, type: 'balance', label: 'Bet 17'},
+    p18: { value: 4000, type: 'multiplier', label: '===> P18' },
+    r18: { value: 17000, type: 'multiplier', label: 'Late 18' },
+    b18: { value: 400, type: 'balance', label: 'Bet 18'},
+    p19: { value: 7000, type: 'multiplier', label: '===> P19' },
+    r19: { value: 30000, type: 'multiplier', label: 'Late 19' },
+    b19: { value: 200, type: 'balance', label: 'Bet 19'},
+    p20: { value: 10000, type: 'multiplier', label: '===> P20' },
+    r20: { value: 28000, type: 'multiplier', label: 'Late 20' },
+    b20: { value: 100, type: 'balance', label: 'Bet 20'},
+    multx: { value: 2, type: 'multiplier', label: 'Mult All Bet for x'},
     balance: { value: 10000000, type: 'balance', label: 'Balance to use'},
 };
 
@@ -92,8 +93,8 @@ showMax();
 
 function onGameStarted() {
     if (currentValue != -1) {
-        log("T",k, ": bet ", roundBit((values[currentValue.toString()][k] * multFactor)) / 100, " on ", currentValue, "x");
-        engine.bet(roundBit(values[currentValue.toString()][k] * multFactor), currentValue);
+        log("T",k, ": bet ", roundBit((values[currentValue.toString()][k] * multFactor * config.multx.value)) / 100, " on ", currentValue, "x");
+        engine.bet(roundBit(values[currentValue.toString()][k] * multFactor * config.multx.value), currentValue);
         k++;
     }
 }
@@ -194,7 +195,7 @@ function showMax()
     {
         let k = 0;
         while (config.balance.value> amount) {
-            amount += roundBit(values[(config["p" + i.toString()].value).toString()][k++] * (config["b" + i.toString()].value / 100));
+            amount += roundBit(values[(config["p" + i.toString()].value).toString()][k++] * (config["b" + i.toString()].value / 100) * config.multx.value);
         }
         k--;
         log (config["p" + i.toString()].value, " ->", config["r" + i.toString()].value, " + ", k, " =", config["r" + i.toString()].value + k);
