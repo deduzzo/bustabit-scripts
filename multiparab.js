@@ -71,7 +71,7 @@ log('Script is running..');
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
 
-let currentValue = -1;
+let currentValue = { value: -1, lates: 0};
 let values = [];
 let latesValue = [];
 let playedGames = [];
@@ -92,9 +92,9 @@ for (let key of Object.keys(values)) {
 showMax()
 
 function onGameStarted() {
-    if (currentValue != -1) {
-        log("T",k, ": bet ", roundBit((values[currentValue.toString()][k] * multFactor * config.multx.value)) / 100, " on ", currentValue, "x");
-        engine.bet(roundBit(values[currentValue.toString()][k] * multFactor * config.multx.value), currentValue);
+    if (currentValue.value != -1) {
+        log("T",k, "[RT", currentValue.lates + k +1,"] - bet ", roundBit((values[currentValue.value.toString()][k] * multFactor * config.multx.value)) / 100, " on ", currentValue.value, "x");
+        engine.bet(roundBit(values[currentValue.value.toString()][k] * multFactor * config.multx.value), currentValue.value);
         k++;
     }
 }
@@ -107,7 +107,7 @@ function onGameEnded() {
         log("Bust:", lastGame.bust);
         if (lastGame.cashedAt)
         {
-            currentValue = -1;
+            currentValue = {value: -1, lates: 0}
             log(lastGame.bust, " WIN!!");
             showGames();
             k = 0;
@@ -116,10 +116,10 @@ function onGameEnded() {
     if (k == 0) {
         let index = findFirstLateValue(latesValue);
         if (index != -1) {
-            currentValue = config["p" + index.toString()].value;
+            currentValue = {value: config["p" + index.toString()].value, lates: config["r" + index.toString()].value};
             multFactor = config["b" + index.toString()].value / 100;
-            log("CurrentVALUE:", currentValue)
-            playedGames[currentValue.toString()] = playedGames[currentValue.toString()]+1;
+            log("CurrentVALUE:", currentValue.value)
+            playedGames[currentValue.value.toString()] = playedGames[currentValue.value.toString()]+1;
         }
     }
 }
@@ -151,7 +151,10 @@ function calculateBets(mult,initBet,desideredT, verbose)
 }
 
 function roundBit(bet) {
-    return Math.round(bet / 100) * 100;
+    if (bet<90)
+        return 100;
+    else
+        return Math.round(bet / 100) * 100;
 }
 
 
@@ -211,7 +214,7 @@ function showMax()
                 amount += roundBit(values[(config["p" + i.toString()].value).toString()][k++] * (config["b" + i.toString()].value / 100) * config.multx.value);
             }
             k--;
-            log(config["p" + i.toString()].value, " ->", config["r" + i.toString()].value, " + ", k, " =", config["r" + i.toString()].value + k);
+            log(config["p" + i.toString()].value, " ->", config["r" + i.toString()].value, " + ", k, " = T", config["r" + i.toString()].value + k);
             amount = 0;
             k = 0;
         }
