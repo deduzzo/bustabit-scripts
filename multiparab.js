@@ -59,7 +59,7 @@ var config = {
     p20: { value: 10000, type: 'multiplier', label: '===> P20' },
     r20: { value: 28000, type: 'multiplier', label: 'Late 20' },
     b20: { value: 100, type: 'balance', label: 'Bet 20'},
-    multx: { value: 2, type: 'multiplier', label: 'Mult All Bet for x'},
+    multx: { value: 1, type: 'multiplier', label: 'Mult All Bet for x'},
     low: { value: 0, type: 'multiplier', label: '0: High Before, 1 Low Before'},
     balance: { value: 10000000, type: 'balance', label: 'Balance to use'},
 };
