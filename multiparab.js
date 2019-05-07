@@ -113,7 +113,7 @@ function onGameEnded() {
             k = 0;
         }
     }
-    else {
+    if (k == 0) {
         let index = findFirstLateValue(latesValue);
         if (index != -1) {
             currentValue = config["p" + index.toString()].value;
