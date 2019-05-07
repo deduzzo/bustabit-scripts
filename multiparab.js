@@ -60,6 +60,7 @@ var config = {
     r20: { value: 28000, type: 'multiplier', label: 'Late 20' },
     b20: { value: 100, type: 'balance', label: 'Bet 20'},
     multx: { value: 2, type: 'multiplier', label: 'Mult All Bet for x'},
+    low: { value: 0, type: 'multiplier', label: '0: High Before, 1 Low Before'},
     balance: { value: 10000000, type: 'balance', label: 'Balance to use'},
 };
 
@@ -79,17 +80,16 @@ let multFactor = 1;
 
 for (let i =1; i<21; i++) {
     let st = "p" + i.toString();
-    values[(config[st].value).toString()] = calculateBets(config[st].value, 100, config[st].value * 10, false);
+    if (!isNaN(config[st].value) && config[st].value != null)
+        values[(config[st].value).toString()] = calculateBets(config[st].value, 100, config[st].value * 10, false);
 }
 
 for (let key of Object.keys(values)) {
-    if (key != "") {
         latesValue[key] = 0;
         playedGames[key] = 0;
-    }
 }
 
-showMax();
+showMax()
 
 function onGameStarted() {
     if (currentValue != -1) {
@@ -168,10 +168,21 @@ function updateLates(lastBust, lv)
 
 function findFirstLateValue(l)
 {
-    for (let i=20; i>0; i--)
+    if(config.low.value)
     {
-        if (l[config["p"+ i.toString()].value] > config["r"+ i.toString()].value)
-            return i;
+        for (let i=1; i<21; i++)
+        {
+            if (!isNaN(config["p"+ i.toString()].value) && config["p"+ i.toString()].value != null)
+                if (l[config["p"+ i.toString()].value] > config["r"+ i.toString()].value)
+                    return i;
+        }
+    }
+    else {
+        for (let i = 20; i>0; i--) {
+            if (!isNaN(config["p"+ i.toString()].value) && config["p"+ i.toString()].value != null)
+                if (l[config["p" + i.toString()].value] > config["r" + i.toString()].value)
+                    return i;
+        }
     }
     return -1;
 }
@@ -182,7 +193,8 @@ function showGames()
     let str = "";
     for (let i=1; i<21; i++)
     {
-        str += config["p"+ i.toString()].value + ": " + playedGames[(config["p"+ i.toString()].value).toString()] +" - ";
+        if (!isNaN(config["p"+ i.toString()].value) && config["p"+ i.toString()].value != null)
+            str += config["p"+ i.toString()].value + ": " + playedGames[(config["p"+ i.toString()].value).toString()] +" - ";
     }
     log (str.substr(0,str.length -2));
 }
@@ -193,14 +205,16 @@ function showMax()
     log("max");
     for (let i=1; i<21; i++)
     {
-        let k = 0;
-        while (config.balance.value> amount) {
-            amount += roundBit(values[(config["p" + i.toString()].value).toString()][k++] * (config["b" + i.toString()].value / 100) * config.multx.value);
+        if (!isNaN(config["p"+ i.toString()].value) && config["p"+ i.toString()].value != null) {
+            let k = 0;
+            while (config.balance.value > amount) {
+                amount += roundBit(values[(config["p" + i.toString()].value).toString()][k++] * (config["b" + i.toString()].value / 100) * config.multx.value);
+            }
+            k--;
+            log(config["p" + i.toString()].value, " ->", config["r" + i.toString()].value, " + ", k, " =", config["r" + i.toString()].value + k);
+            amount = 0;
+            k = 0;
         }
-        k--;
-        log (config["p" + i.toString()].value, " ->", config["r" + i.toString()].value, " + ", k, " =", config["r" + i.toString()].value + k);
-        amount = 0;
-        k=0;
     }
 
 }
