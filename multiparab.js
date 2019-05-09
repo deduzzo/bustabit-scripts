@@ -269,6 +269,6 @@ function calculateAutoBet(amount, late, maxT, values)
             tot += values[i];
         }
     } while (tot<amount)
-    return (bet - 100) / 100;
+    return bet != 100 ? (bet - 100) / 100 : -1;
 
 }
