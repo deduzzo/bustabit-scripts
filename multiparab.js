@@ -83,6 +83,8 @@ var config = {
     multx: { value: 1, type: 'multiplier', label: 'Mult All Bet for x'},
     low: { value: 1, type: 'multiplier', label: '0: High Before, 1 Low Before'},
     balance: { value: 10000000, type: 'balance', label: 'Balance to use'},
+    useGameCycle: { value: 0, type: 'multiplier', label: '1 Use Game Cycle'},
+    cycleGames: { value: 20000, type: 'multiplier', label: 'GamesCycle'},
 };
 
 
@@ -99,6 +101,9 @@ let playedGames = [];
 let k =0;
 let gains = [];
 let multfactors = [];
+let disaster = 0;
+let balance = config.useGameCycle == 1 ? config.balance.value : userInfo.balance;
+let singleParabBalance = 0;
 
 for (let i =1; i<21; i++) {
     let st = "p" + i.toString();
@@ -120,9 +125,22 @@ showMax();
 
 function onGameStarted() {
     if (currentValue.value != -1) {
-        log("T",k, "[RT", currentValue.lates + k +1,"] - bet ", roundBit((values[currentValue.value.toString()][k] * multfactors[currentValue.value] * config.multx.value)) / 100, " on ", currentValue.value, "x");
-        engine.bet(roundBit(values[currentValue.value.toString()][k] * multfactors[currentValue.value] * config.multx.value), currentValue.value);
-        k++;
+        if (balance < roundBit((values[currentValue.value.toString()][k] * multfactors[currentValue.value] * config.multx.value)))
+        {
+            disaster++;
+            for (let key of Object.keys(values)) {
+                playedGames[key] = 0;
+                gains[key] = 0;
+            }
+            singleParabBalance = 0;
+            balance = config.useGameCycle == 1 ? config.balance.value : userInfo.balance;
+            currentValue = -1;
+        }
+        else {
+            log("T", k, "[RT", currentValue.lates + k + 1, "] - bet ", roundBit((values[currentValue.value.toString()][k] * multfactors[currentValue.value] * config.multx.value)) / 100, " on ", currentValue.value, "x", "ROUND[", printBit(singleParabBalance), "]");
+            engine.bet(roundBit(values[currentValue.value.toString()][k] * multfactors[currentValue.value] * config.multx.value), currentValue.value);
+            k++;
+        }
     }
 }
 
@@ -130,15 +148,23 @@ function onGameEnded() {
     var lastGame = engine.history.first();
     latesValue = updateLates(lastGame.bust, latesValue);
 
+
     if (lastGame.wager) {
         log("Bust:", lastGame.bust);
         if (lastGame.cashedAt)
         {
+            singleParabBalance = 0;
+            balance += gains[currentValue.value] + ((lastGame.cashedAt * lastGame.wager) - lastGame.wager);
             gains[currentValue.value] = gains[currentValue.value] + ((lastGame.cashedAt * lastGame.wager) - lastGame.wager);
             currentValue = {value: -1, lates: 0}
-            log(lastGame.bust, " WIN!!");
+            log("[DIS:", disaster, "] ", lastGame.bust, " WIN!!", " BAL: ", printBit(balance));
+
             showGames();
             k = 0;
+        }
+        else {
+            singleParabBalance += lastGame.wager;
+            balance -= lastGame.wager;
         }
     }
     if (k == 0) {
