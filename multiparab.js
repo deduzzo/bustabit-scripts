@@ -134,7 +134,7 @@ function onGameStarted() {
             }
             singleParabBalance = 0;
             balance = config.useGameCycle == 1 ? config.balance.value : userInfo.balance;
-            currentValue = -1;
+            currentValue.valùe = -1;
         }
         else {
             log("T", k, "[RT", currentValue.lates + k + 1, "] - bet ", roundBit((values[currentValue.value.toString()][k] * multfactors[currentValue.value] * config.multx.value)) / 100, " on ", currentValue.value, "x", "ROUND[", printBit(singleParabBalance), "]");
@@ -271,10 +271,10 @@ function showMax()
         if (!isNaN(config["p"+ i.toString()].value) && config["p"+ i.toString()].value != null) {
             let k = 0;
             while (config.balance.value > amount) {
-                amount += roundBit(values[(config["p" + i.toString()].value).toString()][k++] * (config["b" + i.toString()].value / 100) * config.multx.value);
+                amount += roundBit(values[(config["p" + i.toString()].value).toString()][k++] * multfactors[config["p" + i.toString()].value] * config.multx.value);;
             }
             k--;
-            log(config["p" + i.toString()].value, " ->", config["r" + i.toString()].value, " + ", k, " = T", config["r" + i.toString()].value + k, " bet ", config.autoValue.value == 1 ? "[A] ": " ", printBit(multfactors[config["p" + i.toString()].value] * 100));
+            log(config["p" + i.toString()].value, " ->", config["r" + i.toString()].value, " + ", k, " = T", config["r" + i.toString()].value + k, " bet ", config.autoValue.value == 1 ? "[A] ": " ", printBit(multfactors[config["p" + i.toString()].value] * 100 * config.multx.value));
             amount = 0;
             k = 0;
         }
@@ -292,7 +292,7 @@ function calculateAutoBet(amount, late, maxT, values)
         bet += 100;
         for (let i =0; i<(maxT - late); i++)
         {
-            tot += values[i];
+            tot += values[i] * config.multx.value;
         }
     } while (tot<amount)
     return bet != 100 ? (bet - 100) / 100 : -1;
