@@ -274,7 +274,7 @@ function showMax()
                 amount += roundBit(values[(config["p" + i.toString()].value).toString()][k++] * multfactors[config["p" + i.toString()].value] * config.multx.value);;
             }
             k--;
-            log(config["p" + i.toString()].value, " ->", config["r" + i.toString()].value, " + ", k, " = T", config["r" + i.toString()].value + k, " bet ", config.autoValue.value == 1 ? "[A] ": " ", printBit(multfactors[config["p" + i.toString()].value] * 100 * config.multx.value));
+            log(config["p" + i.toString()].value, " ->", config["r" + i.toString()].value, " + ", k, " = T", config["r" + i.toString()].value + k, " bet ", config.autoValue.value == 1 ? "[A] ": " ", multfactors[config["p" + i.toString()].value] == -1 ? "*NO*" : printBit(multfactors[config["p" + i.toString()].value] * 100 * config.multx.value));
             amount = 0;
             k = 0;
         }
