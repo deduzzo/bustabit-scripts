@@ -81,6 +81,8 @@ var config = {
     m20: { value: 82394, type: 'multiplier', label: 'Max 20 (for Auto)'},
     autoValue: { value: 1, type: 'multiplier', label: '1 for Auto'},
     multx: { value: 1, type: 'multiplier', label: 'Mult All Bet for x'},
+    divLateFactor: { value: 4, type: 'multiplier', label: 'Parameter to divide all late factor'},
+    divMaxFactor: { value: 2, type: 'multiplier', label: 'Parameter to divide all max factor'},
     low: { value: 1, type: 'multiplier', label: '0: High Before, 1 Low Before'},
     balance: { value: 10000000, type: 'balance', label: 'Balance to use'},
     useGameCycle: { value: 0, type: 'multiplier', label: '1 Use Game Cycle'},
@@ -113,7 +115,7 @@ for (let i =1; i<21; i++) {
     if (!isNaN(config[st].value) && config[st].value != null)
         values[(config[st].value).toString()] = calculateBets(config[st].value, 100, config[st].value * 10, false);
     if (config.autoValue.value == 1)
-        multfactors[config["p" + i.toString()].value] = calculateAutoBet(config.balance.value, config["r" + i.toString()].value, config["m" + i.toString()].value, values[(config[st].value).toString()])
+        multfactors[config["p" + i.toString()].value] = calculateAutoBet(config.balance.value, Math.floor(config["r" + i.toString()].value / config.divLateFactor.value), Math.floor(config["m" + i.toString()].value / config.divMaxFactor.value), values[(config[st].value).toString()])
     else
         multfactors[config["p" + i.toString()].value] = config["b" + i.toString()].value / 100;
 }
@@ -130,6 +132,7 @@ function onGameStarted() {
         if (config.useGameCycle.value == 1 && ((k!=0 && balance < roundBit((values[currentValue.value.toString()][k] * multfactors[currentValue.value] * config.multx.value))) || stopCycle == 1))
         {
             if (stopCycle != 1) {
+                latesValue[currentValue.value.toString()] = 0;
                 disaster++;
                 log("disaster :(");
             }
@@ -251,14 +254,14 @@ function findFirstLateValue(l)
         for (let i=1; i<21; i++)
         {
             if (!isNaN(config["p"+ i.toString()].value) && config["p"+ i.toString()].value != null && multfactors[config["p" + i.toString()].value] != -1)
-                if (l[config["p"+ i.toString()].value] > config["r"+ i.toString()].value)
+                if (l[config["p"+ i.toString()].value]  > Math.floor(config["r"+ i.toString()].value / config.divLateFactor.value))
                     return i;
         }
     }
     else {
         for (let i = 20; i>0; i--) {
             if (!isNaN(config["p"+ i.toString()].value) && config["p"+ i.toString()].value != null && multfactors[config["p" + i.toString()].value] != -1)
-                if (l[config["p" + i.toString()].value] > config["r" + i.toString()].value)
+                if (l[config["p" + i.toString()].value] > Math.floor(config["r" + i.toString()].value / config.divLateFactor.value))
                     return i;
         }
     }
@@ -287,7 +290,7 @@ function showMax()
                 amount += roundBit(values[(config["p" + i.toString()].value).toString()][k++] * multfactors[config["p" + i.toString()].value] * config.multx.value);;
             }
             k--;
-            log(config["p" + i.toString()].value, " ->", config["r" + i.toString()].value, " + ", k, " = T", config["r" + i.toString()].value + k, " bet ", config.autoValue.value == 1 ? "[A] ": " ", multfactors[config["p" + i.toString()].value] == -1 ? "*NO*" : printBit(multfactors[config["p" + i.toString()].value] * 100 * config.multx.value));
+            log(config["p" + i.toString()].value, " ->", Math.floor(config["r" + i.toString()].value / config.divLateFactor.value), " + ", k, " = T", Math.floor(config["r" + i.toString()].value / config.divLateFactor.value) + k, " bet ", config.autoValue.value == 1 ? "[A] ": " ", multfactors[config["p" + i.toString()].value] == -1 ? "*NO*" : printBit(multfactors[config["p" + i.toString()].value] * 100 * config.multx.value));
             amount = 0;
             k = 0;
         }
