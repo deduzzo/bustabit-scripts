@@ -119,12 +119,15 @@ function onGameEnded() {
             maxBets--;
         }
         if (lastGame.cashedAt !== 0) {
-            if (config.strategyOnLoss.value == 'x2div2' && lastGame.cashedAt < mult)
-                mult -= parseInt(lastGame.cashedAt, 10) -1 ;
+            log("Vinto!");
+            if (config.strategyOnLoss.value == 'x2div2' && lastGame.cashedAt < mult.toFixed(2)) {
+                mult -= parseInt(lastGame.cashedAt, 10) - 1;
+                log("Ricalcolo X: ", mult);
+            }
             //VINTO
             else {
                 if (config.strategyOnLoss.value == 'x2div2' || (config.strategyOnLoss.value == 'recoveryValue' && multRecovered == 0)) {
-                    log("vinto!!, riparto!");
+                    log("Riparto!");
                     var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
                     reset();
                 } else {
