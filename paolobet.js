@@ -85,43 +85,44 @@ function onGameEnded() {
         log("PUNTEGGIO ALTO, ASPETTO...");
         highResult = timesToStop;
     }
-        if (lastGame.wager) {
-            if (lastGame.cashedAt === 0) {
-                //PERSO
+    if (lastGame.wager) {
+        if (lastGame.cashedAt === 0) {
+            //PERSO
+            if (normalBets == 0) {
+                failBets++;
+                if (config.strategyOnLoss.value == 'x2div2') {
+                    if (failBets % timesToChange == 0) {
+                        negativeChanges++;
+                        mult = (mult / multFactor) + negativeChanges;
+                        baseBet *= multFactor;
+                    } else {
+                        mult++;
+                    }
+                } else if (config.strategyOnLoss.value == 'recoveryValue') {
+                    if (multRecovered == 0 && normalBets == 0) multRecovered = mult;
+                    multRecovered++;
+                }
+            } else {
+                mult++;
+                normalBets--;
                 if (normalBets == 0) {
-                    failBets++;
-                    if (config.strategyOnLoss.value == 'x2div2') {
-                        if (failBets % timesToChange == 0) {
-                            negativeChanges++;
-                            mult = (mult / multFactor) + negativeChanges;
-                            baseBet *= multFactor;
-                        } else {
-                            mult++;
-                        }
+                    if (config.strategyOnLoss.value == 'x2div') {
+                        negativeChanges = 1;
+                        mult = (mult / multFactor) + negativeChanges;
+                        baseBet *= multFactor;
                     } else if (config.strategyOnLoss.value == 'recoveryValue') {
                         if (multRecovered == 0 && normalBets == 0) multRecovered = mult;
                         multRecovered++;
                     }
-                } else {
-                    mult++;
-                    normalBets--;
-                    if (normalBets == 0) {
-                        if (config.strategyOnLoss.value == 'x2div') {
-                            negativeChanges = 1;
-                            mult = (mult / multFactor) + negativeChanges;
-                            baseBet *= multFactor;
-                        } else if (config.strategyOnLoss.value == 'recoveryValue') {
-                            if (multRecovered == 0 && normalBets == 0) multRecovered = mult;
-                            multRecovered++;
-                        }
-                    }
                 }
-                maxBets--;
             }
-            if (lastGame.cashedAt !== 0) {
-                if (config.strategyOnLoss.value == 'x2div2' && lastGame.cashedAt < mult)
-                        mult -= parseInt(lastGame.cashedAt, 10);
-                //VINTO
+            maxBets--;
+        }
+        if (lastGame.cashedAt !== 0) {
+            if (config.strategyOnLoss.value == 'x2div2' && lastGame.cashedAt < mult)
+                mult -= parseInt(lastGame.cashedAt, 10) -1 ;
+            //VINTO
+            else {
                 if (config.strategyOnLoss.value == 'x2div2' || (config.strategyOnLoss.value == 'recoveryValue' && multRecovered == 0)) {
                     log("vinto!!, riparto!");
                     var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
@@ -130,16 +131,14 @@ function onGameEnded() {
                     multRecovered -= lastGame.cashedAt;
                     if (multRecovered > 0)
                         log('Vinto, restano ', multRecovered, 'x da recuperare!')
-                    else
-                    {
+                    else {
                         log('Recuperato! Ripartiamo!');
                         reset();
                     }
-
                 }
             }
-
         }
+    }
 }
 
 function reset()
