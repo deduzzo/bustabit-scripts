@@ -1,15 +1,15 @@
 var config = {
     mult: {
-        value: 1.12, type: 'multiplier', label: 'Moltiplicatore'
+        value: 10, type: 'multiplier', label: 'Moltiplicatore'
     },
     bet: {
-        value: 7000, type: 'balance', label: 'Puntata iniziale'
+        value: 2000, type: 'balance', label: 'Puntata iniziale'
     },
     highValue: {
-        value: 80, type: 'multiplier', label: 'Punteggio Alto'
+        value: 200, type: 'multiplier', label: 'Punteggio Alto'
     },
     timesToStop: {
-        value: 3, type: 'multiplier', label: 'n giocate di stop in caso di punteggio alto'
+        value: 10, type: 'multiplier', label: 'n giocate di stop in caso di punteggio alto'
     },
     strategyOnHigh: {
         value: 'stop', type: 'radio', label: 'In caso di punteggio superiore a quello alto:',
@@ -22,20 +22,20 @@ var config = {
         value: 120, type: 'multiplier', label: 'Quante volte fare una puntata normale'
     },
     timesToChange: {
-        value: 0, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
+        value: 200, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
     },
     strategyOnLoss: {
-        value: 'recoveryValue', type: 'radio', label: 'cosa fai in caso non vinci x volte?',
+        value: 'x2div2', type: 'radio', label: 'cosa fai in caso non vinci x volte?',
         options: {
             x2div2: { value: 'x2div2', type: 'noop', label: 'raddoppia e dimezza' },
             recoveryValue: { value: 'recoveryValue', type: 'noop', label: 'recupera puntando ad un valore fisso' },
         }
     },
     multFactor: {
-        value: 40, type: 'multiplier', label: 'fattore di moltiplicazione / divisione o di recupero'
+        value: 20, type: 'multiplier', label: 'fattore di moltiplicazione / divisione o di recupero'
     },
     maxBets: {
-        value: 250, type: 'multiplier', label: 'max volte prima di ricominciare dal principio'
+        value: 90000, type: 'multiplier', label: 'max volte prima di ricominciare dal principio'
     },
 };
 
@@ -119,6 +119,8 @@ function onGameEnded() {
                 maxBets--;
             }
             if (lastGame.cashedAt !== 0) {
+                if (config.strategyOnLoss.value == 'x2div2' && lastGame.cashedAt < mult)
+                        mult -= parseInt(lastGame.cashedAt, 10);
                 //VINTO
                 if (config.strategyOnLoss.value == 'x2div2' || (config.strategyOnLoss.value == 'recoveryValue' && multRecovered == 0)) {
                     log("vinto!!, riparto!");
