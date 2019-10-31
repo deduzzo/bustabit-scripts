@@ -1,20 +1,20 @@
 var config = {
     mult: {
-        value: 12, type: 'multiplier', label: 'Moltiplicatore'
+        value: 10, type: 'multiplier', label: 'Moltiplicatore'
     },
     bet: {
         value: 100, type: 'balance', label: 'Puntata iniziale'
     },
     normalBets: {
-        value: 120, type: 'multiplier', label: 'Quante volte fare una puntata normale'
+        value: 100, type: 'multiplier', label: 'Quante volte fare una puntata normale'
     },
     timesToChange: {
-        value: 200, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
+        value: 150, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
     },
     multFactor: {
         value: 20, type: 'multiplier', label: 'fattore di moltiplicazione / divisione'
     },
-    initBalance: { value: 1000000, type: 'balance', label: 'Init Balance' },
+    initBalance: { value: 2000000, type: 'balance', label: 'Init Balance' },
     simulation: { value: 1, type: 'multiplier', label: 'Simulate?' },
 };
 
@@ -41,7 +41,7 @@ while (true){
     this.log(gainString, " | BET ", baseBet/100, ": ", parseFloat(mult).toFixed(2), "x , RES:", multiplier);
 
     if (multiplier <= mult) {
-        balance -= Math.floor(multiplier * baseBet) - baseBet;
+        balance -= baseBet;
             //PERSO
             if (normalBets === 0) {
                 failBets++;
@@ -63,7 +63,7 @@ while (true){
             }
         }
         else {
-            balance += Math.floor(multiplier * baseBet) - baseBet;
+            balance += (Math.floor(mult * baseBet) - baseBet);
             //VINTO
             this.log("Riparto!");
             reset();
