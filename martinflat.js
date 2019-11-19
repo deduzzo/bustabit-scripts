@@ -1,16 +1,22 @@
 var config = {
     payout: { value: 1.9, type: 'multiplier', label: 'Mult' },
-    mult2: { value: 1.5, type: 'multiplier', label: 'Game 2 Mult' },
-    multiply2: { value: 3, type: 'multiplier', label: 'Game 2 Iteration Multiply' },
+    mult2: { value: 3, type: 'multiplier', label: 'Game 2 Mult' },
+    multiply2: { value: 1.5, type: 'multiplier', label: 'Game 2 Iteration Multiply' },
     baseBet1: { value: 5000, type: 'balance', label: 'Base Bet for Flat Game (Auto calculated for MAXt strategy)' },
-    maxT: { value: 7, type: 'multiplier', label: 'T to recover (auto value calculated) ' },
-    startGame2After: { value: 1, type: 'multiplier', label: 'XLost to Activate game 2' },
+    maxT: { value: 20, type: 'multiplier', label: 'T to recover (auto value calculated) ' },
+    startGame2After: { value: 2, type: 'multiplier', label: 'XLost to Activate game 2' },
     initialBuffer: { value: 20, type: 'multiplier', label: 'Initial Buffer' },
     minimumLostTimesToStart: { value: 10, type: 'multiplier', label: 'Minimum buffer to start GAME 2' },
-    offsetAlwaysStart: { value: 4, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
+    offsetAlwaysStart: { value: 6, type: 'multiplier', label: 'Force start GAME 2 after Xlost + this offset' },
     updateBetAfter: { value: 50, type: 'multiplier', label: 'Update bets after x times' },
-    stopDefinitive: { value: 30000, type: 'multiplier', label: 'Script iteration number of games' },
-    initBalance: { value: 5000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
+    stopDefinitive: { value: 60000, type: 'multiplier', label: 'Script iteration number of games' },
+    initBalance: { value: 9000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
+    specialMedTimes: { value: 10, type: 'multiplier', label: 'Special med times' },
+    specialMaxVaueForMid: { value: 20, type: 'multiplier', label: 'Special max value for med' },
+    specialRoundMed: { value: 11, type: 'multiplier', label: 'Special round med on 20' },
+    specialRoundMolt: { value: 4000, type: 'multiplier', label: 'Multipler normal basebet for special' },
+    specialRoundBust: { value: 3, type: 'multiplier', label: 'Bust for special' },
+    specialMinDistance: { value: 10, type: 'multiplier', label: 'Min Distance from one special to the next' },
 };
 
 let toRecalibrate = false;
@@ -42,6 +48,15 @@ let totalGain = 0;
 let itTotal = 0;
 let disaster = 0;
 let g2safe = false;
+let values = [];
+let special = 0;
+
+var average = arr => arr.reduce( ( p, c ) => {
+    if (c>=config.specialMaxVaueForMid.value)
+        return (config.specialMaxVaueForMid.value + p);
+    else
+        return (c + p);
+}, 0 ) / arr.length;
 
 updateBet(true);
 
@@ -50,56 +65,64 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    if (stopped ||
-        (currentGameType == 2 && currentBet2 != currentBet2Default && currentTimes >= (config.maxT.value - config.startGame2After.value) &&
-            (
-                (g2safe && game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) ||
-                (!g2safe && game2VirtualLosts > config.maxT.value)
-            )
-        )) {
-        if (stopped)
-        {
-            log('Definitive STOP!!!, reboot!!! :D');
-            stopped = false;
-        }
-        else
-        {
-            log('Disaster!!  :( Reboot');
-            disaster++;
-        }
-        totalGain += balance - initBalance;
-        itTotal++;
-        safebets = 0;
-        game1Losts = -config.initialBuffer.value;
-        currentGameType = 1;
-        g2safe = false;
-        currentBet2 = currentBet2Default;
-        currentTimes = 0;
-        game2VirtualLosts = 0;
-        balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
-        initBalance = config.initBalance.value == 0 ? balance : config.initBalance.value;
-        currentRound = 0;
-        updateBet(true);
-    }
-    else
+    let avg20 = average(values);
+    if (avg20 >= config.specialRoundMed.value && special>config.specialMinDistance.value)
     {
-        let gainString = ' |$' + ((totalGain + (balance - initBalance)) / 100000).toFixed(2) +  'k safe% ' + ((safebets * 100) / currentRound ).toFixed(2);
-        if (currentGameType == 2) {
-            // game 2
-            log('IT', itTotal +1,  '/', disaster,'-R', ++currentRound, ' G2 ', Math.round(currentBet2 / 100), 'on', mult2, ' - vT:', game2VirtualLosts, ' rT:', currentTimes, gainString);
-        } else if (currentGameType == 1) {
-            // flat game
-            log('IT', itTotal +1,  '/', disaster,' -R', ++currentRound, ' G1 ', Math.round(basebet1 / 100), 'on', mult1, 'x - vT:', game2VirtualLosts, ' toR: ', game1Losts, gainString);
+        log("SPECIAL ", (basebet1 * config.specialRoundMolt.value) / 100, " bits on ", config.specialRoundBust.value, "x")
+        engine.bet(basebet1 * config.specialRoundMolt.value, config.specialRoundBust.value)
+        special = 0;
+    }
+    else {
+        if (stopped ||
+            (currentGameType == 2 && currentBet2 != currentBet2Default && currentTimes >= (config.maxT.value - config.startGame2After.value) &&
+                (
+                    (g2safe && game2VirtualLosts > (config.maxT.value + offsetAlwaysStart)) ||
+                    (!g2safe && game2VirtualLosts > config.maxT.value)
+                )
+            )) {
+            if (stopped) {
+                log('Definitive STOP!!!, reboot!!! :D');
+                stopped = false;
+            } else {
+                log('Disaster!!  :( Reboot');
+                disaster++;
+            }
+            totalGain += balance - initBalance;
+            itTotal++;
+            safebets = 0;
+            game1Losts = -config.initialBuffer.value;
+            currentGameType = 1;
+            g2safe = false;
+            currentBet2 = currentBet2Default;
+            currentTimes = 0;
+            game2VirtualLosts = 0;
+            balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
+            initBalance = config.initBalance.value == 0 ? balance : config.initBalance.value;
+            currentRound = 0;
+            updateBet(true);
+        } else {
+            let gainString = ' |$' + ((totalGain + (balance - initBalance)) / 100000).toFixed(2) + 'k safe% ' + ((safebets * 100) / currentRound).toFixed(2);
+            if (currentGameType == 2) {
+                // game 2
+                log('IT', itTotal + 1, '/', disaster, '-R', ++currentRound, ' G2 ', Math.round(currentBet2 / 100), 'on', mult2, ' - vT:', game2VirtualLosts, ' rT:', currentTimes, gainString);
+            } else if (currentGameType == 1) {
+                // flat game
+                log('IT', itTotal + 1, '/', disaster, ' -R', ++currentRound, ' G1 ', Math.round(basebet1 / 100), 'on', mult1, 'x - vT:', game2VirtualLosts, ' toR: ', game1Losts, gainString);
+            }
+            currentGameType == 2 ? engine.bet(currentBet2, mult2) : engine.bet(basebet1, mult1);
+            if (game1Losts < minimumLostTimesToStart) safebets++;
+            if (currentRound % 100 == 0) showSmallStats();
+            if (currentRound % updateBetAfter == 0) toRecalibrate = true;
         }
-        currentGameType == 2 ? engine.bet(currentBet2, mult2) : engine.bet(basebet1, mult1);
-        if (game1Losts < minimumLostTimesToStart) safebets++;
-        if (currentRound % 100 == 0) showSmallStats();
-        if (currentRound % updateBetAfter == 0) toRecalibrate = true;
     }
 }
 
 function onGameEnded() {
     var lastGame = engine.history.first();
+    special++;
+    values.unshift(lastGame.bust);
+    if (values.length> config.specialMedTimes.value)
+        values.pop();
     let currentMult = lastGame.cashedAt;
     if (lastGame.wager) {
         let currentB = currentGameType == 2 ? currentBet2 : basebet1;
