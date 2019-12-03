@@ -14,13 +14,17 @@ engine.bet(100, config.payout.value);
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
-
 let i = 0;
 let k = 0;
 const payout = config.payout.value;
 const bet = config.bet.value;
 let currentBet  = bet;
 let precBet = 0;
+let first = true;
+
+
+showStats(bet, config.maxT.value);
+
 
 function onGameStarted() {
     if (k>config.maxT.value) {
@@ -50,6 +54,7 @@ function onGameEnded() {
 
     if (lastGame.bust >= payout) {
         currentBet = bet;
+        first = true;
         precBet = 0;
         i = 0;
         k = 0;
@@ -57,8 +62,11 @@ function onGameEnded() {
     else if (!lastGame.cashedAt && lastGame.wager) {
         i++;
         if(currentBet == bet) {
-            precBet = bet;
-            currentBet = bet * 2;
+            if (!first) {
+                precBet = bet;
+                currentBet = bet * 2;
+            }
+            else first = false;
         }
         else {
             let precBetTemp = currentBet;
@@ -71,4 +79,27 @@ function onGameEnded() {
 
 function roundBit(bet) {
     return Math.round(bet / 100) * 100;
+}
+
+
+function showStats(initBet, maxT) {
+    let i;
+    let count = 0;
+    let bet = initBet;
+    let first = true;
+    let precBet = bet;
+    log("------ INFO -----")
+    for (i = 0; i < maxT + 2; i++) {
+        if (precBet == bet) {
+            if (!first) {
+                bet = bet * 2;
+            } else first = false;
+        } else {
+            let precBetTemp = bet;
+            bet = precBet + bet;
+            precBet = precBetTemp;
+        }
+        count += bet;
+        log('T:', i, ' - bet:', (bet / 100).toLocaleString('de-DE'), ' - tot: ', (count / 100).toLocaleString('de-DE'));
+    }
 }
