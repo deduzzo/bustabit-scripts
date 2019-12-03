@@ -107,6 +107,7 @@ function onGameEnded() {
         highResult = timesToStop;
     }
     if (lastGame.wager) {
+        //se ho giocato
         if (lastGame.cashedAt === 0) {
             balance -= baseBet;
             if ((balance - baseBet) < 0) {
