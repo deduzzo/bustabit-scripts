@@ -152,7 +152,7 @@ function onGameEnded() {
             if (currentRound > stopDefinitive) stopped = true;
         } else {
             //balance update
-            balance -= baseBet;
+            balance -= lastGame.wager;
             // we lost
             if (currentGameType == 1) {
                 game1Losts++;
