@@ -75,6 +75,8 @@ function onGameEnded() {
                 }
             });
         log("MaxEver:", maxEver, " Av:", average(values), "maxInMEd:", maxInMed);
+        for (i=maxEver; i>maxEver-20; i--)
+            log("MAXCOUNT(",i + "):" + [...values].filter(p=> p === i).length);
         log("OUTMED:", inMedSeq);
         return;
     }

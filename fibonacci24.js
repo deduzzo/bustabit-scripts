@@ -1,10 +1,11 @@
 var config = {
-    bet: { value: 600, type: 'balance', label: 'bet'},
-    payout: { value: 2.4, type: 'multiplier', label: 'Payout' },
+    bet: { value: 10000, type: 'balance', label: 'bet'},
+    payout: { value: 3, type: 'multiplier', label: 'Payout' },
     maxT: { value: 200, type: 'multiplier', label: 'MaxT' },
     lateByTime: { value: 0, type: 'multiplier', label: 'late by' },
+    itOkMultiply: { value: 1.5, type: 'multiplier', label: 'itOkMultiply' },
     initBalance: { value: 1000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
-    stopDefinitive: { value: 1000, type: 'multiplier', label: 'Script iteration number of games' },
+    stopDefinitive: { value: 3, type: 'multiplier', label: 'Script iteration number of times' },
 };
 
 
@@ -24,9 +25,10 @@ const stopDefinitive = config.stopDefinitive.value;
 let balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
 let initBalance = balance;
 let totalGain = 0;
-let currentRound = 0;
+let currentRound = 1;
 let disaster = 0;
 let itTotal = 1;
+let itOkMultiply = config.itOkMultiply.value;
 
 
 showStats(config.bet.value, config.maxT.value);
@@ -36,10 +38,7 @@ function onGameStarted() {
     let gainString ="IT" + itTotal + "/"+disaster+"|" + currentRound + '| $T' + ((totalGain + (balance - initBalance)) / 100000).toFixed(2) + 'k| ' + ((balance - initBalance) / 100000).toFixed(2) + 'k| ';
     if (k>config.maxT.value) {
         log("disaster!");
-        i = 0;
-        k = 0;
-        currentBet = config.bet.value;
-        precBet = 0;
+        resetCycle();
     }
     else
     {
@@ -56,11 +55,12 @@ function onGameStarted() {
 }
 
 function onGameEnded() {
-    currentRound++;
     var lastGame = engine.history.first();
-    log ("bust:", lastGame.bust)
+    if (lastGame.wager)
+        log ("bust:", lastGame.bust, lastGame.bust >= payout ? "WIN!!!!": "");
 
-    if (lastGame.bust >= payout) {
+    if (lastGame.bust >= payout && lastGame.wager) {
+        currentRound++;
         balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
         if (currentRound > stopDefinitive) {
             log("Iteration END!!");
@@ -74,9 +74,12 @@ function onGameEnded() {
         i++;
         if (currentBet === config.bet.value) {
             if (!first) {
-                precBet = config.bet.value;
-                currentBet = config.bet.value * 2;
-            } else first = false;
+                precBet = currentBet;
+                currentBet = currentBet * 2;
+            } else
+            {
+                first = false;
+            }
         } else {
             let precBetTemp = currentBet;
             currentBet = precBet + currentBet;
@@ -121,7 +124,8 @@ function showStats(initBet, maxT) {
 
 function reset()
 {
-    currentBet = config.bet.value;
+    itOkMultiply = config.itOkMultiply.value;
+    currentBet  = roundBit(config.bet.value * (currentRound * config.itOkMultiply.value)) ;
     first = true;
     precBet = 0;
     i = 0;
@@ -131,11 +135,13 @@ function reset()
 
 function resetCycle()
 {
+    currentRound = 1;
+    i = 0;
+    k = 0;
     itTotal++;
     totalGain += balance - initBalance;
     balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
-    currentRound = 0;
-    currentBet  = config.bet.value;
+    currentBet  = roundBit(config.bet.value * (currentRound * config.itOkMultiply.value)) ;
     precBet = 0;
     first = true;
     reset();
