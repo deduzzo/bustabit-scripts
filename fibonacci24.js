@@ -1,9 +1,9 @@
 var config = {
-    bet: { value: 10000, type: 'balance', label: 'bet'},
+    bet: { value: 100000, type: 'balance', label: 'bet'},
     payout: { value: 3, type: 'multiplier', label: 'Payout' },
-    maxT: { value: 200, type: 'multiplier', label: 'MaxT' },
+    maxT: { value: 20, type: 'multiplier', label: 'MaxT' },
     lateByTime: { value: 0, type: 'multiplier', label: 'late by' },
-    itOkMultiply: { value: 1.5, type: 'multiplier', label: 'itOkMultiply' },
+    itOkMultiply: { value: 1, type: 'multiplier', label: 'itOkMultiply' },
     initBalance: { value: 1000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
     stopDefinitive: { value: 3, type: 'multiplier', label: 'Script iteration number of times' },
 };
