@@ -25,7 +25,7 @@ const stopDefinitive = config.stopDefinitive.value;
 let balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
 let initBalance = balance;
 let totalGain = 0;
-let currentRound = 1;
+let currentRound = 0;
 let disaster = 0;
 let itTotal = 1;
 let itOkMultiply = config.itOkMultiply.value;
@@ -125,7 +125,7 @@ function showStats(initBet, maxT) {
 function reset()
 {
     itOkMultiply = config.itOkMultiply.value;
-    currentBet  = roundBit(config.bet.value * (currentRound * config.itOkMultiply.value)) ;
+    currentBet  = roundBit(config.bet.value + (currentRound * config.itOkMultiply.value * config.bet.value)) ;
     first = true;
     precBet = 0;
     i = 0;
@@ -135,13 +135,13 @@ function reset()
 
 function resetCycle()
 {
-    currentRound = 1;
+    currentRound = 0;
     i = 0;
     k = 0;
     itTotal++;
     totalGain += balance - initBalance;
     balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
-    currentBet  = roundBit(config.bet.value * (currentRound * config.itOkMultiply.value)) ;
+    currentBet  = roundBit(config.bet.value + (currentRound * config.itOkMultiply.value * config.bet.value)) ;
     precBet = 0;
     first = true;
     reset();
