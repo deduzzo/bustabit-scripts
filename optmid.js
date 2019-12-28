@@ -4,10 +4,18 @@ var config = {
     maxT: { value: 200, type: 'multiplier', label: 'MaxT' },
     lateByTime: { value: 0, type: 'multiplier', label: 'late by' },
     initBalance: { value: 1000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
-    stopDefinitive: { value: 1000, type: 'multiplier', label: 'Script iteration number of games' },
-    mid10: { value: 2, type: 'multiplier', label: 'mid10' },
-    mid50: { value: 6, type: 'multiplier', label: 'mid50' },
-    maxT50: { value: 6, type: 'multiplier', label: 'maxT 50' },
+    stopDefinitive: { value: 1000, type: 'multiplier', label: 'Script iteration number of times' },
+    itOkMultiply: { value: 1, type: 'multiplier', label: 'itOkMultiply' },
+    mid10: { value: 2, type: 'multiplier', label: 'mid10 min' },
+    mid20: { value: 2, type: 'multiplier', label: 'mid20 min' },
+    mid50: { value: 6, type: 'multiplier', label: 'mid50 min' },
+    mid10max: { value: 2, type: 'multiplier', label: 'mid10 max' },
+    mid20max: { value: 2, type: 'multiplier', label: 'mid20 max' },
+    mid50max: { value: 10, type: 'multiplier', label: 'mid50 max' },
+    maxT20: { value: 6, type: 'multiplier', label: 'maxT 20' },
+    late100: { value: 120, type: 'multiplier', label: 'late 100' },
+    debug: { value: 0, type: 'multiplier', label: 'debug' },
+
 };
 
 
@@ -24,6 +32,7 @@ let first = true;
 let wait = false;
 
 
+
 const stopDefinitive = config.stopDefinitive.value;
 let balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
 let initBalance = balance;
@@ -31,10 +40,18 @@ let totalGain = 0;
 let currentRound = 0;
 let disaster = 0;
 let itTotal = 1;
-const average = (arr, max) => arr.reduce( ( p, c ) => c<=max ? p + c : p + max, 0 ) / arr.length;
-let last50 = [];
+const average = (arr) => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+const last10 = () => last100.length > 10 ? last100.slice(0,10) : [];
+const last20 = () => last100.length > 20 ? last100.slice(0,20) : [];
+const last50 = () => last100.length > 50 ? last100.slice(0,50) : [];
+const first50 = () => last100.length > 99 ? last100.slice(49) : [];
+const first10 = () => last100.length > 99 ? last100.slice(9,19) : [];
+const first20 = () => last100.length > 99 ? last100.slice(19,39) : [];
+let last100 = [];
 let disasterMidString = "";
-
+let itOkMultiply = config.itOkMultiply.value;
+let started = false;
+let late100 = 0;
 
 
 showStats(config.bet.value, config.maxT.value);
@@ -46,10 +63,7 @@ function onGameStarted() {
         if (k > config.maxT.value) {
             log("disaster!");
             //showDisasterString();
-            i = 0;
-            k = 0;
-            currentBet = config.bet.value;
-            precBet = 0;
+            resetCycle();
         } else {
             if (i >= config.lateByTime.value) {
                 log(gainString, "T", k++, " bet ", roundBit(currentBet) / 100);
@@ -63,24 +77,49 @@ function onGameStarted() {
 }
 
 function onGameEnded() {
-    currentRound++;
     var lastGame = engine.history.first();
-    pushLast(last50, lastGame.bust);
-    let max10 = average(last50,10);
-    let max100 = average(last50,50);
+    if (lastGame.bust >= 100)
+        late100 = 0;
+    else
+        late100++;
+    if (lastGame.wager) {
+        log("bust:", lastGame.bust, lastGame.bust >= payout ? "WIN!!!!" : "");
+        if (config.debug.value === 1) log(getDisasterString());
+    }
+    last100.unshift(lastGame.bust);
+    if (last100.length>100)
+        last100.pop();
+    let max10 = average(last10());
+    let max20 = average(last20());
+    let max50 = average(last50());
+     let maxfirst10 = average(first10());
+     let maxfirst20 = average(first20());
+     let maxfirst50 = average(first50());
     //log ("bust:", lastGame.bust);
 
-    if (first && (max10 < config.mid10.value || max100 < config.mid50.value || maxT(last50,config.payout.value)>=config.maxT50.value))
+    if (!started && first &&
+        (
+            (late100 !== 0 && late100 < config.late100.value) ||
+            max10 < config.mid10.value ||
+            max20 < config.mid20.value ||
+            max50 < config.mid50.value ||
+            max10 > config.mid10max.value ||
+            max20 > config.mid20max.value ||
+            max50 > config.mid50max.value ||
+            maxT(last20(),config.payout.value)>=config.maxT20.value
+        )
+    )
     {
-        log (currentRound, "wait");
         wait = true;
     }
     else {
+        started = true;
         // log ("max10:", max10);
         // log ("max100:", max100);
         // log("maxT:",maxT(last50,config.payout.value))
         wait = false;
-        if (lastGame.bust >= payout) {
+        if (lastGame.bust >= payout && lastGame.wager) {
+            currentRound++;
             balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
             if (currentRound > stopDefinitive) {
                 log("Iteration END!!");
@@ -104,7 +143,7 @@ function onGameEnded() {
             if ((balance - currentBet) < 0) {
                 disaster++;
                 log("Disaster!! :(");
-                showDisasterString();
+                if (config.debug.value === 1) showDisasterString();
                 showSmallStats();
                 resetCycle();
             }
@@ -142,7 +181,8 @@ function showStats(initBet, maxT) {
 
 function reset()
 {
-    currentBet = config.bet.value;
+    itOkMultiply = config.itOkMultiply.value;
+    currentBet  = roundBit(config.bet.value + (currentRound * config.itOkMultiply.value * config.bet.value)) ;
     first = true;
     precBet = 0;
     i = 0;
@@ -156,9 +196,12 @@ function resetCycle()
     totalGain += balance - initBalance;
     balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
     currentRound = 0;
-    currentBet  = config.bet.value;
     precBet = 0;
     first = true;
+    started=false;
+    i = 0;
+    k = 0;
+    currentBet  = roundBit(config.bet.value + (currentRound * config.itOkMultiply.value * config.bet.value)) ;
     reset();
 }
 
@@ -166,17 +209,14 @@ function showSmallStats(){
     log("DIS:", disaster, ' WINS: ', itTotal - disaster, 'BALANCE: ', balance / 100, ' - gain ', (balance - initBalance) / 100);
 }
 
-function pushLast(sequences, val, quanti = 50)
-{
-    sequences.unshift(val);
-    if (sequences.length > quanti)
-        sequences.pop();
-}
-
 function showDisasterString()
 {
-    disasterMidString += ", [M10:" + average(last50,10).toString() + ",M50:" + average(last50,50).toString() + "]";
+    disasterMidString += "," + getDisasterString();
     log(disasterMidString);
+}
+
+function getDisasterString() {
+    return " [M10:" + average(last10()).toFixed(2).toString() + " M20:" + average(last20()).toFixed(2).toString() + " M50:" + average(last50()).toString() + "]" +" [ML10:" + average(first10()).toString() + " ML20:" + average(first20()).toFixed(2).toString() + " ML50:" + average(first50()).toFixed(2).toString() + "]\n";
 }
 
 function maxT(arr, val)

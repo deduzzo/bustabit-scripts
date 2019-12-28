@@ -5,7 +5,7 @@ var config = {
     strategy: {
         value: 'freeze', type: 'radio', label: 'Strategy:',
         options: {
-            maxBets: { value: '10000,00', type: 'multiplier', label: 'Max Bet' },
+            maxBets: { value: '10000', type: 'balance', label: 'Max Bet' },
             freeze: { value: '60', type: 'multiplier', label: 'Last T before flat bet' },
         }
     },
@@ -13,7 +13,9 @@ var config = {
     stopEvery: { value: 3, type:'multiplier', label: 'Stop Every'},
     stopAmount: { value: 3, type:'multiplier', label: 'Stop amount'},
     lateTimes: { value: 0, type: 'multiplier', label: 'Late by x times' },
-    disasterWaits: {value: 0, type:'multiplier', label: 'Disaster waits:'}
+    disasterWaits: {value: 0, type:'multiplier', label: 'Disaster waits:'},
+    specialPercentageMills: {value: 1, type:'multiplier', label: '%mills special'},
+    specialBet: {value: 1000000, type:'balance', label: 'amount special'}
 };
 
 
@@ -55,6 +57,14 @@ function onGameStarted() {
         if (stopTime == 0) stopTime = config.stopAmount.value;
         if (disasterToStart == 0) {
             if (timesToStart == 0) {
+                if (currentTimes === 0)
+                {
+                    var ran = getRandomInt(0,999);
+                    if (ran < config.specialPercentageMills.value) {
+                        currentBet = config.specialBet.value;
+                        log('SPECIAL: current bet', currentBet / 100, 'bits')
+                    }
+                }
                 log('ROUND ', ++currentRound, ' - DIS: ', disaster, ' - betting', Math.round(currentBet / 100), 'on', payout, 'x');
                 engine.bet(currentBet, payout);
             }
@@ -137,4 +147,10 @@ function showStats(initBet, mult)
         log('T:',i,' - bet:', (bet /100).toLocaleString('de-DE'), ' - tot: ', (count /100) .toLocaleString('de-DE'));
         bet = Math.ceil((bet /100) * mult) * 100;
     }
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
 }

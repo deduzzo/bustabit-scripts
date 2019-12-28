@@ -135,6 +135,7 @@ function reset()
 
 function resetCycle()
 {
+    started = false;
     currentRound = 0;
     i = 0;
     k = 0;
