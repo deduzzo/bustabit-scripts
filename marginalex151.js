@@ -1,45 +1,20 @@
 var config = {
-    payout: { value: 1.16, type: 'multiplier', label: 'Mult' },
+    payout: { value: 3, type: 'multiplier', label: 'Mult' },
     baseBet: { value: 1000, type: 'balance', label: 'Base Bet' },
-    mult: { value: 7.3, type: 'multiplier', label: 'x after KO' },
-    strategy: {
-        value: 'freeze', type: 'radio', label: 'Strategy:',
-        options: {
-            maxBets: { value: '10000', type: 'balance', label: 'Max Bet' },
-            freeze: { value: '60', type: 'multiplier', label: 'Last T before flat bet' },
-        }
-    },
-    maxTimes: { value: 7, type:'multiplier', label: 'Max Times'},
-    stopEvery: { value: 3, type:'multiplier', label: 'Stop Every'},
-    stopAmount: { value: 3, type:'multiplier', label: 'Stop amount'},
-    lateTimes: { value: 0, type: 'multiplier', label: 'Late by x times' },
-    disasterWaits: {value: 0, type:'multiplier', label: 'Disaster waits:'},
-    specialPercentageMills: {value: 1, type:'multiplier', label: '%mills special'},
-    specialBet: {value: 1000000, type:'balance', label: 'amount special'}
+    mult: { value: 1.5, type: 'multiplier', label: 'x after KO' },
+    totalParallelsGame: { value: 4, type: 'multiplier', label: 'TotalGames' },
+
 };
 
-
-const payout = config.payout.value;
-const increaseMult = config.mult.value;
-let disaster = 0;
 let currentRound = 0;
+let currentGame = 0;
+let games = [];
 
-log('Script is running..');
+for (var i =0;i<config.totalParallelsGame.value; i++)
+{
+    games[i] = {currentBet: config.baseBet.value, amount: 0}
+}
 
-let currentBet = config.baseBet.value;
-let maxBets = 0;
-const strategy = config.strategy.value;
-const betLimit = config.strategy.options.maxBets.value;
-const freezeFrom = config.strategy.options.freeze.value;
-const lateTimes = config.lateTimes.value;
-const maxTimes = config.maxTimes.value;
-const disasterWaits  = config.disasterWaits.value;
-let maxTimesEver = 0;
-let currentTimes = 0;
-let timesToStart = lateTimes;
-let disasterToStart = 0;
-let freezing = false;
-let stopTime = config.stopAmount.value;
 
 showStats(currentBet,increaseMult);
 
@@ -49,34 +24,14 @@ engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-    if ((stopTime >0 || stopTime != config.stopAmount.value) && currentTimes != 0 && currentTimes % config.stopEvery.value == 0) {
-        log("WAIT for other");
-        stopTime--;
-    }
-    else {
-        if (stopTime == 0) stopTime = config.stopAmount.value;
-        if (disasterToStart == 0) {
-            if (timesToStart == 0) {
-                if (currentTimes === 0)
-                {
-                    var ran = getRandomInt(0,999);
-                    if (ran < config.specialPercentageMills.value) {
-                        currentBet = config.specialBet.value;
-                        log('SPECIAL: current bet', currentBet / 100, 'bits')
-                    }
-                }
-                log('ROUND ', ++currentRound, ' - DIS: ', disaster, ' - betting', Math.round(currentBet / 100), 'on', payout, 'x');
-                engine.bet(currentBet, payout);
-            }
-        } else {
-            if (currentTimes)
-                log('DISASTER WAIT, ', disasterToStart--, ' games to start - DIS: ', disaster);
-        }
-    }
+
+                log('R ', ++currentRound, "G", currentGame,' - bet', Math.round(games[currentGame].currentBet / 100), 'on', config.payout.value, 'x', " TOT: ",Math.round(games[currentGame].currentAmount / 100));
+                engine.bet(games[currentGame].currentBet, payout);
+
 }
 
 function onGameEnded() {
-    var lastGame = engine.history.first()
+    var lastGame = engine.history.first();
 
     // If we wagered, it means we played
     if (!lastGame.wager) {
@@ -92,9 +47,25 @@ function onGameEnded() {
         }
     }
     else if (timesToStart==0) {
-        // we won..
+        // we play..
         if (lastGame.cashedAt) {
-            currentBet = config.baseBet.value;
+            // we won
+            if (game2Count>0)
+            {
+                log('GAME2 WIN, bust',lastGame.bust);
+                currentBet = freezegame.currentBet;
+                currentAmount = freezegame.currentAmount;
+                freezegame = {currentAmount: null, currentBet: null};
+                currentRoundValues = [];
+                game2Count = 0;
+                payout = config.payout.value;
+                currentAmount = 0;
+            }
+            else
+            {
+                currentBet = config.baseBet.value;
+                currentAmount = 0;
+            }
             currentTimes = 0;
             if (disasterWaits >0 && freezing) disasterToStart = disasterWaits;
             freezing = false;
@@ -109,6 +80,7 @@ function onGameEnded() {
             if (lateTimes > 0) timesToStart = lateTimes;
             }
         else {
+            // we lost
             if (!(strategy == 'freeze' && currentTimes >= freezeFrom))
                 currentBet = Math.ceil((currentBet / 100) * increaseMult) * 100;
             else
@@ -122,6 +94,28 @@ function onGameEnded() {
                 currentBet = config.baseBet.value;
                 if (lateTimes > 0) timesToStart = lateTimes;
             } else {
+                // we lost
+                var t = tFromArray(currentRoundValues, config.payout2.value);
+                //log('GAME3:', t);
+                //log(currentRoundValues);
+                if (t> config.late2.value)
+                {
+                    if (game2Count===0)
+                    {
+                        game2TotalCount++;
+                        freezegame.currentAmount = currentAmount;
+                        freezegame.currentBet = currentBet;
+                        payout = config.payout2.value;
+                        currentBet = currentAmount * (currentAmount / (currentAmount * (config.payout2.value - 1)));
+                        payout = config.payout2.value;
+                    }
+                    else {
+                        currentBet = currentBet * config.mult2.value;
+                    }
+                    game2Count++;
+                    log('GAME2: current bet', currentBet / 100, 'bits on ', payout)
+                }
+                currentAmount += lastGame.wager;
                 currentTimes++;
                 if (currentBet > maxBets) {
                     maxBets = currentBet;
@@ -131,7 +125,7 @@ function onGameEnded() {
             }
         }
         if (disasterToStart == 0)
-            log('LOST, so', currentBet / 100, 'bits, maxbets = ', maxBets / 100, '- T:', currentTimes, ' - MAXT:' + maxTimesEver , strategy == 'maxBets' ? (' MAXBET: ' + betLimit / 100) : (strategy == 'freeze') ? ('FREEZE AT: ' + freezeFrom) : (''))
+            log('bust ', lastGame.bust, ', LOST, so', Math.round(currentBet / 100).toFixed(2), 'bits - T:', currentTimes, ' - MAXT:' + maxTimesEver); //, maxb = ', Math.round(maxBets / 100), '- T:', currentTimes, ' - MAXT:' + maxTimesEver , strategy == 'maxBets' ? (' MAXB: ' + betLimit / 100) : (strategy == 'freeze') ? ('FR.AT: ' + freezeFrom) : (''))
         }
 }
 
@@ -153,4 +147,10 @@ function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
+}
+
+function tFromArray(array, val) {
+    let i =0;
+    for (i = 0; i<array.length && array[i]<=val; i++);
+    return i;
 }

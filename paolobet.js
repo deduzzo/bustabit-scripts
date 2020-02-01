@@ -87,9 +87,15 @@ function onGameStarted() {
     }
     else
     {
+        if ((balance - baseBet) < 0) {
+            disaster++;
+            log("Disaster!! :(");
+            showSmallStats();
+            resetCycle();
+        }
         if (maxBets == 0)
         {
-            reset();
+            resetCycle();
             log("MAX TENTATIVI ESEGUITI, RESETTO");
         }
         log(gainString ,baseBet  /100, " a ", parseFloat(config.strategyOnLoss.value == 'recoveryValue' && multRecovered>0 ? multFactor : (helper >1 && mult > minMultDiv ? (mult /lastTimeDiv) : mult)).toFixed(2), "x [ -", maxBets,"]");
@@ -110,12 +116,6 @@ function onGameEnded() {
         //se ho giocato
         if (lastGame.cashedAt === 0) {
             balance -= baseBet;
-            if ((balance - baseBet) < 0) {
-                disaster++;
-                log("Disaster!! :(");
-                showSmallStats();
-                resetCycle();
-            } else {
                 //PERSO
                 if (normalBets == 0) {
                     failBets++;
@@ -148,7 +148,7 @@ function onGameEnded() {
                     }
                 }
                 maxBets--;
-            }
+
         }
         if (lastGame.cashedAt !== 0) {
             balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
