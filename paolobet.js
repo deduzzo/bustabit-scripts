@@ -1,3 +1,5 @@
+// 12 120 50 div12
+
 var config = {
     mult: {
         value: 12, type: 'multiplier', label: 'Moltiplicatore'
@@ -43,6 +45,9 @@ var config = {
     minMultDiv: {
         value: 400, type: 'multiplier', label: 'minMultDiv'
     },
+    max20avg: {
+        value: 40, type: 'multiplier', label: 'max20avg'
+    },
     initBalance: { value: 1000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
     stepBalance: { value: 10000, type: 'balance', label: 'step Balance' },
     stopDefinitive: { value: 1000, type: 'multiplier', label: 'Script iteration number of games' },
@@ -71,7 +76,10 @@ let totalGain = 0;
 let currentRound = 0;
 let disaster = 0;
 let itTotal = 1;
-
+let last100 = [];
+const average = (arr) => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+const last20 = () => last100.length > 20 ? last100.slice(0,20) : [];
+let late20Stop = false;
 
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
@@ -79,40 +87,51 @@ engine.on('GAME_ENDED', onGameEnded);
 log('PaoloBet start!!!');
 
 function onGameStarted() {
-    let gainString ="IT" + itTotal + "/"+disaster+"|" + currentRound + '| $T' + ((totalGain + (balance - initBalance)) / 100000).toFixed(2) + 'k| ' + ((balance - initBalance) / 100000).toFixed(2) + 'k| ';
-    if (highResult && timesToStop >0)
-    {
-        log ('Aspetto ancora per', highResult, ' turni')
-        highResult--;
+    if (late20Stop == false) {
+        let gainString = "IT" + itTotal + "/" + disaster + "|" + currentRound + '| $T' + ((totalGain + (balance - initBalance)) / 100000).toFixed(2) + 'k| ' + ((balance - initBalance) / 100000).toFixed(2) + 'k| ';
+        if (highResult && timesToStop > 0) {
+            log('Aspetto ancora per', highResult, ' turni')
+            highResult--;
+        } else {
+            if ((balance - baseBet) < 0) {
+                disaster++;
+                log("Disaster!! :(");
+                showSmallStats();
+                resetCycle();
+            }
+            if (maxBets == 0) {
+                resetCycle();
+                log("MAX TENTATIVI ESEGUITI, RESETTO");
+            }
+            log(gainString, baseBet / 100, " a ", parseFloat(config.strategyOnLoss.value == 'recoveryValue' && multRecovered > 0 ? multFactor : (helper > 1 && mult > minMultDiv ? (mult / lastTimeDiv) : mult)).toFixed(2), "x [ -", maxBets, "]");
+            if (config.strategyOnLoss.value == 'recoveryValue' && multRecovered) log("RESTANO ", multRecovered, 'da recuperare')
+            engine.bet(baseBet, config.strategyOnLoss.value == 'recoveryValue' && multRecovered > 0 ? multFactor : (helper > 1 && mult > minMultDiv ? (mult / lastTimeDiv) : mult));
+        }
     }
     else
-    {
-        if ((balance - baseBet) < 0) {
-            disaster++;
-            log("Disaster!! :(");
-            showSmallStats();
-            resetCycle();
-        }
-        if (maxBets == 0)
-        {
-            resetCycle();
-            log("MAX TENTATIVI ESEGUITI, RESETTO");
-        }
-        log(gainString ,baseBet  /100, " a ", parseFloat(config.strategyOnLoss.value == 'recoveryValue' && multRecovered>0 ? multFactor : (helper >1 && mult > minMultDiv ? (mult /lastTimeDiv) : mult)).toFixed(2), "x [ -", maxBets,"]");
-        if (config.strategyOnLoss.value == 'recoveryValue' && multRecovered) log("RESTANO ", multRecovered, 'da recuperare')
-        engine.bet(baseBet, config.strategyOnLoss.value == 'recoveryValue' && multRecovered>0 ? multFactor : (helper >1 && mult > minMultDiv ? (mult / lastTimeDiv) : mult));
-    }
+        log ("attesa ripristino 20");
 }
 
 function onGameEnded() {
     currentRound++;
     var lastGame = engine.history.first();
+    last100.unshift(lastGame.bust);
+    if (last100.length>100)
+        last100.pop();
+    let max20 = average(last20());
+    log("max20:", max20);
     //log(lastGame.bust, "x");
     if (lastGame.bust >= highValue && multRecovered == 0 && config.strategyOnHigh.value == "stop") {
         log("PUNTEGGIO ALTO, ASPETTO...");
         highResult = timesToStop;
     }
-    if (lastGame.wager) {
+    else if (negativeChanges>0 && max20 >config.max20avg.value)
+    {
+        log("20 in ritardo, aspetto:", max20);
+        late20Stop = true;
+    }
+    else if (lastGame.wager) {
+        late20Stop = false;
         //se ho giocato
         if (lastGame.cashedAt === 0) {
             balance -= baseBet;
@@ -192,6 +211,7 @@ function showSmallStats(){
 
 function reset()
 {
+    late20Stop = false;
     let addedBet = Math.floor((balance - initBalance) / config.stepBalance.value) * 100;
     mult = config.mult.value;
     baseBet = config.bet.value + addedBet;
