@@ -137,8 +137,6 @@ function reset()
 function resetCycle()
 {
     currentRound = 0;
-    i = 0;
-    k = 0;
     itTotal++;
     totalGain += balance - initBalance;
     balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
