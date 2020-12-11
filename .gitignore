@@ -34,3 +34,4 @@ npm-debug.log*
 /bustabit-monitor-client/yarn-error.log*
 /bustabit-monitor-server/yarn-debug.log*
 /bustabit-monitor-server/yarn-error.log*
+/.idea/codeStyles/codeStyleConfig.xml
