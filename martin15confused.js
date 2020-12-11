@@ -39,7 +39,8 @@ engine.on('GAME_ENDED', onGameEnded);
 function onGameStarted() {
     if (!pause) {
         log('R ', ++currentRound, "GAME", (currentGame + 1).toString(), " T", games[currentGame].currentTimes, ' - bet', Math.round(games[currentGame].currentBet / 100), 'on', games[currentGame].payout, 'x - MAXT:', maxT, " TOT: ", Math.round(games[currentGame].amount / 100));
-        engine.bet(games[currentGame].currentBet, games[currentGame].payout);
+        log("BET:",games[currentGame].currentBet)
+        engine.bet(Math.round(games[currentGame].currentBet / 100) * 100, games[currentGame].payout);
     }
     else
     {

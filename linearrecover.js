@@ -15,6 +15,7 @@ let increment =0;
 let gType = "";
 const GAME_2X = "GAME_2X";
 const GAME_4X = "GAME_4X";
+const GAME_2XR2 = "GAME_2XR2";
 
 log('Script is running..');
 
@@ -59,18 +60,23 @@ function onGameEnded() {
             increment = 0;
             n++;
             let result = 0;
-            if (getRandomInt(0, 100) < config.perc2xrecover.value && toRecover <=(config.baseBet.value * config.maxToRecoverToPlay2x.value)) {
-                result = Math.ceil((toRecover / 100) / 2) * 100;
-                gType = GAME_2X;
-            }
-            else {
-                result = Math.ceil((toRecover / 100) / 4) * 100;
-                gType = GAME_4X;
-            }
-            currentBet = result +200;
-            //log('RESULT=', result)
+            //if (gType == GAME_2X) {
+            //    gType = GAME_2XR2;
+            //}
+            //else {
+                if (getRandomInt(0, 100) < config.perc2xrecover.value && toRecover <= (config.baseBet.value * config.maxToRecoverToPlay2x.value)) {
+                    result = Math.ceil((toRecover / 100) / 2) * 100;
+                    gType = GAME_2X;
+                } else {
+                    result = Math.ceil((toRecover / 100) / 4) * 100;
+                    gType = GAME_4X;
+                }
+                currentBet = result + 200;
+                //log('RESULT=', result)
+            //}
         }
         else {
+            gType = "";
             if (increment == 0)
             {
                 // linear increment
@@ -83,10 +89,9 @@ function onGameEnded() {
             let intTemp = increment < 100 ? 100 : increment;
             currentBet +=intTemp;
         }
-
     }
+    log ("R:", currentRound," toRec:", Math.ceil(toRecover /100), "bit | INC:", increment, "- n:", n, "|Bet ",Math.round(currentBet / 100), 'bit on', payout, 'x', gType != "" ? gType : "");
 
-    log ("R:", currentRound," toRec:", toRecover /100, "bit | INC:", increment, "- n:", n, "|Bet ",Math.round(currentBet / 100), 'bit on', payout, 'x', gType != "" ? gType : "");
 }
 
 function getRandomInt(min, max) {
