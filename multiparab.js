@@ -112,12 +112,15 @@ let totCycle = 0;
 
 for (let i =1; i<21; i++) {
     let st = "p" + i.toString();
-    if (!isNaN(config[st].value) && config[st].value != null)
-        values[(config[st].value).toString()] = calculateBets(config[st].value, 100, config[st].value * 10, false);
-    if (config.autoValue.value == 1)
-        multfactors[config["p" + i.toString()].value] = calculateAutoBet(config.balance.value, Math.floor(config["r" + i.toString()].value / config.divLateFactor.value), Math.floor(config["m" + i.toString()].value / config.divMaxFactor.value), values[(config[st].value).toString()])
-    else
-        multfactors[config["p" + i.toString()].value] = config["b" + i.toString()].value / 100;
+    let rt = "r"+ i.toString();
+    let mt = "m" + i.toString();
+    if (!isNaN(config[st].value) && config[st].value != null) {
+        values[(config[st].value).toString()] = calculateBets(config[st].value, 100, config[mt].value - config[rt].value, false);
+        if (config.autoValue.value == 1)
+            multfactors[config["p" + i.toString()].value] = calculateAutoBet(config.balance.value, Math.floor(config["r" + i.toString()].value / config.divLateFactor.value), Math.floor(config["m" + i.toString()].value / config.divMaxFactor.value), values[(config[st].value).toString()])
+        else
+            multfactors[config["p" + i.toString()].value] = config["b" + i.toString()].value / 100;
+    }
 }
 
 for (let key of Object.keys(values)) {

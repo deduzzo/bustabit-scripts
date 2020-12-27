@@ -1,11 +1,14 @@
 var config = {
     payout: { value: 3.05, type: 'multiplier', label: 'Mult' },
-    baseBet: { value: 20000, type: 'balance', label: 'Base Bet' },
-    perc2xrecover: { value: 40, type: 'multiplier', label: 'Perc2xRecover' },
-    percIncrement: { value: 10, type: 'multiplier', label: 'PercIncrement' },
-    force2xFrom: { value: 50, type: 'multiplier', label: 'Forge G2 From' },
-    rToStop: { value: 90, type: 'multiplier', label: 'Stop From R' },
-    stopTimes: { value: 100, type: 'multiplier', label: 'Number times to stop' },
+    baseBet: { value: 200, type: 'balance', label: 'Base Bet' },
+    perc2xrecover: { value: 0, type: 'multiplier', label: 'Perc2xRecover' },
+    perc3xrecover: { value: 50, type: 'multiplier', label: 'Perc3xRecover' },
+    percIncrement: { value: 30, type: 'multiplier', label: 'PercIncrement' },
+    force2xFrom: { value: 10000, type: 'multiplier', label: 'Force G2>' },
+    force2xMinorBalance: { value: 5000, type: 'multiplier', label: 'Force G2 if toRecover < (factor *basebet)' },
+    rToStop: { value: 30, type: 'multiplier', label: 'Stop From R' },
+    stopTimes: { value: 50, type: 'multiplier', label: 'Number times to stop' },
+    maxToRecover: { value: 500000, type: 'balance', label: 'maxToRecoverBeforeReset' },
 };
 
 
@@ -16,6 +19,7 @@ let toRecover = 0;
 let increment =0;
 let gType = "";
 const GAME_2X = "GAME_2X";
+const GAME_3X = "GAME_3X";
 const GAME_4X = "GAME_4X";
 const GAME_WIN1T = "GAME_WIN1T";
 let stopTimes = config.stopTimes.value;
@@ -34,8 +38,14 @@ function onGameStarted() {
         log ("StopTIMES left:", stopTimes--);
     }
     else {
-        //log('betting', Math.round(currentBet / 100), 'on', payout, 'x');
-        log("R:", currentRound, " toRec:", Math.ceil(toRecover / 100), "bit | INC:", Math.round(increment / 100), "- n:", n, "|Bet ", Math.round(currentBet / 100), 'bit on', payout, 'x', gType != "" ? gType : "");
+        if (toRecover<config.maxToRecover.value) {
+            //log('betting', Math.round(currentBet / 100), 'on', payout, 'x');
+            log("R:", currentRound, " toRec:", Math.ceil(toRecover / 100), "bit | INC:", Math.round(increment / 100), "- n:", n, "|Bet ", Math.round(currentBet / 100), 'bit on', payout, 'x', gType != "" ? gType : "");
+        }
+        else
+        {
+            resetGame();
+        }
         engine.bet(Math.round(currentBet), payout);
     }
 
@@ -52,13 +62,7 @@ function onGameEnded() {
             toRecover -= profit;
             //increment = 0;
             if (toRecover <= 0) {
-                gType = "";
-                currentRound = 0;
-                stopTimes = config.stopTimes.value;
-                n = 0;
-                toRecover = 0;
-                currentBet = config.baseBet.value;
-                increment = 0;
+                resetGame();
             }
         } else {
             toRecover += currentBet;
@@ -69,10 +73,15 @@ function onGameEnded() {
                 n++;
                 let result = 0;
                 increment = 0;
-                if (currentRound > config.force2xFrom.value || (getRandomInt(0, 100) < config.perc2xrecover.value)) {
+                let rand = getRandomInt(0, 100);
+                if (currentRound > config.force2xFrom.value || toRecover < (config.force2xMinorBalance.value * config.baseBet.value) || (rand < config.perc2xrecover.value)) {
                     result = Math.ceil((toRecover / 100) / 2) * 100;
                     gType = GAME_2X;
-                } else {
+                } else if (rand < config.perc3xrecover.value) {
+                    result = Math.ceil((toRecover / 100) / 3) * 100;
+                    gType = GAME_3X;
+                }
+                else {
                     result = Math.ceil((toRecover / 100) / 4) * 100;
                     gType = GAME_4X;
                 }
@@ -100,6 +109,17 @@ function onGameEnded() {
         }
     }
 
+}
+
+function resetGame()
+{
+    gType = "";
+    currentRound = 0;
+    stopTimes = config.stopTimes.value;
+    n = 0;
+    toRecover = 0;
+    currentBet = config.baseBet.value;
+    increment = 0;
 }
 
 function getRandomInt(min, max) {

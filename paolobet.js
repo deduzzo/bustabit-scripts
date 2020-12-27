@@ -1,4 +1,3 @@
-// 12 120 50 div12
 
 var config = {
     mult: {
@@ -13,37 +12,17 @@ var config = {
     timesToStop: {
         value: 0, type: 'multiplier', label: 'n giocate di stop in caso di punteggio alto'
     },
-    strategyOnHigh: {
-        value: 'stop', type: 'radio', label: 'In caso di punteggio superiore a quello alto:',
-        options: {
-            stop: { value: 'stop', type: 'noop', label: 'Fermati n volte, poi riprendi' },
-            none: { value: 'none', type: 'noop', label: 'Non fare niente di particolare' },
-        }
-    },
     normalBets: {
         value: 120, type: 'multiplier', label: 'Quante volte fare una puntata normale'
     },
     timesToChange: {
         value: 200, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
     },
-    strategyOnLoss: {
-        value: 'x2div2', type: 'radio', label: 'cosa fai in caso non vinci x volte?',
-        options: {
-            x2div2: { value: 'x2div2', type: 'noop', label: 'raddoppia e dimezza' },
-            recoveryValue: { value: 'recoveryValue', type: 'noop', label: 'recupera puntando ad un valore fisso' },
-        }
-    },
     multFactor: {
         value: 20, type: 'multiplier', label: 'fattore di moltiplicazione / divisione o di recupero'
     },
     maxBets: {
         value: 90000, type: 'multiplier', label: 'max volte prima di ricominciare dal principio'
-    },
-    lastTimeDiv: {
-        value: 1.4, type: 'multiplier', label: 'lastTimeDiv'
-    },
-    minMultDiv: {
-        value: 400, type: 'multiplier', label: 'minMultDiv'
     },
     initBalance: { value: 1000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
     stepBalance: { value: 10000, type: 'balance', label: 'step Balance' },
@@ -61,10 +40,6 @@ var failBets = 0;
 var highResult = 0;
 var negativeChanges = 0;
 var maxBets = config.maxBets.value;
-var multRecovered = 0;
-var lastTimeDiv = config.lastTimeDiv.value;
-var minMultDiv = config.minMultDiv.value;
-var helper = 0;
 
 const stopDefinitive = config.stopDefinitive.value;
 let balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
@@ -95,9 +70,8 @@ function onGameStarted() {
                 resetCycle();
                 log("MAX TENTATIVI ESEGUITI, RESETTO");
             }
-            log(gainString, baseBet / 100, " a ", parseFloat(config.strategyOnLoss.value == 'recoveryValue' && multRecovered > 0 ? multFactor : (helper > 1 && mult > minMultDiv ? (mult / lastTimeDiv) : mult)).toFixed(2), "x [ -", maxBets, "]");
-            if (config.strategyOnLoss.value == 'recoveryValue' && multRecovered) log("RESTANO ", multRecovered, 'da recuperare')
-            engine.bet(baseBet, config.strategyOnLoss.value == 'recoveryValue' && multRecovered > 0 ? multFactor : (helper > 1 && mult > minMultDiv ? (mult / lastTimeDiv) : mult));
+            log(gainString, baseBet / 100, " a ", parseFloat(mult).toFixed(2), "x [ -", maxBets, "]");
+            engine.bet(baseBet, mult);
         }
 }
 
@@ -105,79 +79,44 @@ function onGameEnded() {
     currentRound++;
     var lastGame = engine.history.first();
 
-    if (lastGame.bust >= highValue && multRecovered == 0 && config.strategyOnHigh.value == "stop") {
+    if (lastGame.bust >= highValue) {
         log("PUNTEGGIO ALTO, ASPETTO...");
         highResult = timesToStop;
     }
     if (lastGame.wager) {
-
         //se ho giocato
         if (lastGame.cashedAt === 0) {
             balance -= baseBet;
-                //PERSO
-                if (normalBets == 0) {
-                    failBets++;
-                    if (config.strategyOnLoss.value == 'x2div2') {
-                        if (failBets % timesToChange == 0) {
-                            negativeChanges++;
-                            helper = negativeChanges;
-                            mult = (mult / multFactor) + 1;// + negativeChanges - 1;
-                            baseBet *= multFactor;
-                        } else {
-                            mult++;
-                        }
-                    } else if (config.strategyOnLoss.value == 'recoveryValue') {
-                        if (multRecovered == 0 && normalBets == 0) multRecovered = mult;
-                        multRecovered++;
-                    }
-                } else {
-                    mult++;
-                    normalBets--;
-                    if (normalBets == 0) {
-                        if (config.strategyOnLoss.value == 'x2div') {
-                            negativeChanges = 1;
-                            helper = negativeChanges;
-                            mult = (mult / multFactor) + negativeChanges - 1;
-                            baseBet *= multFactor;
-                        } else if (config.strategyOnLoss.value == 'recoveryValue') {
-                            if (multRecovered == 0 && normalBets == 0) multRecovered = mult;
-                            multRecovered++;
-                        }
-                    }
+            //PERSO
+            if (normalBets == 0) {
+                failBets++;
+                if (failBets % timesToChange == 0) {
+                    negativeChanges++;
+                    mult = (mult / multFactor) +1;
+                    baseBet *= multFactor;
                 }
-                maxBets--;
-
-        }
-        if (lastGame.cashedAt !== 0) {
+                mult++;
+            } else {
+                mult++;
+                normalBets--;
+                if (normalBets == 0) {
+                    negativeChanges = 1;
+                    mult = (mult / multFactor) +1;
+                    baseBet *= multFactor;
+                }
+            }
+            maxBets--;
+        } else {
             balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
             log("Vinto!");
-            if (config.strategyOnLoss.value == 'x2div2' && lastGame.cashedAt < mult.toFixed(2)) {
-                mult -= parseInt(lastGame.cashedAt, 10) - 1;
-                helper--;
-                log("Ricalcolo X: ", mult);
-            }
             //VINTO
-            else {
-                if (currentRound > stopDefinitive) {
-                    log("Iteration END!!");
-                    showSmallStats();
-                    resetCycle();
-                }
-                else {
-                    if (config.strategyOnLoss.value == 'x2div2' || (config.strategyOnLoss.value == 'recoveryValue' && multRecovered == 0)) {
-                        log("Riparto!");
-                        var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
-                        reset();
-                    } else {
-                        multRecovered -= lastGame.cashedAt;
-                        if (multRecovered > 0)
-                            log('Vinto, restano ', multRecovered, 'x da recuperare!')
-                        else {
-                            log('Recuperato! Ripartiamo!');
-                            reset();
-                        }
-                    }
-                }
+            if (currentRound > stopDefinitive) {
+                log("Iteration END!!");
+                showSmallStats();
+                resetCycle();
+            } else {
+                log("Riparto!");
+                reset();
             }
         }
     }
@@ -190,15 +129,13 @@ function showSmallStats(){
 
 function reset()
 {
-    //let addedBet = Math.floor((balance - initBalance) / config.stepBalance.value) * 100;
+    let addedBet = Math.floor((balance - initBalance) / config.stepBalance.value) * 100;
     mult = config.mult.value;
-    baseBet = config.bet.value; //+ addedBet;
+    baseBet = config.bet.value + addedBet;
     failBets = 0;
     normalBets = config.normalBets.value;
     negativeChanges = 0;
     maxBets = config.maxBets.value;
-    multRecovered = 0;
-    helper = 0;
 }
 
 function resetCycle()
