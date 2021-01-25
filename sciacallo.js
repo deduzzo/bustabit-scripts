@@ -1,10 +1,11 @@
 var config = {
-    payout: { value: 1.6, type: 'multiplier', label: 'Mult' },
-    baseBet: { value: 800, type: 'balance', label: 'Base Bet' },
-    mult: { value: 8, type: 'multiplier', label: 'x after KO' },
-    startAfter: { value: 4, type:'multiplier', label: 'Times After Start'},
-    maxT: { value: 3, type:'multiplier', label: 'MaxT'},
-    playfor: { value: 40, type:'multiplier', label: 'PlayFor'},
+    test: { value: 3, type: 'multiplier', label: 'Mult to ' },
+    payout: { value: 2.4, type: 'multiplier', label: 'Mult' },
+    baseBet: { value: 5000, type: 'balance', label: 'Base Bet' },
+    mult: { value: 1.8, type: 'multiplier', label: 'x after KO' },
+    startAfter: { value: 11, type:'multiplier', label: 'Times After Start'},
+    maxT: { value: 16, type:'multiplier', label: 'MaxT'},
+    playfor: { value: 100, type:'multiplier', label: 'PlayFor'},
 
 };
 
@@ -82,7 +83,7 @@ function onGameEnded() {
                 }
                 else
                 {
-                    if (lastGame.bust >=payout)
+                    if (lastGame.bust >=config.test.value)
                         currentTimes =0;
                     else
                         currentTimes++;

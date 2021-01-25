@@ -19,7 +19,7 @@ var config = {
 };
 
 const multMax = config.multMax.value;
-const multMin = config.multMin.value;
+const multMin = cosnfig.multMin.value;
 const strategyOnLoss = config.strategyOnLoss.value;
 const multRecover = config.strategyOnLoss.value == 'x100' ? 1.10 : 1.01;
 const numMinRandomRetry = config.numMinRandomRetry.value;
