@@ -91,6 +91,7 @@ function onGameEnded() {
                         start = true;
                         inCycle = true;
                         currentTimes = 0;
+                        currentBet = config.baseBet.value;
                     }
                 }
         }
