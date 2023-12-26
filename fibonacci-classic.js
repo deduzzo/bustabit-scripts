@@ -9,11 +9,13 @@ var config = {
         }
     },
     tempPayout: {value: 50, type: 'multiplier', label: 'Padding Payout'},
-    specialPaddingPayout: {value: 500000, type: 'multiplier', label: 'Padding Payout'},
+    specialPaddingPayout: {value: 500000, type: 'multiplier', label: 'Special Padding Payout'},
     initBalance: {value: 1100000, type: 'balance', label: 'Iteration Balance (0 for all)'},
     paddingbets: {value: 6, type: 'multiplier', label: 'Padding Bets'},
     itcycle: {value: 6000, type: 'multiplier', label: 'Iteration Cycle'},
 };
+
+// conservativo: payout: 3, padding 2000, specialpadding: 2000, balance: 47000, padding bets 1 it cycle 10000
 
 
 log('Script is running..');
@@ -48,7 +50,7 @@ function onGameStarted() {
         temppayout = config.specialPaddingPayout.value;
     else if (k < paddingbets)
         temppayout = paddingPayout;
-    if ((k < paddingbets && config.strategyPadding.value === "gioca") || k > paddingbets) {
+    if ((k < paddingbets && config.strategyPadding.value === "gioca") || k >= paddingbets) {
         let gainString = "IT" + itTotal + "/" + disaster + "|cr" + currentRound + '| $T' + ((totalGain + (balance - initBalance)) / 100000).toFixed(2) + 'k| ' + ((balance - initBalance) / 100000).toFixed(2) + 'k| ';
         log(gainString, "T", k, " bet ", roundBit(currentBet) / 100, " on ", temppayout, "x");
         engine.bet(currentBet, temppayout);
