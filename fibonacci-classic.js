@@ -1,8 +1,18 @@
 var config = {
-    bet: { value: 100, type: 'balance', label: 'bet'},
-    payout: { value: 3, type: 'multiplier', label: 'Payout' },
-    initBalance: { value: 470000, type: 'balance', label: 'Iteration Balance (0 for all)' },
-    itcycle: { value: 10000, type: 'multiplier', label: 'Iteration Cycle' },
+    bet: {value: 100, type: 'balance', label: 'bet'},
+    payout: {value: 4, type: 'multiplier', label: 'Payout'},
+    strategyPadding: {
+        value: 'gioca', type: 'radio', label: 'Strategia Padding',
+        options: {
+            no: {value: 'no', type: 'noop', label: 'Non fare niente'},
+            gioca: {value: 'gioca', type: 'noop', label: 'Gioca al tempPayout'},
+        }
+    },
+    tempPayout: {value: 50, type: 'multiplier', label: 'Padding Payout'},
+    specialPaddingPayout: {value: 500000, type: 'multiplier', label: 'Padding Payout'},
+    initBalance: {value: 1100000, type: 'balance', label: 'Iteration Balance (0 for all)'},
+    paddingbets: {value: 6, type: 'multiplier', label: 'Padding Bets'},
+    itcycle: {value: 6000, type: 'multiplier', label: 'Iteration Cycle'},
 };
 
 
@@ -14,9 +24,10 @@ engine.on('GAME_ENDED', onGameEnded);
 
 let k = 0;
 const payout = config.payout.value;
-let currentBet  = config.bet.value;
+const paddingPayout = config.tempPayout.value;
+let currentBet = config.bet.value;
+let paddingbets = config.paddingbets.value;
 let precBet = 0;
-
 
 let balance = config.initBalance.value == 0 ? userInfo.balance : config.initBalance.value;
 let initBalance = balance;
@@ -24,52 +35,58 @@ let totalGain = 0;
 let currentRound = 0;
 let disaster = 0;
 let itTotal = 1;
-let semaforo = true;
+let special = true;
+const specialPayoutValue = 3;
+
 
 showStats(config.bet.value, 22);
 
 
 function onGameStarted() {
-
-    if (semaforo == true) {
-        semaforo = false;
+    var temppayout = payout;
+    if (special)
+        temppayout = config.specialPaddingPayout.value;
+    else if (k < paddingbets)
+        temppayout = paddingPayout;
+    if ((k < paddingbets && config.strategyPadding.value === "gioca") || k > paddingbets) {
         let gainString = "IT" + itTotal + "/" + disaster + "|cr" + currentRound + '| $T' + ((totalGain + (balance - initBalance)) / 100000).toFixed(2) + 'k| ' + ((balance - initBalance) / 100000).toFixed(2) + 'k| ';
-        let tempPayout;
-        if (k == 0)
-            tempPayout = 1.5;
-        else if (k == 1)
-            tempPayout = 2;
-        else {
-            tempPayout = payout;
-        }
-        log(gainString, "T", k++, " bet ", roundBit(currentBet) / 100, " on ", tempPayout, "x");
-        engine.bet(currentBet, tempPayout);
+        log(gainString, "T", k, " bet ", roundBit(currentBet) / 100, " on ", temppayout, "x");
+        engine.bet(currentBet, temppayout);
     }
 }
 
 function onGameEnded() {
     currentRound++;
-    semaforo = true;
+
     var lastGame = engine.history.first();
 
-    if (!lastGame.wager) {
-        return;
+    if (lastGame.bust < payout)
+        k++;
+    else
+        k = 0;
+
+    if (lastGame.bust >= specialPayoutValue && (k < paddingbets && config.strategyPadding.value === "gioca"))
+        special = true;
+    else
+        special = false;
+
+    if (lastGame.wager) {
+        log("bust:", lastGame.bust, lastGame.cashedAt ? "WIN!!!!" : "");
+        if (lastGame.bust >= payout)
+            k = 0;
     }
-    if (lastGame.wager)
-        log ("bust:", lastGame.bust, lastGame.bust >= payout ? "WIN!!!!": "");
 
     if (lastGame.cashedAt && lastGame.wager) {
         balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
-        if (currentRound> config.itcycle.value) {
+        if (currentRound > config.itcycle.value) {
             log("Iteration END!!");
             showSmallStats();
             resetCycle();
         }
-        if (k>2) reset();
-    }
-    else if(lastGame.wager) {
+        reset();
+    } else if (lastGame.wager) {
         balance -= currentBet;
-        if (k>1) {
+        if (k > paddingbets) {
             let precBetTemp = currentBet;
             currentBet = currentBet + precBet;
             precBet = precBetTemp;
@@ -111,16 +128,14 @@ function showStats(initBet, maxT) {
     }
 }
 
-function reset()
-{
-    currentBet  = config.bet.value;
+function reset() {
+    currentBet = config.bet.value;
     precBet = 0;
     k = 0;
 }
 
 
-function resetCycle()
-{
+function resetCycle() {
     currentRound = 0;
     itTotal++;
     totalGain += balance - initBalance;
@@ -129,6 +144,6 @@ function resetCycle()
     reset();
 }
 
-function showSmallStats(){
+function showSmallStats() {
     log("DIS:", disaster, ' WINS: ', itTotal - disaster, 'BALANCE: ', balance / 100, ' - gain ', (balance - initBalance) / 100);
 }
