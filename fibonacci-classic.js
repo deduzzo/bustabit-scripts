@@ -10,6 +10,7 @@ var config = {
     },
     tempPayout: {value: 50, type: 'multiplier', label: 'Padding Payout'},
     specialPaddingPayout: {value: 500000, type: 'multiplier', label: 'Special Padding Payout'},
+    paddingPayoutBelowValue: {value: 1.9, type: 'multiplier', label: 'Valore sopra il quale giocare lo special'},
     initBalance: {value: 1100000, type: 'balance', label: 'Iteration Balance (0 for all)'},
     paddingbets: {value: 6, type: 'multiplier', label: 'Padding Bets'},
     itcycle: {value: 6000, type: 'multiplier', label: 'Iteration Cycle'},
@@ -38,7 +39,7 @@ let currentRound = 0;
 let disaster = 0;
 let itTotal = 1;
 let special = true;
-const specialPayoutValue = 3;
+const specialPayoutValue = config.paddingPayoutBelowValue.value;
 
 
 showStats(config.bet.value, 22);

@@ -9,6 +9,7 @@ var config = {
 let currentRound = 0;
 let currentGame = 0;
 let games = [];
+let payout = config.payout.value;
 
 for (var i =0;i<config.totalParallelsGame.value; i++)
 {
@@ -16,18 +17,13 @@ for (var i =0;i<config.totalParallelsGame.value; i++)
 }
 
 
-showStats(currentBet,increaseMult);
-
-
 engine.on('GAME_STARTING', onGameStarted);
 engine.on('GAME_ENDED', onGameEnded);
 
 
 function onGameStarted() {
-
                 log('R ', ++currentRound, "G", currentGame,' - bet', Math.round(games[currentGame].currentBet / 100), 'on', config.payout.value, 'x', " TOT: ",Math.round(games[currentGame].currentAmount / 100));
                 engine.bet(games[currentGame].currentBet, payout);
-
 }
 
 function onGameEnded() {
@@ -127,20 +123,6 @@ function onGameEnded() {
         if (disasterToStart == 0)
             log('bust ', lastGame.bust, ', LOST, so', Math.round(currentBet / 100).toFixed(2), 'bits - T:', currentTimes, ' - MAXT:' + maxTimesEver); //, maxb = ', Math.round(maxBets / 100), '- T:', currentTimes, ' - MAXT:' + maxTimesEver , strategy == 'maxBets' ? (' MAXB: ' + betLimit / 100) : (strategy == 'freeze') ? ('FR.AT: ' + freezeFrom) : (''))
         }
-}
-
-function showStats(initBet, mult)
-{
-    let i;
-    let count = 0;
-    let bet = initBet;
-    log("------ INFO -----")
-    for (i =0; i<60; i++)
-    {
-        count+=bet;
-        log('T:',i,' - bet:', (bet /100).toLocaleString('de-DE'), ' - tot: ', (count /100) .toLocaleString('de-DE'));
-        bet = Math.ceil((bet /100) * mult) * 100;
-    }
 }
 
 function getRandomInt(min, max) {

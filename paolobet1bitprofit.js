@@ -53,15 +53,15 @@ var maxBets = config.maxBets.value;
 var multRecovered = 0;
 
 
-engine.on('game_starting', onGameStarted);
-engine.on('game_crash', onGameEnded);
+engine.on('GAME_STARTING', onGameStarted);
+engine.on('GAME_ENDED', onGameEnded);
 
-console.log('PaoloBet start!!!');
+log('PaoloBet start!!!');
 
 function onGameStarted() {
     if (highResult && timesToStop >0)
     {
-        console.log ('Aspetto ancora per', highResult, ' turni')
+        log ('Aspetto ancora per', highResult, ' turni')
         highResult--;
     }
     else
@@ -69,27 +69,24 @@ function onGameStarted() {
         if (maxBets == 0)
         {
             reset();
-            console.log("MAX TENTATIVI ESEGUITI, RESETTO");
+            log("MAX TENTATIVI ESEGUITI, RESETTO");
         }
-        console.log ("Punto", baseBet/100, " a ", parseFloat(config.strategyOnLoss.value == 'recoveryValue' && multRecovered>0 ?
+        log ("Punto", baseBet/100, " a ", parseFloat(config.strategyOnLoss.value == 'recoveryValue' && multRecovered>0 ?
             multFactor : mult).toFixed(2), "x [ -", maxBets,"]");
-        if (config.strategyOnLoss.value == 'recoveryValue' && multRecovered) console.log("RESTANO ", multRecovered, 'da recuperare')
-        engine.placeBet(baseBet, config.strategyOnLoss.value == 'recoveryValue' && multRecovered>0 ? multFactor * 100 : mult * 100, false);
+        if (config.strategyOnLoss.value == 'recoveryValue' && multRecovered) log("RESTANO ", multRecovered, 'da recuperare')
+        engine.bet(baseBet, config.strategyOnLoss.value == 'recoveryValue' && multRecovered>0 ? multFactor * 100 : mult * 100, false);
     }
 }
 
-function onGameEnded(data) {
-    var lastGame = {}
-    lastGame.wager = baseBet;
-    lastGame.cashedAt = ((data.game_crash / 100) >= (config.strategyOnLoss.value == 'recoveryValue' && multRecovered>0 ? multFactor : mult)) ? (engine.lastGamePlay() !== "NOT_PLAYED" ? (config.strategyOnLoss.value == 'recoveryValue' && multRecovered>0 ? multFactor : mult) : 0) : 0;
-    lastGame.bust = data.game_crash / 100;
+function onGameEnded() {
+    var lastGame = engine.history.first();
 
     if (lastGame.bust >= highValue && multRecovered == 0 && config.strategyOnHigh.value == "stop") {
-        console.log("PUNTEGGIO ALTO, ASPETTO...");
+        log("PUNTEGGIO ALTO, ASPETTO...");
         highResult = timesToStop;
     }
-    if (engine.lastGamePlay() !== "NOT_PLAYED") {
-        if (lastGame.cashedAt === 0) {
+    if (lastGame.wager) {
+        if (!lastGame.cashedAt) {
             //PERSO
             if (normalBets == 0) {
                 failBets++;
@@ -122,23 +119,23 @@ function onGameEnded(data) {
             maxBets--;
         }
         if (lastGame.cashedAt !== 0) {
-            console.log("Vinto!");
+            log("Vinto!");
             if (config.strategyOnLoss.value == 'x2div2' && lastGame.cashedAt < mult.toFixed(2)) {
                 mult -= parseInt(lastGame.cashedAt, 10) - 1;
-                console.log("Ricalcolo X: ", mult);
+                log("Ricalcolo X: ", mult);
             }
             //VINTO
             else {
                 if (config.strategyOnLoss.value == 'x2div2' || (config.strategyOnLoss.value == 'recoveryValue' && multRecovered == 0)) {
-                    console.log("Riparto!");
+                    log("Riparto!");
                     var profit = lastGame.cashedAt * lastGame.wager - lastGame.wager;
                     reset();
                 } else {
                     multRecovered -= lastGame.cashedAt;
                     if (multRecovered > 0)
-                        console.log('Vinto, restano ', multRecovered, 'x da recuperare!')
+                        log('Vinto, restano ', multRecovered, 'x da recuperare!')
                     else {
-                        console.log('Recuperato! Ripartiamo!');
+                        log('Recuperato! Ripartiamo!');
                         reset();
                     }
                 }
