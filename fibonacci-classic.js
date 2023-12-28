@@ -8,9 +8,16 @@ var config = {
             gioca: {value: 'gioca', type: 'noop', label: 'Gioca al tempPayout'},
         }
     },
+    continueStrategy: {
+        value: 'gioca', type: 'radio', label: 'Strategia Se mancano i bit',
+        options: {
+            fermati: {value: 'fermati', type: 'noop', label: 'Fermati'},
+            gioca: {value: 'gioca', type: 'noop', label: 'Gioca'},
+        }
+    },
     tempPayout: {value: 50, type: 'multiplier', label: 'Padding Payout'},
     specialPaddingPayout: {value: 500000, type: 'multiplier', label: 'Special Padding Payout'},
-    paddingPayoutBelowValue: {value: 1.9, type: 'multiplier', label: 'Valore sopra il quale giocare lo special'},
+    paddingPayoutBelowValue: {value: 3, type: 'multiplier', label: 'Valore sopra il quale giocare lo special'},
     initBalance: {value: 1100000, type: 'balance', label: 'Iteration Balance (0 for all)'},
     paddingbets: {value: 6, type: 'multiplier', label: 'Padding Bets'},
     itcycle: {value: 6000, type: 'multiplier', label: 'Iteration Cycle'},
@@ -40,6 +47,7 @@ let disaster = 0;
 let itTotal = 1;
 let special = true;
 const specialPayoutValue = config.paddingPayoutBelowValue.value;
+const continueStrategy = config.continueStrategy.value;
 
 
 showStats(config.bet.value, 22);
@@ -94,7 +102,7 @@ function onGameEnded() {
             currentBet = currentBet + precBet;
             precBet = precBetTemp;
         }
-        if ((balance - currentBet) < 0) {
+        if (((balance - currentBet) < 0) || (((userInfo.balance - currentBet) < 0) && continueStrategy === "gioca")) {
             disaster++;
             log("Disaster!! :(");
             showSmallStats();
