@@ -1,0 +1,9 @@
+# local files
+.*swp
+.DS_Store
+.idea/
+.vscode/
+npm-debug.log*
+
+# dependencies
+node_modules/

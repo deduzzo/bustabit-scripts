@@ -1,0 +1,324 @@
+{
+  "capital": 55000,
+  "chunkSize": 2000,
+  "numChunks": 2000,
+  "totalGames": 4000000,
+  "topConfigurations": [
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.5,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.1
+      },
+      "successRate": 100,
+      "positiveRate": 11.35,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.3914869999999996,
+      "totalAbsoluteProfit": -430635.7,
+      "mode2Ratio": 38.102275
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.5,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.2
+      },
+      "successRate": 100,
+      "positiveRate": 17.65,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.42449981818181776,
+      "totalAbsoluteProfit": -466949.8,
+      "mode2Ratio": 38.102275
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.5,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.15
+      },
+      "successRate": 100,
+      "positiveRate": 14.000000000000002,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.42674921818181794,
+      "totalAbsoluteProfit": -469424.14,
+      "mode2Ratio": 38.102275
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.5,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.25
+      },
+      "successRate": 100,
+      "positiveRate": 22,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.44246409090909034,
+      "totalAbsoluteProfit": -486710.5,
+      "mode2Ratio": 38.102275
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.8,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.1
+      },
+      "successRate": 100,
+      "positiveRate": 20.549999999999997,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.4436757727272727,
+      "totalAbsoluteProfit": -488043.35,
+      "mode2Ratio": 39.64525
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.5,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.3
+      },
+      "successRate": 100,
+      "positiveRate": 24.75,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.45302736363636237,
+      "totalAbsoluteProfit": -498330.1,
+      "mode2Ratio": 38.102275
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.8,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.2
+      },
+      "successRate": 100,
+      "positiveRate": 31,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.4945064636363648,
+      "totalAbsoluteProfit": -543957.11,
+      "mode2Ratio": 39.64525
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.8,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.15
+      },
+      "successRate": 100,
+      "positiveRate": 24.55,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.49803231818181826,
+      "totalAbsoluteProfit": -547835.55,
+      "mode2Ratio": 39.64525
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.1
+      },
+      "successRate": 100,
+      "positiveRate": 29.099999999999998,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.5132450909090908,
+      "totalAbsoluteProfit": -564569.6,
+      "mode2Ratio": 40.46165
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.8,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.3
+      },
+      "successRate": 99.95,
+      "positiveRate": 38.95,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.5170286727272733,
+      "totalAbsoluteProfit": -568731.54,
+      "mode2Ratio": 39.64523491130873
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.5,
+        "mult": 1.5,
+        "alternateEvery": 2,
+        "recoveryPayout": 1.1
+      },
+      "successRate": 100,
+      "positiveRate": 22.900000000000002,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.5193724545454544,
+      "totalAbsoluteProfit": -571309.7,
+      "mode2Ratio": 18.999025
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.8,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.25
+      },
+      "successRate": 99.95,
+      "positiveRate": 35.15,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.5261637909090914,
+      "totalAbsoluteProfit": -578780.17,
+      "mode2Ratio": 39.64523491130873
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.5,
+        "mult": 1.6,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.1
+      },
+      "successRate": 100,
+      "positiveRate": 22.8,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.5317304545454546,
+      "totalAbsoluteProfit": -584903.5,
+      "mode2Ratio": 38.102275
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.2
+      },
+      "successRate": 100,
+      "positiveRate": 40.45,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.5364681818181825,
+      "totalAbsoluteProfit": -590115,
+      "mode2Ratio": 40.46165
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.5,
+        "mult": 1.5,
+        "alternateEvery": 2,
+        "recoveryPayout": 1.2
+      },
+      "successRate": 100,
+      "positiveRate": 29.65,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.5395150909090912,
+      "totalAbsoluteProfit": -593466.6,
+      "mode2Ratio": 18.999025
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.25
+      },
+      "successRate": 99.95,
+      "positiveRate": 43.95,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.5418975000000003,
+      "totalAbsoluteProfit": -596087.25,
+      "mode2Ratio": 40.461635115408775
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.5,
+        "mult": 1.5,
+        "alternateEvery": 2,
+        "recoveryPayout": 1.25
+      },
+      "successRate": 100,
+      "positiveRate": 31.7,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.5492899999999995,
+      "totalAbsoluteProfit": -604219,
+      "mode2Ratio": 18.999025
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.5,
+        "mult": 1.5,
+        "alternateEvery": 2,
+        "recoveryPayout": 1.15
+      },
+      "successRate": 100,
+      "positiveRate": 26.6,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.5515487636363628,
+      "totalAbsoluteProfit": -606703.64,
+      "mode2Ratio": 18.999025
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 2.5,
+        "mult": 1.5,
+        "alternateEvery": 2,
+        "recoveryPayout": 1.3
+      },
+      "successRate": 100,
+      "positiveRate": 34.5,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.5530158181818188,
+      "totalAbsoluteProfit": -608317.4,
+      "mode2Ratio": 18.999025
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3,
+        "mult": 1.5,
+        "alternateEvery": 1,
+        "recoveryPayout": 1.15
+      },
+      "successRate": 100,
+      "positiveRate": 34.849999999999994,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.5604242545454553,
+      "totalAbsoluteProfit": -616466.68,
+      "mode2Ratio": 40.46165
+    }
+  ],
+  "best": {
+    "config": {
+      "baseBet": 100,
+      "mainPayout": 2.5,
+      "mult": 1.5,
+      "alternateEvery": 1,
+      "recoveryPayout": 1.1
+    },
+    "totalAbsoluteProfit": -430635.7,
+    "avgProfitPercent": -0.3914869999999996,
+    "successRate": 100,
+    "positiveRate": 11.35,
+    "mode2Ratio": 38.102275
+  },
+  "isProfitable": false,
+  "totalTime": "9.2"
+}

@@ -1,0 +1,78 @@
+{
+  "results": [
+    {
+      "name": "Pure 50x",
+      "type": "pure",
+      "successRate": 100,
+      "positiveRate": 35.3,
+      "avgProfit": -0.15721999999999958,
+      "sharpeRatio": -0.2585911675295364,
+      "avgDrawdown": 0.5589335999999995
+    },
+    {
+      "name": "Pure 10x",
+      "type": "pure",
+      "successRate": 100,
+      "positiveRate": 26.400000000000002,
+      "avgProfit": -0.15739200000000012,
+      "sharpeRatio": -0.6000552193759837,
+      "avgDrawdown": 0.3002839999999997
+    },
+    {
+      "name": "Pure 20x",
+      "type": "pure",
+      "successRate": 100,
+      "positiveRate": 31,
+      "avgProfit": -0.1616000000000006,
+      "sharpeRatio": -0.42257472325131734,
+      "avgDrawdown": 0.3904571999999984
+    },
+    {
+      "name": "Hybrid 1.7x + 50x (every 50)",
+      "type": "hybrid",
+      "successRate": 100,
+      "positiveRate": 26.8,
+      "avgProfit": -0.1639686400000002,
+      "sharpeRatio": -0.36151942854718433,
+      "avgDrawdown": 0.39133724000000053
+    },
+    {
+      "name": "Hybrid 1.7x + 20x (every 20)",
+      "type": "hybrid",
+      "successRate": 100,
+      "positiveRate": 24.14,
+      "avgProfit": -0.17276660000000024,
+      "sharpeRatio": -0.6530607496519522,
+      "avgDrawdown": 0.30392324000000037
+    },
+    {
+      "name": "Hybrid 1.7x + 10x (every 10)",
+      "type": "hybrid",
+      "successRate": 100,
+      "positiveRate": 17.02,
+      "avgProfit": -0.17452812000000012,
+      "sharpeRatio": -0.9556008287253812,
+      "avgDrawdown": 0.2509040400000003
+    },
+    {
+      "name": "Hybrid 2.0x + 10x (every 10)",
+      "type": "hybrid",
+      "successRate": 100,
+      "positiveRate": 17.18,
+      "avgProfit": -0.17528960000000046,
+      "sharpeRatio": -0.9215358223516095,
+      "avgDrawdown": 0.25517240000000024
+    }
+  ],
+  "best": {
+    "name": "Pure 50x",
+    "type": "pure",
+    "successRate": 100,
+    "positiveRate": 35.3,
+    "avgProfit": -0.15721999999999958,
+    "sharpeRatio": -0.2585911675295364,
+    "avgDrawdown": 0.5589335999999995
+  },
+  "totalTime": "150.4",
+  "numSeeds": 5000
+}

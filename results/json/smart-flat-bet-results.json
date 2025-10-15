@@ -1,0 +1,89 @@
+{
+  "results": [
+    {
+      "name": "Flat 1.7x Basic",
+      "payout": 1.7,
+      "successRate": 100,
+      "positiveRate": 1.92,
+      "avgProfit": -0.15748796,
+      "sharpeRatio": -2.0824699073551947,
+      "avgDrawdown": 0.17464367999999988
+    },
+    {
+      "name": "Flat 2.0x Basic",
+      "payout": 2,
+      "successRate": 100,
+      "positiveRate": 3.7199999999999998,
+      "avgProfit": -0.15895520000000005,
+      "sharpeRatio": -1.79416364973267,
+      "avgDrawdown": 0.1825984000000004
+    },
+    {
+      "name": "Flat 1.7x Aggressive",
+      "payout": 1.7,
+      "successRate": 100,
+      "positiveRate": 1.6,
+      "avgProfit": -0.15965784000000013,
+      "sharpeRatio": -2.136675427348086,
+      "avgDrawdown": 0.17675624000000004
+    },
+    {
+      "name": "Flat 1.5x Basic",
+      "payout": 1.5,
+      "successRate": 100,
+      "positiveRate": 0.54,
+      "avgProfit": -0.16076500000000152,
+      "sharpeRatio": -2.478827756242886,
+      "avgDrawdown": 0.17290419999999984
+    },
+    {
+      "name": "Flat 2.0x Aggressive",
+      "payout": 2,
+      "successRate": 100,
+      "positiveRate": 3.4799999999999995,
+      "avgProfit": -0.16165840000000017,
+      "sharpeRatio": -1.7936943080466485,
+      "avgDrawdown": 0.18535600000000008
+    },
+    {
+      "name": "Flat 2.0x Adaptive",
+      "payout": 2,
+      "successRate": 100,
+      "positiveRate": 3.6999999999999997,
+      "avgProfit": -0.16868339999999982,
+      "sharpeRatio": -1.800681269983758,
+      "avgDrawdown": 0.19335800000000017
+    },
+    {
+      "name": "Flat 1.7x Adaptive",
+      "payout": 1.7,
+      "successRate": 100,
+      "positiveRate": 1.58,
+      "avgProfit": -0.17501612000000025,
+      "sharpeRatio": -2.1336512561234935,
+      "avgDrawdown": 0.19317520000000016
+    },
+    {
+      "name": "Flat 1.5x Adaptive",
+      "payout": 1.5,
+      "successRate": 100,
+      "positiveRate": 0.64,
+      "avgProfit": -0.18036340000000028,
+      "sharpeRatio": -2.4829701712024796,
+      "avgDrawdown": 0.19459289999999999
+    }
+  ],
+  "best": {
+    "name": "Flat 1.7x Basic",
+    "payout": 1.7,
+    "successRate": 100,
+    "positiveRate": 1.92,
+    "avgProfit": -0.15748796,
+    "sharpeRatio": -2.0824699073551947,
+    "avgDrawdown": 0.17464367999999988
+  },
+  "totalTime": "188.0",
+  "numSeeds": 5000,
+  "capital": 5000000,
+  "sessionGames": 2000
+}

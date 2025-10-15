@@ -1,0 +1,93 @@
+{
+  "config": {
+    "baseBet": 100,
+    "payout": 3.1,
+    "mult": 1.51,
+    "maxTimes": 23,
+    "waitBeforePlay": 0
+  },
+  "chunkSize": 1000,
+  "numChunks": 1000,
+  "results": [
+    {
+      "capital": 56000,
+      "successRate": 90.2,
+      "positiveRate": 89.9,
+      "bankruptRate": 9.8,
+      "avgProfit": -2.6306319642857146,
+      "maxProfit": 8.918750000000001,
+      "minProfit": -99.99392857142857,
+      "stdDev": 21.52515595673762,
+      "sharpeRatio": -0.12221198162619103,
+      "avgDrawdown": 13.364319464285712,
+      "maxDrawdown": 99.99607142857143
+    },
+    {
+      "capital": 57000,
+      "successRate": 91,
+      "positiveRate": 90.7,
+      "bankruptRate": 8.1,
+      "avgProfit": -2.412023157894735,
+      "maxProfit": 10.652280701754387,
+      "minProfit": -99.91263157894737,
+      "stdDev": 22.012608188126688,
+      "sharpeRatio": -0.10957461911286591,
+      "avgDrawdown": 13.551562631578939,
+      "maxDrawdown": 99.91263157894737
+    },
+    {
+      "capital": 58000,
+      "successRate": 91.60000000000001,
+      "positiveRate": 91.3,
+      "bankruptRate": 5.6000000000000005,
+      "avgProfit": -3.1249848275862115,
+      "maxProfit": 10.468620689655172,
+      "minProfit": -99.99586206896551,
+      "stdDev": 25.200122494302118,
+      "sharpeRatio": -0.12400673164556193,
+      "avgDrawdown": 14.532045000000014,
+      "maxDrawdown": 99.99586206896551
+    },
+    {
+      "capital": 59000,
+      "successRate": 92.60000000000001,
+      "positiveRate": 92.30000000000001,
+      "bankruptRate": 3.3000000000000003,
+      "avgProfit": -3.2037686440677957,
+      "maxProfit": 10.291186440677965,
+      "minProfit": -99.97186440677966,
+      "stdDev": 26.73182404931861,
+      "sharpeRatio": -0.11984848613985469,
+      "avgDrawdown": 15.189430169491542,
+      "maxDrawdown": 99.97186440677966
+    },
+    {
+      "capital": 60000,
+      "successRate": 92.60000000000001,
+      "positiveRate": 92.30000000000001,
+      "bankruptRate": 2.9000000000000004,
+      "avgProfit": -3.1766648333333305,
+      "maxProfit": 10.119666666666667,
+      "minProfit": -99.8865,
+      "stdDev": 26.38257412291559,
+      "sharpeRatio": -0.12040769102110159,
+      "avgDrawdown": 14.974012666666647,
+      "maxDrawdown": 99.8865
+    }
+  ],
+  "best": {
+    "byProfit": {
+      "capital": 57000,
+      "avgProfit": -2.412023157894735
+    },
+    "byPositiveRate": {
+      "capital": 59000,
+      "positiveRate": 92.30000000000001
+    },
+    "byBankruptRate": {
+      "capital": 60000,
+      "bankruptRate": 2.9000000000000004
+    }
+  },
+  "totalTime": "0.5"
+}

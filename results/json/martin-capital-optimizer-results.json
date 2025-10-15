@@ -1,0 +1,62 @@
+{
+  "config": {
+    "baseBet": 100,
+    "payout": 3,
+    "mult": 1.5,
+    "maxTimes": 0,
+    "waitBeforePlay": 0
+  },
+  "chunkSize": 2000,
+  "numChunks": 2000,
+  "totalGames": 4000000,
+  "results": [
+    {
+      "capital": 1000000,
+      "successRate": 99.75,
+      "positiveRate": 99.5,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.02669294999999998,
+      "totalAbsoluteProfit": -533859,
+      "avgAbsoluteProfit": -266.9295,
+      "totalCapitalInvested": 2000000000,
+      "returnOnInvestment": -0.02669295
+    },
+    {
+      "capital": 1500000,
+      "successRate": 99.8,
+      "positiveRate": 99.55000000000001,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.04981306666666664,
+      "totalAbsoluteProfit": -1494392,
+      "avgAbsoluteProfit": -747.196,
+      "totalCapitalInvested": 3000000000,
+      "returnOnInvestment": -0.04981306666666667
+    },
+    {
+      "capital": 2000000,
+      "successRate": 99.8,
+      "positiveRate": 99.55000000000001,
+      "bankruptRate": 0,
+      "avgProfitPercent": -0.03735979999999999,
+      "totalAbsoluteProfit": -1494392,
+      "avgAbsoluteProfit": -747.196,
+      "totalCapitalInvested": 4000000000,
+      "returnOnInvestment": -0.0373598
+    }
+  ],
+  "best": {
+    "byTotalProfit": {
+      "capital": 1000000,
+      "totalAbsoluteProfit": -533859,
+      "avgAbsoluteProfit": -266.9295,
+      "roi": -0.02669295
+    },
+    "byROI": {
+      "capital": 1000000,
+      "totalAbsoluteProfit": -533859,
+      "roi": -0.02669295
+    }
+  },
+  "isProfitable": false,
+  "totalTime": "3.5"
+}

@@ -1,0 +1,66 @@
+{
+  "results": [
+    {
+      "name": "Classic Fib 2.0x-T20",
+      "payout": 2,
+      "maxSteps": 20,
+      "successRate": 99.92,
+      "positiveRate": 87.12,
+      "avgProfit": -1.5981904000000002,
+      "sharpeRatio": -0.2422573146852396,
+      "avgDrawdown": 4.8137055999999765
+    },
+    {
+      "name": "Adaptive Fib 2.0x-T20",
+      "payout": 2,
+      "maxSteps": 20,
+      "successRate": 100,
+      "positiveRate": 80.44,
+      "avgProfit": -1.6203840000000074,
+      "sharpeRatio": -0.26904443116698834,
+      "avgDrawdown": 4.62439335
+    },
+    {
+      "name": "Classic Fib 2.5x-T20",
+      "payout": 2.5,
+      "maxSteps": 20,
+      "successRate": 77.9,
+      "positiveRate": 32.56,
+      "avgProfit": -18.735882999999994,
+      "sharpeRatio": -0.4689690370551391,
+      "avgDrawdown": 40.26865220000003
+    },
+    {
+      "name": "Adaptive Fib 2.5x-T20",
+      "payout": 2.5,
+      "maxSteps": 20,
+      "successRate": 92.74,
+      "positiveRate": 26.540000000000003,
+      "avgProfit": -14.605258657999947,
+      "sharpeRatio": -0.48680061015750425,
+      "avgDrawdown": 29.987492260000092
+    },
+    {
+      "name": "Adaptive Fib 3.0x-T20",
+      "payout": 3,
+      "maxSteps": 20,
+      "successRate": 52.66,
+      "positiveRate": 18,
+      "avgProfit": -37.81954879999995,
+      "sharpeRatio": -0.6740824924190469,
+      "avgDrawdown": 62.766679849999925
+    },
+    {
+      "name": "Classic Fib 3.0x-T20",
+      "payout": 3,
+      "maxSteps": 20,
+      "successRate": 40.96,
+      "positiveRate": 24.58,
+      "avgProfit": -45.38375060000001,
+      "sharpeRatio": -0.6754040448969436,
+      "avgDrawdown": 73.63546019999964
+    }
+  ],
+  "totalTime": "326.7",
+  "numSeeds": 5000
+}

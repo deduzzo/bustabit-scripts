@@ -1,0 +1,30 @@
+{
+  "results": [
+    {
+      "name": "Conservative (Recommended)",
+      "successRate": 100,
+      "positiveRate": 8.66,
+      "avgProfit": -0.4004035000000006,
+      "sharpeRatio": -1.3705776967027998,
+      "avgDrawdown": 0.4929199640000017
+    },
+    {
+      "name": "Moderate",
+      "successRate": 100,
+      "positiveRate": 8.38,
+      "avgProfit": -0.6417715399999989,
+      "sharpeRatio": -1.3385559841236783,
+      "avgDrawdown": 0.800343819999998
+    }
+  ],
+  "best": {
+    "name": "Conservative (Recommended)",
+    "successRate": 100,
+    "positiveRate": 8.66,
+    "avgProfit": -0.4004035000000006,
+    "sharpeRatio": -1.3705776967027998,
+    "avgDrawdown": 0.4929199640000017
+  },
+  "totalTime": "41.2",
+  "numSeeds": 5000
+}

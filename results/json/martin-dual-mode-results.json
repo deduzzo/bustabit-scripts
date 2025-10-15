@@ -1,0 +1,364 @@
+{
+  "capital": 55000,
+  "chunkSize": 2000,
+  "numChunks": 2000,
+  "totalGames": 4000000,
+  "topConfigurations": [
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 10,
+        "recoveryPayout": 1.05
+      },
+      "successRate": 100,
+      "positiveRate": 24.349999999999998,
+      "bankruptRate": 0,
+      "avgProfitPercent": -1.8618789090909107,
+      "totalAbsoluteProfit": -2048066.8,
+      "modeSwitches": 30501,
+      "recoverySuccesses": 30457,
+      "recoverySuccessRate": 99.85574243467428
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 10,
+        "recoveryPayout": 1.1
+      },
+      "successRate": 100,
+      "positiveRate": 23.849999999999998,
+      "bankruptRate": 0,
+      "avgProfitPercent": -1.882779363636368,
+      "totalAbsoluteProfit": -2071057.3,
+      "modeSwitches": 30501,
+      "recoverySuccesses": 30457,
+      "recoverySuccessRate": 99.85574243467428
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 10,
+        "recoveryPayout": 1.2
+      },
+      "successRate": 100,
+      "positiveRate": 24.45,
+      "bankruptRate": 0,
+      "avgProfitPercent": -1.885626636363637,
+      "totalAbsoluteProfit": -2074189.3,
+      "modeSwitches": 30501,
+      "recoverySuccesses": 30457,
+      "recoverySuccessRate": 99.85574243467428
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 10,
+        "recoveryPayout": 1.15
+      },
+      "successRate": 100,
+      "positiveRate": 24.4,
+      "bankruptRate": 0,
+      "avgProfitPercent": -1.8873619818181826,
+      "totalAbsoluteProfit": -2076098.18,
+      "modeSwitches": 30501,
+      "recoverySuccesses": 30457,
+      "recoverySuccessRate": 99.85574243467428
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 11,
+        "recoveryPayout": 1.05
+      },
+      "successRate": 100,
+      "positiveRate": 27.3,
+      "bankruptRate": 0,
+      "avgProfitPercent": -2.285845181818181,
+      "totalAbsoluteProfit": -2514429.7,
+      "modeSwitches": 21261,
+      "recoverySuccesses": 21236,
+      "recoverySuccessRate": 99.88241380932223
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 11,
+        "recoveryPayout": 1.1
+      },
+      "successRate": 100,
+      "positiveRate": 26.8,
+      "bankruptRate": 0,
+      "avgProfitPercent": -2.3098211818181804,
+      "totalAbsoluteProfit": -2540803.3,
+      "modeSwitches": 21261,
+      "recoverySuccesses": 21236,
+      "recoverySuccessRate": 99.88241380932223
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 11,
+        "recoveryPayout": 1.2
+      },
+      "successRate": 100,
+      "positiveRate": 27.400000000000002,
+      "bankruptRate": 0,
+      "avgProfitPercent": -2.321308454545456,
+      "totalAbsoluteProfit": -2553439.3,
+      "modeSwitches": 21261,
+      "recoverySuccesses": 21236,
+      "recoverySuccessRate": 99.88241380932223
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 11,
+        "recoveryPayout": 1.15
+      },
+      "successRate": 100,
+      "positiveRate": 27.3,
+      "bankruptRate": 0,
+      "avgProfitPercent": -2.3314329090909083,
+      "totalAbsoluteProfit": -2564576.2,
+      "modeSwitches": 21261,
+      "recoverySuccesses": 21236,
+      "recoverySuccessRate": 99.88241380932223
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 12,
+        "recoveryPayout": 1.05
+      },
+      "successRate": 100,
+      "positiveRate": 31.25,
+      "bankruptRate": 0,
+      "avgProfitPercent": -2.61537654545454,
+      "totalAbsoluteProfit": -2876914.2,
+      "modeSwitches": 14670,
+      "recoverySuccesses": 14656,
+      "recoverySuccessRate": 99.90456714383095
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 12,
+        "recoveryPayout": 1.1
+      },
+      "successRate": 100,
+      "positiveRate": 31.55,
+      "bankruptRate": 0,
+      "avgProfitPercent": -2.631968818181818,
+      "totalAbsoluteProfit": -2895165.7,
+      "modeSwitches": 14670,
+      "recoverySuccesses": 14656,
+      "recoverySuccessRate": 99.90456714383095
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 12,
+        "recoveryPayout": 1.15
+      },
+      "successRate": 100,
+      "positiveRate": 32.45,
+      "bankruptRate": 0,
+      "avgProfitPercent": -2.6713341818181813,
+      "totalAbsoluteProfit": -2938467.6,
+      "modeSwitches": 14670,
+      "recoverySuccesses": 14656,
+      "recoverySuccessRate": 99.90456714383095
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 12,
+        "recoveryPayout": 1.2
+      },
+      "successRate": 100,
+      "positiveRate": 31.95,
+      "bankruptRate": 0,
+      "avgProfitPercent": -2.694500454545448,
+      "totalAbsoluteProfit": -2963950.5,
+      "modeSwitches": 14670,
+      "recoverySuccesses": 14656,
+      "recoverySuccessRate": 99.90456714383095
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 13,
+        "recoveryPayout": 1.05
+      },
+      "successRate": 100,
+      "positiveRate": 35.449999999999996,
+      "bankruptRate": 0,
+      "avgProfitPercent": -2.9552272727272757,
+      "totalAbsoluteProfit": -3250750,
+      "modeSwitches": 10125,
+      "recoverySuccesses": 10115,
+      "recoverySuccessRate": 99.90123456790123
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 13,
+        "recoveryPayout": 1.1
+      },
+      "successRate": 100,
+      "positiveRate": 35.85,
+      "bankruptRate": 0,
+      "avgProfitPercent": -2.971318454545455,
+      "totalAbsoluteProfit": -3268450.3,
+      "modeSwitches": 10125,
+      "recoverySuccesses": 10115,
+      "recoverySuccessRate": 99.90123456790123
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 13,
+        "recoveryPayout": 1.15
+      },
+      "successRate": 100,
+      "positiveRate": 35.85,
+      "bankruptRate": 0,
+      "avgProfitPercent": -3.0192386272727254,
+      "totalAbsoluteProfit": -3321162.49,
+      "modeSwitches": 10125,
+      "recoverySuccesses": 10115,
+      "recoverySuccessRate": 99.90123456790123
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 13,
+        "recoveryPayout": 1.2
+      },
+      "successRate": 100,
+      "positiveRate": 35.9,
+      "bankruptRate": 0,
+      "avgProfitPercent": -3.047770454545459,
+      "totalAbsoluteProfit": -3352547.5,
+      "modeSwitches": 10125,
+      "recoverySuccesses": 10115,
+      "recoverySuccessRate": 99.90123456790123
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 14,
+        "recoveryPayout": 1.05
+      },
+      "successRate": 100,
+      "positiveRate": 37.95,
+      "bankruptRate": 0,
+      "avgProfitPercent": -3.101817818181818,
+      "totalAbsoluteProfit": -3411999.6,
+      "modeSwitches": 6902,
+      "recoverySuccesses": 6894,
+      "recoverySuccessRate": 99.88409156766154
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 14,
+        "recoveryPayout": 1.1
+      },
+      "successRate": 100,
+      "positiveRate": 38.25,
+      "bankruptRate": 0,
+      "avgProfitPercent": -3.1489094545454566,
+      "totalAbsoluteProfit": -3463800.4,
+      "modeSwitches": 6902,
+      "recoverySuccesses": 6894,
+      "recoverySuccessRate": 99.88409156766154
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 14,
+        "recoveryPayout": 1.15
+      },
+      "successRate": 100,
+      "positiveRate": 39,
+      "bankruptRate": 0,
+      "avgProfitPercent": -3.2213742545454553,
+      "totalAbsoluteProfit": -3543511.68,
+      "modeSwitches": 6902,
+      "recoverySuccesses": 6894,
+      "recoverySuccessRate": 99.88409156766154
+    },
+    {
+      "config": {
+        "baseBet": 100,
+        "mainPayout": 3.1,
+        "mult": 1.6,
+        "switchThreshold": 14,
+        "recoveryPayout": 1.2
+      },
+      "successRate": 100,
+      "positiveRate": 39.4,
+      "bankruptRate": 0,
+      "avgProfitPercent": -3.269702727272729,
+      "totalAbsoluteProfit": -3596673,
+      "modeSwitches": 6902,
+      "recoverySuccesses": 6894,
+      "recoverySuccessRate": 99.88409156766154
+    }
+  ],
+  "best": {
+    "config": {
+      "baseBet": 100,
+      "mainPayout": 3.1,
+      "mult": 1.6,
+      "switchThreshold": 10,
+      "recoveryPayout": 1.05
+    },
+    "totalAbsoluteProfit": -2048066.8,
+    "avgProfitPercent": -1.8618789090909107,
+    "successRate": 100,
+    "positiveRate": 24.349999999999998,
+    "recoverySuccessRate": 99.85574243467428
+  },
+  "isProfitable": false,
+  "totalTime": "3.8"
+}

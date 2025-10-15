@@ -1,0 +1,43 @@
+{
+  "config": {
+    "baseBet": 100,
+    "payout": 2.3,
+    "mult": 1.5,
+    "maxTimes": 23,
+    "waitBeforePlay": 0
+  },
+  "capital": 55000,
+  "chunkSize": 2000,
+  "numChunks": 2000,
+  "totalGames": 4000000,
+  "summary": {
+    "successRate": 99.55000000000001,
+    "positiveRate": 43.2,
+    "bankruptRate": 0,
+    "avgProfit": -0.8133801545454548,
+    "median": -0.10683636363636365,
+    "maxProfit": 0.9917090909090909,
+    "minProfit": -67.49772727272727,
+    "stdDev": 4.707260691042977,
+    "sharpeRatio": -0.1727926724120384,
+    "confidenceInterval95": {
+      "lower": -1.0196849504479555,
+      "upper": -0.607075358642954
+    },
+    "avgDrawdown": 2.415908727272723,
+    "maxDrawdown": 68.3490909090909,
+    "tStatistic": -7.727523230543409
+  },
+  "distribution": {
+    "Loss > -50%": 9,
+    "Loss -50% to -20%": 0,
+    "Loss -20% to -10%": 12,
+    "Loss -10% to -5%": 34,
+    "Loss -5% to 0%": 1081,
+    "Profit 0% to +5%": 864,
+    "Profit +5% to +10%": 0,
+    "Profit +10% to +20%": 0,
+    "Profit > +20%": 0
+  },
+  "totalTime": "3.5"
+}
