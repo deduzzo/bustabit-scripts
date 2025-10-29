@@ -20,25 +20,26 @@
 var config = {
     // 🎯 Payout ottimale: 3.2x (era 3.1x)
     // Win rate: ~31%, ma profitto superiore per vincita
-    payout: { value: 3.1, type: 'multiplier', label: 'Mult' },
+    payout: { value: 3.0, type: 'multiplier', label: 'Mult' },
 
     baseBet: { value: 100, type: 'balance', label: 'Base Bet' },
 
     // 📈 Multiplier ottimale: 1.45x (era 1.51x)
     // Crescita più controllata = meno capitale richiesto + più sicuro
-    mult: { value: 1.51, type: 'multiplier', label: 'x after KO' },
+    mult: { value: 1.50, type: 'multiplier', label: 'x after KO' },
 
     // 🛡️ MaxTimes ottimale: 25 (era 23)
     // +2 tentativi extra = +21% success rate!
-    maxTimes: { value: 25, type: 'multiplier', label: 'Max Times' },
+    maxTimes: { value: 23, type: 'multiplier', label: 'Max Times' },
 
     initBalance: { value: 0, type: 'balance', label: 'Iteration Balance (0 for all)' },
-    stopDefinitive: { value: 4000, type: 'multiplier', label: 'Script iteration number of games' },
+    stopDefinitive: { value: 400000, type: 'multiplier', label: 'Script iteration number of games' },
 
     // ⏸️ Wait Mode: 0 = sempre gioca (ottimale per profitto)
     // Se preferisci più sicurezza: usa 2 (ma profit -30%)
     waitBeforePlay: { value: 0, type: 'multiplier', label: 'Wait misses before play' },
 };
+
 
 const payout = config.payout.value;
 const increaseMult = config.mult.value;
@@ -153,21 +154,48 @@ function onGameEnded() {
     if (!betPlacedThisRound) { pfx('B/E', `skip (no bet)`); return; }
 
     if (lastGame.cashedAt) {
-        // WIN → azzera ladder; poi WAIT o resta in BETTING se wait=0
+        // Calcola profitto
         balance += Math.floor(lastGame.cashedAt * lastGame.wager) - lastGame.wager;
-        pfx('WIN', `crash:${crash} cash:${lastGame.cashedAt} bal:${(balance/100).toFixed(2)}`);
-        currentBet = config.baseBet.value;
-        currentTimes = 0;
 
-        if (currentRound >= stopDefinitive) {
-            pfx('STOP', `R:${currentRound} → reset`);
-            resetCycle();
-        } else {
-            if (waitBeforePlay === 0) {
-                state = STATE.BETTING; // gioca sempre
+        // 🎯 Verifica se è un cashout manuale (diverso dal payout configurato)
+        const isManualCashout = Math.abs(lastGame.cashedAt - payout) > 0.01;
+
+        if (isManualCashout) {
+            // 🔧 INTERVENTO MANUALE: continua la sequenza invece di resettare
+            pfx('MAN', `cash:${lastGame.cashedAt} (target:${payout}) bal:${(balance/100).toFixed(2)} → continue`);
+            currentTimes++;
+
+            if (maxTimes > 0 && currentTimes >= maxTimes) {
+                // Raggiunto max times anche dopo cashout manuale
+                currentBet = config.baseBet.value;
+                currentTimes = 0;
+                if (waitBeforePlay === 0) {
+                    state = STATE.BETTING;
+                } else {
+                    state = STATE.WAITING; waitRemaining = waitBeforePlay;
+                    pfx('MAX', `reached→WAIT need:${waitRemaining}/${waitBeforePlay}`);
+                }
             } else {
-                state = STATE.WAITING; waitRemaining = waitBeforePlay;
-                pfx('B→W', `need:${waitRemaining}/${waitBeforePlay}`);
+                // Incrementa la bet per continuare la sequenza
+                currentBet = Math.ceil((currentBet / 100) * increaseMult) * 100;
+                pfx('MAN+', `nextBet:${(currentBet/100).toFixed(2)} step→${currentTimes+1}`);
+            }
+        } else {
+            // ✅ WIN normale al payout configurato → azzera ladder
+            pfx('WIN', `crash:${crash} cash:${lastGame.cashedAt} bal:${(balance/100).toFixed(2)}`);
+            currentBet = config.baseBet.value;
+            currentTimes = 0;
+
+            if (currentRound >= stopDefinitive) {
+                pfx('STOP', `R:${currentRound} → reset`);
+                resetCycle();
+            } else {
+                if (waitBeforePlay === 0) {
+                    state = STATE.BETTING; // gioca sempre
+                } else {
+                    state = STATE.WAITING; waitRemaining = waitBeforePlay;
+                    pfx('B→W', `need:${waitRemaining}/${waitBeforePlay}`);
+                }
             }
         }
     } else {

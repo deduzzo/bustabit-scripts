@@ -25,7 +25,7 @@ var config = {
         value: 120, type: 'multiplier', label: 'Quante volte fare una puntata normale'
     },
     timesToChange: {
-        value: 200, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
+        value: 50, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
     },
     strategyOnLoss: {
         value: 'x2div2', type: 'radio', label: 'cosa fai in caso non vinci x volte?',
@@ -46,7 +46,7 @@ var config = {
     minMultDiv: {
         value: 400, type: 'multiplier', label: 'minMultDiv'
     },
-    initBalance: { value: 1000000, type: 'balance', label: 'Iteration Balance (0 for all)' },
+    initBalance: { value: 0, type: 'balance', label: 'Iteration Balance (0 for all)' },
     stepBalance: { value: 10000, type: 'balance', label: 'step Balance' },
     stopDefinitive: { value: 1000, type: 'multiplier', label: 'Script iteration number of games' },
 };

@@ -1,6 +1,6 @@
 var config = {
     mult: {
-        value: 10, type: 'multiplier', label: 'Moltiplicatore'
+        value: 12, type: 'multiplier', label: 'Moltiplicatore'
     },
     bet: {
         value: 100, type: 'balance', label: 'Puntata iniziale'
@@ -9,7 +9,7 @@ var config = {
         value: 200, type: 'multiplier', label: 'Punteggio Alto'
     },
     timesToStop: {
-        value: 10, type: 'multiplier', label: 'n giocate di stop in caso di punteggio alto'
+        value: 0, type: 'multiplier', label: 'n giocate di stop in caso di punteggio alto'
     },
     strategyOnHigh: {
         value: 'stop', type: 'radio', label: 'In caso di punteggio superiore a quello alto:',
@@ -22,7 +22,7 @@ var config = {
         value: 120, type: 'multiplier', label: 'Quante volte fare una puntata normale'
     },
     timesToChange: {
-        value: 200, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
+        value: 50, type: 'multiplier', label: 'Poi dopo x volte in cui non vinci'
     },
     strategyOnLoss: {
         value: 'x2div2', type: 'radio', label: 'cosa fai in caso non vinci x volte?',
