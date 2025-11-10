@@ -49,14 +49,14 @@ var config = {
     targetProfitPercent: { value: 20, type: 'multiplier', label: 'Target Profit % (stop when reached)' },
 
     // ===== MODALITÀ 1 (NORMALE) =====
-    payout: { value: 3.0, type: 'multiplier', label: 'Normal Mode Payout' },
+    payout: { value: 3.1, type: 'multiplier', label: 'Normal Mode Payout' },
     baseBet: { value: 100, type: 'balance', label: 'Base Bet' },
-    mult: { value: 1.50, type: 'multiplier', label: 'Multiplier after loss' },
+    mult: { value: 1.51, type: 'multiplier', label: 'Multiplier after loss' },
 
     // ===== MODALITÀ 2 (RECUPERO) =====
     recoveryTrigger: { value: 11, type: 'multiplier', label: 'Losses before recovery mode' },
-    recoveryPayout: { value: 1.4, type: 'multiplier', label: 'Recovery Mode Payout' },
-    recoveryPhases: { value: 3, type: 'multiplier', label: 'Number of recovery phases (divide losses)' },
+    recoveryPayout: { value: 1.1, type: 'multiplier', label: 'Recovery Mode Payout' },
+    recoveryPhases: { value: 4, type: 'multiplier', label: 'Number of recovery phases (divide losses)' },
 };
 
 // Configurazione base
