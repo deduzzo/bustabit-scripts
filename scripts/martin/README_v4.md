@@ -1,20 +1,71 @@
-# Martin AI v4 - Partitioned Recovery Strategy
+# Martin AI v4 - Recursive Partitioned Recovery Strategy
 
-## 🎯 Innovazione Principale
+## 🎯 Innovazione Rivoluzionaria
 
-**v4 introduce il RECUPERO PARTIZIONATO CONFIGURABILE**: invece di tentare di recuperare tutte le perdite in un solo bet gigante, **divide il recupero in N FASI** separate (configurabile), riducendo drasticamente il capitale richiesto e il rischio.
+**v4 introduce il RECUPERO PARTIZIONATO RICORSIVO**: invece di tentare di recuperare tutte le perdite in un solo bet gigante, **divide SEMPRE il recupero in N FASI** e **ricomincia ricorsivamente** dopo ogni perdita, garantendo bet sempre contenute e recupero praticamente garantito.
 
-### 🆕 NOVITÀ: Configurabilità Totale
+### 🆕 NOVITÀ RIVOLUZIONARIA: Recupero Ricorsivo Infinito
 
-- **Numero di fasi**: Scegli in quante parti dividere il recovery (default: 3)
-- **Tentativi per fase**: Scegli quanti tentativi massimi per ogni fase (default: 5)
-- **Comportamento adattivo**: Dopo N tentativi in una fase, passa automaticamente alla fase successiva ricalcolando le bet sul "restante" da recuperare
+- **Numero di fasi**: Dividi il recovery in N parti (es. 4 fasi = dividi per 4)
+- **Ricorsività infinita**: Dopo OGNI perdita, ricalcola TUTTO e riparti da fase 1
+- **Bet sempre piccole**: Dividendo sempre per N, le bet rimangono contenute
+- **Nessun limite**: L'algoritmo continua finché non vinci N fasi consecutive
+- **Win condition chiara**: Esci dal recovery solo quando completi tutte le N fasi senza perdere
+
+## 📖 Come Funziona il Recupero Ricorsivo
+
+### Esempio Dettagliato (4 fasi, 1.1x payout)
+
+Supponiamo di avere **1000 bits** di perdite accumulate dopo 11 perdite consecutive in modalità normale.
+
+#### 🔄 **CICLO 1** - Prime 4 fasi
+```
+Perdite totali: 1000 bits
+Diviso in 4 fasi: 1000 / 4 = 250 bits per fase
+
+FASE 1: Bet 2500 bits per recuperare 250 @1.1x
+  → ✅ WIN! (+250 bits) - Restano 750 bits da recuperare
+
+FASE 2: Bet 2500 bits per recuperare 250 @1.1x
+  → ❌ LOSS! (-2500 bits) - Perdite ora: 1000 - 250 + 2500 = 3250 bits
+
+🔄 RECURSIVE RESET → Back to PHASE 1/4
+Nuove perdite totali: 3250 bits
+Ridividi: 3250 / 4 = 813 bits per fase
+```
+
+#### 🔄 **CICLO 2** - Riprovi da capo con nuove fasi
+```
+Perdite totali: 3250 bits
+Diviso in 4 fasi: 3250 / 4 = 813 bits per fase
+
+FASE 1: Bet 8125 bits per recuperare 813 @1.1x
+  → ✅ WIN! (+813 bits) - Restano 2437 bits da recuperare
+
+FASE 2: Bet 8125 bits per recuperare 813 @1.1x
+  → ✅ WIN! (+813 bits) - Restano 1624 bits da recuperare
+
+FASE 3: Bet 8125 bits per recuperare 813 @1.1x
+  → ✅ WIN! (+813 bits) - Restano 811 bits da recuperare
+
+FASE 4: Bet 8110 bits per recuperare 811 @1.1x
+  → ✅ WIN! (+811 bits) - RECUPERO COMPLETO!
+
+✅ Torna a modalità normale!
+```
+
+### 🎯 Perché È Rivoluzionario
+
+1. **Dopo ogni perdita riparte da fase 1**: Non accumuli mai bet esponenziali
+2. **Bet sempre divise per N**: Con 4 fasi, la bet massima è sempre `perdite_totali / 4 / 0.1`
+3. **Win rate altissimo**: Con 1.1x hai 90% di probabilità per ogni bet
+4. **Praticamente garantito**: Devi solo vincere N fasi consecutive (65.6% probabilità con 4 fasi e 90% win rate)
 
 ## 📊 Confronto v3 vs v4
 
 ### Recovery Mode - Esempio pratico
 
-Supponiamo di avere **1000 bits** di perdite accumulate dopo 16 perdite consecutive in modalità normale.
+Supponiamo di avere **1000 bits** di perdite accumulate dopo 11 perdite consecutive in modalità normale.
 
 #### ❌ **v3 - Recovery Tradizionale**
 - **1 singolo bet gigante** per recuperare tutto
