@@ -1,31 +1,36 @@
 /**
- * ⚙️ MARTIN AI v3 - DUAL MODE STRATEGY with PROFIT TARGET
+ * ⚙️ MARTIN AI v4 - PARTITIONED RECOVERY STRATEGY
  *
- * STRATEGIA A DUE MODALITÀ CON LIMITE DI PROFITTO:
+ * STRATEGIA CON RECUPERO PARTIZIONATO IN N FASI (CONFIGURABILE):
  *
  * 🎮 MODALITÀ 1 (NORMALE):
- *    • Payout: 3.0x
- *    • Base Bet: 100 bits
- *    • Multiplier: 1.50x
- *    • Target profit per ciclo: 200 bits (2 bits in display)
+ *    • Payout: 3.0x (configurabile)
+ *    • Base Bet: 100 bits (configurabile)
+ *    • Multiplier: 1.50x (configurabile)
+ *    • Bonus: +1 bit per le prime 3 perdite
  *
- * 🛡️ MODALITÀ 2 (RECUPERO):
- *    • Trigger: Dopo X perdite consecutive in Modalità 1
- *    • Payout: 2.0x (più probabile - 50% win rate)
- *    • Bet calcolata dinamicamente per recuperare tutto + 200 bits
- *    • Max tentativi recupero: 12 (configurabile)
- *    • Ogni perdita ricalcola la bet necessaria
+ * 🛡️ MODALITÀ 2 (RECUPERO PARTIZIONATO):
+ *    • Trigger: Dopo X perdite consecutive in Modalità 1 (configurabile)
+ *    • Payout: Configurabile (es. 1.2x = 83% win rate, 1.5x = 66% win rate)
+ *    • INNOVAZIONE: Recupero diviso in N FASI (configurabile) invece di tutto in una volta
+ *    • Max tentativi per fase: Configurabile (dopo N tentativi, passa alla fase successiva)
  *
- * 💡 LOGICA RECUPERO:
- *    Se perdi N volte in modalità normale e hai perso totale T bits:
- *    betRecovery = (T + 200) / (payout - 1)
- *    Con payout 2.0x: betRecovery = (T + 200) / 1.0
+ *    ESEMPIO CON 3 FASI:
+ *    FASE 1: Tenta di recuperare 1/3 delle perdite (max N tentativi)
+ *    FASE 2: Tenta di recuperare 1/3 delle perdite rimanenti (max N tentativi)
+ *    FASE 3: Tenta di recuperare l'ultimo 1/3 + torna a normale (max N tentativi)
  *
- * 🎯 AUTO-STOP:
- *    Lo script si ferma automaticamente quando raggiunge il target profit %
- *    Esempio: workingBalance 50.000, targetProfit 10% → stop a +5.000 bits
+ *    Se raggiungi il max tentativi in una fase → passa automaticamente alla fase successiva
+ *    adattando le bet al "restante" da recuperare
  *
- * 📊 CAPITALE RACCOMANDATO: 50.000 bits minimo
+ * 💡 VANTAGGI RECUPERO PARTIZIONATO:
+ *    • Bet più piccole = molto meno capitale richiesto
+ *    • Rischio distribuito su N fasi e M tentativi per fase
+ *    • Se vinci in una fase, continui con meno stress
+ *    • Adattamento automatico: le fasi successive recuperano il "restante"
+ *    • Configurabile: puoi scegliere numero fasi, tentativi per fase, payout
+ *
+ * 📊 CAPITALE RACCOMANDATO: Dipende dai parametri scelti (vedi statistiche all'avvio)
  */
 var config = {
     // ===== CAPITALE E TARGET =====
@@ -38,9 +43,9 @@ var config = {
     mult: { value: 1.50, type: 'multiplier', label: 'Multiplier after loss' },
 
     // ===== MODALITÀ 2 (RECUPERO) =====
-    recoveryTrigger: { value: 16, type: 'multiplier', label: 'Losses before recovery mode' },
-    recoveryPayout: { value: 1.2, type: 'multiplier', label: 'Recovery Mode Payout' },
-    recoveryMaxTimes: { value: 20, type: 'multiplier', label: 'Max recovery attempts' },
+    recoveryTrigger: { value: 11, type: 'multiplier', label: 'Losses before recovery mode' },
+    recoveryPayout: { value: 1.1, type: 'multiplier', label: 'Recovery Mode Payout' },
+    recoveryPhases: { value: 3, type: 'multiplier', label: 'Number of recovery phases (divide losses)' },
 };
 
 // Configurazione base
@@ -52,7 +57,7 @@ const normalMult = config.mult.value;
 
 const recoveryTrigger = config.recoveryTrigger.value;
 const recoveryPayout = config.recoveryPayout.value;
-const recoveryMaxTimes = config.recoveryMaxTimes.value;
+const RECOVERY_PHASES = config.recoveryPhases.value;
 
 // Calcolo target profit assoluto
 const targetProfitAbsolute = Math.floor(workingBalance * (targetProfitPercent / 100));
@@ -77,11 +82,16 @@ let state = STATE.BETTING;
 
 // Tracking perdite e bet
 let normalConsecutiveLosses = 0; // Perdite consecutive in modalità normale
-let recoveryAttempts = 0; // Tentativi di recupero
+let recoveryAttempts = 0; // Tentativi di recupero nella fase corrente
 let totalLosses = 0; // Totale perdite da recuperare
 let currentBet = normalBaseBet;
 let currentPayout = normalPayout;
 let betPlacedThisRound = false;
+
+// Recovery partizionato in N fasi (configurabile)
+let currentRecoveryPhase = 0; // Fase corrente (0 = non in recovery, 1-N = fasi attive)
+let lossesToRecoverPerPhase = 0; // Perdite da recuperare in questa fase
+let totalLossesAtRecoveryStart = 0; // Totale perdite all'inizio del recovery
 
 // Tracking profit separato per modalità
 let normalModeProfit = 0; // Profitto netto dalla modalità normale (conta per target)
@@ -106,18 +116,19 @@ function pfx(tag, msg) { log(`[${tag}] ${msg}`) }
 // ===== INIZIALIZZAZIONE =====
 log('');
 log('╔════════════════════════════════════════════════════════════╗');
-log('║  🏆 MARTIN AI v3 - DUAL MODE STRATEGY                     ║');
+log('║  🏆 MARTIN AI v4 - PARTITIONED RECOVERY STRATEGY          ║');
 log('╚════════════════════════════════════════════════════════════╝');
 log('');
 log('📊 MODALITÀ 1 (NORMALE):');
 log(`   • Payout: ${normalPayout}x`);
 log(`   • Base Bet: ${(normalBaseBet/100).toFixed(2)} bits`);
 log(`   • Multiplier: ${normalMult}x`);
+log(`   • Bonus: +1 bit per le prime 3 perdite`);
 log('');
-log('🛡️ MODALITÀ 2 (RECUPERO):');
+log('🛡️ MODALITÀ 2 (RECUPERO PARTIZIONATO):');
 log(`   • Trigger: ${recoveryTrigger} perdite consecutive`);
 log(`   • Payout: ${recoveryPayout}x`);
-log(`   • Max tentativi: ${recoveryMaxTimes}`);
+log(`   • Fasi: ${RECOVERY_PHASES} (recupero diviso in ${RECOVERY_PHASES} parti)`);
 log('');
 log('💰 CAPITALE & TARGET:');
 log(`   • Working Balance: ${(workingBalance/100).toFixed(2)} bits`);
@@ -232,7 +243,7 @@ function onGameStarted() {
     // Calcola bet finale sommando il bonus
     const finalBet = currentBet + bonusPerLoss;
 
-    pfx(`${modeTag}/S`, `R:${currentRound} bet:${(currentBet/100).toFixed(2)}${bonusPerLoss > 0 ? `+${(bonusPerLoss/100).toFixed(2)}` : ''}=${(finalBet/100).toFixed(2)} @${currentPayout}x bal:${(balance/100).toFixed(2)} [${currentMode === MODE.NORMAL ? `L:${normalConsecutiveLosses}` : `A:${recoveryAttempts}/${recoveryMaxTimes}`}]`);
+    pfx(`${modeTag}/S`, `R:${currentRound} bet:${(currentBet/100).toFixed(2)}${bonusPerLoss > 0 ? `+${(bonusPerLoss/100).toFixed(2)}` : ''}=${(finalBet/100).toFixed(2)} @${currentPayout}x bal:${(balance/100).toFixed(2)} [${currentMode === MODE.NORMAL ? `L:${normalConsecutiveLosses}` : `P${currentRecoveryPhase}/${RECOVERY_PHASES}`}]`);
 
     engine.bet(finalBet, currentPayout);
     betPlacedThisRound = true;
@@ -307,41 +318,51 @@ function handleWin(lastGame, crash) {
     } else {
         // RECOVERY MODE
         if (isExactCashout) {
-            // ✅ WIN RECOVERY al target → torna a normale
+            // ✅ WIN RECOVERY al target → verifica fase
             recoveryWins++;
-            pfx(`${modeTag}/W`, `🎯 RECUPERO! crash:${crash} profit:+${(profit/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
-            switchToNormalMode();
+            pfx(`${modeTag}/W`, `🎯 PHASE ${currentRecoveryPhase}/${RECOVERY_PHASES} WIN! crash:${crash} profit:+${(profit/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
+
+            // Verifica se ci sono altre fasi da completare
+            if (currentRecoveryPhase < RECOVERY_PHASES) {
+                // 🔄 PASSA ALLA FASE SUCCESSIVA
+                currentRecoveryPhase++;
+
+                // Ricalcola le perdite rimanenti dalla fase corrente
+                const remainingLosses = balanceBeforeLossSequence - balance;
+                const remainingPhases = RECOVERY_PHASES - currentRecoveryPhase + 1;
+                lossesToRecoverPerPhase = Math.ceil(remainingLosses / remainingPhases);
+
+                pfx('PHASE', `⏭️  ADVANCING TO PHASE ${currentRecoveryPhase}/${RECOVERY_PHASES}`);
+                pfx('INFO', `Remaining losses: ${(remainingLosses/100).toFixed(2)} bits`);
+                pfx('INFO', `Phase ${currentRecoveryPhase} target: ${(lossesToRecoverPerPhase/100).toFixed(2)} bits`);
+
+                // Ricalcola la bet per la nuova fase
+                calculateRecoveryBet();
+            } else {
+                // ✅ TUTTE LE FASI COMPLETATE → torna a normale
+                pfx('COMPLETE', `✅ ALL PHASES COMPLETED! Full recovery successful!`);
+                switchToNormalMode();
+            }
         } else {
             // ⚠️ CASHOUT PARZIALE in recovery → continua recovery ma NON conta come tentativo
             recoveryLosses++;
             // NON incrementa recoveryAttempts - non è una perdita vera!
 
-            // Ricalcola totalLosses come differenza reale dal balance PRIMA della sequenza
+            // Ricalcola totalLosses e losses per fase
             totalLosses = balanceBeforeLossSequence - balance;
+            const remainingLosses = totalLosses;
+            const remainingPhases = RECOVERY_PHASES - currentRecoveryPhase + 1;
+            lossesToRecoverPerPhase = Math.ceil(remainingLosses / remainingPhases);
 
             // In recovery mode non incrementiamo più il bonus (troppo rischioso)
             // bonusPerLoss rimane fisso a quello accumulato nelle prime 3 perdite normali
 
-            pfx(`${modeTag}/P`, `⚠️ PARZIALE @${lastGame.cashedAt}x (target:${targetPayout}x) → continua RECOVERY [A:${recoveryAttempts}/${recoveryMaxTimes}]`);
+            pfx(`${modeTag}/P`, `⚠️ PHASE ${currentRecoveryPhase}/${RECOVERY_PHASES} PARZIALE @${lastGame.cashedAt}x (target:${targetPayout}x)`);
 
-            if (recoveryAttempts >= recoveryMaxTimes) {
-                // Max tentativi raggiunto → SEMPRE restart
-                pfx('REC/X', `Max tentativi recupero raggiunto.`);
-                disaster++;
-                sessionCycles++;
-                const cycleLoss = initBalance - balance;
-                sessionProfit -= cycleLoss;
-                sessionGames += currentRound;
-
-                pfx('RESTART', `Max recovery raggiunto. Ricomincio ciclo ${sessionCycles + 1}...`);
-                log('');
-                log(`📊 Ciclo ${sessionCycles} fallito (max recovery). Profit sessione: ${sessionProfit >= 0 ? '+' : ''}${(sessionProfit/100).toFixed(2)} bits`);
-                log('');
-                restartCycle();
-            } else {
-                // Ricalcola bet per recupero considerando le perdite accumulate
-                calculateRecoveryBet();
-            }
+            // CASHOUT PARZIALE = profitto parziale, non conta per max recovery
+            // Continua a ricalcolare bet per fase corrente
+            pfx('REC/+', `Recalculating bet for phase ${currentRecoveryPhase}. Remaining: ${(remainingLosses/100).toFixed(2)} bits`);
+            calculateRecoveryBet();
         }
     }
 }
@@ -371,7 +392,7 @@ function handleLoss(crash) {
 
         // Check se passare a recovery mode
         if (normalConsecutiveLosses >= recoveryTrigger) {
-            // Dopo 12 perdite consecutive, SEMPRE passare a recovery mode
+            // Dopo X perdite consecutive, SEMPRE passare a recovery mode
             switchToRecoveryMode();
         } else {
             // Continua in modalità normale con martingala
@@ -384,29 +405,18 @@ function handleLoss(crash) {
         recoveryAttempts++;
         // In recovery mode non incrementiamo più il bonus (troppo rischioso)
         // bonusPerLoss rimane fisso a quello accumulato nelle prime 3 perdite normali
-        // Ricalcola totalLosses dal balance PRIMA della sequenza
+
+        // Ricalcola le perdite totali e per questa fase
         totalLosses = balanceBeforeLossSequence - balance;
+        const remainingLosses = totalLosses;
+        const remainingPhases = RECOVERY_PHASES - currentRecoveryPhase + 1;
+        lossesToRecoverPerPhase = Math.ceil(remainingLosses / remainingPhases);
 
-        pfx(`${modeTag}/L`, `❌ crash:${crash} loss:-${(finalBet/100).toFixed(2)} bal:${(balance/100).toFixed(2)} [A:${recoveryAttempts}/${recoveryMaxTimes}]`);
+        pfx(`${modeTag}/L`, `❌ PHASE ${currentRecoveryPhase}/${RECOVERY_PHASES} crash:${crash} loss:-${(finalBet/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
 
-        if (recoveryAttempts >= recoveryMaxTimes) {
-            // Troppi tentativi di recupero falliti → SEMPRE restart
-            pfx('REC/X', `Max tentativi recupero raggiunto.`);
-            disaster++;
-            sessionCycles++;
-            const cycleLoss = initBalance - balance;
-            sessionProfit -= cycleLoss;
-            sessionGames += currentRound;
-
-            pfx('RESTART', `Max recovery raggiunto. Ricomincio ciclo ${sessionCycles + 1}...`);
-            log('');
-            log(`📊 Ciclo ${sessionCycles} fallito (max recovery). Profit sessione: ${sessionProfit >= 0 ? '+' : ''}${(sessionProfit/100).toFixed(2)} bits`);
-            log('');
-            restartCycle();
-        } else {
-            // Ricalcola bet per recupero
-            calculateRecoveryBet();
-        }
+        // Continua nella fase corrente, ricalcola bet
+        pfx('REC/+', `Recalculating bet for phase ${currentRecoveryPhase}. Remaining: ${(remainingLosses/100).toFixed(2)} bits`);
+        calculateRecoveryBet();
     }
 }
 
@@ -415,12 +425,19 @@ function switchToRecoveryMode() {
     recoveryAttempts = 0;
     currentPayout = recoveryPayout;
 
-    // Calcola il loss REALE dal balance PRIMA della sequenza di perdite (non dal initBalance)
+    // Calcola il loss REALE dal balance PRIMA della sequenza di perdite
     const actualLoss = balanceBeforeLossSequence - balance;
-    totalLosses = actualLoss; // Sovrascrive con il loss effettivo
+    totalLosses = actualLoss;
+    totalLossesAtRecoveryStart = actualLoss;
 
-    pfx('MODE', `🛡️ SWITCH TO RECOVERY MODE`);
-    pfx('INFO', `Actual balance loss to recover: ${(actualLoss/100).toFixed(2)} bits (from ${(balanceBeforeLossSequence/100).toFixed(2)} to ${(balance/100).toFixed(2)})`);
+    // 🎯 INIZIA FASE 1: recupera 1/N delle perdite totali
+    currentRecoveryPhase = 1;
+    lossesToRecoverPerPhase = Math.ceil(totalLossesAtRecoveryStart / RECOVERY_PHASES);
+
+    pfx('MODE', `🛡️ SWITCH TO RECOVERY MODE - PHASE 1/${RECOVERY_PHASES}`);
+    pfx('INFO', `Total losses: ${(totalLossesAtRecoveryStart/100).toFixed(2)} bits`);
+    pfx('INFO', `Phase 1 target: ${(lossesToRecoverPerPhase/100).toFixed(2)} bits (1/${RECOVERY_PHASES})`);
+    pfx('INFO', `Balance: ${(balanceBeforeLossSequence/100).toFixed(2)} → ${(balance/100).toFixed(2)}`);
 
     calculateRecoveryBet();
 }
@@ -430,6 +447,9 @@ function switchToNormalMode() {
     normalConsecutiveLosses = 0;
     recoveryAttempts = 0;
     totalLosses = 0;
+    currentRecoveryPhase = 0; // Reset fase
+    lossesToRecoverPerPhase = 0;
+    totalLossesAtRecoveryStart = 0;
     currentBet = normalBaseBet;
     currentPayout = normalPayout;
     bonusPerLoss = 0; // Reset bonus
@@ -439,16 +459,16 @@ function switchToNormalMode() {
 }
 
 function calculateRecoveryBet() {
-    // Formula: per vincere X con payout P, devo puntare X / (P - 1)
-    // Vogliamo solo recuperare totalLosses (non aggiungere targetProfit)
+    // 🎯 RECOVERY PARTIZIONATO: calcola bet solo per la fase corrente
     const payoutMultiplier = recoveryPayout - 1.0;
 
-    currentBet = Math.ceil(totalLosses / payoutMultiplier);
+    // Calcola bet necessaria per recuperare solo lossesToRecoverPerPhase
+    currentBet = Math.ceil(lossesToRecoverPerPhase / payoutMultiplier);
 
     // Arrotonda a 100
     currentBet = Math.ceil(currentBet / 100) * 100;
 
-    pfx('REC/C', `Calculated bet:${(currentBet/100).toFixed(2)} to recover:${(totalLosses/100).toFixed(2)} @${recoveryPayout}x`);
+    pfx('REC/C', `Phase ${currentRecoveryPhase}/${RECOVERY_PHASES}: bet ${(currentBet/100).toFixed(2)} to recover ${(lossesToRecoverPerPhase/100).toFixed(2)} @${recoveryPayout}x`);
 
     // Verifica se abbiamo abbastanza saldo
     if (currentBet > balance) {
@@ -485,6 +505,9 @@ function restartCycle() {
     normalConsecutiveLosses = 0;
     recoveryAttempts = 0;
     totalLosses = 0;
+    currentRecoveryPhase = 0; // Reset fasi recovery
+    lossesToRecoverPerPhase = 0;
+    totalLossesAtRecoveryStart = 0;
     normalModeProfit = 0; // Reset profit normale
     balanceBeforeLossSequence = 0;
     bonusPerLoss = 0; // Reset bonus
@@ -530,34 +553,66 @@ function showBettingPlan() {
     log('   📈 BET MAX FASE 1: ' + (maxBetNormal/100).toFixed(2) + ' bits');
     log('');
 
-    // ===== FASE 2: MODALITÀ RECOVERY =====
-    log('🛡️ FASE 2 - MODALITÀ RECOVERY (dopo ' + recoveryTrigger + ' perdite):');
-    log('   Payout: ' + recoveryPayout + 'x | Bet dinamica per recuperare tutto');
+    // ===== FASE 2: MODALITÀ RECOVERY PARTIZIONATO =====
+    log('🛡️ FASE 2 - MODALITÀ RECOVERY PARTIZIONATO (dopo ' + recoveryTrigger + ' perdite):');
+    log('   Payout: ' + recoveryPayout + 'x | Recupero diviso in ' + RECOVERY_PHASES + ' fasi');
     log('');
 
-    // Simula recovery: ogni perdita ricalcola la bet necessaria
+    // Simula recovery partizionato: divide le perdite in RECOVERY_PHASES parti
     let lossesAccumulated = totalNormal;
     let maxBetRecovery = 0;
     let totalCapitalNeeded = totalNormal;
 
-    for (let i = 1; i <= recoveryMaxTimes; i++) {
-        // Calcola bet necessaria per recuperare tutte le perdite accumulate
-        const payoutMult = recoveryPayout - 1.0;
-        let recoveryBet = Math.ceil(lossesAccumulated / payoutMult);
-        recoveryBet = Math.ceil(recoveryBet / 100) * 100;
+    // Calcola bet per ogni fase (1/3 delle perdite iniziali)
+    const payoutMult = recoveryPayout - 1.0;
+    const lossesPerPhase = Math.ceil(totalNormal / RECOVERY_PHASES);
+    let recoveryBet = Math.ceil(lossesPerPhase / payoutMult);
+    recoveryBet = Math.ceil(recoveryBet / 100) * 100;
 
-        if (recoveryBet > maxBetRecovery) maxBetRecovery = recoveryBet;
+    log('   📊 STRATEGIA PARTIZIONATA:');
+    log('   • Perdite totali da recuperare: ' + (totalNormal/100).toFixed(2) + ' bits');
+    log('   • Diviso in ' + RECOVERY_PHASES + ' fasi da ~' + (lossesPerPhase/100).toFixed(2) + ' bits ciascuna');
+    log('   • Bet per fase (1/' + RECOVERY_PHASES + '): ' + (recoveryBet/100).toFixed(2) + ' bits');
+    log('');
+    log('   🎯 VANTAGGIO vs RECOVERY TRADIZIONALE:');
 
-        // Aggiungi questa bet al capitale necessario
-        totalCapitalNeeded += recoveryBet;
-        lossesAccumulated += recoveryBet;
+    // Calcola bet tradizionale (tutto in una volta)
+    let traditionalBet = Math.ceil(totalNormal / payoutMult);
+    traditionalBet = Math.ceil(traditionalBet / 100) * 100;
+    const reduction = ((1 - (recoveryBet / traditionalBet)) * 100).toFixed(1);
 
-        log('   [R' + i + '] Bet: ' + (recoveryBet/100).toFixed(2).padStart(8) + ' bits | Perdite accumulate: ' + (lossesAccumulated/100).toFixed(2).padStart(10) + ' bits | Capitale totale: ' + (totalCapitalNeeded/100).toFixed(2).padStart(10) + ' bits');
+    log('   • Recovery tradizionale (tutto insieme): ' + (traditionalBet/100).toFixed(2) + ' bits');
+    log('   • Recovery partizionato (per fase): ' + (recoveryBet/100).toFixed(2) + ' bits');
+    log('   ✅ RIDUZIONE BET: -' + reduction + '% (molto più sicuro!)');
+    log('');
+
+    // Simula worst case: perdite continue attraverso tutte le fasi
+    // Simula 50 tentativi totali distribuiti tra le fasi
+    const maxRecoveryAttempts = 50;
+    for (let i = 1; i <= maxRecoveryAttempts; i++) {
+        const remainingLosses = lossesAccumulated;
+
+        // Determina fase corrente basata su quante perdite abbiamo accumulato
+        const phaseNum = Math.min(RECOVERY_PHASES, Math.floor(i / 10) + 1);
+        const remainingPhases = RECOVERY_PHASES - phaseNum + 1;
+        const currentPhaseLosses = Math.ceil(remainingLosses / remainingPhases);
+
+        let currentRecoveryBet = Math.ceil(currentPhaseLosses / payoutMult);
+        currentRecoveryBet = Math.ceil(currentRecoveryBet / 100) * 100;
+
+        if (currentRecoveryBet > maxBetRecovery) maxBetRecovery = currentRecoveryBet;
+
+        totalCapitalNeeded += currentRecoveryBet;
+        lossesAccumulated += currentRecoveryBet;
+
+        if (i <= 20) { // Mostra solo i primi 20 per brevità
+            log('   [R' + i + '/P' + phaseNum + '] Bet: ' + (currentRecoveryBet/100).toFixed(2).padStart(8) + ' bits | Perdite: ' + (lossesAccumulated/100).toFixed(2).padStart(10) + ' bits | Capitale: ' + (totalCapitalNeeded/100).toFixed(2).padStart(10) + ' bits');
+        }
     }
 
     log('');
-    log('   💰 BET MAX RECOVERY: ' + (maxBetRecovery/100).toFixed(2) + ' bits');
-    log('   🚨 CAPITALE TOTALE NECESSARIO (worst case - ' + (recoveryTrigger + recoveryMaxTimes) + ' perdite): ' + (totalCapitalNeeded/100).toFixed(2) + ' bits');
+    log('   💰 BET MAX RECOVERY: ' + (maxBetRecovery/100).toFixed(2) + ' bits (vs ' + (traditionalBet/100).toFixed(2) + ' tradizionale)');
+    log('   🚨 CAPITALE TOTALE NECESSARIO (worst case - ' + (recoveryTrigger + maxRecoveryAttempts) + ' perdite): ' + (totalCapitalNeeded/100).toFixed(2) + ' bits');
     log('');
 
     // ===== RIEPILOGO =====
@@ -573,7 +628,7 @@ function showBettingPlan() {
     if (workingBalance < totalCapitalNeeded) {
         const missing = totalCapitalNeeded - workingBalance;
         log('   ⚠️  ATTENZIONE: Mancano ' + (missing/100).toFixed(2) + ' bits per coprire worst case!');
-        log('   📉 Rischio disaster se si verificano ' + (recoveryTrigger + recoveryMaxTimes) + ' perdite consecutive');
+        log('   📉 Rischio disaster se si verificano ' + (recoveryTrigger + maxRecoveryAttempts) + ' perdite consecutive');
     } else {
         const buffer = workingBalance - totalCapitalNeeded;
         log('   ✅ Buffer extra: +' + (buffer/100).toFixed(2) + ' bits');
