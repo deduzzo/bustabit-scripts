@@ -1,7 +1,7 @@
 /**
- * ⚙️ MARTIN AI v4.1 - RECURSIVE PARTITIONED RECOVERY STRATEGY (MANUAL MODE)
+ * ⚙️ MARTIN AI v4.5 - SMART DUAL CYCLE + ADAPTIVE PAYOUT STRATEGY
  *
- * STRATEGIA CON RECUPERO PARTIZIONATO RICORSIVO/ITERATIVO:
+ * STRATEGIA CON RECUPERO INTELLIGENTE A 2 CICLI + ALTERNANZA PAYOUT:
  *
  * 🎮 MODALITÀ 1 (NORMALE - SUPPORTA GIOCO MANUALE):
  *    • Payout: 3.0x (configurabile)
@@ -13,29 +13,36 @@
  *    • 🆕 Dopo N tentativi (win/loss/cashout) → FASE 2 (recovery)
  *    • 🚨 RESET EMERGENZA: Cashout @1.01x → reset forzato del ciclo (emergenza)
  *
- * 🛡️ MODALITÀ 2 (RECUPERO PARTIZIONATO RICORSIVO):
- *    • Trigger: Dopo X perdite consecutive in Modalità 1 (configurabile)
- *    • Payout: Configurabile (es. 1.1x = 90% win rate, 1.2x = 83% win rate)
- *    • INNOVAZIONE RIVOLUZIONARIA: Recupero SEMPRE diviso in N fasi, all'infinito
+ * 🛡️ MODALITÀ 2 (RECUPERO SMART A 2 CICLI + ALTERNANZA):
+ *    • Trigger: Dopo X tentativi in Modalità 1 (configurabile)
+ *    • INNOVAZIONE: Strategia a 2 cicli base + alternanza payout intelligente
  *
- *    COME FUNZIONA (es. 4 FASI):
- *    1. Hai 1000 bits di perdite → dividi in 4 fasi da 250 bits ciascuna
- *    2. FASE 1: Provi a recuperare 250 bits
- *       - Se VINCI → vai a FASE 2
- *       - Se PERDI → ricalcola TUTTO e ridividi in 4 nuove fasi (es. 1300 bits → 325 per fase)
- *    3. FASE 2: Provi a recuperare il prossimo 1/4
- *       - Se VINCI → vai a FASE 3
- *       - Se PERDI → ricalcola TUTTO e ridividi in 4 nuove fasi dal punto attuale
- *    4. Continua fino a completare TUTTE le N fasi consecutive
+ *    COME FUNZIONA (es. 4 FASI BASE):
+ *    📍 CICLO 1: Primo tentativo con recoveryPhases fasi (4 fasi)
+ *       - Perdite: 1000 bits → 4 fasi → 250/fase
+ *       - Se COMPLETI 4 fasi → SUCCESSO, torna a Mode 1
+ *       - Se PERDI → vai a CICLO 2
  *
- * 💡 VANTAGGI RECUPERO RICORSIVO:
- *    • ♾️ INFINITAMENTE RESILIENTE: Non esiste "max tentativi", l'algoritmo continua
- *    • 📉 BET SEMPRE CONTENUTE: Dividi sempre per N, mai bet gigantesche
- *    • 🔄 AUTO-ADATTIVO: Le fasi si ricalcolano automaticamente dopo ogni perdita
- *    • 🎯 WIN CONDITION CHIARA: Esci solo quando vinci N fasi consecutive
- *    • 🛡️ SICUREZZA MASSIMA: Con payout alto (1.1x = 90% win) è quasi impossibile fallire
- *    • 💰 CAPITALE RIDOTTO: Bet piccole distribuite = molto meno capitale necessario
- *    • 🎮 MODALITÀ MANUALE: Puoi fare cashout manuale e accumulare piccoli profitti extra
+ *    📍 CICLO 2: Secondo tentativo con recoveryPhases fasi (altre 4 fasi)
+ *       - Perdite: 1400 bits → 4 fasi → 350/fase
+ *       - Se COMPLETI 4 fasi → SUCCESSO, torna a Mode 1
+ *       - Se PERDI → vai a MODALITÀ SMART
+ *
+ *    📍 MODALITÀ SMART: Dopo 2 cicli falliti
+ *       - Raddoppia le fasi: recoveryPhases × 2 (8 fasi invece di 4)
+ *       - Alterna payout in modo intelligente:
+ *         • Tentativo dispari: LOW payout (1.1x = 90% win, bet più alta)
+ *         • Tentativo pari: HIGH payout (2.0x = 50% win, bet più bassa)
+ *       - Bet sempre contenute grazie alle fasi raddoppiate
+ *       - Continua fino a recupero completo
+ *
+ * 💡 VANTAGGI STRATEGIA SMART:
+ *    • ♾️ INFINITAMENTE RESILIENTE: 2 cicli base + alternanza infinita
+ *    • 📉 BET SEMPRE CONTENUTE: Raddoppia fasi invece di aumentare bet
+ *    • 🎯 ALTERNANZA INTELLIGENTE: Mix tra alta probabilità e alta vincita
+ *    • 🛡️ SICUREZZA: Bet mai troppo alte grazie a fasi × 2
+ *    • 💰 CAPITALE RIDOTTO: Fasi raddoppiate = bet dimezzate
+ *    • 🎮 MODALITÀ MANUALE: Supporta cashout manuale
  *
  * 📊 ESEMPIO PRATICO CON CASHOUT MANUALE (recovery trigger = 7):
  *    FASE 1 - MODALITÀ NORMALE:
@@ -123,6 +130,18 @@ let betPlacedThisRound = false;
 let currentRecoveryPhase = 0; // Fase corrente (0 = non in recovery, 1-N = fasi attive)
 let lossesToRecoverPerPhase = 0; // Perdite da recuperare in questa fase
 let totalLossesAtRecoveryStart = 0; // Totale perdite all'inizio del recovery
+let totalBetsPlaced = 0; // Totale bits puntati (solo bet, no vincite)
+let phasesCompleted = 0; // Numero di fasi completate con successo nel ciclo corrente
+let recoveryProgress = 0; // Bits già recuperati nelle fasi completate
+
+// 🎯 STRATEGIA SMART: 2 cicli base + alternanza
+let recoveryCyclesCompleted = 0; // Numero di cicli base completati (0, 1, 2+)
+let smartModeActive = false; // true se siamo in modalità smart (dopo 2 cicli)
+let smartAttemptCount = 0; // Contatore tentativi in smart mode
+let currentAdaptivePhases = RECOVERY_PHASES; // Fasi correnti (4 base, poi 8 in smart mode)
+const SMART_PAYOUT_LOW = 1.1; // Payout basso (alta probabilità)
+const SMART_PAYOUT_HIGH = 2.0; // Payout alto (bassa probabilità)
+let fixedBetForCycle = 0; // Bet FISSA per l'intero ciclo
 
 // Tracking profit separato per modalità
 let normalModeProfit = 0; // Profitto netto dalla modalità normale (conta per target)
@@ -147,7 +166,7 @@ function pfx(tag, msg) { log(`[${tag}] ${msg}`) }
 // ===== INIZIALIZZAZIONE =====
 log('');
 log('╔════════════════════════════════════════════════════════════╗');
-log('║  🏆 MARTIN AI v4.1 - MANUAL MODE + EMERGENCY RESET        ║');
+log('║  🏆 MARTIN AI v4.5 - SMART DUAL CYCLE + ADAPTIVE PAYOUT  ║');
 log('╚════════════════════════════════════════════════════════════╝');
 log('');
 log('📊 MODALITÀ 1 (NORMALE):');
@@ -464,27 +483,42 @@ function handleLoss(crash) {
             pfx('NRM/+', `next bet:${(currentBet/100).toFixed(2)}${bonusPerLoss > 0 ? `+${(bonusPerLoss/100).toFixed(2)}` : ''}`);
         }
     } else {
-        // RECOVERY MODE LOSS → RICORSIVO: Ricalcola TUTTO e ricomincia da fase 1
+        // RECOVERY MODE LOSS → Reset ciclo corrente e passa al prossimo
         recoveryLosses++;
         recoveryAttempts++;
-        // In recovery mode non incrementiamo più il bonus (troppo rischioso)
-        // bonusPerLoss rimane fisso a quello accumulato nelle prime 3 perdite normali
 
-        // Ricalcola le perdite totali dal punto di partenza originale
-        totalLosses = balanceBeforeLossSequence - balance;
-
-        pfx(`${modeTag}/L`, `❌ PHASE ${currentRecoveryPhase}/${RECOVERY_PHASES} crash:${crash} loss:-${(finalBet/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
-
-        // 🔄 INNOVAZIONE RICORSIVA: Dopo ogni perdita, RIPARTI DA FASE 1
-        // Dividi TUTTE le perdite accumulate in N nuove fasi
-        currentRecoveryPhase = 1; // Reset a fase 1
+        // Aggiorna perdite totali
+        totalBetsPlaced += finalBet;
+        totalLosses = totalBetsPlaced;
         totalLossesAtRecoveryStart = totalLosses;
-        lossesToRecoverPerPhase = Math.ceil(totalLossesAtRecoveryStart / RECOVERY_PHASES);
 
-        pfx('REC/⟲', `🔄 RECURSIVE RESET → Back to PHASE 1/${RECOVERY_PHASES}`);
-        pfx('INFO', `Total losses now: ${(totalLosses/100).toFixed(2)} bits`);
-        pfx('INFO', `New phase target: ${(lossesToRecoverPerPhase/100).toFixed(2)} bits (1/${RECOVERY_PHASES})`);
+        pfx(`${modeTag}/L`, `❌ PHASE ${phasesCompleted + 1}/${currentAdaptivePhases} crash:${crash} loss:-${(finalBet/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
+        pfx('INFO', `Total losses: ${(totalLosses/100).toFixed(2)} bits | Progresso: ${(recoveryProgress/100).toFixed(2)} bits`);
 
+        // 🔄 PERDITA → Resetta fasi completate e passa al prossimo ciclo/tentativo
+        phasesCompleted = 0;
+        fixedBetForCycle = 0;
+
+        if (!smartModeActive) {
+            // Nei primi 2 cicli: incrementa counter
+            recoveryCyclesCompleted++;
+
+            if (recoveryCyclesCompleted >= 2) {
+                // Dopo 2 cicli falliti → ATTIVA SMART MODE
+                smartModeActive = true;
+                smartAttemptCount = 0;
+                pfx('SMART', `🧠 ATTIVAZIONE SMART MODE dopo 2 cicli falliti`);
+                pfx('SMART', `📈 Strategia: ${RECOVERY_PHASES * 2} fasi + alternanza payout`);
+            } else {
+                pfx('CYCLE', `🔄 Ciclo ${recoveryCyclesCompleted} fallito → Provo CICLO ${recoveryCyclesCompleted + 1}`);
+            }
+        } else {
+            // In smart mode: incrementa counter tentativi
+            smartAttemptCount++;
+            pfx('SMART', `🔄 Tentativo ${smartAttemptCount} fallito → Prossimo: ${smartAttemptCount + 1}`);
+        }
+
+        // Ricalcola bet per il nuovo ciclo/tentativo
         calculateRecoveryBet();
     }
 }
@@ -492,20 +526,29 @@ function handleLoss(crash) {
 function switchToRecoveryMode() {
     currentMode = MODE.RECOVERY;
     recoveryAttempts = 0;
-    currentPayout = recoveryPayout;
 
     // Calcola il loss REALE dal balance PRIMA della sequenza di perdite
     const actualLoss = balanceBeforeLossSequence - balance;
     totalLosses = actualLoss;
     totalLossesAtRecoveryStart = actualLoss;
+    totalBetsPlaced = actualLoss;
 
-    // 🎯 INIZIA FASE 1: recupera 1/N delle perdite totali
+    // 🎯 INIZIALIZZA STRATEGIA: inizia sempre con CICLO 1
+    recoveryCyclesCompleted = 0;
+    smartModeActive = false;
+    smartAttemptCount = 0;
+    phasesCompleted = 0;
+    recoveryProgress = 0;
     currentRecoveryPhase = 1;
-    lossesToRecoverPerPhase = Math.ceil(totalLossesAtRecoveryStart / RECOVERY_PHASES);
+    currentAdaptivePhases = RECOVERY_PHASES;
+    fixedBetForCycle = 0;
 
-    pfx('MODE', `🛡️ SWITCH TO RECOVERY MODE - PHASE 1/${RECOVERY_PHASES}`);
+    // Payout iniziale: usa quello configurato per i primi 2 cicli
+    currentPayout = recoveryPayout;
+
+    pfx('MODE', `🛡️ SWITCH TO RECOVERY MODE - CICLO 1`);
     pfx('INFO', `Total losses: ${(totalLossesAtRecoveryStart/100).toFixed(2)} bits`);
-    pfx('INFO', `Phase 1 target: ${(lossesToRecoverPerPhase/100).toFixed(2)} bits (1/${RECOVERY_PHASES})`);
+    pfx('INFO', `Strategy: 2 cicli base (${RECOVERY_PHASES} fasi) + smart mode`);
     pfx('INFO', `Balance: ${(balanceBeforeLossSequence/100).toFixed(2)} → ${(balance/100).toFixed(2)}`);
 
     calculateRecoveryBet();
@@ -516,40 +559,93 @@ function switchToNormalMode() {
     normalConsecutiveLosses = 0;
     recoveryAttempts = 0;
     totalLosses = 0;
-    currentRecoveryPhase = 0; // Reset fase
+    totalBetsPlaced = 0;
+    currentRecoveryPhase = 0;
     lossesToRecoverPerPhase = 0;
     totalLossesAtRecoveryStart = 0;
+    phasesCompleted = 0;
+    recoveryProgress = 0;
     currentBet = normalBaseBet;
     currentPayout = normalPayout;
-    bonusPerLoss = 0; // Reset bonus
+    bonusPerLoss = 0;
     state = STATE.BETTING;
+
+    // Reset strategia smart
+    recoveryCyclesCompleted = 0;
+    smartModeActive = false;
+    smartAttemptCount = 0;
+    currentAdaptivePhases = RECOVERY_PHASES;
+    fixedBetForCycle = 0;
 
     pfx('MODE', `🎮 BACK TO NORMAL MODE`);
 }
 
 function calculateRecoveryBet() {
-    // 🎯 RECOVERY PARTIZIONATO: calcola bet solo per la fase corrente
-    const payoutMultiplier = recoveryPayout - 1.0;
+    // 🎯 Calcola perdite rimanenti da recuperare
+    const remainingLosses = totalLossesAtRecoveryStart - recoveryProgress;
 
-    // Calcola bet necessaria per recuperare solo lossesToRecoverPerPhase
-    currentBet = Math.ceil(lossesToRecoverPerPhase / payoutMultiplier);
+    // ⚠️ SE È L'INIZIO DI UN NUOVO CICLO → calcola payout e bet
+    if (phasesCompleted === 0 || fixedBetForCycle === 0) {
+        // 🎯 Determina payout basato sulla strategia
+        if (!smartModeActive) {
+            // CICLI 1-2: usa payout configurato
+            currentPayout = recoveryPayout;
+            currentAdaptivePhases = RECOVERY_PHASES;
+            pfx('CYCLE', `📍 CICLO ${recoveryCyclesCompleted + 1}/2 - ${currentAdaptivePhases} fasi @${currentPayout}x`);
+        } else {
+            // SMART MODE: alterna payout e raddoppia fasi
+            currentAdaptivePhases = RECOVERY_PHASES * 2;
 
-    // Arrotonda a 100
-    currentBet = Math.ceil(currentBet / 100) * 100;
+            // Alterna: dispari = LOW (1.1x), pari = HIGH (2.0x)
+            if (smartAttemptCount % 2 === 0) {
+                currentPayout = SMART_PAYOUT_LOW;
+                pfx('SMART', `📊 Tentativo ${smartAttemptCount + 1} - LOW payout: ${currentAdaptivePhases} fasi @${currentPayout}x (90% win)`);
+            } else {
+                currentPayout = SMART_PAYOUT_HIGH;
+                pfx('SMART', `📊 Tentativo ${smartAttemptCount + 1} - HIGH payout: ${currentAdaptivePhases} fasi @${currentPayout}x (50% win)`);
+            }
+        }
 
-    pfx('REC/C', `Phase ${currentRecoveryPhase}/${RECOVERY_PHASES}: bet ${(currentBet/100).toFixed(2)} to recover ${(lossesToRecoverPerPhase/100).toFixed(2)} @${recoveryPayout}x`);
+        // Calcola bet per fase
+        const payoutMultiplier = currentPayout - 1.0;
+        let lossPerPhase = Math.ceil(remainingLosses / currentAdaptivePhases);
+        let betPerPhase = Math.ceil(lossPerPhase / payoutMultiplier);
+        betPerPhase = Math.ceil(betPerPhase / 100) * 100; // Arrotonda a 100
 
-    // Verifica se abbiamo abbastanza saldo
+        // 🛡️ SAFETY: Se bet troppo alta, aumenta fasi fino a renderla sicura
+        const maxSafeBet = Math.floor(balance * 0.5);
+        let phaseMultiplier = 1;
+
+        while (betPerPhase > maxSafeBet && phaseMultiplier < 10) {
+            phaseMultiplier++;
+            currentAdaptivePhases = (smartModeActive ? RECOVERY_PHASES * 2 : RECOVERY_PHASES) * phaseMultiplier;
+            lossPerPhase = Math.ceil(remainingLosses / currentAdaptivePhases);
+            betPerPhase = Math.ceil(lossPerPhase / payoutMultiplier);
+            betPerPhase = Math.ceil(betPerPhase / 100) * 100;
+
+            pfx('ADAPT', `⚠️  Bet troppo alta → Aumento fasi: ×${phaseMultiplier} = ${currentAdaptivePhases} fasi`);
+        }
+
+        fixedBetForCycle = betPerPhase;
+        pfx('BET', `💰 Bet per fase: ${(fixedBetForCycle/100).toFixed(2)} bits (recupero ${(lossPerPhase/100).toFixed(2)}/fase)`);
+    }
+
+    // 📊 Usa la BET FISSA per questa fase
+    currentBet = fixedBetForCycle;
+
+    const phasesRemaining = currentAdaptivePhases - phasesCompleted;
+    pfx('PHASE', `Phase ${phasesCompleted + 1}/${currentAdaptivePhases}: bet ${(currentBet/100).toFixed(2)} @${currentPayout}x | Remaining: ${(remainingLosses/100).toFixed(2)} bits in ${phasesRemaining} fasi`);
+
+    // Verifica saldo
     if (currentBet > balance) {
-        // Saldo insufficiente → SEMPRE restart
-        pfx('REC/!', `Bet troppo alta! Richiesto:${(currentBet/100).toFixed(2)} Disponibile:${(balance/100).toFixed(2)}`);
+        pfx('REC/!', `⚠️ Bet troppo alta! Richiesto: ${(currentBet/100).toFixed(2)} | Disponibile: ${(balance/100).toFixed(2)}`);
         disaster++;
         sessionCycles++;
         const cycleLoss = initBalance - balance;
         sessionProfit -= cycleLoss;
         sessionGames += currentRound;
 
-        pfx('RESTART', `Saldo insufficiente per recovery. Ricomincio ciclo ${sessionCycles + 1}...`);
+        pfx('RESTART', `Saldo insufficiente. Ricomincio ciclo ${sessionCycles + 1}...`);
         log('');
         log(`📊 Ciclo ${sessionCycles} fallito. Profit sessione: ${sessionProfit >= 0 ? '+' : ''}${(sessionProfit/100).toFixed(2)} bits`);
         log('');
