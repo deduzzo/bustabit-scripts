@@ -1,13 +1,16 @@
 /**
- * ⚙️ MARTIN AI v4 - RECURSIVE PARTITIONED RECOVERY STRATEGY
+ * ⚙️ MARTIN AI v4.1 - RECURSIVE PARTITIONED RECOVERY STRATEGY (MANUAL MODE)
  *
  * STRATEGIA CON RECUPERO PARTIZIONATO RICORSIVO/ITERATIVO:
  *
- * 🎮 MODALITÀ 1 (NORMALE):
+ * 🎮 MODALITÀ 1 (NORMALE - SUPPORTA GIOCO MANUALE):
  *    • Payout: 3.0x (configurabile)
  *    • Base Bet: 100 bits (configurabile)
  *    • Multiplier: 1.50x (configurabile)
  *    • Bonus: +1 bit per le prime 3 perdite
+ *    • 🆕 CASHOUT MANUALE: Se cashout != payout target → conta come PERDITA
+ *    • 🆕 Solo cashout ESATTO al payout target resetta il ciclo
+ *    • 🆕 Dopo N tentativi (win/loss/cashout) → FASE 2 (recovery)
  *
  * 🛡️ MODALITÀ 2 (RECUPERO PARTIZIONATO RICORSIVO):
  *    • Trigger: Dopo X perdite consecutive in Modalità 1 (configurabile)
@@ -31,15 +34,25 @@
  *    • 🎯 WIN CONDITION CHIARA: Esci solo quando vinci N fasi consecutive
  *    • 🛡️ SICUREZZA MASSIMA: Con payout alto (1.1x = 90% win) è quasi impossibile fallire
  *    • 💰 CAPITALE RIDOTTO: Bet piccole distribuite = molto meno capitale necessario
+ *    • 🎮 MODALITÀ MANUALE: Puoi fare cashout manuale e accumulare piccoli profitti extra
  *
- * 📊 ESEMPIO PRATICO (4 fasi, 1.1x payout):
- *    Perdite iniziali: 1000 bits
- *    → CICLO 1: [250, 250, 250, 250] - perdi fase 2 → 1350 totali
- *    → CICLO 2: [338, 338, 338, 338] - perdi fase 1 → 1688 totali
- *    → CICLO 3: [422, 422, 422, 422] - VINCI tutte → RECUPERO COMPLETO!
+ * 📊 ESEMPIO PRATICO CON CASHOUT MANUALE (recovery trigger = 7):
+ *    FASE 1 - MODALITÀ NORMALE:
+ *    1. Bet 100 @3.0x → LOSS (-100)
+ *    2. Bet 150 @3.0x → CASHOUT @2.5x (+75, profit parziale) → CONTA COME PERDITA!
+ *    3. Bet 225 @3.0x → LOSS (-225)
+ *    4. Bet 340 @3.0x → CASHOUT @2.0x (+340, profit parziale) → CONTA COME PERDITA!
+ *    5. Bet 510 @3.0x → LOSS (-510)
+ *    6. Bet 765 @3.0x → WIN @3.0x ESATTO (+1530) → RESET? NO! Solo 6 tentativi
+ *    7. Bet 100 @3.0x → LOSS (-100) → 7° tentativo → RECOVERY MODE!
  *
- *    Con 90% win rate per fase, probabilità di vincere 4 fasi consecutive: 65.6%
- *    Ma non ti fermi mai, quindi alla fine recuperi SEMPRE (a meno di disaster saldo)
+ *    FASE 2 - RECOVERY PARTIZIONATO (4 fasi, 1.1x):
+ *    → Calcola perdite reali dal balance pre-sequenza
+ *    → Divide in 4 fasi e recupera con payout alto (90% win rate)
+ *    → VINCI 4 fasi consecutive → TORNA A FASE 1
+ *
+ *    💡 VANTAGGIO: I cashout manuali accumulano piccoli profitti extra,
+ *       permettendo di raggiungere il target più velocemente!
  *
  * 📊 CAPITALE RACCOMANDATO: Dipende dai parametri (vedi statistiche all'avvio)
  */
@@ -310,21 +323,34 @@ function handleWin(lastGame, crash) {
             bonusPerLoss = 0; // Reset bonus
             state = STATE.BETTING;
         } else {
-            // ⚠️ CASHOUT PARZIALE → incrementa bet ma NON conta come perdita consecutiva
+            // ⚠️ CASHOUT PARZIALE → CONTA COME PERDITA CONSECUTIVA (modifica v4.1)
             normalLosses++;
-            // NON incrementa normalConsecutiveLosses - non è una perdita vera!
 
-            pfx(`${modeTag}/P`, `⚠️ PARZIALE @${lastGame.cashedAt}x (target:${targetPayout}x) → continua martingala [L:${normalConsecutiveLosses}/${recoveryTrigger}]`);
+            // Se è la prima perdita della sequenza, salva il balance PRIMA della perdita
+            if (normalConsecutiveLosses === 0) {
+                balanceBeforeLossSequence = balance; // Balance attuale (dopo il cashout parziale)
+            }
 
-            // Continua in modalità normale con martingala (come se fosse una perdita)
-            currentBet = Math.ceil((currentBet / 100) * normalMult) * 100;
+            // INCREMENTA normalConsecutiveLosses - cashout parziale = perdita!
+            normalConsecutiveLosses++;
 
-            // Incrementa bonus solo per le prime 3 puntate
-            if (normalConsecutiveLosses < MAX_BONUS_LOSSES) {
+            // Incrementa bonus solo per le prime 3 perdite
+            if (normalConsecutiveLosses <= MAX_BONUS_LOSSES) {
                 bonusPerLoss += 100;
             }
 
-            pfx('NRM/+', `next bet:${(currentBet/100).toFixed(2)}${bonusPerLoss > 0 ? `+${(bonusPerLoss/100).toFixed(2)}` : ''}`);
+            pfx(`${modeTag}/P`, `⚠️ PARZIALE @${lastGame.cashedAt}x (target:${targetPayout}x) → conta come perdita [L:${normalConsecutiveLosses}/${recoveryTrigger}]`);
+
+            // Check se passare a recovery mode
+            if (normalConsecutiveLosses >= recoveryTrigger) {
+                // Dopo X tentativi (perdite o cashout parziali), passa a recovery mode
+                pfx('TRIGGER', `🚨 ${recoveryTrigger} tentativi raggiunti → RECOVERY MODE`);
+                switchToRecoveryMode();
+            } else {
+                // Continua in modalità normale con martingala
+                currentBet = Math.ceil((currentBet / 100) * normalMult) * 100;
+                pfx('NRM/+', `next bet:${(currentBet/100).toFixed(2)}${bonusPerLoss > 0 ? `+${(bonusPerLoss/100).toFixed(2)}` : ''}`);
+            }
         }
     } else {
         // RECOVERY MODE
