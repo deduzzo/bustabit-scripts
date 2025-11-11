@@ -11,6 +11,7 @@
  *    • 🆕 CASHOUT MANUALE: Se cashout != payout target → conta come PERDITA
  *    • 🆕 Solo cashout ESATTO al payout target resetta il ciclo
  *    • 🆕 Dopo N tentativi (win/loss/cashout) → FASE 2 (recovery)
+ *    • 🚨 RESET EMERGENZA: Cashout @1.01x → reset forzato del ciclo (emergenza)
  *
  * 🛡️ MODALITÀ 2 (RECUPERO PARTIZIONATO RICORSIVO):
  *    • Trigger: Dopo X perdite consecutive in Modalità 1 (configurabile)
@@ -53,6 +54,12 @@
  *
  *    💡 VANTAGGIO: I cashout manuali accumulano piccoli profitti extra,
  *       permettendo di raggiungere il target più velocemente!
+ *
+ * 🚨 FUNZIONE EMERGENZA:
+ *    • Cashout @1.01x in qualsiasi momento = RESET FORZATO
+ *    • Utile in caso di emergenza per uscire da una sequenza di perdite
+ *    • Torna immediatamente a Modalità 1 con base bet
+ *    • Esempio: Sei in Recovery Fase 3, bet alta → cashout @1.01x → RESET tutto
  *
  * 📊 CAPITALE RACCOMANDATO: Dipende dai parametri (vedi statistiche all'avvio)
  */
@@ -140,7 +147,7 @@ function pfx(tag, msg) { log(`[${tag}] ${msg}`) }
 // ===== INIZIALIZZAZIONE =====
 log('');
 log('╔════════════════════════════════════════════════════════════╗');
-log('║  🏆 MARTIN AI v4 - PARTITIONED RECOVERY STRATEGY          ║');
+log('║  🏆 MARTIN AI v4.1 - MANUAL MODE + EMERGENCY RESET        ║');
 log('╚════════════════════════════════════════════════════════════╝');
 log('');
 log('📊 MODALITÀ 1 (NORMALE):');
@@ -160,6 +167,11 @@ log(`   • Target Profit: ${targetProfitPercent}% (+${(targetProfitAbsolute/100
 log(`   • Stop at: ${((workingBalance + targetProfitAbsolute)/100).toFixed(2)} bits`);
 log(`   • On disaster (saldo insufficiente): RESTART con nuovo ciclo`);
 log(`   • On target raggiunto: STOP`);
+log('');
+log('🚨 FUNZIONE EMERGENZA:');
+log('   • Cashout @1.01x = RESET FORZATO del ciclo');
+log('   • Utile per uscire da situazioni difficili');
+log('   • Torna immediatamente a Modalità Normale con base bet');
 log('');
 log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 log('');
@@ -303,6 +315,21 @@ function handleWin(lastGame, crash) {
 
     const modeTag = currentMode === MODE.NORMAL ? 'NRM' : 'REC';
     const targetPayout = currentMode === MODE.NORMAL ? normalPayout : recoveryPayout;
+
+    // 🚨 RESET EMERGENZA: Cashout @1.01x forza il reset del ciclo
+    const isEmergencyReset = Math.abs(lastGame.cashedAt - 1.01) < 0.01;
+
+    if (isEmergencyReset) {
+        pfx('🚨EMERGENCY', `RESET FORZATO @1.01x! profit:+${(profit/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
+        pfx('RESET', `Tornando a modalità normale...`);
+
+        // Aggiorna normalModeProfit come differenza dal balance iniziale
+        normalModeProfit = balance - initBalance;
+
+        // Reset completo come se fosse una vittoria normale
+        switchToNormalMode();
+        return;
+    }
 
     // 🔍 Verifica se è un cashout esatto al target (con tolleranza 0.01)
     const isExactCashout = Math.abs(lastGame.cashedAt - targetPayout) < 0.01;
