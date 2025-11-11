@@ -46,7 +46,7 @@
 var config = {
     // ===== CAPITALE E TARGET =====
     workingBalance: { value: 2000000, type: 'balance', label: 'Working Balance (bits to use)' },
-    targetProfitPercent: { value: 20, type: 'multiplier', label: 'Target Profit % (stop when reached)' },
+    targetProfitPercent: { value: 10, type: 'multiplier', label: 'Target Profit % (stop when reached)' },
 
     // ===== MODALITÀ 1 (NORMALE) =====
     payout: { value: 3.1, type: 'multiplier', label: 'Normal Mode Payout' },
@@ -54,7 +54,7 @@ var config = {
     mult: { value: 1.51, type: 'multiplier', label: 'Multiplier after loss' },
 
     // ===== MODALITÀ 2 (RECUPERO) =====
-    recoveryTrigger: { value: 11, type: 'multiplier', label: 'Losses before recovery mode' },
+    recoveryTrigger: { value: 7, type: 'multiplier', label: 'Losses before recovery mode' },
     recoveryPayout: { value: 1.1, type: 'multiplier', label: 'Recovery Mode Payout' },
     recoveryPhases: { value: 4, type: 'multiplier', label: 'Number of recovery phases (divide losses)' },
 };
