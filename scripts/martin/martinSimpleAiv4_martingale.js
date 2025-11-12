@@ -34,8 +34,8 @@
 
 var config = {
     // ===== CAPITALE E TARGET =====
-    workingBalance: { value: 1000000, type: 'balance', label: 'Working Balance (bits to use)' },
-    targetProfitPercent: { value: 50, type: 'multiplier', label: 'Target Profit % (stop when reached)' },
+    workingBalance: { value: 2000000, type: 'balance', label: 'Working Balance (bits to use)' },
+    targetProfitPercent: { value: 100, type: 'multiplier', label: 'Target Profit % (stop when reached)' },
 
     // ===== MODALITA 1 (NORMALE) =====
     payout: { value: 3.1, type: 'multiplier', label: 'Normal Mode Payout' },
@@ -44,8 +44,8 @@ var config = {
 
     // ===== MODALITA 2 (RECUPERO MARTINGALE) =====
     recoveryTrigger: { value: 14, type: 'multiplier', label: 'Losses before recovery mode' },
-    recoveryMartingalePayout: { value: 1.2, type: 'multiplier', label: 'Recovery Martingale Payout (1.1-3.0)' },
-    recoveryCycles: { value: 1, type: 'multiplier', label: 'Max recovery attempts before reset (1-20)' },
+    recoveryMartingalePayout: { value: 1.5, type: 'multiplier', label: 'Recovery Martingale Payout (1.1-3.0)' },
+    recoveryCycles: { value: 10, type: 'multiplier', label: 'Max recovery attempts before reset (1-20)' },
 };
 
 // Configurazione base
