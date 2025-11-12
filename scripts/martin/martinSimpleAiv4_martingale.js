@@ -1,14 +1,17 @@
 /**
  * MARTIN AI v4.8 - RECOVERY MARTINGALE
  *
- * MODALITA 1 (NORMALE): Progressione geometrica con moltiplicatore auto-calcolato
- * - Il moltiplicatore viene calcolato automaticamente in base a:
- *   * payout target (es. 3.1x)
- *   * numero massimo perdite prima di recovery (es. 7)
- * - Formula: mult = payout ^ (1/recoveryTrigger)
- *   Es: payout=3.1x, trigger=7 → mult = 3.1^(1/7) = 1.17x
+ * MODALITA 1 (NORMALE): Progressione geometrica con moltiplicatore configurabile
+ * - OPZIONE A (customMult = 0): Moltiplicatore AUTO-CALCOLATO
+ *   * Calcolato automaticamente in base a payout e recoveryTrigger
+ *   * Usa binary search per trovare il mult ottimale
+ *   * Garantisce recupero completo dopo N perdite
+ *   * Es: payout=3.1x, trigger=7 → mult auto = 1.45x
+ * - OPZIONE B (customMult > 0): Moltiplicatore MANUALE
+ *   * Usa il valore specificato nelle impostazioni
+ *   * Utile per strategie personalizzate
+ *   * Es: customMult=1.5 → usa sempre 1.5x
  * - Ogni perdita: bet *= mult
- * - Questo garantisce che dopo N perdite, la vincita recuperi tutto
  *
  * MODALITA 2 (RECOVERY): Sistema martingale puro
  * - Usa un payout configurabile (diverso dal normal mode)
@@ -31,18 +34,18 @@
 
 var config = {
     // ===== CAPITALE E TARGET =====
-    workingBalance: { value: 2000000, type: 'balance', label: 'Working Balance (bits to use)' },
-    targetProfitPercent: { value: 10, type: 'multiplier', label: 'Target Profit % (stop when reached)' },
+    workingBalance: { value: 1000000, type: 'balance', label: 'Working Balance (bits to use)' },
+    targetProfitPercent: { value: 50, type: 'multiplier', label: 'Target Profit % (stop when reached)' },
 
     // ===== MODALITA 1 (NORMALE) =====
     payout: { value: 3.1, type: 'multiplier', label: 'Normal Mode Payout' },
-    baseBet: { value: 100, type: 'balance', label: 'Base Bet' },
-    // mult viene calcolato automaticamente in base a payout e recoveryTrigger
+    baseBet: { value: 200, type: 'balance', label: 'Base Bet' },
+    customMult: { value: 1.6, type: 'multiplier', label: 'Custom Multiplier (0 = auto-calculate)' },
 
     // ===== MODALITA 2 (RECUPERO MARTINGALE) =====
-    recoveryTrigger: { value: 7, type: 'multiplier', label: 'Losses before recovery mode' },
+    recoveryTrigger: { value: 14, type: 'multiplier', label: 'Losses before recovery mode' },
     recoveryMartingalePayout: { value: 1.2, type: 'multiplier', label: 'Recovery Martingale Payout (1.1-3.0)' },
-    recoveryCycles: { value: 10, type: 'multiplier', label: 'Max recovery attempts before reset (1-20)' },
+    recoveryCycles: { value: 1, type: 'multiplier', label: 'Max recovery attempts before reset (1-20)' },
 };
 
 // Configurazione base
@@ -50,6 +53,7 @@ const workingBalance = config.workingBalance.value;
 const targetProfitPercent = config.targetProfitPercent.value;
 const normalPayout = config.payout.value;
 const normalBaseBet = config.baseBet.value;
+const customMultValue = config.customMult.value;
 
 const recoveryTrigger = config.recoveryTrigger.value;
 const recoveryMartingalePayout = Math.max(1.1, Math.min(3.0, config.recoveryMartingalePayout.value)); // Clamp 1.1-3.0
@@ -124,7 +128,10 @@ function calculateNormalMultiplier(payout, maxLosses) {
     return Math.round(withMargin * 100) / 100;
 }
 
-const normalMult = calculateNormalMultiplier(normalPayout, recoveryTrigger);
+// Usa customMult se impostato (> 0), altrimenti calcola automaticamente
+const normalMult = (customMultValue > 0)
+    ? customMultValue
+    : calculateNormalMultiplier(normalPayout, recoveryTrigger);
 
 // Calcolo target profit assoluto
 const targetProfitAbsolute = Math.floor(workingBalance * (targetProfitPercent / 100));
@@ -184,7 +191,11 @@ log('');
 log('MODALITA 1 (NORMALE):');
 log(`   - Payout: ${normalPayout}x`);
 log(`   - Base Bet: ${(normalBaseBet/100).toFixed(2)} bits`);
-log(`   - Multiplier: ${normalMult}x (auto-calcolato: ${normalPayout}^(1/${recoveryTrigger}))`);
+if (customMultValue > 0) {
+    log(`   - Multiplier: ${normalMult}x (CUSTOM)`);
+} else {
+    log(`   - Multiplier: ${normalMult}x (AUTO-CALC)`);
+}
 log(`   - Bonus: +1 bit per le prime 3 perdite`);
 log('');
 log('MODALITA 2 (RECUPERO MARTINGALE):');
