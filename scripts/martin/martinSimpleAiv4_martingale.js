@@ -35,17 +35,17 @@
 var config = {
     // ===== CAPITALE E TARGET =====
     workingBalance: { value: 2000000, type: 'balance', label: 'Working Balance (bits to use)' },
-    targetProfitPercent: { value: 100, type: 'multiplier', label: 'Target Profit % (stop when reached)' },
+    targetProfitPercent: { value: 50, type: 'multiplier', label: 'Target Profit % (stop when reached)' },
 
     // ===== MODALITA 1 (NORMALE) =====
     payout: { value: 3.1, type: 'multiplier', label: 'Normal Mode Payout' },
-    baseBet: { value: 200, type: 'balance', label: 'Base Bet' },
+    baseBet: { value: 100, type: 'balance', label: 'Base Bet' },
     customMult: { value: 1.6, type: 'multiplier', label: 'Custom Multiplier (0 = auto-calculate)' },
 
     // ===== MODALITA 2 (RECUPERO MARTINGALE) =====
-    recoveryTrigger: { value: 14, type: 'multiplier', label: 'Losses before recovery mode' },
-    recoveryMartingalePayout: { value: 1.5, type: 'multiplier', label: 'Recovery Martingale Payout (1.1-3.0)' },
-    recoveryCycles: { value: 10, type: 'multiplier', label: 'Max recovery attempts before reset (1-20)' },
+    recoveryTrigger: { value: 16, type: 'multiplier', label: 'Losses before recovery mode' },
+    recoveryMartingalePayout: { value: 2, type: 'multiplier', label: 'Recovery Martingale Payout (1.1-3.0)' },
+    recoveryCycles: { value: 20, type: 'multiplier', label: 'Max recovery attempts before reset (1-20)' },
 };
 
 // Configurazione base
