@@ -1,5 +1,10 @@
 /**
- * MARTIN AI v4.8 - RECOVERY MARTINGALE
+ * MARTIN AI v4.9 - HIGH PAYOUT RECOVERY
+ *
+ * NOVITA v4.9:
+ * - ⭐ PAYOUT RECOVERY FINO A 20X: Permette di usare payout molto alti in recovery mode
+ * - ⭐ BET PIÙ BASSE: Con payout alto, serve meno capitale per recuperare
+ * - ⭐ GIOCO ALLUNGATO: Più tentativi con rischio ridotto per singola bet
  *
  * MODALITA 1 (NORMALE): Progressione geometrica con moltiplicatore configurabile
  * - OPZIONE A (customMult = 0): Moltiplicatore AUTO-CALCOLATO
@@ -13,23 +18,36 @@
  *   * Es: customMult=1.5 → usa sempre 1.5x
  * - Ogni perdita: bet *= mult
  *
- * MODALITA 2 (RECOVERY): Sistema martingale puro
- * - Usa un payout configurabile (diverso dal normal mode)
+ * MODALITA 2 (RECOVERY HIGH PAYOUT): Sistema martingale con payout alto
+ * - Usa un payout configurabile fino a 20x (diverso dal normal mode)
  * - Ogni perdita: ricalcola bet per recuperare TUTTE le perdite accumulate
  * - Parametro recoveryCycles: numero massimo di tentativi prima di reset
+ * - ⭐ VANTAGGIO: Payout alto = bet bassa = più tentativi possibili
  *
- * ESEMPIO con recoveryMartingalePayout=1.5, recoveryCycles=10:
- * Perdite accumulate: 83 bits
+ * ESEMPIO COMPARATIVO:
  *
- * Tentativo 1: bet = 83 / (1.5-1) = 166 bits
- *   - Vince @1.5x → recupera tutto ✅
- *   - Perde → perdite = 83+166 = 249 bits → Tentativo 2
+ * SCENARIO: 10,000 bits di perdite accumulate
  *
- * Tentativo 2: bet = 249 / (1.5-1) = 498 bits
- *   - Vince @1.5x → recupera tutto ✅
- *   - Perde → Tentativo 3
+ * RECOVERY @2x (v4.8 standard):
+ * Tentativo 1: bet = 10,000 / (2-1) = 10,000 bits
+ *   - Vince @2x → profit = 10,000 → recupera tutto ✅
+ *   - Perde → perdite = 20,000 bits → Tentativo 2
+ * Tentativo 2: bet = 20,000 bits (MOLTO ALTA!)
  *
- * ...fino a 10 tentativi, poi RESET
+ * RECOVERY @10x (v4.9 high payout):
+ * Tentativo 1: bet = 10,000 / (10-1) = 1,111 bits (9x PIÙ BASSA!)
+ *   - Vince @10x → profit = 10,000 → recupera tutto ✅
+ *   - Perde → perdite = 11,111 bits → Tentativo 2
+ * Tentativo 2: bet = 11,111 / 9 = 1,234 bits (ancora sostenibile)
+ * Tentativo 3: bet = 12,345 / 9 = 1,371 bits
+ * ... può fare MOLTI più tentativi prima di esaurire il saldo!
+ *
+ * RECOVERY @20x (v4.9 extreme):
+ * Tentativo 1: bet = 10,000 / (20-1) = 526 bits (19x PIÙ BASSA!)
+ *   - Vince @20x → profit = 9,994 → recupera quasi tutto ✅
+ *   - Perde → perdite = 10,526 bits → Tentativo 2
+ * Tentativo 2: bet = 10,526 / 19 = 554 bits
+ * ... può fare MOLTISSIMI tentativi!
  */
 
 var config = {
@@ -42,10 +60,10 @@ var config = {
     baseBet: { value: 100, type: 'balance', label: 'Base Bet' },
     customMult: { value: 1.6, type: 'multiplier', label: 'Custom Multiplier (0 = auto-calculate)' },
 
-    // ===== MODALITA 2 (RECUPERO MARTINGALE) =====
+    // ===== MODALITA 2 (RECUPERO HIGH PAYOUT) =====
     recoveryTrigger: { value: 16, type: 'multiplier', label: 'Losses before recovery mode' },
-    recoveryMartingalePayout: { value: 2, type: 'multiplier', label: 'Recovery Martingale Payout (1.1-3.0)' },
-    recoveryCycles: { value: 20, type: 'multiplier', label: 'Max recovery attempts before reset (1-20)' },
+    recoveryMartingalePayout: { value: 10, type: 'multiplier', label: 'Recovery High Payout (1.1-20.0)' },
+    recoveryCycles: { value: 50, type: 'multiplier', label: 'Max recovery attempts before reset (1-100)' },
 };
 
 // Configurazione base
@@ -56,8 +74,8 @@ const normalBaseBet = config.baseBet.value;
 const customMultValue = config.customMult.value;
 
 const recoveryTrigger = config.recoveryTrigger.value;
-const recoveryMartingalePayout = Math.max(1.1, Math.min(3.0, config.recoveryMartingalePayout.value)); // Clamp 1.1-3.0
-const MAX_RECOVERY_ATTEMPTS = Math.max(1, Math.min(20, config.recoveryCycles.value)); // Clamp 1-20
+const recoveryMartingalePayout = Math.max(1.1, Math.min(20.0, config.recoveryMartingalePayout.value)); // ⭐ Clamp 1.1-20.0
+const MAX_RECOVERY_ATTEMPTS = Math.max(1, Math.min(100, config.recoveryCycles.value)); // ⭐ Clamp 1-100
 
 /**
  * CALCOLO AUTOMATICO DEL MOLTIPLICATORE NORMALE
@@ -178,6 +196,7 @@ let normalWins = 0;
 let normalLosses = 0;
 let recoveryWins = 0;
 let recoveryLosses = 0;
+let maxRecoveryAttemptsReached = 0; // Conta quante volte si raggiunge il limite recovery
 
 // Output functions
 function pfx(tag, msg) { log(`[${tag}] ${msg}`) }
@@ -185,7 +204,7 @@ function pfx(tag, msg) { log(`[${tag}] ${msg}`) }
 // ===== INIZIALIZZAZIONE =====
 log('');
 log('==============================================================');
-log('  MARTIN AI v4.8 - RECOVERY MARTINGALE                     ');
+log('  MARTIN AI v4.9 - HIGH PAYOUT RECOVERY                    ');
 log('==============================================================');
 log('');
 log('MODALITA 1 (NORMALE):');
@@ -198,12 +217,24 @@ if (customMultValue > 0) {
 }
 log(`   - Bonus: +1 bit per le prime 3 perdite`);
 log('');
-log('MODALITA 2 (RECUPERO MARTINGALE):');
+log('MODALITA 2 (RECUPERO HIGH PAYOUT):');
 log(`   - Trigger: ${recoveryTrigger} perdite consecutive`);
-log(`   - Payout: ${recoveryMartingalePayout}x`);
+log(`   - Payout: ${recoveryMartingalePayout}x ⭐ HIGH PAYOUT`);
 log(`   - Max tentativi: ${MAX_RECOVERY_ATTEMPTS}`);
-log(`   - Sistema: Martingale (ogni perdita ricalcola bet per recuperare tutto)`);
+log(`   - Sistema: Martingale con payout alto (bet basse, più tentativi)`);
 log('');
+
+// Calcola e mostra esempio di bet recovery
+const exampleLoss = 10000;
+const exampleBet = Math.ceil(exampleLoss / (recoveryMartingalePayout - 1));
+const exampleProfit = Math.floor(exampleBet * recoveryMartingalePayout) - exampleBet;
+log('ESEMPIO RECOVERY:');
+log(`   - Perdite accumulate: ${(exampleLoss/100).toFixed(2)} bits`);
+log(`   - Bet necessaria @${recoveryMartingalePayout}x: ${(exampleBet/100).toFixed(2)} bits (${((exampleBet/exampleLoss)*100).toFixed(1)}% delle perdite)`);
+log(`   - Profit se vince: ${(exampleProfit/100).toFixed(2)} bits`);
+log(`   - Tentativi stimati con saldo: ~${Math.floor(workingBalance / exampleBet)} tentativi`);
+log('');
+
 log('CAPITALE & TARGET:');
 log(`   - Working Balance: ${(workingBalance/100).toFixed(2)} bits`);
 log(`   - Target Profit: ${targetProfitPercent}% (+${(targetProfitAbsolute/100).toFixed(2)} bits)`);
@@ -241,6 +272,7 @@ function onGameStarted() {
 
         pfx('TARGET', `GLOBALE RAGGIUNTO! Profit normale: +${(totalSessionNormalProfit/100).toFixed(2)} bits (${targetProfitPercent}%)`);
         pfx('STOP', `Sessione completata con successo!`);
+        printStats();
         return;
     }
 
@@ -353,7 +385,7 @@ function handleWin(lastGame, crash) {
             // Verifica se abbiamo recuperato tutto
             const remainingLoss = balanceBeforeLossSequence - balance;
 
-            pfx(`${modeTag}/W`, `MARTINGALE WIN! Attempt ${recoveryAttempts}/${MAX_RECOVERY_ATTEMPTS} crash:${crash} profit:+${(profit/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
+            pfx(`${modeTag}/W`, `HIGH PAYOUT WIN! Attempt ${recoveryAttempts}/${MAX_RECOVERY_ATTEMPTS} crash:${crash} @${recoveryMartingalePayout}x profit:+${(profit/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
 
             if (remainingLoss <= 0) {
                 // Recupero completo!
@@ -369,6 +401,7 @@ function handleWin(lastGame, crash) {
                     calculateRecoveryBet();
                 } else {
                     // Limite raggiunto
+                    maxRecoveryAttemptsReached++;
                     pfx('LIMIT', `Raggiunto limite di ${MAX_RECOVERY_ATTEMPTS} tentativi recovery`);
                     pfx('RESET', `RESET - Le perdite verranno recuperate nel prossimo ciclo`);
                     switchToNormalMode();
@@ -417,23 +450,24 @@ function handleLoss(crash) {
             pfx('NRM/+', `next bet:${(currentBet/100).toFixed(2)}${bonusPerLoss > 0 ? `+${(bonusPerLoss/100).toFixed(2)}` : ''}`);
         }
     } else {
-        // RECOVERY MODE LOSS - Sistema Martingale
+        // RECOVERY MODE LOSS - Sistema Martingale HIGH PAYOUT
         recoveryLosses++;
         recoveryAttempts++;
 
         // Ricalcola le perdite totali
         totalLosses = balanceBeforeLossSequence - balance;
 
-        pfx(`${modeTag}/L`, `MARTINGALE LOSS Attempt ${recoveryAttempts}/${MAX_RECOVERY_ATTEMPTS} crash:${crash} loss:-${(finalBet/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
+        pfx(`${modeTag}/L`, `HIGH PAYOUT LOSS Attempt ${recoveryAttempts}/${MAX_RECOVERY_ATTEMPTS} crash:${crash} @${recoveryMartingalePayout}x loss:-${(finalBet/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
         pfx('INFO', `Total losses: ${(totalLosses/100).toFixed(2)} bits`);
 
         // Verifica se abbiamo ancora tentativi
         if (recoveryAttempts < MAX_RECOVERY_ATTEMPTS) {
             // Ricalcola bet per recuperare tutto
-            pfx('MARTINGALE', `Tentativo ${recoveryAttempts + 1}/${MAX_RECOVERY_ATTEMPTS} - Ricalcolo bet per recuperare tutto`);
+            pfx('MARTINGALE', `Tentativo ${recoveryAttempts + 1}/${MAX_RECOVERY_ATTEMPTS} - Ricalcolo bet @${recoveryMartingalePayout}x`);
             calculateRecoveryBet();
         } else {
             // Limite raggiunto
+            maxRecoveryAttemptsReached++;
             pfx('LIMIT', `Raggiunto limite di ${MAX_RECOVERY_ATTEMPTS} tentativi recovery`);
             pfx('RESET', `RESET - Le perdite verranno recuperate nel prossimo ciclo`);
             switchToNormalMode();
@@ -449,9 +483,9 @@ function switchToRecoveryMode() {
     const actualLoss = balanceBeforeLossSequence - balance;
     totalLosses = actualLoss;
 
-    pfx('MODE', `SWITCH TO RECOVERY MARTINGALE MODE`);
+    pfx('MODE', `SWITCH TO RECOVERY HIGH PAYOUT MODE`);
     pfx('INFO', `Total losses: ${(totalLosses/100).toFixed(2)} bits`);
-    pfx('INFO', `Payout: ${recoveryMartingalePayout}x`);
+    pfx('INFO', `Payout: ${recoveryMartingalePayout}x ⭐ HIGH PAYOUT`);
     pfx('INFO', `Max attempts: ${MAX_RECOVERY_ATTEMPTS}`);
     pfx('INFO', `Balance: ${(balanceBeforeLossSequence/100).toFixed(2)} -> ${(balance/100).toFixed(2)}`);
 
@@ -472,18 +506,20 @@ function switchToNormalMode() {
 }
 
 function calculateRecoveryBet() {
-    // MARTINGALE: calcola bet necessaria per recuperare TUTTE le perdite
+    // MARTINGALE HIGH PAYOUT: calcola bet necessaria per recuperare TUTTE le perdite
     const payoutMultiplier = recoveryMartingalePayout - 1.0;
 
     // Bet = Perdite totali / (Payout - 1)
-    // Es: 100 bits perdite, payout 1.5x → bet = 100 / 0.5 = 200 bits
-    // Se vinci: 200 * 1.5 = 300 - 200 = 100 profit (recupero!)
+    // Es: 10,000 bits perdite, payout 10x → bet = 10,000 / 9 = 1,111 bits
+    // Se vinci: 1,111 * 10 = 11,110 - 1,111 = 10,000 profit (recupero!)
     currentBet = Math.ceil(totalLosses / payoutMultiplier);
 
     // Arrotonda a 100
     currentBet = Math.ceil(currentBet / 100) * 100;
 
-    pfx('REC/C', `Attempt ${recoveryAttempts}/${MAX_RECOVERY_ATTEMPTS}: bet ${(currentBet/100).toFixed(2)} to recover ${(totalLosses/100).toFixed(2)} @${recoveryMartingalePayout}x`);
+    const betPercentage = ((currentBet / totalLosses) * 100).toFixed(1);
+
+    pfx('REC/C', `Attempt ${recoveryAttempts}/${MAX_RECOVERY_ATTEMPTS}: bet ${(currentBet/100).toFixed(2)} (${betPercentage}% of losses) to recover ${(totalLosses/100).toFixed(2)} @${recoveryMartingalePayout}x`);
 
     // Verifica se abbiamo abbastanza saldo
     if (currentBet > balance) {
@@ -527,6 +563,25 @@ function restartCycle() {
 
 function initState() {
     state = STATE.BETTING;
+}
+
+function printStats() {
+    log('');
+    log('==============================================================');
+    log('  STATISTICHE HIGH PAYOUT RECOVERY v4.9');
+    log('==============================================================');
+    log('');
+    log('RISULTATI:');
+    log(`   - Normal Wins: ${normalWins}`);
+    log(`   - Normal Losses: ${normalLosses}`);
+    log(`   - Recovery Wins: ${recoveryWins} @${recoveryMartingalePayout}x`);
+    log(`   - Recovery Losses: ${recoveryLosses}`);
+    log(`   - Max Recovery Attempts Reached: ${maxRecoveryAttemptsReached} times`);
+    log(`   - Disasters (reset): ${disaster}`);
+    log(`   - Total Games: ${currentRound}`);
+    log('');
+    log('==============================================================');
+    log('');
 }
 
 function parseCrash(lastGame) {
