@@ -101,6 +101,10 @@ let currentBet = MODE1_BASE_BET;
 let currentPayout = MODE1_PAYOUT;
 let betPlacedThisRound = false;
 
+// Accantonamento profitti da cashout manuali
+// Vengono aggiunti al balance solo a fine ciclo per il target profit
+let manualCashoutBuffer = 0;
+
 // Statistiche
 let totalCycles = 0;
 let mode1Cycles = 0;
@@ -197,6 +201,13 @@ function startNewCycle() {
     cycleNumber++;
     totalCycles++;
 
+    // LIBERA i profitti accantonati da cashout manuali del ciclo precedente
+    // Ora vengono contati per il target profit
+    if (manualCashoutBuffer !== 0) {
+        pfx('BUFFER', `Profitti cashout manuali liberati: ${manualCashoutBuffer >= 0 ? '+' : ''}${formatBits(manualCashoutBuffer)} bits`);
+        manualCashoutBuffer = 0; // Reset buffer (i profitti sono già nel balance)
+    }
+
     // Reset tracking ciclo
     cycleStartBalance = balance;
     cycleTotalBet = 0;
@@ -291,11 +302,17 @@ function onGameStarted() {
         return;
     }
 
-    // Check target profit
-    const currentProfit = balance - initBalance;
+    // Check target profit (ESCLUDI i profitti accantonati da cashout manuali)
+    // I profitti da cashout manuali vengono contati solo a fine ciclo
+    const currentProfit = balance - initBalance - manualCashoutBuffer;
     if (currentProfit >= TARGET_PROFIT_ABSOLUTE) {
+        // Libera il buffer prima di fermarsi
+        if (manualCashoutBuffer !== 0) {
+            pfx('BUFFER', `Profitti cashout manuali liberati: ${manualCashoutBuffer >= 0 ? '+' : ''}${formatBits(manualCashoutBuffer)} bits`);
+        }
+        const totalProfit = balance - initBalance;
         state = STATE.STOPPED;
-        pfx('TARGET', `RAGGIUNTO! Profit: +${formatBits(currentProfit)} bits (${TARGET_PROFIT_PERCENT}%)`);
+        pfx('TARGET', `RAGGIUNTO! Profit: +${formatBits(totalProfit)} bits (${TARGET_PROFIT_PERCENT}%)`);
         showFinalStats();
         return;
     }
@@ -348,18 +365,35 @@ function onGameEnded() {
     const crash = parseCrash(lastGame);
 
     // VERIFICA che ho effettivamente partecipato a questo gioco
-    // lastGame.wager > 0 significa che ho piazzato una bet
     if (!lastGame.wager || lastGame.wager <= 0) {
         pfx('SKIP', `Non ho partecipato a questo gioco`);
         betPlacedThisRound = false;
         return;
     }
 
-    // VINCITA solo se il crash >= payout target (ho fatto cashout)
-    // Se crash < payout target, è una PERDITA (il gioco è crashato prima)
+    const cashedAt = lastGame.cashedAt;
+
+    // 1. EMERGENCY RESET: cashout a 1.01x → reset immediato al Mode 1
+    //    (tolleranza 1.00-1.02 per evitare problemi di precisione)
+    if (cashedAt && cashedAt >= 1.00 && cashedAt <= 1.02) {
+        handleEmergencyReset(lastGame, crash);
+        betPlacedThisRound = false;
+        return;
+    }
+
+    // 2. CASHOUT MANUALE: cashedAt esiste ma < target payout → PERDITA LOGICA
+    //    L'utente ha fatto cashout prima del target, considerato come sconfitta
+    if (cashedAt && cashedAt < currentPayout) {
+        handleManualCashout(lastGame, crash);
+        betPlacedThisRound = false;
+        return;
+    }
+
+    // 3. VINCITA NORMALE: crash >= payout (e cashedAt >= payout o automatico)
     if (crash >= currentPayout) {
         handleWin(lastGame, crash);
     } else {
+        // 4. PERDITA: crash < payout (il gioco è crashato prima del target)
         handleLoss(lastGame, crash);
     }
 
@@ -483,6 +517,89 @@ function handleLoss(lastGame, crash) {
         currentBet = mode2CurrentBet;
 
         pfx('M2/RECALC', `Nuova bet: ${formatBits(currentBet)} bits (per recuperare ${formatBits(mode2LossesToRecover)} bits)`);
+    }
+}
+
+// ===== EMERGENCY RESET (cashout a 1.01x) =====
+function handleEmergencyReset(lastGame, crash) {
+    const wager = lastGame.wager;
+    const cashedAt = lastGame.cashedAt;
+    const won = Math.floor(wager * cashedAt);
+    const profit = won - wager;
+
+    // Aggiorna balance con il piccolo profitto del cashout 1.01x
+    balance += profit;
+
+    pfx('EMERGENCY', `🚨 EMERGENCY RESET! Cashout @${cashedAt}x rilevato`);
+    pfx('EMERGENCY', `Profit: ${profit >= 0 ? '+' : ''}${formatBits(profit)} bits | Balance: ${formatBits(balance)} bits`);
+    pfx('EMERGENCY', `Reset immediato al Mode 1`);
+
+    // Reset al Mode 1 (i profitti accantonati vengono liberati)
+    startNewCycle();
+}
+
+// ===== CASHOUT MANUALE (cashedAt < target) =====
+function handleManualCashout(lastGame, crash) {
+    const wager = lastGame.wager;
+    const cashedAt = lastGame.cashedAt;
+    const won = Math.floor(wager * cashedAt);
+    const realProfit = won - wager;
+
+    // Aggiorna balance con il profitto REALE
+    balance += realProfit;
+
+    // MA accantona il profitto: verrà contato per il target profit solo a fine ciclo
+    manualCashoutBuffer += realProfit;
+
+    // Per la logica del ciclo, NON aggiungo a cycleTotalWon (è perdita logica)
+    cycleTotalBet += wager;
+    // cycleTotalWon += 0; // Considerato perdita
+
+    pfx('MANUAL', `⚠️ CASHOUT MANUALE @${cashedAt}x (target: ${currentPayout}x)`);
+    pfx('MANUAL', `Ricevuto: ${formatBits(won)} bits - Accantonato: ${realProfit >= 0 ? '+' : ''}${formatBits(realProfit)} bits`);
+    pfx('MANUAL', `Considerato come PERDITA nel ciclo (profitto contato a fine ciclo)`);
+
+    const modeTag = currentMode === MODE.MODE1 ? 'M1' : 'M2';
+
+    if (currentMode === MODE.MODE1) {
+        mode1Round++;
+        mode1TotalBet += wager;
+        // NON aggiungo a mode1TotalWon (è perdita logica)
+
+        pfx(`${modeTag}/MANUAL`, `R:${mode1Round}/${MODE1_ROUNDS} - Perdita logica bal:${formatBits(balance)}`);
+
+        if (mode1Round >= MODE1_ROUNDS) {
+            evaluateMode1Cycle();
+        } else {
+            mode1CurrentBet = roundBet(mode1CurrentBet * MODE1_MULT);
+            currentBet = mode1CurrentBet;
+            pfx('M1/NEXT', `Prossima bet: ${formatBits(currentBet)} bits`);
+        }
+    } else {
+        mode2Attempts++;
+
+        // Per Mode 2, la "perdita logica" è la bet (anche se ho ricevuto qualcosa)
+        // Aggiungo la bet persa alle perdite da recuperare
+        mode2LossesToRecover += wager;
+
+        pfx(`${modeTag}/MANUAL`, `Att:${mode2Attempts}/${MODE2_MAX_ATTEMPTS} - Perdita logica [Tot: ${formatBits(mode2LossesToRecover)}]`);
+
+        if (mode2Attempts >= MODE2_MAX_ATTEMPTS) {
+            pfx('M2/MAX', `Raggiunto max tentativi. Accetto perdita.`);
+            disasters++;
+            startNewCycle();
+            return;
+        }
+
+        if (checkCycleLimit()) {
+            return;
+        }
+
+        // Ricalcola bet per recovery
+        const payoutProfit = MODE2_PAYOUT - 1;
+        mode2CurrentBet = roundBet(mode2LossesToRecover / payoutProfit);
+        currentBet = mode2CurrentBet;
+        pfx('M2/RECALC', `Nuova bet: ${formatBits(currentBet)} bits`);
     }
 }
 
