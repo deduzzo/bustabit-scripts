@@ -46,6 +46,12 @@ var config = {
     // ===== MODE 2 (RECOVERY) =====
     mode2Payout: { value: 3, type: 'multiplier', label: 'Mode 2: Payout recovery' },
     mode2MaxAttempts: { value: 20, type: 'multiplier', label: 'Mode 2: Max tentativi recovery' },
+
+    // ===== GESTIONE DISASTER =====
+    // 1 = Continua (mantieni initBalance, continua a giocare)
+    // 2 = Reset (resetta balance e initBalance a WORKING_BALANCE)
+    // 3 = Stop (ferma lo script)
+    onDisaster: { value: 1, type: 'multiplier', label: 'In caso di disaster: 1=Continua, 2=Reset, 3=Stop' },
 };
 
 // ===== CONFIGURAZIONE =====
@@ -64,6 +70,9 @@ const MODE1_LOSS_THRESHOLD = config.mode1LossThreshold.value;
 const MODE2_PAYOUT = config.mode2Payout.value;
 const MODE2_MAX_ATTEMPTS = config.mode2MaxAttempts.value;
 
+// Disaster handling
+const ON_DISASTER = config.onDisaster.value;  // 1=Continua, 2=Reset, 3=Stop
+
 // Calcoli derivati
 const TARGET_PROFIT_ABSOLUTE = Math.floor(WORKING_BALANCE * (TARGET_PROFIT_PERCENT / 100));
 const MAX_CYCLE_SPEND = Math.floor(WORKING_BALANCE * (MAX_CYCLE_SPEND_PERCENT / 100));
@@ -75,9 +84,10 @@ const STATE = { BETTING: 'betting', STOPPED: 'stopped' };
 let currentMode = MODE.MODE1;
 let state = STATE.BETTING;
 
-// Balance tracking manuale
+// Balance tracking - usa balance VIRTUALE basato su WORKING_BALANCE
 let balance = WORKING_BALANCE;
 let initBalance = WORKING_BALANCE;
+const ABSOLUTE_INIT_BALANCE = WORKING_BALANCE;  // MAI modificato - per calcolo target profit globale
 
 // Ciclo corrente
 let cycleNumber = 0;
@@ -111,6 +121,10 @@ let mode1Cycles = 0;
 let mode2Triggers = 0;
 let mode2Recoveries = 0;
 let disasters = 0;
+
+// Traccia capitale iniettato/rimosso durante i disaster (per calcolo profitto REALE)
+// Positivo = capitale iniettato, Negativo = capitale rimosso
+let totalInjectedCapital = 0;
 
 // ===== FUNZIONI UTILITY =====
 function pfx(tag, msg) { log(`[${tag}] ${msg}`); }
@@ -147,6 +161,7 @@ log('LIMITI:');
 log(`   Working Balance: ${formatBits(WORKING_BALANCE)} bits`);
 log(`   Target Profit: ${TARGET_PROFIT_PERCENT}% (+${formatBits(TARGET_PROFIT_ABSOLUTE)} bits)`);
 log(`   Max spesa ciclo: ${MAX_CYCLE_SPEND_PERCENT}% (${formatBits(MAX_CYCLE_SPEND)} bits)`);
+log(`   In caso di disaster: ${ON_DISASTER === 1 ? 'CONTINUA' : ON_DISASTER === 2 ? 'RESET' : 'STOP'}`);
 log('');
 log('================================================================');
 log('');
@@ -276,18 +291,56 @@ function switchToMode2(lossesToRecover) {
     pfx('MODE2', `Payout: ${MODE2_PAYOUT}x | Max tentativi: ${MODE2_MAX_ATTEMPTS}`);
 }
 
+// ===== GESTIONE DISASTER =====
+// Chiamata quando si verifica un disaster (perdita accettata)
+// Restituisce true se lo script continua, false se si ferma
+function handleDisaster(reason) {
+    disasters++;
+    pfx('DISASTER', `💀 ${reason}`);
+
+    if (ON_DISASTER === 3) {
+        // STOP - Ferma lo script
+        pfx('DISASTER', `Modalità: STOP - Fermo lo script`);
+        state = STATE.STOPPED;
+        showFinalStats();
+        return false;  // Script fermato
+    } else if (ON_DISASTER === 2) {
+        // RESET - Resetta balance e initBalance, ricomincia da capo
+        pfx('DISASTER', `Modalità: RESET - Resetto a ${formatBits(WORKING_BALANCE)} bits e ricomincio`);
+        balance = WORKING_BALANCE;
+        initBalance = WORKING_BALANCE;
+        startNewCycle();
+        return true;  // Script continua
+    } else {
+        // CONTINUA (default) - Resetta balance a initBalance, continua a giocare
+        // initBalance rimane invariato per tracciare profitto/perdita globale
+
+        // Traccia capitale iniettato/rimosso per calcolo profitto REALE
+        const capitalChange = initBalance - balance;
+        if (capitalChange !== 0) {
+            totalInjectedCapital += capitalChange;
+            if (capitalChange > 0) {
+                pfx('DISASTER', `Capitale iniettato: +${formatBits(capitalChange)} bits (Totale iniettato: ${formatBits(totalInjectedCapital)} bits)`);
+            } else {
+                pfx('DISASTER', `Capitale rimosso: ${formatBits(capitalChange)} bits (Totale iniettato: ${formatBits(totalInjectedCapital)} bits)`);
+            }
+        }
+
+        pfx('DISASTER', `Modalità: CONTINUA - Resetto balance a ${formatBits(initBalance)} bits e proseguo`);
+        balance = initBalance;
+        startNewCycle();
+        return true;  // Script continua
+    }
+}
+
 function checkCycleLimit() {
     // Verifica se abbiamo superato il limite di spesa del ciclo
     if (cycleTotalBet >= MAX_CYCLE_SPEND) {
-        pfx('LIMIT', `Raggiunto limite spesa ciclo: ${formatBits(cycleTotalBet)} >= ${formatBits(MAX_CYCLE_SPEND)}`);
-        pfx('LIMIT', `Accetto perdita e ricomincia nuovo ciclo`);
-
         const cycleLoss = cycleStartBalance - balance;
         if (cycleLoss > 0) {
-            disasters++;
-            pfx('LOSS', `Perdita ciclo: -${formatBits(cycleLoss)} bits`);
+            const continueScript = handleDisaster(`Limite spesa ciclo raggiunto: ${formatBits(cycleTotalBet)} >= ${formatBits(MAX_CYCLE_SPEND)} | Perdita: -${formatBits(cycleLoss)} bits`);
+            return continueScript ? true : 'stopped';
         }
-
         startNewCycle();
         return true;
     }
@@ -302,45 +355,45 @@ function onGameStarted() {
         return;
     }
 
-    // Check target profit (ESCLUDI i profitti accantonati da cashout manuali)
-    // I profitti da cashout manuali vengono contati solo a fine ciclo
-    const currentProfit = balance - initBalance - manualCashoutBuffer;
-    if (currentProfit >= TARGET_PROFIT_ABSOLUTE) {
+    // Check target profit GLOBALE - sempre rispetto al balance iniziale ASSOLUTO
+    // Indipendentemente da disaster/reset, il target è sempre calcolato da ABSOLUTE_INIT_BALANCE
+    // IMPORTANTE: il profitto REALE deve sottrarre il capitale iniettato durante i disaster
+    const realProfit = balance - ABSOLUTE_INIT_BALANCE - totalInjectedCapital - manualCashoutBuffer;
+    if (realProfit >= TARGET_PROFIT_ABSOLUTE) {
         // Libera il buffer prima di fermarsi
         if (manualCashoutBuffer !== 0) {
             pfx('BUFFER', `Profitti cashout manuali liberati: ${manualCashoutBuffer >= 0 ? '+' : ''}${formatBits(manualCashoutBuffer)} bits`);
         }
-        const totalProfit = balance - initBalance;
+        const totalRealProfit = balance - ABSOLUTE_INIT_BALANCE - totalInjectedCapital;
         state = STATE.STOPPED;
-        pfx('TARGET', `RAGGIUNTO! Profit: +${formatBits(totalProfit)} bits (${TARGET_PROFIT_PERCENT}%)`);
+        pfx('TARGET', `🎯 RAGGIUNTO! Profit REALE: +${formatBits(totalRealProfit)} bits (${(totalRealProfit / ABSOLUTE_INIT_BALANCE * 100).toFixed(1)}%)`);
         showFinalStats();
         return;
     }
 
     // Check limite spesa ciclo PRIMA di piazzare la bet
     if (cycleTotalBet + currentBet > MAX_CYCLE_SPEND) {
-        pfx('LIMIT', `Prossima bet supererebbe limite ciclo. Reset.`);
         if (currentMode === MODE.MODE2) {
             // Se in Mode 2, accetta perdita
             const cycleLoss = cycleStartBalance - balance;
             if (cycleLoss > 0) {
-                disasters++;
-                pfx('LOSS', `Perdita ciclo Mode 2: -${formatBits(cycleLoss)} bits`);
+                if (!handleDisaster(`Prossima bet supererebbe limite ciclo | Perdita Mode 2: -${formatBits(cycleLoss)} bits`)) {
+                    return;  // Script fermato
+                }
+            } else {
+                startNewCycle();
             }
+        } else {
+            startNewCycle();
         }
-        startNewCycle();
         return;
     }
 
-    // Check saldo sufficiente
+    // Check saldo sufficiente - se non basta, gestisci come disaster
     if (currentBet > balance) {
-        pfx('ERR', `Saldo insufficiente! Bet: ${formatBits(currentBet)} > Balance: ${formatBits(balance)}`);
-        disasters++;
-
-        // Reset balance e ricomincia
-        balance = WORKING_BALANCE;
-        initBalance = WORKING_BALANCE;
-        startNewCycle();
+        if (!handleDisaster(`Saldo insufficiente! Bet: ${formatBits(currentBet)} > Balance: ${formatBits(balance)}`)) {
+            return;  // Script fermato
+        }
         return;
     }
 
@@ -404,7 +457,7 @@ function handleWin(lastGame, crash) {
     // USA I VALORI REALI DEL GIOCO per calcolare il profitto effettivo
     const wager = lastGame.wager;
     const payout = lastGame.cashedAt;
-    const won = Math.floor(wager * payout);
+    const won = Math.round(wager * payout);
     const profit = won - wager;
 
     balance += profit;
@@ -457,9 +510,7 @@ function handleWin(lastGame, crash) {
 
             // Verifica limite tentativi
             if (mode2Attempts >= MODE2_MAX_ATTEMPTS) {
-                pfx('M2/MAX', `Raggiunto max tentativi (${MODE2_MAX_ATTEMPTS}). Accetto perdita.`);
-                disasters++;
-                startNewCycle();
+                handleDisaster(`Mode 2: Raggiunto max tentativi (${MODE2_MAX_ATTEMPTS})`);
             }
         }
     }
@@ -500,9 +551,7 @@ function handleLoss(lastGame, crash) {
 
         // Verifica limite tentativi
         if (mode2Attempts >= MODE2_MAX_ATTEMPTS) {
-            pfx('M2/MAX', `Raggiunto max tentativi (${MODE2_MAX_ATTEMPTS}). Accetto perdita.`);
-            disasters++;
-            startNewCycle();
+            handleDisaster(`Mode 2 LOSS: Raggiunto max tentativi (${MODE2_MAX_ATTEMPTS})`);
             return;
         }
 
@@ -524,7 +573,7 @@ function handleLoss(lastGame, crash) {
 function handleEmergencyReset(lastGame, crash) {
     const wager = lastGame.wager;
     const cashedAt = lastGame.cashedAt;
-    const won = Math.floor(wager * cashedAt);
+    const won = Math.round(wager * cashedAt);
     const profit = won - wager;
 
     // Aggiorna balance con il piccolo profitto del cashout 1.01x
@@ -542,7 +591,7 @@ function handleEmergencyReset(lastGame, crash) {
 function handleManualCashout(lastGame, crash) {
     const wager = lastGame.wager;
     const cashedAt = lastGame.cashedAt;
-    const won = Math.floor(wager * cashedAt);
+    const won = Math.round(wager * cashedAt);
     const realProfit = won - wager;
 
     // Aggiorna balance con il profitto REALE
@@ -585,9 +634,7 @@ function handleManualCashout(lastGame, crash) {
         pfx(`${modeTag}/MANUAL`, `Att:${mode2Attempts}/${MODE2_MAX_ATTEMPTS} - Perdita logica [Tot: ${formatBits(mode2LossesToRecover)}]`);
 
         if (mode2Attempts >= MODE2_MAX_ATTEMPTS) {
-            pfx('M2/MAX', `Raggiunto max tentativi. Accetto perdita.`);
-            disasters++;
-            startNewCycle();
+            handleDisaster(`Mode 2 MANUAL: Raggiunto max tentativi (${MODE2_MAX_ATTEMPTS})`);
             return;
         }
 
@@ -605,14 +652,32 @@ function handleManualCashout(lastGame, crash) {
 
 // ===== STATISTICHE FINALI =====
 function showFinalStats() {
+    // Profitto apparente (senza considerare il capitale iniettato)
+    const apparentProfit = balance - ABSOLUTE_INIT_BALANCE;
+    const apparentProfitPercent = (apparentProfit / ABSOLUTE_INIT_BALANCE * 100).toFixed(2);
+
+    // Profitto REALE (sottraendo il capitale iniettato durante i disaster)
+    const realProfit = balance - ABSOLUTE_INIT_BALANCE - totalInjectedCapital;
+    const realProfitPercent = (realProfit / ABSOLUTE_INIT_BALANCE * 100).toFixed(2);
+
     log('');
     log('================================================================');
     log('   STATISTICHE FINALI                                         ');
     log('================================================================');
     log('');
-    log(`   Balance iniziale: ${formatBits(initBalance)} bits`);
+    log(`   Balance iniziale (assoluto): ${formatBits(ABSOLUTE_INIT_BALANCE)} bits`);
     log(`   Balance finale: ${formatBits(balance)} bits`);
-    log(`   Profit: +${formatBits(balance - initBalance)} bits`);
+    log('');
+
+    // Mostra capitale iniettato se ci sono stati disaster con opzione 1
+    if (totalInjectedCapital !== 0) {
+        log(`   Capitale iniettato durante disasters: ${totalInjectedCapital >= 0 ? '+' : ''}${formatBits(totalInjectedCapital)} bits`);
+        log('');
+        log(`   📊 Profitto APPARENTE: ${apparentProfit >= 0 ? '+' : ''}${formatBits(apparentProfit)} bits (${apparentProfitPercent}%)`);
+        log(`   💰 Profitto REALE: ${realProfit >= 0 ? '+' : ''}${formatBits(realProfit)} bits (${realProfitPercent}%)`);
+    } else {
+        log(`   💰 PROFITTO GLOBALE: ${realProfit >= 0 ? '+' : ''}${formatBits(realProfit)} bits (${realProfitPercent}%)`);
+    }
     log('');
     log(`   Cicli totali: ${totalCycles}`);
     log(`   Mode 2 triggers: ${mode2Triggers}`);
