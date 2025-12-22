@@ -46,6 +46,7 @@ var config = {
     // ===== MODE 2 (RECOVERY) =====
     mode2Payout: { value: 3, type: 'multiplier', label: 'Mode 2: Payout recovery' },
     mode2MaxAttempts: { value: 20, type: 'multiplier', label: 'Mode 2: Max tentativi recovery' },
+    mode2Method: { value: 1, type: 'multiplier', label: 'Mode 2 Metodo: 1=Martingale, 2=Fibonacci' },
 
     // ===== GESTIONE DISASTER =====
     // 1 = Continua (mantieni initBalance, continua a giocare)
@@ -69,6 +70,7 @@ const MODE1_LOSS_THRESHOLD = config.mode1LossThreshold.value;
 // Mode 2
 const MODE2_PAYOUT = config.mode2Payout.value;
 const MODE2_MAX_ATTEMPTS = config.mode2MaxAttempts.value;
+const MODE2_METHOD = config.mode2Method.value;  // 1=Martingale, 2=Fibonacci
 
 // Disaster handling
 const ON_DISASTER = config.onDisaster.value;  // 1=Continua, 2=Reset, 3=Stop
@@ -105,6 +107,10 @@ let mode1CurrentBet = MODE1_BASE_BET;
 let mode2Attempts = 0;
 let mode2LossesToRecover = 0;
 let mode2CurrentBet = 0;
+
+// Mode 2 Fibonacci tracking
+let fibPrev = 0;      // Valore Fibonacci precedente (per calcolo prossimo)
+let fibCurrent = 0;   // Valore Fibonacci corrente
 
 // Bet corrente
 let currentBet = MODE1_BASE_BET;
@@ -151,10 +157,15 @@ log(`   Round per ciclo: ${MODE1_ROUNDS}`);
 log(`   Moltiplicatore: ${MODE1_MULT}x (ogni round)`);
 log(`   Soglia perdita per Mode 2: ${MODE1_LOSS_THRESHOLD}%`);
 log('');
-log('MODE 2 (RECOVERY MARTINGALE):');
+log(`MODE 2 (RECOVERY ${MODE2_METHOD === 1 ? 'MARTINGALE' : 'FIBONACCI'}):`);
 log(`   Payout: ${MODE2_PAYOUT}x`);
-log(`   Bet: perdite_totali / (payout-1) = recupero completo con 1 vincita`);
-log(`   Dopo loss: ricalcola bet per recuperare TUTTE le perdite accumulate`);
+if (MODE2_METHOD === 1) {
+    log(`   Bet: perdite_totali / (payout-1) = recupero completo con 1 vincita`);
+    log(`   Dopo loss: ricalcola bet per recuperare TUTTE le perdite accumulate`);
+} else {
+    log(`   Sequenza: ${formatBits(MODE1_BASE_BET * 10)} → ${formatBits(MODE1_BASE_BET * 20)} → Fibonacci...`);
+    log(`   Dopo loss: segue sequenza Fibonacci (NON garantisce recupero 100%)`);
+}
 log(`   Max tentativi: ${MODE2_MAX_ATTEMPTS}`);
 log('');
 log('LIMITI:');
@@ -200,12 +211,37 @@ function showMode1Simulation() {
     log('');
 
     // Simulazione Mode 2 (se trigger)
-    const payoutProfit = MODE2_PAYOUT - 1;
-    const mode2BaseBet = roundBet(totalBet / payoutProfit);
-    log('SIMULAZIONE MODE 2 (se triggerato):');
-    log(`   Perdite da recuperare: ${formatBits(totalBet)} bits`);
-    log(`   Base bet recovery: ${formatBits(totalBet)} / ${payoutProfit} = ${formatBits(mode2BaseBet)} bits`);
-    log(`   Se vinci @${MODE2_PAYOUT}x: ${formatBits(mode2BaseBet)} × ${payoutProfit} = ${formatBits(mode2BaseBet * payoutProfit)} bits (RECUPERO COMPLETO)`);
+    if (MODE2_METHOD === 1) {
+        // Martingale
+        const payoutProfit = MODE2_PAYOUT - 1;
+        const mode2BaseBet = roundBet(totalBet / payoutProfit);
+        log('SIMULAZIONE MODE 2 (se triggerato):');
+        log(`   Perdite da recuperare: ${formatBits(totalBet)} bits`);
+        log(`   Base bet recovery: ${formatBits(totalBet)} / ${payoutProfit} = ${formatBits(mode2BaseBet)} bits`);
+        log(`   Se vinci @${MODE2_PAYOUT}x: ${formatBits(mode2BaseBet)} × ${payoutProfit} = ${formatBits(mode2BaseBet * payoutProfit)} bits (RECUPERO COMPLETO)`);
+    } else {
+        // Fibonacci
+        log('SIMULAZIONE MODE 2 FIBONACCI (se triggerato):');
+        const fib1 = roundBet(MODE1_BASE_BET * 10);
+        const fib2 = roundBet(MODE1_BASE_BET * 20);
+        let fibA = fib2, fibB = fib2;
+        let fibTotal = fib1 + fib2;
+        let fibSeq = [`${formatBits(fib1)}`, `${formatBits(fib2)}`];
+
+        // Genera sequenza Fibonacci fino al limite
+        while (fibTotal + fibA + fibB < MAX_CYCLE_SPEND && fibSeq.length < 10) {
+            const nextFib = fibA + fibB;
+            fibSeq.push(`${formatBits(nextFib)}`);
+            fibTotal += nextFib;
+            fibA = fibB;
+            fibB = nextFib;
+        }
+
+        log(`   Sequenza bet: ${fibSeq.join(' → ')}...`);
+        log(`   Totale prime ${fibSeq.length} bet: ${formatBits(fibTotal)} bits`);
+        log(`   ⚠️ NON garantisce recupero 100% - strategia alternativa`);
+        log(`   Vincita dal bet 3+ = esci da Mode 2`);
+    }
     log('');
     log('================================================================');
     log('');
@@ -239,6 +275,10 @@ function startNewCycle() {
     mode2Attempts = 0;
     mode2LossesToRecover = 0;
     mode2CurrentBet = 0;
+
+    // Reset Fibonacci
+    fibPrev = 0;
+    fibCurrent = 0;
 
     // Imposta bet iniziale (arrotonda a multipli di 100)
     currentBet = roundBet(MODE1_BASE_BET);
@@ -276,19 +316,70 @@ function switchToMode2(lossesToRecover) {
     mode2Attempts = 0;
     mode2LossesToRecover = lossesToRecover;
 
-    // Calcola base bet per recovery COMPLETO con 1 vincita:
-    // Per recuperare L con payout P, serve: bet × (P-1) = L
-    // Quindi: bet = L / (P-1)
-    const payoutProfit = MODE2_PAYOUT - 1;
-    mode2CurrentBet = roundBet(lossesToRecover / payoutProfit);
-
-    currentBet = mode2CurrentBet;
     currentPayout = MODE2_PAYOUT;
 
-    pfx('MODE2', `=== RECOVERY MODE ===`);
-    pfx('MODE2', `Perdite da recuperare: ${formatBits(mode2LossesToRecover)} bits`);
-    pfx('MODE2', `Bet: ${formatBits(mode2CurrentBet)} bits (1 vincita @${MODE2_PAYOUT}x = recupero completo)`);
+    if (MODE2_METHOD === 1) {
+        // === MARTINGALE ===
+        // Calcola base bet per recovery COMPLETO con 1 vincita:
+        // Per recuperare L con payout P, serve: bet × (P-1) = L
+        // Quindi: bet = L / (P-1)
+        const payoutProfit = MODE2_PAYOUT - 1;
+        mode2CurrentBet = roundBet(lossesToRecover / payoutProfit);
+
+        pfx('MODE2', `=== RECOVERY MODE (MARTINGALE) ===`);
+        pfx('MODE2', `Perdite da recuperare: ${formatBits(mode2LossesToRecover)} bits`);
+        pfx('MODE2', `Bet: ${formatBits(mode2CurrentBet)} bits (1 vincita @${MODE2_PAYOUT}x = recupero completo)`);
+    } else {
+        // === FIBONACCI ===
+        // Bet 1: baseBet * 10
+        // Bet 2: baseBet * 20 (precedente * 2)
+        // Bet 3+: Fibonacci (100, 200, 300, 500, 800...)
+        mode2CurrentBet = roundBet(MODE1_BASE_BET * 10);
+
+        // Inizializza Fibonacci (partirà da bet 3)
+        // fibPrev e fibCurrent saranno usati da bet 3 in poi
+        const fibBase = roundBet(MODE1_BASE_BET * 20);  // 100 (valore di bet 2)
+        fibPrev = fibBase;      // Prima del Fibonacci: 100
+        fibCurrent = fibBase;   // Primo valore Fibonacci: 100
+
+        pfx('MODE2', `=== RECOVERY MODE (FIBONACCI) ===`);
+        pfx('MODE2', `Perdite Mode 1: ${formatBits(mode2LossesToRecover)} bits (NO tracking recupero)`);
+        pfx('MODE2', `Sequenza: ${formatBits(mode2CurrentBet)} → ${formatBits(fibBase)} → Fib(${formatBits(fibCurrent)}, ${formatBits(fibPrev + fibCurrent)}...)`);
+    }
+
+    currentBet = mode2CurrentBet;
     pfx('MODE2', `Payout: ${MODE2_PAYOUT}x | Max tentativi: ${MODE2_MAX_ATTEMPTS}`);
+}
+
+// ===== FIBONACCI BET PROGRESSION =====
+// Avanza alla prossima bet nella sequenza Fibonacci
+function advanceFibonacciBet() {
+    // mode2Attempts è già stato incrementato prima di chiamare questa funzione
+    const attempt = mode2Attempts;
+
+    if (attempt === 1) {
+        // Dopo bet 1 (baseBet*10): vai a bet 2 (baseBet*20)
+        mode2CurrentBet = roundBet(MODE1_BASE_BET * 20);
+        pfx('M2/FIB', `Prossima bet: ${formatBits(mode2CurrentBet)} bits (bet 2)`);
+    } else if (attempt === 2) {
+        // Dopo bet 2: vai a bet 3 (primo Fibonacci = fibCurrent)
+        mode2CurrentBet = fibCurrent;  // Già inizializzato a baseBet*20
+        pfx('M2/FIB', `Prossima bet: ${formatBits(mode2CurrentBet)} bits (Fibonacci inizia)`);
+    } else {
+        // Dopo bet 3+: calcola prossimo Fibonacci
+        const nextFib = fibPrev + fibCurrent;
+        fibPrev = fibCurrent;
+        fibCurrent = nextFib;
+        mode2CurrentBet = roundBet(fibCurrent);
+        pfx('M2/FIB', `Prossima bet: ${formatBits(mode2CurrentBet)} bits (Fibonacci)`);
+    }
+
+    currentBet = mode2CurrentBet;
+
+    // Verifica limite tentativi
+    if (mode2Attempts >= MODE2_MAX_ATTEMPTS) {
+        handleDisaster(`Mode 2 Fibonacci: Raggiunto max tentativi (${MODE2_MAX_ATTEMPTS})`);
+    }
 }
 
 // ===== GESTIONE DISASTER =====
@@ -484,33 +575,51 @@ function handleWin(lastGame, crash) {
             pfx('M1/NEXT', `Prossima bet: ${formatBits(currentBet)} bits`);
         }
     } else {
-        // Mode 2: WIN = recovery completato (o parziale)
+        // Mode 2: WIN
         mode2Attempts++;
 
         pfx(`${modeTag}/WIN`, `Att:${mode2Attempts}/${MODE2_MAX_ATTEMPTS} @${crash}x +${formatBits(profit)} bal:${formatBits(balance)}`);
 
-        // Verifica se abbiamo recuperato
-        const cycleProfit = balance - cycleStartBalance;
+        if (MODE2_METHOD === 1) {
+            // === MARTINGALE ===
+            // Verifica se abbiamo recuperato
+            const cycleProfit = balance - cycleStartBalance;
 
-        if (cycleProfit >= 0) {
-            // Recovery completo!
-            mode2Recoveries++;
-            pfx('M2/OK', `RECOVERY COMPLETO! Profit ciclo: +${formatBits(cycleProfit)} bits`);
-            startNewCycle();
+            if (cycleProfit >= 0) {
+                // Recovery completo!
+                mode2Recoveries++;
+                pfx('M2/OK', `RECOVERY COMPLETO! Profit ciclo: +${formatBits(cycleProfit)} bits`);
+                startNewCycle();
+            } else {
+                // Ancora in perdita, ma questa vincita ha aiutato
+                const remaining = Math.abs(cycleProfit);
+                pfx('M2/PARTIAL', `Vincita parziale. Ancora da recuperare: ${formatBits(remaining)} bits`);
+
+                // Ricalcola bet per recuperare il resto
+                mode2LossesToRecover = remaining;
+                const payoutProfit = MODE2_PAYOUT - 1;
+                mode2CurrentBet = roundBet(remaining / payoutProfit);
+                currentBet = mode2CurrentBet;
+
+                // Verifica limite tentativi
+                if (mode2Attempts >= MODE2_MAX_ATTEMPTS) {
+                    handleDisaster(`Mode 2: Raggiunto max tentativi (${MODE2_MAX_ATTEMPTS})`);
+                }
+            }
         } else {
-            // Ancora in perdita, ma questa vincita ha aiutato
-            const remaining = Math.abs(cycleProfit);
-            pfx('M2/PARTIAL', `Vincita parziale. Ancora da recuperare: ${formatBits(remaining)} bits`);
-
-            // Ricalcola bet per recuperare il resto
-            mode2LossesToRecover = remaining;
-            const payoutProfit = MODE2_PAYOUT - 1;
-            mode2CurrentBet = roundBet(remaining / payoutProfit);
-            currentBet = mode2CurrentBet;
-
-            // Verifica limite tentativi
-            if (mode2Attempts >= MODE2_MAX_ATTEMPTS) {
-                handleDisaster(`Mode 2: Raggiunto max tentativi (${MODE2_MAX_ATTEMPTS})`);
+            // === FIBONACCI ===
+            // Bet 1 e 2: continua alla prossima bet (non esci)
+            // Bet 3+: esci e ricomincia Mode 1
+            if (mode2Attempts <= 2) {
+                // Vincita su bet 1 o 2: continua la sequenza
+                pfx('M2/FIB', `Vincita su bet ${mode2Attempts} - continuo sequenza Fibonacci`);
+                advanceFibonacciBet();
+            } else {
+                // Vincita su bet 3+: recovery!
+                const cycleProfit = balance - cycleStartBalance;
+                mode2Recoveries++;
+                pfx('M2/OK', `FIBONACCI WIN! Profit ciclo: ${cycleProfit >= 0 ? '+' : ''}${formatBits(cycleProfit)} bits`);
+                startNewCycle();
             }
         }
     }
@@ -541,31 +650,46 @@ function handleLoss(lastGame, crash) {
             pfx('M1/NEXT', `Prossima bet: ${formatBits(currentBet)} bits`);
         }
     } else {
-        // Mode 2: LOSS = ricalcola bet per recuperare TUTTE le perdite accumulate
+        // Mode 2: LOSS
         mode2Attempts++;
 
-        // Aggiorna perdite totali (aggiungi la bet appena persa)
-        mode2LossesToRecover += wager;
+        if (MODE2_METHOD === 1) {
+            // === MARTINGALE ===
+            // Aggiorna perdite totali (aggiungi la bet appena persa)
+            mode2LossesToRecover += wager;
 
-        pfx(`${modeTag}/LOSS`, `Att:${mode2Attempts}/${MODE2_MAX_ATTEMPTS} @${crash}x -${formatBits(wager)} bal:${formatBits(balance)} [Perdite totali: ${formatBits(mode2LossesToRecover)}]`);
+            pfx(`${modeTag}/LOSS`, `Att:${mode2Attempts}/${MODE2_MAX_ATTEMPTS} @${crash}x -${formatBits(wager)} bal:${formatBits(balance)} [Perdite totali: ${formatBits(mode2LossesToRecover)}]`);
 
-        // Verifica limite tentativi
-        if (mode2Attempts >= MODE2_MAX_ATTEMPTS) {
-            handleDisaster(`Mode 2 LOSS: Raggiunto max tentativi (${MODE2_MAX_ATTEMPTS})`);
-            return;
+            // Verifica limite tentativi
+            if (mode2Attempts >= MODE2_MAX_ATTEMPTS) {
+                handleDisaster(`Mode 2 LOSS: Raggiunto max tentativi (${MODE2_MAX_ATTEMPTS})`);
+                return;
+            }
+
+            // Verifica limite spesa
+            if (checkCycleLimit()) {
+                return;
+            }
+
+            // Martingale: ricalcola bet per recuperare TUTTE le perdite
+            const payoutProfit = MODE2_PAYOUT - 1;
+            mode2CurrentBet = roundBet(mode2LossesToRecover / payoutProfit);
+            currentBet = mode2CurrentBet;
+
+            pfx('M2/RECALC', `Nuova bet: ${formatBits(currentBet)} bits (per recuperare ${formatBits(mode2LossesToRecover)} bits)`);
+        } else {
+            // === FIBONACCI ===
+            // Non traccia perdite, segue solo la sequenza
+            pfx(`${modeTag}/LOSS`, `Att:${mode2Attempts}/${MODE2_MAX_ATTEMPTS} @${crash}x -${formatBits(wager)} bal:${formatBits(balance)}`);
+
+            // Verifica limite spesa
+            if (checkCycleLimit()) {
+                return;
+            }
+
+            // Avanza nella sequenza Fibonacci
+            advanceFibonacciBet();
         }
-
-        // Verifica limite spesa
-        if (checkCycleLimit()) {
-            return;
-        }
-
-        // Martingale: ricalcola bet per recuperare TUTTE le perdite
-        const payoutProfit = MODE2_PAYOUT - 1;
-        mode2CurrentBet = roundBet(mode2LossesToRecover / payoutProfit);
-        currentBet = mode2CurrentBet;
-
-        pfx('M2/RECALC', `Nuova bet: ${formatBits(currentBet)} bits (per recuperare ${formatBits(mode2LossesToRecover)} bits)`);
     }
 }
 
@@ -627,26 +751,40 @@ function handleManualCashout(lastGame, crash) {
     } else {
         mode2Attempts++;
 
-        // Per Mode 2, la "perdita logica" è la bet (anche se ho ricevuto qualcosa)
-        // Aggiungo la bet persa alle perdite da recuperare
-        mode2LossesToRecover += wager;
+        if (MODE2_METHOD === 1) {
+            // === MARTINGALE ===
+            // Per Mode 2, la "perdita logica" è la bet (anche se ho ricevuto qualcosa)
+            // Aggiungo la bet persa alle perdite da recuperare
+            mode2LossesToRecover += wager;
 
-        pfx(`${modeTag}/MANUAL`, `Att:${mode2Attempts}/${MODE2_MAX_ATTEMPTS} - Perdita logica [Tot: ${formatBits(mode2LossesToRecover)}]`);
+            pfx(`${modeTag}/MANUAL`, `Att:${mode2Attempts}/${MODE2_MAX_ATTEMPTS} - Perdita logica [Tot: ${formatBits(mode2LossesToRecover)}]`);
 
-        if (mode2Attempts >= MODE2_MAX_ATTEMPTS) {
-            handleDisaster(`Mode 2 MANUAL: Raggiunto max tentativi (${MODE2_MAX_ATTEMPTS})`);
-            return;
+            if (mode2Attempts >= MODE2_MAX_ATTEMPTS) {
+                handleDisaster(`Mode 2 MANUAL: Raggiunto max tentativi (${MODE2_MAX_ATTEMPTS})`);
+                return;
+            }
+
+            if (checkCycleLimit()) {
+                return;
+            }
+
+            // Ricalcola bet per recovery
+            const payoutProfit = MODE2_PAYOUT - 1;
+            mode2CurrentBet = roundBet(mode2LossesToRecover / payoutProfit);
+            currentBet = mode2CurrentBet;
+            pfx('M2/RECALC', `Nuova bet: ${formatBits(currentBet)} bits`);
+        } else {
+            // === FIBONACCI ===
+            // Cashout manuale = perdita logica, continua sequenza
+            pfx(`${modeTag}/MANUAL`, `Att:${mode2Attempts}/${MODE2_MAX_ATTEMPTS} - Perdita logica (continuo Fibonacci)`);
+
+            if (checkCycleLimit()) {
+                return;
+            }
+
+            // Avanza nella sequenza Fibonacci
+            advanceFibonacciBet();
         }
-
-        if (checkCycleLimit()) {
-            return;
-        }
-
-        // Ricalcola bet per recovery
-        const payoutProfit = MODE2_PAYOUT - 1;
-        mode2CurrentBet = roundBet(mode2LossesToRecover / payoutProfit);
-        currentBet = mode2CurrentBet;
-        pfx('M2/RECALC', `Nuova bet: ${formatBits(currentBet)} bits`);
     }
 }
 
@@ -680,6 +818,7 @@ function showFinalStats() {
     }
     log('');
     log(`   Cicli totali: ${totalCycles}`);
+    log(`   Mode 2 metodo: ${MODE2_METHOD === 1 ? 'MARTINGALE' : 'FIBONACCI'}`);
     log(`   Mode 2 triggers: ${mode2Triggers}`);
     log(`   Mode 2 recoveries: ${mode2Recoveries}`);
     log(`   Disasters (perdite accettate): ${disasters}`);
