@@ -1,0 +1,627 @@
+/**
+ * HASH CHECKPOINTS - 1 Milione di Partite
+ *
+ * Generato da: 357bba5cd16d7d9395a0aab681ceefb4415dc2d8a7529493c48e7b57d74a4ed8
+ * Checkpoint ogni: 10.000 partite
+ * Totale checkpoint: 101
+ *
+ * Uso:
+ *   const { HASH_CHECKPOINTS } = require('./hash-checkpoints');
+ *   const hash = HASH_CHECKPOINTS[5].hash; // Hash a 50k partite indietro
+ */
+
+const HASH_CHECKPOINTS = [
+  {
+    "index": 0,
+    "gameOffset": 0,
+    "hash": "357bba5cd16d7d9395a0aab681ceefb4415dc2d8a7529493c48e7b57d74a4ed8",
+    "description": "Hash di partenza (più recente)"
+  },
+  {
+    "index": 1,
+    "gameOffset": 10000,
+    "hash": "7fe53ba14973ccf6f9b47f15be8ba5255f16d4425310024ec8eb9895b317e0dc",
+    "description": "Checkpoint 1 - 10.000 partite indietro"
+  },
+  {
+    "index": 2,
+    "gameOffset": 20000,
+    "hash": "79602520d5775b1507c45a255854db772f9d144c2c1eafc4fa620c12aed4914d",
+    "description": "Checkpoint 2 - 20.000 partite indietro"
+  },
+  {
+    "index": 3,
+    "gameOffset": 30000,
+    "hash": "7567b3510eefd76e82498f7a5c16ab3e0c076a83e4524ebcb48b4bfe996a505d",
+    "description": "Checkpoint 3 - 30.000 partite indietro"
+  },
+  {
+    "index": 4,
+    "gameOffset": 40000,
+    "hash": "0c9eb00456d6786d9d0e9a5ab469b97ceee8f189889bb9036f0e3079244276ce",
+    "description": "Checkpoint 4 - 40.000 partite indietro"
+  },
+  {
+    "index": 5,
+    "gameOffset": 50000,
+    "hash": "ea3181c6d4ee5c2b231e8d8e60cae13d13af8c8fa47b10eeaf4b2791e94c0d3f",
+    "description": "Checkpoint 5 - 50.000 partite indietro"
+  },
+  {
+    "index": 6,
+    "gameOffset": 60000,
+    "hash": "4b4164a939616106c95057ff845ac0febe993a896b150bafa7dbf93c3e75ab4a",
+    "description": "Checkpoint 6 - 60.000 partite indietro"
+  },
+  {
+    "index": 7,
+    "gameOffset": 70000,
+    "hash": "378d2877174865a27152071a0116be678d9b01509021961f527bbecaecfe5def",
+    "description": "Checkpoint 7 - 70.000 partite indietro"
+  },
+  {
+    "index": 8,
+    "gameOffset": 80000,
+    "hash": "99a6d6a125106091544db13a98cc8b80689cf9fbf5972df1cbb6bcac9ec714d2",
+    "description": "Checkpoint 8 - 80.000 partite indietro"
+  },
+  {
+    "index": 9,
+    "gameOffset": 90000,
+    "hash": "6d3a4db18e8ada13591d37f5039868202faf2c5166e1bbca653487b3237a7233",
+    "description": "Checkpoint 9 - 90.000 partite indietro"
+  },
+  {
+    "index": 10,
+    "gameOffset": 100000,
+    "hash": "282b1080ca375e756671739472f3b4f6c1819dcec40914877dc187416c86ada4",
+    "description": "Checkpoint 10 - 100.000 partite indietro"
+  },
+  {
+    "index": 11,
+    "gameOffset": 110000,
+    "hash": "5d2b4120e4cc4bd94897da1014e4baac12509f6adbfc5c10af501663b3802955",
+    "description": "Checkpoint 11 - 110.000 partite indietro"
+  },
+  {
+    "index": 12,
+    "gameOffset": 120000,
+    "hash": "0287dcb683756002892d3d42edb7d2aa5ec2c7ef8e9facb49e2aaf0ba62841be",
+    "description": "Checkpoint 12 - 120.000 partite indietro"
+  },
+  {
+    "index": 13,
+    "gameOffset": 130000,
+    "hash": "e69f5dc6ba4eba446d33e94f4c5760b307cf9da68fca3ad3b2f368903adc82c0",
+    "description": "Checkpoint 13 - 130.000 partite indietro"
+  },
+  {
+    "index": 14,
+    "gameOffset": 140000,
+    "hash": "0a75a8fef2ed5b8700ea3fda23b64b4082829654c6bc2f607423fa3e17e72064",
+    "description": "Checkpoint 14 - 140.000 partite indietro"
+  },
+  {
+    "index": 15,
+    "gameOffset": 150000,
+    "hash": "608901be13da165bd017bf2d114e9f31be8a1807bb44721b68d78a8ccfdadf18",
+    "description": "Checkpoint 15 - 150.000 partite indietro"
+  },
+  {
+    "index": 16,
+    "gameOffset": 160000,
+    "hash": "19f4d5451c93d7bbfe7e7b0feaa3c47c9400e038559c33d8ea0fd196132b94b6",
+    "description": "Checkpoint 16 - 160.000 partite indietro"
+  },
+  {
+    "index": 17,
+    "gameOffset": 170000,
+    "hash": "71fe9d89ed955893fdcb9f9239e0045f5da6cb0778e150cb128b981841ec77c1",
+    "description": "Checkpoint 17 - 170.000 partite indietro"
+  },
+  {
+    "index": 18,
+    "gameOffset": 180000,
+    "hash": "08b55f365706f4695d068ea52b5329991ec5ed9924ea4048ce3777a658808ec8",
+    "description": "Checkpoint 18 - 180.000 partite indietro"
+  },
+  {
+    "index": 19,
+    "gameOffset": 190000,
+    "hash": "197148bb646e850548d2cd4256b676a1438bf3a6a1c4e91570b5e38b61a3d7aa",
+    "description": "Checkpoint 19 - 190.000 partite indietro"
+  },
+  {
+    "index": 20,
+    "gameOffset": 200000,
+    "hash": "2efc20a65fcc6811f33173abb8795f927f981040bb5af668e51d77daed8a9e66",
+    "description": "Checkpoint 20 - 200.000 partite indietro"
+  },
+  {
+    "index": 21,
+    "gameOffset": 210000,
+    "hash": "031b9c006f8b69949f170296c6c3631a35d4c091bbe591131fd281c3a75929a2",
+    "description": "Checkpoint 21 - 210.000 partite indietro"
+  },
+  {
+    "index": 22,
+    "gameOffset": 220000,
+    "hash": "dc66328136674430e34d1cc80f341081c857d652f043ebf905ba4e126c19c0ec",
+    "description": "Checkpoint 22 - 220.000 partite indietro"
+  },
+  {
+    "index": 23,
+    "gameOffset": 230000,
+    "hash": "7baf73ace050ef6b087afef2a644a5b11c4eadb3084a8ee9dca325bbdd125909",
+    "description": "Checkpoint 23 - 230.000 partite indietro"
+  },
+  {
+    "index": 24,
+    "gameOffset": 240000,
+    "hash": "5df72c482c8ff5f35f71dcdd5ca3c46e28a5831a64fc6fefcc38cfa6a690b031",
+    "description": "Checkpoint 24 - 240.000 partite indietro"
+  },
+  {
+    "index": 25,
+    "gameOffset": 250000,
+    "hash": "ecb575adea1a8089928726bc8c7af1d122b739ef19a4e6de01abc61cefaf4c60",
+    "description": "Checkpoint 25 - 250.000 partite indietro"
+  },
+  {
+    "index": 26,
+    "gameOffset": 260000,
+    "hash": "97f7d652196c9795fe26c1f7e6a66f312d01bb8dc200e638ee693d859b89456d",
+    "description": "Checkpoint 26 - 260.000 partite indietro"
+  },
+  {
+    "index": 27,
+    "gameOffset": 270000,
+    "hash": "defcb13dc3d7fc10f388b401a0916befcd459c2bb07b7a4e50825fce5425593b",
+    "description": "Checkpoint 27 - 270.000 partite indietro"
+  },
+  {
+    "index": 28,
+    "gameOffset": 280000,
+    "hash": "fe8f86f9bb7238f04092d46ed53b7deecd84f8796c4bdc8a5b4802df6ccb0dba",
+    "description": "Checkpoint 28 - 280.000 partite indietro"
+  },
+  {
+    "index": 29,
+    "gameOffset": 290000,
+    "hash": "dff3187360d32c1567dfc25ed1c5c6634555557a535c8ef56932fdcc19ada14a",
+    "description": "Checkpoint 29 - 290.000 partite indietro"
+  },
+  {
+    "index": 30,
+    "gameOffset": 300000,
+    "hash": "831e0e16f0d58ac186e9382101a60ed7633d38339d34862aacbf9083652c0718",
+    "description": "Checkpoint 30 - 300.000 partite indietro"
+  },
+  {
+    "index": 31,
+    "gameOffset": 310000,
+    "hash": "46ee36a16a2f9db775f01ed1eb67c6adf31bc01a473935cb8ad52b8455b6c290",
+    "description": "Checkpoint 31 - 310.000 partite indietro"
+  },
+  {
+    "index": 32,
+    "gameOffset": 320000,
+    "hash": "77118d5a73023567d56f4945742da9752a1dc7c5ca9afc26fd32fb0c2763fe26",
+    "description": "Checkpoint 32 - 320.000 partite indietro"
+  },
+  {
+    "index": 33,
+    "gameOffset": 330000,
+    "hash": "c7ea4c0724e13c0beccb0f20395975b1c9a9e292eb13f192c2f87b808722477b",
+    "description": "Checkpoint 33 - 330.000 partite indietro"
+  },
+  {
+    "index": 34,
+    "gameOffset": 340000,
+    "hash": "1cb60b9a7c087230c0690b080a77f78a6db9f73ddd8e598ca3b59ca2ad6b56ca",
+    "description": "Checkpoint 34 - 340.000 partite indietro"
+  },
+  {
+    "index": 35,
+    "gameOffset": 350000,
+    "hash": "866359074f36c05954c042cc5ee4c7bad47e85037b118c29a04e865d3e027ca9",
+    "description": "Checkpoint 35 - 350.000 partite indietro"
+  },
+  {
+    "index": 36,
+    "gameOffset": 360000,
+    "hash": "5dc94365a8614c4e95bcb7c7236b07205e4f26bc5e26d9ef195265b6bf6d1565",
+    "description": "Checkpoint 36 - 360.000 partite indietro"
+  },
+  {
+    "index": 37,
+    "gameOffset": 370000,
+    "hash": "dc031e146277cc3aecd2ec1c86cec8fa5838f71c1e0e545bdb734f9f823272dd",
+    "description": "Checkpoint 37 - 370.000 partite indietro"
+  },
+  {
+    "index": 38,
+    "gameOffset": 380000,
+    "hash": "1f30b268965956c0181dc71e1539509349f965a5b11e5a1f50413566837e5645",
+    "description": "Checkpoint 38 - 380.000 partite indietro"
+  },
+  {
+    "index": 39,
+    "gameOffset": 390000,
+    "hash": "0c25b80ad8edd031659999faf58d47795e1034bdea57f7a3d9a7033596c790de",
+    "description": "Checkpoint 39 - 390.000 partite indietro"
+  },
+  {
+    "index": 40,
+    "gameOffset": 400000,
+    "hash": "b14356284e02505f9584b3f848e1f54a1a0e889ebeae748b58a0ef3d256cb52d",
+    "description": "Checkpoint 40 - 400.000 partite indietro"
+  },
+  {
+    "index": 41,
+    "gameOffset": 410000,
+    "hash": "af1d936982f4e03691bf6b730ef8e2e946674ab4e6540c92105a8402d87b03d7",
+    "description": "Checkpoint 41 - 410.000 partite indietro"
+  },
+  {
+    "index": 42,
+    "gameOffset": 420000,
+    "hash": "11220dd76c60fe71fa6ba358b70cfd0e332c986d14b883e1cd2957833c59edd8",
+    "description": "Checkpoint 42 - 420.000 partite indietro"
+  },
+  {
+    "index": 43,
+    "gameOffset": 430000,
+    "hash": "e6ead521cedac2c0f7a53d7358856d26a55db94b3977de37bb4170fb3a99c534",
+    "description": "Checkpoint 43 - 430.000 partite indietro"
+  },
+  {
+    "index": 44,
+    "gameOffset": 440000,
+    "hash": "d5d44445a460197a861cac87b9ad9670289e96b5100dd4592322098b4a059f87",
+    "description": "Checkpoint 44 - 440.000 partite indietro"
+  },
+  {
+    "index": 45,
+    "gameOffset": 450000,
+    "hash": "0d50973787306fa3b298c4f3e3b33786e4e8b4165318c4418c36faa1d904eb44",
+    "description": "Checkpoint 45 - 450.000 partite indietro"
+  },
+  {
+    "index": 46,
+    "gameOffset": 460000,
+    "hash": "15ea2e6bdd524d24609dbd3b03513d49ea398e73792f14074a5f71a22f03fe2b",
+    "description": "Checkpoint 46 - 460.000 partite indietro"
+  },
+  {
+    "index": 47,
+    "gameOffset": 470000,
+    "hash": "5cb5ecfc8a684ac375709293a8e161adb7abf72ee0ef0441020bf0c409b31768",
+    "description": "Checkpoint 47 - 470.000 partite indietro"
+  },
+  {
+    "index": 48,
+    "gameOffset": 480000,
+    "hash": "cd35dba2b2fe02593637e0ee3f35963547828f00f4bee33e9c32dcfc102ab663",
+    "description": "Checkpoint 48 - 480.000 partite indietro"
+  },
+  {
+    "index": 49,
+    "gameOffset": 490000,
+    "hash": "1e5525b35f75a0698f11dc73747f383ec16d37cda766c7651318b20bb9a754cf",
+    "description": "Checkpoint 49 - 490.000 partite indietro"
+  },
+  {
+    "index": 50,
+    "gameOffset": 500000,
+    "hash": "9f509248aa7a688467c259f877a1c7eae0b67ee007452565cc3d24eb0ad60f6e",
+    "description": "Checkpoint 50 - 500.000 partite indietro"
+  },
+  {
+    "index": 51,
+    "gameOffset": 510000,
+    "hash": "98306cd4a74bbfb77f8f9bf053708038b3554192e42c2787fdd4219a1677103b",
+    "description": "Checkpoint 51 - 510.000 partite indietro"
+  },
+  {
+    "index": 52,
+    "gameOffset": 520000,
+    "hash": "a4257c13633af13308d61d08f8bb65cc86aef36abe7ad307ee1cd2dc2103ecbd",
+    "description": "Checkpoint 52 - 520.000 partite indietro"
+  },
+  {
+    "index": 53,
+    "gameOffset": 530000,
+    "hash": "bc514383c2cbb4d47a749a46a4d61d8f5b8c0668fe7859ff95c6ad6a13a44e78",
+    "description": "Checkpoint 53 - 530.000 partite indietro"
+  },
+  {
+    "index": 54,
+    "gameOffset": 540000,
+    "hash": "92a8ef3e1df29c839bb0eda21e8208f1ebf0478b4b0cbcb49c52854228074abe",
+    "description": "Checkpoint 54 - 540.000 partite indietro"
+  },
+  {
+    "index": 55,
+    "gameOffset": 550000,
+    "hash": "0a1356cfcd8a6b199c6cc892862588c0de2be4219aac1e3adab4c807ead12c8f",
+    "description": "Checkpoint 55 - 550.000 partite indietro"
+  },
+  {
+    "index": 56,
+    "gameOffset": 560000,
+    "hash": "2cdd39a5b452f505f8b15a37640c10e096d80dc2f073fc4269ec68c682a0cbe0",
+    "description": "Checkpoint 56 - 560.000 partite indietro"
+  },
+  {
+    "index": 57,
+    "gameOffset": 570000,
+    "hash": "4a31a43d8d24682f1235295934c43f628d1c8618df6607201ad7d5edf143c54d",
+    "description": "Checkpoint 57 - 570.000 partite indietro"
+  },
+  {
+    "index": 58,
+    "gameOffset": 580000,
+    "hash": "2b8b47250c6b9fe33be21b669895464f5bbe180f4a3a34d52ea35afa709d3be3",
+    "description": "Checkpoint 58 - 580.000 partite indietro"
+  },
+  {
+    "index": 59,
+    "gameOffset": 590000,
+    "hash": "1119b60da040a1a6d32989ae984669adb53e2196b568e2c865129e0991a27fbc",
+    "description": "Checkpoint 59 - 590.000 partite indietro"
+  },
+  {
+    "index": 60,
+    "gameOffset": 600000,
+    "hash": "07a3292d62f02c305173e1e4ba8325dac54c55fe0693d451281116eae52bad9d",
+    "description": "Checkpoint 60 - 600.000 partite indietro"
+  },
+  {
+    "index": 61,
+    "gameOffset": 610000,
+    "hash": "a052d332a7388f9b9c3e4cc82a767d173b431302ae74e06564653a1d6e387283",
+    "description": "Checkpoint 61 - 610.000 partite indietro"
+  },
+  {
+    "index": 62,
+    "gameOffset": 620000,
+    "hash": "da26e063b18985e8b9a3b0d9a7c27281b05b69d50da26cdc492852de0cd36397",
+    "description": "Checkpoint 62 - 620.000 partite indietro"
+  },
+  {
+    "index": 63,
+    "gameOffset": 630000,
+    "hash": "2ccf9c988844270080215dd4bfeb51f590b97db44d50047929710da268fb9cac",
+    "description": "Checkpoint 63 - 630.000 partite indietro"
+  },
+  {
+    "index": 64,
+    "gameOffset": 640000,
+    "hash": "217ef8f7da0aaa8a51e6695faf23f3f6efc88c7c10d9a4adfd38589f16870402",
+    "description": "Checkpoint 64 - 640.000 partite indietro"
+  },
+  {
+    "index": 65,
+    "gameOffset": 650000,
+    "hash": "045ba9c3a9492f6565b2efbb27bf7b91251cb568995ceb627e4b03bfc9c6339a",
+    "description": "Checkpoint 65 - 650.000 partite indietro"
+  },
+  {
+    "index": 66,
+    "gameOffset": 660000,
+    "hash": "933c912410427a40cb73704c443a40ead68e216ddd702d2e674a6c75caa2e19c",
+    "description": "Checkpoint 66 - 660.000 partite indietro"
+  },
+  {
+    "index": 67,
+    "gameOffset": 670000,
+    "hash": "9b6b466b04720c31a6bd38b170fb7b9325cfef2f37bb0ebe030a73ab75d19851",
+    "description": "Checkpoint 67 - 670.000 partite indietro"
+  },
+  {
+    "index": 68,
+    "gameOffset": 680000,
+    "hash": "7b3b683553fdc38292f85b4f1a66e36b82cecc7e685589b6ab414b1b0b500ce7",
+    "description": "Checkpoint 68 - 680.000 partite indietro"
+  },
+  {
+    "index": 69,
+    "gameOffset": 690000,
+    "hash": "e14dc2ef4f3cead3373d647f7fd3443dc75e2abebf16be62e1df283b83ce22e0",
+    "description": "Checkpoint 69 - 690.000 partite indietro"
+  },
+  {
+    "index": 70,
+    "gameOffset": 700000,
+    "hash": "86295d48f6800fd75372b2d259bec6bff1174d5865e0bad9ac957b9205d33cfd",
+    "description": "Checkpoint 70 - 700.000 partite indietro"
+  },
+  {
+    "index": 71,
+    "gameOffset": 710000,
+    "hash": "b9e426a59fe5b56a64261baced3da8272876183ba6b8086c3bda08f5444247c1",
+    "description": "Checkpoint 71 - 710.000 partite indietro"
+  },
+  {
+    "index": 72,
+    "gameOffset": 720000,
+    "hash": "304b8556b3529954afa2e500db7affeadce8b847b5fce2a6299ec995ed8df4cd",
+    "description": "Checkpoint 72 - 720.000 partite indietro"
+  },
+  {
+    "index": 73,
+    "gameOffset": 730000,
+    "hash": "aa13dd476a94136d9c20a8d09c04fa897a4f60a785c002d7854ea0f46721c594",
+    "description": "Checkpoint 73 - 730.000 partite indietro"
+  },
+  {
+    "index": 74,
+    "gameOffset": 740000,
+    "hash": "16e091029780730900903bf4d76793c3f737396abd1c399d62e3e265a3c2b263",
+    "description": "Checkpoint 74 - 740.000 partite indietro"
+  },
+  {
+    "index": 75,
+    "gameOffset": 750000,
+    "hash": "1155542cd58c9674c2e0e284e91219d3ef2f0beed50eb2324a382880134407e3",
+    "description": "Checkpoint 75 - 750.000 partite indietro"
+  },
+  {
+    "index": 76,
+    "gameOffset": 760000,
+    "hash": "e0c34b4b012199227b78ff8449b4bd42aec88f894752fc43f3fa2e5ac0ae31b4",
+    "description": "Checkpoint 76 - 760.000 partite indietro"
+  },
+  {
+    "index": 77,
+    "gameOffset": 770000,
+    "hash": "6ca694f4bdf76971bd0d9504fb63422439ace32348b3436aa87d0bc55ccb6fa0",
+    "description": "Checkpoint 77 - 770.000 partite indietro"
+  },
+  {
+    "index": 78,
+    "gameOffset": 780000,
+    "hash": "f05d749e5415643f301ae0f2659dad082865ec74cb12e5bca1f0be184ee4887e",
+    "description": "Checkpoint 78 - 780.000 partite indietro"
+  },
+  {
+    "index": 79,
+    "gameOffset": 790000,
+    "hash": "e4457add2a69c63670f3f68e64488403f662bfbe203c88a2224e11a87a2808d9",
+    "description": "Checkpoint 79 - 790.000 partite indietro"
+  },
+  {
+    "index": 80,
+    "gameOffset": 800000,
+    "hash": "1b1810f78cc86e4c2e232a59731a0c1b586302e1cad234ac09a236db9dc8c669",
+    "description": "Checkpoint 80 - 800.000 partite indietro"
+  },
+  {
+    "index": 81,
+    "gameOffset": 810000,
+    "hash": "e157181cf98c374b90f8aed9bf97ae8e769caf5d44bde087f892ea890081bc89",
+    "description": "Checkpoint 81 - 810.000 partite indietro"
+  },
+  {
+    "index": 82,
+    "gameOffset": 820000,
+    "hash": "8032650deadf8a255eca439a9d78784b4424d1d89cf5d001aa1dfb3c7db4d7ce",
+    "description": "Checkpoint 82 - 820.000 partite indietro"
+  },
+  {
+    "index": 83,
+    "gameOffset": 830000,
+    "hash": "151f1a27963a346fb9355b8358aab3eb7e92f11ce0ee59f6aecd8c9725abcd68",
+    "description": "Checkpoint 83 - 830.000 partite indietro"
+  },
+  {
+    "index": 84,
+    "gameOffset": 840000,
+    "hash": "6256f8081a0a466b329ac7c3ad44ba93edf5bc97817d501a00425fa67077c249",
+    "description": "Checkpoint 84 - 840.000 partite indietro"
+  },
+  {
+    "index": 85,
+    "gameOffset": 850000,
+    "hash": "39e06248856770c5efeeafd0a99e6bd0b2ab6734554259b65b9ee908c13bb1a1",
+    "description": "Checkpoint 85 - 850.000 partite indietro"
+  },
+  {
+    "index": 86,
+    "gameOffset": 860000,
+    "hash": "98886846463433409bcd910552c132e40b08087aaf4150fef8ab3979a200876e",
+    "description": "Checkpoint 86 - 860.000 partite indietro"
+  },
+  {
+    "index": 87,
+    "gameOffset": 870000,
+    "hash": "6051bb45fac7888341e3daa7eba57e903a728b4c605d27095689ca801f2ebb5c",
+    "description": "Checkpoint 87 - 870.000 partite indietro"
+  },
+  {
+    "index": 88,
+    "gameOffset": 880000,
+    "hash": "fdee632321426818bc69d958eaf80d349860c11c1c110baeb97219f47b45ed46",
+    "description": "Checkpoint 88 - 880.000 partite indietro"
+  },
+  {
+    "index": 89,
+    "gameOffset": 890000,
+    "hash": "07fa2a158f6c116af3c2a762b702e8bd75c78427a0e7334e3474f403f3c2f1b2",
+    "description": "Checkpoint 89 - 890.000 partite indietro"
+  },
+  {
+    "index": 90,
+    "gameOffset": 900000,
+    "hash": "e2b5d293cfd41caf284210365ec7ce4dc6a4e6226bb289a401f4cd52f22d50e1",
+    "description": "Checkpoint 90 - 900.000 partite indietro"
+  },
+  {
+    "index": 91,
+    "gameOffset": 910000,
+    "hash": "d9ed1fc4429638b95606489c910a6efee3c1d2ab5804e52281c06e00771fde8c",
+    "description": "Checkpoint 91 - 910.000 partite indietro"
+  },
+  {
+    "index": 92,
+    "gameOffset": 920000,
+    "hash": "4ee520a265da8f93a8c27d35797384f6e6c12b285508c4348b8c3581162b8f1e",
+    "description": "Checkpoint 92 - 920.000 partite indietro"
+  },
+  {
+    "index": 93,
+    "gameOffset": 930000,
+    "hash": "965f6b276d51dccec08c69e5aec9e11af09ce498db202808c0fe2418129bd0bc",
+    "description": "Checkpoint 93 - 930.000 partite indietro"
+  },
+  {
+    "index": 94,
+    "gameOffset": 940000,
+    "hash": "d02b371a000867855453b602fb5e03061e5de1cd82f509925469eef2a2a33ef1",
+    "description": "Checkpoint 94 - 940.000 partite indietro"
+  },
+  {
+    "index": 95,
+    "gameOffset": 950000,
+    "hash": "77f34e58433321b44da0e95ad59f17298dcd758284d76193fc29dc2ca8afd590",
+    "description": "Checkpoint 95 - 950.000 partite indietro"
+  },
+  {
+    "index": 96,
+    "gameOffset": 960000,
+    "hash": "501451d90e63eeaafcaa2e56feaab7218405f750584b61bcbbf70d3f45fd607a",
+    "description": "Checkpoint 96 - 960.000 partite indietro"
+  },
+  {
+    "index": 97,
+    "gameOffset": 970000,
+    "hash": "6d368310625089a4e33c691a6ee4746a3b6ff4da087a4e4428c2c41cc03e1828",
+    "description": "Checkpoint 97 - 970.000 partite indietro"
+  },
+  {
+    "index": 98,
+    "gameOffset": 980000,
+    "hash": "753efc1b0a42b70ec747276cde28b05ae7fbf872af36dfc79d7b9f76ed79848b",
+    "description": "Checkpoint 98 - 980.000 partite indietro"
+  },
+  {
+    "index": 99,
+    "gameOffset": 990000,
+    "hash": "da1198b51ce29263247b5a97bc61bc333bf0d5538b63f8c8e5c2ee7cfd518c62",
+    "description": "Checkpoint 99 - 990.000 partite indietro"
+  },
+  {
+    "index": 100,
+    "gameOffset": 1000000,
+    "hash": "a920ddffe77d9763ab3cdd6970ddcbfa8117e0353a3fa392777cf1413d19fa37",
+    "description": "Checkpoint 100 - 1.000.000 partite indietro"
+  }
+];
+
+// Export per uso come modulo
+module.exports = { HASH_CHECKPOINTS };
+
+// Export anche come array semplice di soli hash
+const HASH_ARRAY = HASH_CHECKPOINTS.map(c => c.hash);
+module.exports.HASH_ARRAY = HASH_ARRAY;
