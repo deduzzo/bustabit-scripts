@@ -655,12 +655,20 @@ async function massiveTest(scriptPath, options = {}) {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 let HASH_CHECKPOINTS = null;
+let HASH_CHECKPOINTS_10M = null;
+
 try {
     const checkpointsModule = require('./hash-checkpoints.js');
     HASH_CHECKPOINTS = checkpointsModule.HASH_CHECKPOINTS;
-    // console.log(`✅ Loaded ${HASH_CHECKPOINTS.length} hash checkpoints`);
 } catch (e) {
-    // Checkpoints non disponibili, usa hash singolo
+    // Checkpoints 1M non disponibili
+}
+
+try {
+    const checkpointsModule10M = require('./hash-checkpoints-10M.js');
+    HASH_CHECKPOINTS_10M = checkpointsModule10M.HASH_CHECKPOINTS_10M;
+} catch (e) {
+    // Checkpoints 10M non disponibili
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -677,17 +685,19 @@ CLI MASSIVE TESTER - Test algoritmi bustabit senza UI
 Uso: node cli-tester.js <script-path> [options]
 
 Options:
-  --seeds=N       Numero di seed/sessioni da testare (default: 100)
-  --games=N       Numero di giochi per sessione (default: 500)
-  --balance=N     Balance iniziale in bits (default: 10000)
-  --hash=HASH     Hash base per i test (o 'checkpoints' per usare i 100 checkpoint)
-  --checkpoints   Usa i 100 hash checkpoint per diversificare i test
-  --log           Abilita log degli script (verbose)
-  --help          Mostra questo help
+  --seeds=N         Numero di seed/sessioni da testare (default: 100)
+  --games=N         Numero di giochi per sessione (default: 500)
+  --balance=N       Balance iniziale in bits (default: 10000)
+  --hash=HASH       Hash base per i test
+  --checkpoints     Usa i 101 hash checkpoint (1M partite, ogni 10k)
+  --checkpoints10M  Usa i 10,001 hash checkpoint (10M partite, ogni 1k)
+  --log             Abilita log degli script (verbose)
+  --help            Mostra questo help
 
 Esempi:
   node cli-tester.js ../scripts/martin/SUPER_SMART_v2.js --seeds=100 --games=500
   node cli-tester.js ../scripts/martin/SUPER_SMART_v2.js --checkpoints --games=1000
+  node cli-tester.js ../scripts/martin/SUPER_SMART_v6_ULTIMATE.js --checkpoints10M --seeds=1000 --games=5000
         `);
         process.exit(0);
     }
@@ -699,6 +709,7 @@ Esempi:
         startingBalance: 1000000,
         baseHash: '357bba5cd16d7d9395a0aab681ceefb4415dc2d8a7529493c48e7b57d74a4ed8',
         useCheckpoints: false,
+        useCheckpoints10M: false,
         enableLog: false
     };
 
@@ -711,6 +722,8 @@ Esempi:
             options.startingBalance = parseInt(arg.split('=')[1]) * 100;
         } else if (arg.startsWith('--hash=')) {
             options.baseHash = arg.split('=')[1];
+        } else if (arg === '--checkpoints10M') {
+            options.useCheckpoints10M = true;
         } else if (arg === '--checkpoints') {
             options.useCheckpoints = true;
         } else if (arg === '--log') {
@@ -718,8 +731,16 @@ Esempi:
         }
     }
 
-    // Se usa checkpoints, imposta numSeeds al numero di checkpoint disponibili
-    if (options.useCheckpoints && HASH_CHECKPOINTS) {
+    // Se usa checkpoints 10M (priorità su 1M)
+    if (options.useCheckpoints10M && HASH_CHECKPOINTS_10M) {
+        // Limita a numSeeds se specificato, altrimenti usa tutti
+        const maxSeeds = options.numSeeds || HASH_CHECKPOINTS_10M.length;
+        options.numSeeds = Math.min(maxSeeds, HASH_CHECKPOINTS_10M.length);
+        options.hashCheckpoints = HASH_CHECKPOINTS_10M.slice(0, options.numSeeds);
+        options.useCheckpoints = true;
+    }
+    // Se usa checkpoints 1M
+    else if (options.useCheckpoints && HASH_CHECKPOINTS) {
         options.numSeeds = HASH_CHECKPOINTS.length;
         options.hashCheckpoints = HASH_CHECKPOINTS;
     }
