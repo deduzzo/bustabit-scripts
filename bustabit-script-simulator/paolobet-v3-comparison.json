@@ -1,0 +1,31 @@
+{
+  "withoutProtection": {
+    "name": "SENZA Protezione",
+    "hitRate": 61.7,
+    "bustRate": 0,
+    "avgProfit": -2.8881000000000094,
+    "avgBets": 306.213,
+    "avgGames": 307.213,
+    "avgTargetGame": 365.23987034035656,
+    "avgDrawdown": -55.30890000000004,
+    "avgSuspendCount": 0,
+    "avgSuspendGames": 0
+  },
+  "withProtection": {
+    "name": "CON Protezione",
+    "hitRate": 54.50000000000001,
+    "bustRate": 0,
+    "avgProfit": 5.55840000000003,
+    "avgBets": 1318.545,
+    "avgGames": 1748.95,
+    "avgTargetGame": 1391.0770642201835,
+    "avgDrawdown": -46.55160000000007,
+    "avgSuspendCount": 26.405,
+    "avgSuspendGames": 403.236
+  },
+  "improvement": {
+    "hitRate": -7.199999999999996,
+    "ev": 8.44650000000004,
+    "bustRate": 0
+  }
+}

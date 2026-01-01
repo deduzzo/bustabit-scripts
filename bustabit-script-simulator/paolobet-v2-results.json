@@ -1,0 +1,141 @@
+{
+  "config": {
+    "sessions": 500,
+    "games": 3000,
+    "betPercent": 0.6
+  },
+  "results": [
+    {
+      "balance": 500,
+      "takeProfit": 25,
+      "hitRate": 74.8,
+      "bustRate": 0.6,
+      "avgProfit": -2.919599999999987,
+      "avgBets": 182.864,
+      "avgTargetGame": 197.84491978609626,
+      "avgDrawdown": -42.380400000000016,
+      "calculatedBet": 3
+    },
+    {
+      "balance": 500,
+      "takeProfit": 50,
+      "hitRate": 63.2,
+      "bustRate": 0.8,
+      "avgProfit": -0.8057999999999953,
+      "avgBets": 303.918,
+      "avgTargetGame": 366.34493670886076,
+      "avgDrawdown": -55.12199999999997,
+      "calculatedBet": 3
+    },
+    {
+      "balance": 500,
+      "takeProfit": 100,
+      "hitRate": 47.599999999999994,
+      "bustRate": 0.8,
+      "avgProfit": 1.4646000000000046,
+      "avgBets": 484.26,
+      "avgTargetGame": 675.0126050420168,
+      "avgDrawdown": -66.79379999999996,
+      "calculatedBet": 3
+    },
+    {
+      "balance": 1000,
+      "takeProfit": 25,
+      "hitRate": 74.8,
+      "bustRate": 0,
+      "avgProfit": -2.919599999999987,
+      "avgBets": 182.864,
+      "avgTargetGame": 197.84491978609626,
+      "avgDrawdown": -42.380400000000016,
+      "calculatedBet": 6
+    },
+    {
+      "balance": 1000,
+      "takeProfit": 50,
+      "hitRate": 63.2,
+      "bustRate": 0,
+      "avgProfit": -0.8057999999999953,
+      "avgBets": 303.918,
+      "avgTargetGame": 366.34493670886076,
+      "avgDrawdown": -55.12199999999997,
+      "calculatedBet": 6
+    },
+    {
+      "balance": 1000,
+      "takeProfit": 100,
+      "hitRate": 47.599999999999994,
+      "bustRate": 0,
+      "avgProfit": 1.4646000000000046,
+      "avgBets": 484.26,
+      "avgTargetGame": 675.0126050420168,
+      "avgDrawdown": -66.79379999999996,
+      "calculatedBet": 6
+    },
+    {
+      "balance": 5000,
+      "takeProfit": 25,
+      "hitRate": 74.8,
+      "bustRate": 0,
+      "avgProfit": -2.919599999999987,
+      "avgBets": 182.864,
+      "avgTargetGame": 197.84491978609626,
+      "avgDrawdown": -42.380400000000016,
+      "calculatedBet": 30
+    },
+    {
+      "balance": 5000,
+      "takeProfit": 50,
+      "hitRate": 63.2,
+      "bustRate": 0,
+      "avgProfit": -0.8057999999999953,
+      "avgBets": 303.918,
+      "avgTargetGame": 366.34493670886076,
+      "avgDrawdown": -55.12199999999997,
+      "calculatedBet": 30
+    },
+    {
+      "balance": 5000,
+      "takeProfit": 100,
+      "hitRate": 47.599999999999994,
+      "bustRate": 0,
+      "avgProfit": 1.4646000000000046,
+      "avgBets": 484.26,
+      "avgTargetGame": 675.0126050420168,
+      "avgDrawdown": -66.79379999999996,
+      "calculatedBet": 30
+    },
+    {
+      "balance": 10000,
+      "takeProfit": 25,
+      "hitRate": 74.8,
+      "bustRate": 0,
+      "avgProfit": -2.919599999999987,
+      "avgBets": 182.864,
+      "avgTargetGame": 197.84491978609626,
+      "avgDrawdown": -42.380400000000016,
+      "calculatedBet": 60
+    },
+    {
+      "balance": 10000,
+      "takeProfit": 50,
+      "hitRate": 63.2,
+      "bustRate": 0,
+      "avgProfit": -0.8057999999999953,
+      "avgBets": 303.918,
+      "avgTargetGame": 366.34493670886076,
+      "avgDrawdown": -55.12199999999997,
+      "calculatedBet": 60
+    },
+    {
+      "balance": 10000,
+      "takeProfit": 100,
+      "hitRate": 47.599999999999994,
+      "bustRate": 0,
+      "avgProfit": 1.4646000000000046,
+      "avgBets": 484.26,
+      "avgTargetGame": 675.0126050420168,
+      "avgDrawdown": -66.79379999999996,
+      "calculatedBet": 60
+    }
+  ]
+}

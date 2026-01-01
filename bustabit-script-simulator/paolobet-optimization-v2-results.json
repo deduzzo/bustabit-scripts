@@ -1,0 +1,411 @@
+{
+  "progression": {
+    "startMult": 2,
+    "multIncrease": 1.2,
+    "maxSteps": 6
+  },
+  "mode2": {
+    "target": 3,
+    "maxBets": 20,
+    "minProfit": 20
+  },
+  "coldStreak": {
+    "threshold": 8,
+    "resumeAt": 5
+  },
+  "ev": 31.437292,
+  "bankruptRate": 0,
+  "allResults": {
+    "phase1": [
+      {
+        "startMult": 2,
+        "multIncrease": 1.2,
+        "maxSteps": 6,
+        "ev": 29.784017000000002,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 2,
+        "multIncrease": 1.2,
+        "maxSteps": 5,
+        "ev": 29.522521,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 2,
+        "multIncrease": 1.2,
+        "maxSteps": 4,
+        "ev": 28.830743999999996,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 2,
+        "multIncrease": 1.2,
+        "maxSteps": 3,
+        "ev": 27.910877,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 2,
+        "multIncrease": 1,
+        "maxSteps": 5,
+        "ev": 27.715403,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 1.8,
+        "multIncrease": 1.2,
+        "maxSteps": 6,
+        "ev": 27.41068,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 2,
+        "multIncrease": 1,
+        "maxSteps": 4,
+        "ev": 27.404136,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 1.8,
+        "multIncrease": 1.2,
+        "maxSteps": 5,
+        "ev": 27.163208,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 2,
+        "multIncrease": 1,
+        "maxSteps": 6,
+        "ev": 26.912147000000004,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 2,
+        "multIncrease": 1,
+        "maxSteps": 3,
+        "ev": 26.853827000000003,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 1.8,
+        "multIncrease": 1.2,
+        "maxSteps": 4,
+        "ev": 26.728648999999997,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 1.8,
+        "multIncrease": 1.2,
+        "maxSteps": 3,
+        "ev": 25.979283,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 2,
+        "multIncrease": 0.8,
+        "maxSteps": 3,
+        "ev": 25.492186,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 2,
+        "multIncrease": 0.8,
+        "maxSteps": 4,
+        "ev": 25.467670999999996,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 1.8,
+        "multIncrease": 1,
+        "maxSteps": 4,
+        "ev": 25.298355,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 1.8,
+        "multIncrease": 1,
+        "maxSteps": 5,
+        "ev": 24.995409,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 1.8,
+        "multIncrease": 1,
+        "maxSteps": 6,
+        "ev": 24.781916000000002,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 1.8,
+        "multIncrease": 1,
+        "maxSteps": 3,
+        "ev": 24.670213,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 2,
+        "multIncrease": 0.8,
+        "maxSteps": 5,
+        "ev": 24.627846,
+        "bankruptRate": 0
+      },
+      {
+        "startMult": 2,
+        "multIncrease": 0.8,
+        "maxSteps": 6,
+        "ev": 24.04562,
+        "bankruptRate": 0
+      }
+    ],
+    "phase2": [
+      {
+        "mode2Target": 3,
+        "mode2MaxBets": 20,
+        "minProfit": 20,
+        "ev": 30.004901,
+        "bankruptRate": 0
+      },
+      {
+        "mode2Target": 3,
+        "mode2MaxBets": 15,
+        "minProfit": 20,
+        "ev": 29.858724,
+        "bankruptRate": 0
+      },
+      {
+        "mode2Target": 3,
+        "mode2MaxBets": 10,
+        "minProfit": 20,
+        "ev": 29.743188999999997,
+        "bankruptRate": 0
+      },
+      {
+        "mode2Target": 3,
+        "mode2MaxBets": 10,
+        "minProfit": 10,
+        "ev": 29.685118,
+        "bankruptRate": 0
+      },
+      {
+        "mode2Target": 3,
+        "mode2MaxBets": 15,
+        "minProfit": 15,
+        "ev": 29.684957,
+        "bankruptRate": 0
+      },
+      {
+        "mode2Target": 3,
+        "mode2MaxBets": 10,
+        "minProfit": 15,
+        "ev": 29.503711,
+        "bankruptRate": 0
+      },
+      {
+        "mode2Target": 3,
+        "mode2MaxBets": 20,
+        "minProfit": 15,
+        "ev": 29.458092,
+        "bankruptRate": 0
+      },
+      {
+        "mode2Target": 3,
+        "mode2MaxBets": 15,
+        "minProfit": 10,
+        "ev": 29.44254,
+        "bankruptRate": 0
+      },
+      {
+        "mode2Target": 3,
+        "mode2MaxBets": 20,
+        "minProfit": 10,
+        "ev": 29.41748,
+        "bankruptRate": 0
+      },
+      {
+        "mode2Target": 2.5,
+        "mode2MaxBets": 20,
+        "minProfit": 10,
+        "ev": 25.349778,
+        "bankruptRate": 0.3
+      },
+      {
+        "mode2Target": 2.5,
+        "mode2MaxBets": 15,
+        "minProfit": 20,
+        "ev": 25.210017,
+        "bankruptRate": 0.2
+      },
+      {
+        "mode2Target": 2.5,
+        "mode2MaxBets": 20,
+        "minProfit": 20,
+        "ev": 24.930536,
+        "bankruptRate": 0.4
+      },
+      {
+        "mode2Target": 2.5,
+        "mode2MaxBets": 20,
+        "minProfit": 15,
+        "ev": 24.90562,
+        "bankruptRate": 0.3
+      },
+      {
+        "mode2Target": 2.5,
+        "mode2MaxBets": 10,
+        "minProfit": 20,
+        "ev": 24.692846000000003,
+        "bankruptRate": 0.8
+      },
+      {
+        "mode2Target": 2.5,
+        "mode2MaxBets": 15,
+        "minProfit": 10,
+        "ev": 24.134288,
+        "bankruptRate": 0.5
+      },
+      {
+        "mode2Target": 2.5,
+        "mode2MaxBets": 10,
+        "minProfit": 15,
+        "ev": 24.046350999999998,
+        "bankruptRate": 0.6
+      },
+      {
+        "mode2Target": 2.5,
+        "mode2MaxBets": 10,
+        "minProfit": 10,
+        "ev": 24.001117,
+        "bankruptRate": 0.7000000000000001
+      },
+      {
+        "mode2Target": 3.5,
+        "mode2MaxBets": 15,
+        "minProfit": 10,
+        "ev": 23.407397000000003,
+        "bankruptRate": 1
+      },
+      {
+        "mode2Target": 2.5,
+        "mode2MaxBets": 15,
+        "minProfit": 15,
+        "ev": 23.348032999999997,
+        "bankruptRate": 0.3
+      },
+      {
+        "mode2Target": 3.5,
+        "mode2MaxBets": 20,
+        "minProfit": 10,
+        "ev": 22.550555,
+        "bankruptRate": 1
+      }
+    ],
+    "phase3": [
+      {
+        "maxColdStreak": 8,
+        "resumeAt": 5,
+        "ev": 31.437292,
+        "bankruptRate": 0,
+        "suspsPerSession": 4.423
+      },
+      {
+        "maxColdStreak": 9,
+        "resumeAt": 5,
+        "ev": 31.306011,
+        "bankruptRate": 0,
+        "suspsPerSession": 3.013
+      },
+      {
+        "maxColdStreak": 6,
+        "resumeAt": 5,
+        "ev": 31.061473,
+        "bankruptRate": 0,
+        "suspsPerSession": 9.587
+      },
+      {
+        "maxColdStreak": 7,
+        "resumeAt": 5,
+        "ev": 30.820823000000004,
+        "bankruptRate": 0,
+        "suspsPerSession": 6.536
+      },
+      {
+        "maxColdStreak": 9,
+        "resumeAt": 10,
+        "ev": 30.376915,
+        "bankruptRate": 0,
+        "suspsPerSession": 2.848
+      },
+      {
+        "maxColdStreak": 8,
+        "resumeAt": 10,
+        "ev": 29.729769,
+        "bankruptRate": 0,
+        "suspsPerSession": 4.213
+      },
+      {
+        "maxColdStreak": 10,
+        "resumeAt": 5,
+        "ev": 29.152710999999996,
+        "bankruptRate": 0.7000000000000001,
+        "suspsPerSession": 1.981
+      },
+      {
+        "maxColdStreak": 9,
+        "resumeAt": 15,
+        "ev": 29.084667000000003,
+        "bankruptRate": 0,
+        "suspsPerSession": 2.804
+      },
+      {
+        "maxColdStreak": 7,
+        "resumeAt": 10,
+        "ev": 29.006272,
+        "bankruptRate": 0,
+        "suspsPerSession": 6.068
+      },
+      {
+        "maxColdStreak": 10,
+        "resumeAt": 10,
+        "ev": 28.680144000000002,
+        "bankruptRate": 0.3,
+        "suspsPerSession": 1.961
+      },
+      {
+        "maxColdStreak": 6,
+        "resumeAt": 10,
+        "ev": 28.307519,
+        "bankruptRate": 0,
+        "suspsPerSession": 8.737
+      },
+      {
+        "maxColdStreak": 8,
+        "resumeAt": 15,
+        "ev": 28.184207,
+        "bankruptRate": 0,
+        "suspsPerSession": 4.046
+      },
+      {
+        "maxColdStreak": 10,
+        "resumeAt": 15,
+        "ev": 27.829020999999997,
+        "bankruptRate": 0.3,
+        "suspsPerSession": 1.84
+      },
+      {
+        "maxColdStreak": 7,
+        "resumeAt": 15,
+        "ev": 27.516224,
+        "bankruptRate": 0,
+        "suspsPerSession": 5.764
+      },
+      {
+        "maxColdStreak": 6,
+        "resumeAt": 15,
+        "ev": 26.200988000000002,
+        "bankruptRate": 0,
+        "suspsPerSession": 7.986
+      }
+    ]
+  }
+}

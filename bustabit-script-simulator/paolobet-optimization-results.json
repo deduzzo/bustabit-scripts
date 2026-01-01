@@ -1,0 +1,458 @@
+{
+  "phase1": [
+    {
+      "cycleLossLimit": 100,
+      "baseBetPercent": 0.2,
+      "ev": -0.15300399999999997,
+      "bankruptRate": 0.8,
+      "cycleResetsPerSession": 0.456
+    },
+    {
+      "cycleLossLimit": 5,
+      "baseBetPercent": 0.2,
+      "ev": -0.765674,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 3.889
+    },
+    {
+      "cycleLossLimit": 3,
+      "baseBetPercent": 0.3,
+      "ev": -1.18078,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 9.651
+    },
+    {
+      "cycleLossLimit": 7,
+      "baseBetPercent": 0.2,
+      "ev": -1.239908,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 2.873
+    },
+    {
+      "cycleLossLimit": 5,
+      "baseBetPercent": 0.3,
+      "ev": -1.5086220000000001,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 6.017
+    },
+    {
+      "cycleLossLimit": 3,
+      "baseBetPercent": 0.2,
+      "ev": -1.536758,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 6.461
+    },
+    {
+      "cycleLossLimit": 10,
+      "baseBetPercent": 0.2,
+      "ev": -1.54521,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 2.13
+    },
+    {
+      "cycleLossLimit": 10,
+      "baseBetPercent": 0.3,
+      "ev": -1.7398360000000002,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 3.202
+    },
+    {
+      "cycleLossLimit": 3,
+      "baseBetPercent": 0.4,
+      "ev": -1.8875199999999999,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 13.891
+    },
+    {
+      "cycleLossLimit": 100,
+      "baseBetPercent": 0.3,
+      "ev": -2.099709,
+      "bankruptRate": 3.1,
+      "cycleResetsPerSession": 0.879
+    },
+    {
+      "cycleLossLimit": 15,
+      "baseBetPercent": 0.3,
+      "ev": -2.2509729999999997,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 2.314
+    },
+    {
+      "cycleLossLimit": 15,
+      "baseBetPercent": 0.2,
+      "ev": -2.3247220000000004,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 1.587
+    },
+    {
+      "cycleLossLimit": 3,
+      "baseBetPercent": 0.5,
+      "ev": -2.3947860000000003,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 18.78
+    },
+    {
+      "cycleLossLimit": 7,
+      "baseBetPercent": 0.5,
+      "ev": -2.494538,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 7.798
+    },
+    {
+      "cycleLossLimit": 15,
+      "baseBetPercent": 0.5,
+      "ev": -2.698319,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 3.953
+    },
+    {
+      "cycleLossLimit": 7,
+      "baseBetPercent": 0.3,
+      "ev": -2.755606,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 4.493
+    },
+    {
+      "cycleLossLimit": 7,
+      "baseBetPercent": 0.4,
+      "ev": -2.828558,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 6.144
+    },
+    {
+      "cycleLossLimit": 10,
+      "baseBetPercent": 0.4,
+      "ev": -3.165992,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 4.412
+    },
+    {
+      "cycleLossLimit": 5,
+      "baseBetPercent": 0.4,
+      "ev": -3.2184200000000005,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 8.948
+    },
+    {
+      "cycleLossLimit": 10,
+      "baseBetPercent": 0.5,
+      "ev": -3.366333,
+      "bankruptRate": 0,
+      "cycleResetsPerSession": 5.756
+    }
+  ],
+  "phase2": [
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 100,
+      "maxColdStreak": 8,
+      "warmupGames": 0,
+      "ev": 20.357908,
+      "bankruptRate": 0,
+      "betsPerSession": 459.269
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 100,
+      "maxColdStreak": 8,
+      "warmupGames": 5,
+      "ev": 20.032587999999997,
+      "bankruptRate": 0,
+      "betsPerSession": 453.282
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 12,
+      "maxColdStreak": 100,
+      "warmupGames": 0,
+      "ev": 19.798405,
+      "bankruptRate": 0,
+      "betsPerSession": 447.45
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 100,
+      "maxColdStreak": 8,
+      "warmupGames": 10,
+      "ev": 19.768991000000003,
+      "bankruptRate": 0,
+      "betsPerSession": 448.561
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 12,
+      "maxColdStreak": 100,
+      "warmupGames": 5,
+      "ev": 19.600419000000002,
+      "bankruptRate": 0,
+      "betsPerSession": 443.395
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 100,
+      "maxColdStreak": 8,
+      "warmupGames": 20,
+      "ev": 19.456497,
+      "bankruptRate": 0,
+      "betsPerSession": 439.386
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 12,
+      "maxColdStreak": 8,
+      "warmupGames": 0,
+      "ev": 19.376598,
+      "bankruptRate": 0,
+      "betsPerSession": 431.491
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 12,
+      "maxColdStreak": 8,
+      "warmupGames": 5,
+      "ev": 19.30964,
+      "bankruptRate": 0,
+      "betsPerSession": 428.21
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 20,
+      "maxDelay5x": 100,
+      "maxColdStreak": 8,
+      "warmupGames": 0,
+      "ev": 19.272365,
+      "bankruptRate": 0,
+      "betsPerSession": 426.208
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 12,
+      "maxColdStreak": 8,
+      "warmupGames": 10,
+      "ev": 19.140565,
+      "bankruptRate": 0,
+      "betsPerSession": 423.249
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 20,
+      "maxDelay5x": 12,
+      "maxColdStreak": 100,
+      "warmupGames": 0,
+      "ev": 19.138617999999997,
+      "bankruptRate": 0,
+      "betsPerSession": 424.634
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 12,
+      "maxColdStreak": 100,
+      "warmupGames": 10,
+      "ev": 19.066727999999998,
+      "bankruptRate": 0,
+      "betsPerSession": 436.283
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 20,
+      "maxDelay5x": 100,
+      "maxColdStreak": 8,
+      "warmupGames": 5,
+      "ev": 19.037844,
+      "bankruptRate": 0,
+      "betsPerSession": 421.602
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 20,
+      "maxDelay5x": 100,
+      "maxColdStreak": 8,
+      "warmupGames": 10,
+      "ev": 18.893107,
+      "bankruptRate": 0,
+      "betsPerSession": 417.739
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 20,
+      "maxDelay5x": 12,
+      "maxColdStreak": 8,
+      "warmupGames": 0,
+      "ev": 18.813187,
+      "bankruptRate": 0,
+      "betsPerSession": 413.95
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 20,
+      "maxDelay5x": 12,
+      "maxColdStreak": 100,
+      "warmupGames": 10,
+      "ev": 18.776768,
+      "bankruptRate": 0,
+      "betsPerSession": 415.114
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 12,
+      "maxColdStreak": 100,
+      "warmupGames": 20,
+      "ev": 18.689062,
+      "bankruptRate": 0,
+      "betsPerSession": 427.335
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 20,
+      "maxDelay5x": 12,
+      "maxColdStreak": 8,
+      "warmupGames": 5,
+      "ev": 18.676746,
+      "bankruptRate": 0,
+      "betsPerSession": 406.386
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 20,
+      "maxDelay5x": 12,
+      "maxColdStreak": 100,
+      "warmupGames": 5,
+      "ev": 18.647903999999997,
+      "bankruptRate": 0,
+      "betsPerSession": 420.687
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 12,
+      "maxColdStreak": 8,
+      "warmupGames": 20,
+      "ev": 18.540597,
+      "bankruptRate": 0,
+      "betsPerSession": 412.583
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 20,
+      "maxDelay5x": 12,
+      "maxColdStreak": 8,
+      "warmupGames": 10,
+      "ev": 18.420689,
+      "bankruptRate": 0,
+      "betsPerSession": 403.138
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 100,
+      "maxDelay5x": 100,
+      "maxColdStreak": 5,
+      "warmupGames": 0,
+      "ev": 18.33678,
+      "bankruptRate": 0,
+      "betsPerSession": 379.777
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 20,
+      "maxDelay5x": 12,
+      "maxColdStreak": 100,
+      "warmupGames": 20,
+      "ev": 18.323118,
+      "bankruptRate": 0,
+      "betsPerSession": 407.205
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 15,
+      "maxDelay5x": 12,
+      "maxColdStreak": 100,
+      "warmupGames": 0,
+      "ev": 18.259598999999998,
+      "bankruptRate": 0,
+      "betsPerSession": 399.797
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 20,
+      "maxDelay5x": 100,
+      "maxColdStreak": 8,
+      "warmupGames": 20,
+      "ev": 18.254343000000002,
+      "bankruptRate": 0,
+      "betsPerSession": 406.031
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 15,
+      "maxDelay5x": 100,
+      "maxColdStreak": 8,
+      "warmupGames": 0,
+      "ev": 18.247512,
+      "bankruptRate": 0,
+      "betsPerSession": 396.978
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 15,
+      "maxDelay5x": 12,
+      "maxColdStreak": 100,
+      "warmupGames": 5,
+      "ev": 18.15301,
+      "bankruptRate": 0,
+      "betsPerSession": 395.723
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 15,
+      "maxDelay5x": 100,
+      "maxColdStreak": 8,
+      "warmupGames": 5,
+      "ev": 18.107211,
+      "bankruptRate": 0,
+      "betsPerSession": 393.542
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 15,
+      "maxDelay5x": 12,
+      "maxColdStreak": 8,
+      "warmupGames": 0,
+      "ev": 18.075084999999998,
+      "bankruptRate": 0,
+      "betsPerSession": 390.963
+    },
+    {
+      "enableProtection": true,
+      "maxDelay10x": 20,
+      "maxDelay5x": 12,
+      "maxColdStreak": 8,
+      "warmupGames": 20,
+      "ev": 17.992741000000002,
+      "bankruptRate": 0,
+      "betsPerSession": 393.729
+    }
+  ],
+  "optimal": {
+    "cycleLossLimit": 100,
+    "baseBetPercent": 0.2,
+    "enableProtection": true,
+    "maxDelay10x": 100,
+    "maxDelay5x": 100,
+    "maxColdStreak": 8,
+    "warmupGames": 0,
+    "ev": 20.357908,
+    "bankruptRate": 0,
+    "betsPerSession": 459.269
+  }
+}

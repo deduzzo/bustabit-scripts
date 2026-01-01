@@ -1,0 +1,346 @@
+{
+  "config": {
+    "mults": [
+      3,
+      9
+    ],
+    "baseBetPercent": 0.3,
+    "minProfit": 20,
+    "mode2Target": 3,
+    "mode2MaxBets": 20,
+    "maxColdStreak": 5,
+    "resumeOnMult": 4,
+    "resumeAfterGames": 12
+  },
+  "performance": {
+    "ev": 28.563220999999977,
+    "bankruptRate": 2.3,
+    "percentiles": {
+      "p5": -75.579,
+      "p50": 40.249,
+      "p95": 56.528999999999996
+    }
+  },
+  "allResults": [
+    {
+      "phase": "progressions",
+      "name": "[2, 4, 8]",
+      "mults": [
+        2,
+        4,
+        8
+      ],
+      "ev": 13.717589999999989,
+      "bankruptRate": 3.5000000000000004
+    },
+    {
+      "phase": "progressions",
+      "name": "[2, 5, 10]",
+      "mults": [
+        2,
+        5,
+        10
+      ],
+      "ev": 14.104991999999982,
+      "bankruptRate": 3.9
+    },
+    {
+      "phase": "progressions",
+      "name": "[2, 4, 10]",
+      "mults": [
+        2,
+        4,
+        10
+      ],
+      "ev": 14.199433999999991,
+      "bankruptRate": 3.4000000000000004
+    },
+    {
+      "phase": "progressions",
+      "name": "[2, 5, 8]",
+      "mults": [
+        2,
+        5,
+        8
+      ],
+      "ev": 13.481614999999998,
+      "bankruptRate": 3.5999999999999996
+    },
+    {
+      "phase": "progressions",
+      "name": "[1.5, 4, 8]",
+      "mults": [
+        1.5,
+        4,
+        8
+      ],
+      "ev": 11.71232099999998,
+      "bankruptRate": 3.2
+    },
+    {
+      "phase": "progressions",
+      "name": "[2.5, 5, 10]",
+      "mults": [
+        2.5,
+        5,
+        10
+      ],
+      "ev": 14.713368000000008,
+      "bankruptRate": 4.3
+    },
+    {
+      "phase": "progressions",
+      "name": "[2, 3, 5, 8]",
+      "mults": [
+        2,
+        3,
+        5,
+        8
+      ],
+      "ev": 11.493240999999994,
+      "bankruptRate": 5.7
+    },
+    {
+      "phase": "progressions",
+      "name": "[2, 4, 6, 10]",
+      "mults": [
+        2,
+        4,
+        6,
+        10
+      ],
+      "ev": 13.149285000000008,
+      "bankruptRate": 5.7
+    },
+    {
+      "phase": "progressions",
+      "name": "[2, 3, 6, 12]",
+      "mults": [
+        2,
+        3,
+        6,
+        12
+      ],
+      "ev": 11.919459000000005,
+      "bankruptRate": 6.1
+    },
+    {
+      "phase": "progressions",
+      "name": "[2, 8]",
+      "mults": [
+        2,
+        8
+      ],
+      "ev": 13.758867999999993,
+      "bankruptRate": 2.7
+    },
+    {
+      "phase": "progressions",
+      "name": "[2, 10]",
+      "mults": [
+        2,
+        10
+      ],
+      "ev": 13.938654000000003,
+      "bankruptRate": 2.9000000000000004
+    },
+    {
+      "phase": "progressions",
+      "name": "[3, 9]",
+      "mults": [
+        3,
+        9
+      ],
+      "ev": 14.853828000000012,
+      "bankruptRate": 3
+    },
+    {
+      "phase": "resume",
+      "name": "5x ONLY",
+      "resumeOnMult": 5,
+      "resumeAfterGames": 0,
+      "mults": [
+        3,
+        9
+      ],
+      "ev": 14.853828000000012,
+      "bankruptRate": 3
+    },
+    {
+      "phase": "resume",
+      "name": "3x ONLY",
+      "resumeOnMult": 3,
+      "resumeAfterGames": 0,
+      "mults": [
+        3,
+        9
+      ],
+      "ev": 14.403182000000006,
+      "bankruptRate": 4
+    },
+    {
+      "phase": "resume",
+      "name": "5x OR 10g",
+      "resumeOnMult": 5,
+      "resumeAfterGames": 10,
+      "mults": [
+        3,
+        9
+      ],
+      "ev": 14.073183000000016,
+      "bankruptRate": 3.4000000000000004
+    },
+    {
+      "phase": "resume",
+      "name": "5x OR 15g",
+      "resumeOnMult": 5,
+      "resumeAfterGames": 15,
+      "mults": [
+        3,
+        9
+      ],
+      "ev": 14.317252000000012,
+      "bankruptRate": 3.1
+    },
+    {
+      "phase": "resume",
+      "name": "3x OR 10g",
+      "resumeOnMult": 3,
+      "resumeAfterGames": 10,
+      "mults": [
+        3,
+        9
+      ],
+      "ev": 14.403182000000006,
+      "bankruptRate": 4
+    },
+    {
+      "phase": "resume",
+      "name": "3x OR 15g",
+      "resumeOnMult": 3,
+      "resumeAfterGames": 15,
+      "mults": [
+        3,
+        9
+      ],
+      "ev": 14.403182000000006,
+      "bankruptRate": 4
+    },
+    {
+      "phase": "resume",
+      "name": "4x OR 12g",
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mults": [
+        3,
+        9
+      ],
+      "ev": 15.566059000000006,
+      "bankruptRate": 3.2
+    },
+    {
+      "phase": "coldStreak",
+      "maxColdStreak": 5,
+      "ev": 19.810087999999983,
+      "bankruptRate": 1.0999999999999999
+    },
+    {
+      "phase": "coldStreak",
+      "maxColdStreak": 6,
+      "ev": 16.159766000000026,
+      "bankruptRate": 2.4
+    },
+    {
+      "phase": "coldStreak",
+      "maxColdStreak": 7,
+      "ev": 16.729201,
+      "bankruptRate": 2.4
+    },
+    {
+      "phase": "coldStreak",
+      "maxColdStreak": 8,
+      "ev": 15.566059000000006,
+      "bankruptRate": 3.2
+    },
+    {
+      "phase": "coldStreak",
+      "maxColdStreak": 9,
+      "ev": 8.921977999999992,
+      "bankruptRate": 4.8
+    },
+    {
+      "phase": "coldStreak",
+      "maxColdStreak": 10,
+      "ev": 10.463376999999982,
+      "bankruptRate": 5.3
+    },
+    {
+      "phase": "coldStreak",
+      "maxColdStreak": 12,
+      "ev": 9.566453000000006,
+      "bankruptRate": 6.6000000000000005
+    },
+    {
+      "phase": "coldStreak",
+      "maxColdStreak": 15,
+      "ev": 6.126891999999992,
+      "bankruptRate": 8.799999999999999
+    },
+    {
+      "phase": "betConfig",
+      "baseBetPercent": 0.15,
+      "minProfit": 15,
+      "ev": 14.818640000000016,
+      "bankruptRate": 0.7000000000000001
+    },
+    {
+      "phase": "betConfig",
+      "baseBetPercent": 0.15,
+      "minProfit": 20,
+      "ev": 15.022361999999983,
+      "bankruptRate": 0.8999999999999999
+    },
+    {
+      "phase": "betConfig",
+      "baseBetPercent": 0.2,
+      "minProfit": 15,
+      "ev": 19.610265999999996,
+      "bankruptRate": 1
+    },
+    {
+      "phase": "betConfig",
+      "baseBetPercent": 0.2,
+      "minProfit": 20,
+      "ev": 19.810087999999983,
+      "bankruptRate": 1.0999999999999999
+    },
+    {
+      "phase": "betConfig",
+      "baseBetPercent": 0.2,
+      "minProfit": 25,
+      "ev": 20.058175999999975,
+      "bankruptRate": 1.0999999999999999
+    },
+    {
+      "phase": "betConfig",
+      "baseBetPercent": 0.25,
+      "minProfit": 20,
+      "ev": 24.778020000000026,
+      "bankruptRate": 2.3
+    },
+    {
+      "phase": "betConfig",
+      "baseBetPercent": 0.25,
+      "minProfit": 25,
+      "ev": 24.892035999999994,
+      "bankruptRate": 2.4
+    },
+    {
+      "phase": "betConfig",
+      "baseBetPercent": 0.3,
+      "minProfit": 20,
+      "ev": 28.563220999999977,
+      "bankruptRate": 2.3
+    }
+  ]
+}

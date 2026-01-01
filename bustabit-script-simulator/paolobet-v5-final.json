@@ -1,0 +1,265 @@
+{
+  "recommended": {
+    "name": "[3,9] bet=0.2% cs=5",
+    "mults": [
+      3,
+      9
+    ],
+    "baseBetPercent": 0.2,
+    "minProfit": 20,
+    "maxColdStreak": 5,
+    "resumeOnMult": 4,
+    "resumeAfterGames": 12,
+    "mode2Target": 3,
+    "mode2MaxBets": 20,
+    "ev": 18.87163799999999,
+    "br": 1,
+    "p5": -58.921,
+    "p50": 28.243000000000002,
+    "p95": 39.385999999999996,
+    "score": 15.08743799999999
+  },
+  "allResults": [
+    {
+      "name": "[3,9] bet=0.2% cs=5",
+      "mults": [
+        3,
+        9
+      ],
+      "baseBetPercent": 0.2,
+      "minProfit": 20,
+      "maxColdStreak": 5,
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mode2Target": 3,
+      "mode2MaxBets": 20,
+      "ev": 18.87163799999999,
+      "br": 1,
+      "p5": -58.921,
+      "p50": 28.243000000000002,
+      "p95": 39.385999999999996,
+      "score": 15.08743799999999
+    },
+    {
+      "name": "[2,8] bet=0.2% cs=5",
+      "mults": [
+        2,
+        8
+      ],
+      "baseBetPercent": 0.2,
+      "minProfit": 20,
+      "maxColdStreak": 5,
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mode2Target": 3,
+      "mode2MaxBets": 20,
+      "ev": 17.521751999999992,
+      "br": 0.4,
+      "p5": -59.94199999999999,
+      "p50": 25.646,
+      "p95": 34.763,
+      "score": 14.733351999999993
+    },
+    {
+      "name": "[2,8] bet=0.3% cs=5",
+      "mults": [
+        2,
+        8
+      ],
+      "baseBetPercent": 0.3,
+      "minProfit": 20,
+      "maxColdStreak": 5,
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mode2Target": 3,
+      "mode2MaxBets": 20,
+      "ev": 24.580728000000004,
+      "br": 2.5,
+      "p5": -76.907,
+      "p50": 37.549,
+      "p95": 51.456999999999994,
+      "score": 14.199328000000005
+    },
+    {
+      "name": "[3,9] bet=0.3% cs=5",
+      "mults": [
+        3,
+        9
+      ],
+      "baseBetPercent": 0.3,
+      "minProfit": 20,
+      "maxColdStreak": 5,
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mode2Target": 3,
+      "mode2MaxBets": 20,
+      "ev": 26.812687000000007,
+      "br": 3.2,
+      "p5": -82.78999999999999,
+      "p50": 40.967,
+      "p95": 58.318000000000005,
+      "score": 13.854687000000006
+    },
+    {
+      "name": "[3,9] bet=0.25% cs=5",
+      "mults": [
+        3,
+        9
+      ],
+      "baseBetPercent": 0.25,
+      "minProfit": 20,
+      "maxColdStreak": 5,
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mode2Target": 3,
+      "mode2MaxBets": 20,
+      "ev": 23.16836500000003,
+      "br": 2.3,
+      "p5": -73.842,
+      "p50": 34.892,
+      "p95": 48.859,
+      "score": 13.799965000000029
+    },
+    {
+      "name": "[2.5,7.5] bet=0.25% cs=5",
+      "mults": [
+        2.5,
+        7.5
+      ],
+      "baseBetPercent": 0.25,
+      "minProfit": 20,
+      "maxColdStreak": 5,
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mode2Target": 3,
+      "mode2MaxBets": 20,
+      "ev": 22.672229000000026,
+      "br": 2.1,
+      "p5": -73.911,
+      "p50": 33.432,
+      "p95": 45.516,
+      "score": 13.690029000000028
+    },
+    {
+      "name": "[3,9] bet=0.25% m2=2.5x",
+      "mults": [
+        3,
+        9
+      ],
+      "baseBetPercent": 0.25,
+      "minProfit": 20,
+      "maxColdStreak": 5,
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mode2Target": 2.5,
+      "mode2MaxBets": 25,
+      "ev": 20.854080000000003,
+      "br": 2,
+      "p5": -71.23,
+      "p50": 37.222,
+      "p95": 52.657,
+      "score": 12.608080000000001
+    },
+    {
+      "name": "[2,5,10] bet=0.25% cs=5",
+      "mults": [
+        2,
+        5,
+        10
+      ],
+      "baseBetPercent": 0.25,
+      "minProfit": 20,
+      "maxColdStreak": 5,
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mode2Target": 3,
+      "mode2MaxBets": 20,
+      "ev": 23.940593000000028,
+      "br": 3.1,
+      "p5": -77.464,
+      "p50": 36.186,
+      "p95": 48.668,
+      "score": 12.24779300000003
+    },
+    {
+      "name": "[2,8] bet=0.25% cs=5",
+      "mults": [
+        2,
+        8
+      ],
+      "baseBetPercent": 0.25,
+      "minProfit": 20,
+      "maxColdStreak": 5,
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mode2Target": 3,
+      "mode2MaxBets": 20,
+      "ev": 21.378797999999957,
+      "br": 2.1999999999999997,
+      "p5": -74.969,
+      "p50": 31.7,
+      "p95": 43.153000000000006,
+      "score": 11.984997999999958
+    },
+    {
+      "name": "[3,9] bet=0.3% m2=2.5x",
+      "mults": [
+        3,
+        9
+      ],
+      "baseBetPercent": 0.3,
+      "minProfit": 20,
+      "maxColdStreak": 5,
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mode2Target": 2.5,
+      "mode2MaxBets": 25,
+      "ev": 24.77432400000001,
+      "br": 4,
+      "p5": -88.396,
+      "p50": 44.34,
+      "p95": 62.92,
+      "score": 9.095124000000009
+    },
+    {
+      "name": "[3,9] bet=0.3% cs=6",
+      "mults": [
+        3,
+        9
+      ],
+      "baseBetPercent": 0.3,
+      "minProfit": 20,
+      "maxColdStreak": 6,
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mode2Target": 3,
+      "mode2MaxBets": 20,
+      "ev": 22.20366899999999,
+      "br": 5.4,
+      "p5": -99.71799999999999,
+      "p50": 43.05,
+      "p95": 61.526,
+      "score": 1.4600689999999918
+    },
+    {
+      "name": "[3,9] bet=0.25% cs=6",
+      "mults": [
+        3,
+        9
+      ],
+      "baseBetPercent": 0.25,
+      "minProfit": 20,
+      "maxColdStreak": 6,
+      "resumeOnMult": 4,
+      "resumeAfterGames": 12,
+      "mode2Target": 3,
+      "mode2MaxBets": 20,
+      "ev": 18.60947599999999,
+      "br": 4.2,
+      "p5": -93.833,
+      "p50": 36.636,
+      "p95": 51.522999999999996,
+      "score": 1.4428759999999894
+    }
+  ]
+}
