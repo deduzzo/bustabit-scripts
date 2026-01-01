@@ -658,14 +658,14 @@ let HASH_CHECKPOINTS = null;
 let HASH_CHECKPOINTS_10M = null;
 
 try {
-    const checkpointsModule = require('./hash-checkpoints.js');
+    const checkpointsModule = require('./data/hash-checkpoints.js');
     HASH_CHECKPOINTS = checkpointsModule.HASH_CHECKPOINTS;
 } catch (e) {
     // Checkpoints 1M non disponibili
 }
 
 try {
-    const checkpointsModule10M = require('./hash-checkpoints-10M.js');
+    const checkpointsModule10M = require('./data/hash-checkpoints-10M.js');
     HASH_CHECKPOINTS_10M = checkpointsModule10M.HASH_CHECKPOINTS_10M;
 } catch (e) {
     // Checkpoints 10M non disponibili
