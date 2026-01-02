@@ -38,3 +38,4 @@ npm-debug.log*
 
 # Auto Claude data directory
 .auto-claude/
+/bustabit-script-simulator/test-scripts/

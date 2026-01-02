@@ -4,8 +4,9 @@ Questa è l'unica documentazione del progetto. Tutte le istruzioni sono qui.
 
 ---
 
-## REGOLA FONDAMENTALE
+## REGOLE FONDAMENTALI
 
+### 1. File Temporanei di Test
 **TUTTI I FILE TEMPORANEI DI TEST VANNO CREATI SOLO IN:**
 ```
 bustabit-script-simulator/test/
@@ -14,6 +15,34 @@ bustabit-script-simulator/test/
 Questa cartella è gitignored. Puliscila periodicamente con `rm -rf test/*`
 
 **NON creare MAI file di test in altre cartelle!**
+
+### 2. Documentazione Script
+**TUTTA LA DOCUMENTAZIONE DEGLI SCRIPT VA IN:**
+```
+scriptsDocs/
+```
+
+**Regole per la documentazione:**
+- **Un file .md per ogni script** con nome identico allo script
+- Es: `scripts/other/PAOLOBET_HYBRID.js` → `scriptsDocs/PAOLOBET_HYBRID.md`
+- Es: `scripts/martin/MARTIN_AI_READY.js` → `scriptsDocs/MARTIN_AI_READY.md`
+- Include: configurazione, performance, storico ottimizzazioni, TODO
+- **NON creare riepiloghi sparsi** nel repository
+- **NON creare file di documentazione temporanei**
+
+### 3. File di Risultati
+**TUTTI I FILE DI RISULTATI (.json) VANNO IN:**
+```
+results/
+```
+
+**Regole per i risultati:**
+- **Un file -results.json per ogni script** testato
+- Es: `PAOLOBET_HYBRID.js` → `results/PAOLOBET_HYBRID-results.json`
+- Es: `MARTIN_AI_READY.js` → `results/MARTIN_AI_READY-results.json`
+- **NON salvare MAI risultati nella cartella scripts/** o altrove
+- Formato: `NOME_SCRIPT-results.json`
+- Questi file contengono l'output completo dei test (config, summary, results)
 
 ---
 
@@ -29,7 +58,17 @@ bustabit-scripts/
 │   │   ├── MARTIN_AI_PLUS.js     # Dual strategy
 │   │   └── MARTIN_AI_TURBO.js    # Alta frequenza
 │   └── other/
-│       └── PAOLOBET_HYBRID.js    # BEST: EV +19.7%, BR 0%
+│       └── PAOLOBET_HYBRID.js    # v4.2: EV -1.66%, WR 58.7%
+│
+├── scriptsDocs/                  # DOCUMENTAZIONE SCRIPT (organizzata)
+│   ├── PAOLOBET_HYBRID.md        # Docs per PAOLOBET_HYBRID.js
+│   ├── MARTIN_AI_READY.md        # (da creare quando necessario)
+│   └── ...                       # Un file .md per ogni script
+│
+├── results/                      # FILE RISULTATI TEST (organizzati)
+│   ├── PAOLOBET_HYBRID-results.json
+│   ├── MARTIN_AI_READY-results.json
+│   └── ...                       # Un file -results.json per script testato
 │
 └── bustabit-script-simulator/    # Simulatore e strumenti
     ├── cli-tester.js             # TESTER PRINCIPALE (usa sempre questo!)
@@ -249,4 +288,7 @@ rm -rf test/*
 3. **CREA file temporanei SOLO in test/** - mai altrove
 4. **ELIMINA file temporanei** dopo ottimizzazione
 5. **I dati hash sono in data/** - non modificare
-6. **Questa è l'unica documentazione** - non crearne altre
+6. **DOCUMENTAZIONE script va in scriptsDocs/** - un file .md per script
+7. **FILE RISULTATI (.json) vanno in results/** - mai in scripts/
+8. **NON creare riepiloghi sparsi** - usa scriptsDocs/NOME_SCRIPT.md
+9. **Aggiorna sempre il file .md dello script** dopo ottimizzazioni/modifiche

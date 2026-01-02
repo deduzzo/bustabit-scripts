@@ -1,0 +1,50 @@
+{
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
+  },
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Read(./**)",
+      "Write(./**)",
+      "Edit(./**)",
+      "Glob(./**)",
+      "Grep(./**)",
+      "Read(/Users/deduzzo/dev/test/bustabit-scripts/**)",
+      "Write(/Users/deduzzo/dev/test/bustabit-scripts/**)",
+      "Edit(/Users/deduzzo/dev/test/bustabit-scripts/**)",
+      "Glob(/Users/deduzzo/dev/test/bustabit-scripts/**)",
+      "Grep(/Users/deduzzo/dev/test/bustabit-scripts/**)",
+      "Read(/Users/deduzzo/dev/test/bustabit-scripts/.auto-claude/roadmap/**)",
+      "Write(/Users/deduzzo/dev/test/bustabit-scripts/.auto-claude/roadmap/**)",
+      "Edit(/Users/deduzzo/dev/test/bustabit-scripts/.auto-claude/roadmap/**)",
+      "Bash(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "mcp__context7__resolve-library-id(*)",
+      "mcp__context7__get-library-docs(*)",
+      "mcp__linear-server__list_teams(*)",
+      "mcp__linear-server__get_team(*)",
+      "mcp__linear-server__list_projects(*)",
+      "mcp__linear-server__get_project(*)",
+      "mcp__linear-server__create_project(*)",
+      "mcp__linear-server__update_project(*)",
+      "mcp__linear-server__list_issues(*)",
+      "mcp__linear-server__get_issue(*)",
+      "mcp__linear-server__create_issue(*)",
+      "mcp__linear-server__update_issue(*)",
+      "mcp__linear-server__list_comments(*)",
+      "mcp__linear-server__create_comment(*)",
+      "mcp__linear-server__list_issue_statuses(*)",
+      "mcp__linear-server__list_issue_labels(*)",
+      "mcp__linear-server__list_users(*)",
+      "mcp__linear-server__get_user(*)",
+      "mcp__graphiti-memory__search_nodes(*)",
+      "mcp__graphiti-memory__search_facts(*)",
+      "mcp__graphiti-memory__add_episode(*)",
+      "mcp__graphiti-memory__get_episodes(*)",
+      "mcp__graphiti-memory__get_entity_edge(*)"
+    ]
+  }
+}

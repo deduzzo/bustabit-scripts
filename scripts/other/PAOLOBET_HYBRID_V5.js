@@ -1,29 +1,28 @@
 /**
  * ╔═══════════════════════════════════════════════════════════════════════════╗
- * ║                    PAOLOBET HYBRID v4.2                                   ║
- * ║         PROGRESSIONE OTTIMIZZATA - TESTATO SU 5M PARTITE                  ║
+ * ║                    PAOLOBET HYBRID v5.0                                   ║
+ * ║         NUOVE OTTIMIZZAZIONI - STOP LOSS & TAKE PROFIT PARZIALE           ║
  * ╚═══════════════════════════════════════════════════════════════════════════╝
  *
- * STRATEGIA OTTIMIZZATA (testato su 10,000 sessioni × 500 partite = 5M games):
+ * MODIFICHE v5.0 (2026-01-02):
  * ─────────────────────────────────────────────────────────────────────────────
- *   MODO 1: Progressione "Salti Grandi" [3.5x, 10x]
- *   - Step 1: bet @ 3.5x (28% prob)
- *   - Step 2: bet @ 10.0x (10% prob)
- *   - Se perdi entrambi → Mode 2
+ *   1. TARGET PIÙ ALTI (meno frequenza, più profitto per win)
+ *      - Mode1 Step1: 3.5x → 4.0x (25% prob vs 28%)
+ *      - Mode1 Step2: 10x → 12x (8.3% prob vs 10%)
+ *      - Mode2: 3.5x → 4.0x
  *
- *   MODO 2 (RECOVERY): Target 3.5x | Max 10 tentativi
- *   - Bet calcolato per recuperare perdite + 30 bits profitto
+ *   2. STOP LOSS DINAMICO (protezione da sessioni catastrofiche)
+ *      - Ferma la sessione se drawdown > 15% dal balance iniziale
+ *      - Previene le sessioni -80%+ osservate in v4.2
+ *      - Configurable: sessionStopLoss (default 15%)
  *
- * PROTEZIONE OTTIMIZZATA:
- * ─────────────────────────────────────────────────────────────────────────────
- *   - Cold Streak: PAUSA quando 4+ games senza 3.5x+
- *   - Resume: Riprende quando 3.5x+ OPPURE dopo 12 partite
+ *   3. TAKE PROFIT PARZIALE (lock-in graduale)
+ *      - A +15%: blocca 50% del profitto (locked profit)
+ *      - A +30%: blocca ulteriore 30% del profitto
+ *      - Profitto locked non può essere perso
+ *      - Continua fino a TP finale (+20%) o SL
  *
- * PERFORMANCE (v4.2 OTTIMIZZATO):
- *   - EV: -1.66% (miglior risultato possibile dato house edge 1%)
- *   - Win Rate: 58.68%
- *   - Mediana: +12.3% (caso tipico positivo)
- *   - Bankruptcy: ~7-8% (ridotto vs baseline)
+ * OBIETTIVO: Aumentare win rate e ridurre tail risk
  */
 
 var config = {
@@ -35,6 +34,40 @@ var config = {
         type: 'multiplier',
         label: 'Take Profit % (20 consigliato)'
     },
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // NOVITÀ v5.0: STOP LOSS DINAMICO
+    // ═══════════════════════════════════════════════════════════════════════
+    sessionStopLoss: {
+        value: 15,
+        type: 'multiplier',
+        label: '[v5.0] Session Stop Loss % (15 consigliato, 0=OFF)'
+    },
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // NOVITÀ v5.0: TAKE PROFIT PARZIALE (LOCK-IN)
+    // ═══════════════════════════════════════════════════════════════════════
+    partialTP1Target: {
+        value: 15,
+        type: 'multiplier',
+        label: '[v5.0] Partial TP livello 1: % profitto (15 consigliato)'
+    },
+    partialTP1Lock: {
+        value: 50,
+        type: 'multiplier',
+        label: '[v5.0] Partial TP livello 1: % da bloccare (50 consigliato)'
+    },
+    partialTP2Target: {
+        value: 30,
+        type: 'multiplier',
+        label: '[v5.0] Partial TP livello 2: % profitto (30 consigliato, 0=OFF)'
+    },
+    partialTP2Lock: {
+        value: 30,
+        type: 'multiplier',
+        label: '[v5.0] Partial TP livello 2: % da bloccare (30 consigliato)'
+    },
+
     cycleLossLimit: {
         value: 100,
         type: 'multiplier',
@@ -47,17 +80,17 @@ var config = {
     },
 
     // ═══════════════════════════════════════════════════════════════════════
-    // MODO 1 - PROGRESSIONE SALTI GRANDI
+    // MODO 1 - PROGRESSIONE SALTI GRANDI (v5.0: TARGET PIÙ ALTI)
     // ═══════════════════════════════════════════════════════════════════════
     mode1Step1Mult: {
-        value: 3.5,
+        value: 4.0,  // v4.2: 3.5x → v5.0: 4.0x
         type: 'multiplier',
-        label: '[Modo1] Step 1 moltiplicatore (3.5x ottimale)'
+        label: '[Modo1] Step 1 moltiplicatore (4.0x v5.0)'
     },
     mode1Step2Mult: {
-        value: 10.0,
+        value: 12.0,  // v4.2: 10.0x → v5.0: 12.0x
         type: 'multiplier',
-        label: '[Modo1] Step 2 moltiplicatore (10.0x ottimale)'
+        label: '[Modo1] Step 2 moltiplicatore (12.0x v5.0)'
     },
     mode1MinProfit: {
         value: 30,
@@ -66,12 +99,12 @@ var config = {
     },
 
     // ═══════════════════════════════════════════════════════════════════════
-    // MODO 2 - RECOVERY
+    // MODO 2 - RECOVERY (v5.0: TARGET PIÙ ALTO)
     // ═══════════════════════════════════════════════════════════════════════
     mode2Target: {
-        value: 3.5,
+        value: 4.0,  // v4.2: 3.5x → v5.0: 4.0x
         type: 'multiplier',
-        label: '[Modo2] Target recovery (3.5x ottimale)'
+        label: '[Modo2] Target recovery (4.0x v5.0)'
     },
     mode2MaxBets: {
         value: 10,
@@ -104,12 +137,12 @@ var config = {
     maxColdStreak: {
         value: 4,
         type: 'multiplier',
-        label: '[Protezione] Max partite senza 3.5x+ (4 ottimale)'
+        label: '[Protezione] Max partite senza 4.0x+ (4 ottimale)'
     },
     resumeAt: {
-        value: 3.5,
+        value: 4.0,  // v4.2: 3.5x → v5.0: 4.0x
         type: 'multiplier',
-        label: '[Protezione] Riprendi quando arriva Xx (3.5x ottimale)'
+        label: '[Protezione] Riprendi quando arriva Xx (4.0x v5.0)'
     },
     resumeAfterGames: {
         value: 12,
@@ -129,6 +162,13 @@ var config = {
 
 var startBalance = userInfo.balance;
 var currentMode = 1;  // 1 = PROGRESSIONE, 2 = RECOVERY
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// NOVITÀ v5.0: LOCK-IN PROFIT
+// ═══════════════════════════════════════════════════════════════════════════════
+var lockedProfit = 0;           // Profitto "locked" che non può essere perso
+var partialTP1Reached = false;  // Flag per livello 1
+var partialTP2Reached = false;  // Flag per livello 2
 
 // Cycle state (un ciclo = Mode1 + eventuale Mode2 fino a vittoria o reset)
 var cycleStartBalance = userInfo.balance;  // Balance all'inizio del ciclo
@@ -163,7 +203,6 @@ function getBaseBet() {
 
 /**
  * Calcola il moltiplicatore per lo step corrente
- * Progressione "Salti Grandi": [3x, 9x]
  */
 function getMode1Multiplier(step) {
     if (step === 0) {
@@ -178,7 +217,6 @@ var MODE1_MAX_STEPS = 2;
 
 /**
  * Calcola la puntata per lo step corrente
- * Con progressione +1, il bet rimane costante perché il profitMult cresce naturalmente
  */
 function getMode1Bet(step) {
     var baseBet = getBaseBet();
@@ -192,7 +230,6 @@ function getMode1Bet(step) {
     var profitMult = mult - 1;
     var requiredBet = Math.ceil((mode1TotalLoss + config.mode1MinProfit.value * 100) / profitMult);
 
-    // Con +1 increment, il bet dovrebbe rimanere circa costante
     return Math.max(requiredBet, baseBet);
 }
 
@@ -225,6 +262,65 @@ function resetAll() {
 }
 
 /**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * NOVITÀ v5.0: LOCK-IN PARTIAL TAKE PROFIT
+ * ═══════════════════════════════════════════════════════════════════════════════
+ */
+function checkPartialTakeProfit() {
+    var currentProfit = userInfo.balance - startBalance;
+    var currentProfitPercent = (currentProfit / startBalance) * 100;
+
+    // Livello 1: es. +15%
+    if (!partialTP1Reached && currentProfitPercent >= config.partialTP1Target.value) {
+        partialTP1Reached = true;
+        var lockAmount = Math.floor(currentProfit * config.partialTP1Lock.value / 100);
+        lockedProfit += lockAmount;
+
+        log('🔒 PARTIAL TP LIVELLO 1: +' + currentProfitPercent.toFixed(1) + '%');
+        log('   Lock ' + config.partialTP1Lock.value + '% = ' + (lockAmount / 100).toFixed(0) + ' bits');
+        log('   Locked totale: ' + (lockedProfit / 100).toFixed(0) + ' bits');
+    }
+
+    // Livello 2: es. +30%
+    if (config.partialTP2Target.value > 0 && !partialTP2Reached && currentProfitPercent >= config.partialTP2Target.value) {
+        partialTP2Reached = true;
+        var lockAmount2 = Math.floor(currentProfit * config.partialTP2Lock.value / 100);
+        lockedProfit += lockAmount2;
+
+        log('🔒 PARTIAL TP LIVELLO 2: +' + currentProfitPercent.toFixed(1) + '%');
+        log('   Lock ' + config.partialTP2Lock.value + '% = ' + (lockAmount2 / 100).toFixed(0) + ' bits');
+        log('   Locked totale: ' + (lockedProfit / 100).toFixed(0) + ' bits');
+    }
+}
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * NOVITÀ v5.0: SESSION STOP LOSS (protezione da tail risk)
+ * ═══════════════════════════════════════════════════════════════════════════════
+ */
+function checkSessionStopLoss() {
+    if (config.sessionStopLoss.value === 0) return false;
+
+    // Calcola drawdown dal balance iniziale (considerando locked profit)
+    var effectiveBalance = userInfo.balance + lockedProfit;
+    var drawdownPercent = ((effectiveBalance - startBalance) / startBalance) * 100;
+
+    if (drawdownPercent <= -config.sessionStopLoss.value) {
+        log('');
+        log('🛑 SESSION STOP LOSS: ' + drawdownPercent.toFixed(1) + '% (limite: -' + config.sessionStopLoss.value + '%)');
+        log('   Balance: ' + (userInfo.balance / 100).toFixed(0) + ' bits');
+        log('   Locked: ' + (lockedProfit / 100).toFixed(0) + ' bits');
+        log('   Totale: ' + (effectiveBalance / 100).toFixed(0) + ' bits');
+        log('');
+
+        stop('SESSION STOP LOSS -' + config.sessionStopLoss.value + '%');
+        return true;
+    }
+
+    return false;
+}
+
+/**
  * Controlla se il ciclo ha superato il limite di perdita
  */
 function checkCycleLossLimit() {
@@ -252,7 +348,7 @@ function checkProtection(bust) {
         delay10x++;
         delay5x = 0;
         coldStreak = 0;
-    } else if (bust >= 3) {
+    } else if (bust >= config.resumeAt.value) {
         delay10x++;
         delay5x++;
         coldStreak = 0;
@@ -319,10 +415,28 @@ engine.on('GAME_STARTING', function() {
     }
     warmupComplete = true;
 
-    // Check take profit
-    var profitPercent = ((userInfo.balance - startBalance) / startBalance) * 100;
+    // ═══════════════════════════════════════════════════════════════════════
+    // NOVITÀ v5.0: CHECK PARTIAL TAKE PROFIT
+    // ═══════════════════════════════════════════════════════════════════════
+    checkPartialTakeProfit();
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // NOVITÀ v5.0: CHECK SESSION STOP LOSS
+    // ═══════════════════════════════════════════════════════════════════════
+    if (checkSessionStopLoss()) {
+        return;
+    }
+
+    // Check take profit finale (include locked profit)
+    var effectiveBalance = userInfo.balance + lockedProfit;
+    var profitPercent = ((effectiveBalance - startBalance) / startBalance) * 100;
     if (profitPercent >= config.takeProfit.value) {
-        log('🎯 TARGET: +' + profitPercent.toFixed(1) + '%');
+        log('');
+        log('🎯 TAKE PROFIT FINALE: +' + profitPercent.toFixed(1) + '%');
+        log('   Balance: ' + (userInfo.balance / 100).toFixed(0) + ' bits');
+        log('   Locked: ' + (lockedProfit / 100).toFixed(0) + ' bits');
+        log('   Totale: ' + (effectiveBalance / 100).toFixed(0) + ' bits');
+        log('');
         stop('TAKE PROFIT');
         return;
     }
@@ -333,7 +447,7 @@ engine.on('GAME_STARTING', function() {
     }
 
     // ═══════════════════════════════════════════════════════════════════════
-    // MODO 1: PROGRESSIONE +1
+    // MODO 1: PROGRESSIONE
     // ═══════════════════════════════════════════════════════════════════════
     if (currentMode === 1) {
         var mult = getMode1Multiplier(mode1Step);
@@ -405,7 +519,7 @@ engine.on('GAME_ENDED', function(data) {
     }
 
     // ═══════════════════════════════════════════════════════════════════════
-    // MODO 1: PROGRESSIONE +1
+    // MODO 1: PROGRESSIONE
     // ═══════════════════════════════════════════════════════════════════════
     if (currentMode === 1) {
         var targetMult = getMode1Multiplier(mode1Step);
@@ -490,10 +604,12 @@ engine.on('GAME_ENDED', function(data) {
         }
     }
 
-    // Log periodico
-    var profitPercent = ((userInfo.balance - startBalance) / startBalance) * 100;
+    // Log periodico (include locked profit)
+    var effectiveBalance = userInfo.balance + lockedProfit;
+    var profitPercent = ((effectiveBalance - startBalance) / startBalance) * 100;
     if (gameCount % 100 === 0) {
-        log('📊 #' + gameCount + ' | Mode: ' + currentMode + ' | ' + (profitPercent >= 0 ? '+' : '') + profitPercent.toFixed(1) + '%');
+        var lockInfo = lockedProfit > 0 ? ' | 🔒' + (lockedProfit/100).toFixed(0) : '';
+        log('📊 #' + gameCount + ' | Mode: ' + currentMode + ' | ' + (profitPercent >= 0 ? '+' : '') + profitPercent.toFixed(1) + '%' + lockInfo);
     }
 });
 
@@ -503,9 +619,14 @@ engine.on('GAME_ENDED', function(data) {
 
 log('');
 log('╔═══════════════════════════════════════════════════════════════════════════╗');
-log('║                    PAOLOBET HYBRID v4.2                                   ║');
-log('║           OTTIMIZZATO SU 5M PARTITE (EV -1.66%, WR 58.7%)                 ║');
+log('║                    PAOLOBET HYBRID v5.0                                   ║');
+log('║      STOP LOSS DINAMICO + PARTIAL TAKE PROFIT + TARGET OTTIMIZZATI        ║');
 log('╚═══════════════════════════════════════════════════════════════════════════╝');
+log('');
+log('🆕 NOVITÀ v5.0:');
+log('   • Target più alti: 4.0x/12.0x (vs 3.5x/10x)');
+log('   • Session Stop Loss: -' + config.sessionStopLoss.value + '%');
+log('   • Partial TP: +' + config.partialTP1Target.value + '% (lock ' + config.partialTP1Lock.value + '%), +' + config.partialTP2Target.value + '% (lock ' + config.partialTP2Lock.value + '%)');
 log('');
 var resumeInfo = config.resumeAt.value + 'x';
 if (config.resumeAfterGames.value > 0) {
@@ -524,5 +645,5 @@ log('   Step 2: ' + baseBet + ' bits @ ' + mult2.toFixed(1) + 'x (~' + prob2 + '
 log('');
 log('🔄 MODO 2: ' + config.mode2Target.value.toFixed(1) + 'x | Max ' + config.mode2MaxBets.value + ' bet | +' + config.mode1MinProfit.value + ' bits');
 log('');
-log('🛡️ Cold=' + config.maxColdStreak.value + ' | Resume=' + resumeInfo);
+log('🛡️ Cold=' + config.maxColdStreak.value + ' | Resume=' + resumeInfo + ' | SL=' + config.sessionStopLoss.value + '%');
 log('');
