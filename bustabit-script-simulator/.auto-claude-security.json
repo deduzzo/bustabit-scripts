@@ -1,0 +1,32 @@
+{
+  "description": "Auto-approval rules for Claude Code in bustabit-script-simulator",
+  "autoApprove": {
+    "bash": [
+      "node *",
+      "bun *",
+      "npm install",
+      "npm install *",
+      "npm uninstall *",
+      "npm start",
+      "npm run *",
+      "npm test",
+      "git status",
+      "git diff",
+      "git diff *",
+      "git log",
+      "git log *",
+      "git fetch",
+      "git fetch *",
+      "git ls-tree *",
+      "git checkout *",
+      "git push *",
+      "ls",
+      "ls *",
+      "pwd",
+      "cat *",
+      "rm -rf test/*",
+      "mkdir *",
+      "touch *"
+    ]
+  }
+}

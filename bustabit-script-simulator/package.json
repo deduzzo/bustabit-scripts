@@ -25,7 +25,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "test:cli": "bun cli-tester.js",
+    "test:turbo": "bun test-turbo.js",
+    "test:10m": "bun cli-tester.js --checkpoints10M --seeds=1000",
+    "analyze:delays": "bun analyze-delays.js",
+    "clean:test": "rm -rf test/*"
   },
   "eslintConfig": {
     "extends": "react-app"
