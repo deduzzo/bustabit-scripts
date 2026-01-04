@@ -1,0 +1,103 @@
+{
+  "hash": "6fd492d2cef433afe8051d100753c073f9c8230188b61657200f1a886f26eab0",
+  "games": 100000,
+  "timestamp": "2026-01-04T08:46:50.610Z",
+  "globalStats": {
+    "maxConsecutiveLosses": 4,
+    "maxVBReached": 12172.67,
+    "capitalRequirement": 1217267
+  },
+  "results": [
+    {
+      "startBalance": 500000,
+      "finalBalance": -762800.0000000021,
+      "netProfit": -12628.000000000022,
+      "profitPercent": -252.56000000000043,
+      "wonCycles": 23,
+      "lostCycles": 32,
+      "maxConsecutiveLosses": 4,
+      "maxVBReached": 12172.67,
+      "gamesPlayed": 9056,
+      "reached3x": false,
+      "bankrupt": true
+    },
+    {
+      "startBalance": 750000,
+      "finalBalance": -512800.0000000021,
+      "netProfit": -12628.000000000022,
+      "profitPercent": -168.37333333333362,
+      "wonCycles": 23,
+      "lostCycles": 32,
+      "maxConsecutiveLosses": 4,
+      "maxVBReached": 12172.67,
+      "gamesPlayed": 9079,
+      "reached3x": false,
+      "bankrupt": true
+    },
+    {
+      "startBalance": 1000000,
+      "finalBalance": -262800.0000000021,
+      "netProfit": -12628.000000000022,
+      "profitPercent": -126.28000000000021,
+      "wonCycles": 23,
+      "lostCycles": 32,
+      "maxConsecutiveLosses": 4,
+      "maxVBReached": 12172.67,
+      "gamesPlayed": 9081,
+      "reached3x": false,
+      "bankrupt": true
+    },
+    {
+      "startBalance": 1500000,
+      "finalBalance": 237199.9999999979,
+      "netProfit": -12628.000000000022,
+      "profitPercent": -84.18666666666681,
+      "wonCycles": 23,
+      "lostCycles": 32,
+      "maxConsecutiveLosses": 4,
+      "maxVBReached": 12172.67,
+      "gamesPlayed": 9083,
+      "reached3x": false,
+      "bankrupt": true
+    },
+    {
+      "startBalance": 2000000,
+      "finalBalance": 737199.9999999979,
+      "netProfit": -12628.000000000022,
+      "profitPercent": -63.14000000000011,
+      "wonCycles": 23,
+      "lostCycles": 32,
+      "maxConsecutiveLosses": 4,
+      "maxVBReached": 12172.67,
+      "gamesPlayed": 9148,
+      "reached3x": false,
+      "bankrupt": true
+    },
+    {
+      "startBalance": 3000000,
+      "finalBalance": 1737199.999999998,
+      "netProfit": -12628.000000000022,
+      "profitPercent": -42.093333333333405,
+      "wonCycles": 23,
+      "lostCycles": 32,
+      "maxConsecutiveLosses": 4,
+      "maxVBReached": 12172.67,
+      "gamesPlayed": 9181,
+      "reached3x": false,
+      "bankrupt": true
+    },
+    {
+      "startBalance": 5000000,
+      "finalBalance": 3737199.999999998,
+      "netProfit": -12628.000000000022,
+      "profitPercent": -25.25600000000004,
+      "wonCycles": 23,
+      "lostCycles": 32,
+      "maxConsecutiveLosses": 4,
+      "maxVBReached": 12172.67,
+      "gamesPlayed": 9204,
+      "reached3x": false,
+      "bankrupt": true
+    }
+  ]
+}

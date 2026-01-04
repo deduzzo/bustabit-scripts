@@ -179,6 +179,13 @@ function parseScriptConfig(scriptText) {
             // Converti in numero se possibile
             if (!isNaN(value)) {
                 value = parseFloat(value);
+            } else if (value === 'true') {
+                value = true;
+            } else if (value === 'false') {
+                value = false;
+            } else {
+                // Rimuovi apici/virgolette dalle stringhe
+                value = value.replace(/^['"]|['"]$/g, '');
             }
 
             config[key] = { value };
@@ -309,6 +316,7 @@ function simulate({ scriptText, config, startingBalance, gameHash, gameAmount, e
         results.balanceATL = userInfo.balanceATL;
         results.profitPerHour = results.profit / (results.duration / (1000 * 60 * 60));
         results.log = logMessages;
+        results.stopReason = shouldStopReason;  // Aggiungi stop reason
 
         resolve(results);
 
@@ -618,8 +626,12 @@ async function massiveTest(scriptPath, options = {}) {
     }
     console.log('');
 
-    // Salva risultati
-    const outputPath = path.join(path.dirname(absolutePath), `${scriptName}-results.json`);
+    // Salva risultati nella cartella results/
+    const resultsDir = path.join(__dirname, '..', 'results');
+    if (!fs.existsSync(resultsDir)) {
+        fs.mkdirSync(resultsDir, { recursive: true });
+    }
+    const outputPath = path.join(resultsDir, `${scriptName}-results.json`);
     fs.writeFileSync(outputPath, JSON.stringify({
         script: scriptName,
         config: {

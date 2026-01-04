@@ -4,6 +4,51 @@ Questa è l'unica documentazione del progetto. Tutte le istruzioni sono qui.
 
 ---
 
+## ⚠️ DEFINIZIONE UNITÀ DI MISURA - LEGGI PRIMA DI TUTTO
+
+**IMPORTANTE: In tutto il progetto, quando parliamo di "bit" intendiamo SEMPRE e SOLO il bit ufficiale di Bustabit.**
+
+### Conversione Bit <-> Satoshi negli Script
+
+```
+1 bit (Bustabit) = 100 satoshi
+
+Esempi:
+- 1 bit reale      → 100 negli script  (x 100)
+- 10 bit reali     → 1000 negli script
+- 100 bit reali    → 10000 negli script
+- 1000 bit reali   → 100000 negli script
+- 10000 bit reali  → 1000000 negli script
+```
+
+### Regola Assoluta
+
+**Noi parliamo SEMPRE e SOLO in bit reali di Bustabit.**
+- Quando dici "5000 bit" → intendi 5000 bit reali di Bustabit
+- Negli script diventa `500000` (moltiplicato x100 per i satoshi)
+- **MA TU NON DEVI MAI riferirTI a questa misura interna degli script!**
+
+**Nei file di documentazione, nei log, nei risultati:**
+- Scrivere: "Balance: 5000 bit" ✅
+- **NON scrivere:** "Balance: 500000" ❌ (questa è la misura interna dello script)
+
+**Quando configuri il simulatore:**
+```javascript
+// User dice: "testa con balance 5000 bit"
+// Nel codice dello script interno:
+startingBalance: 500000  // = 5000 bit reali x 100
+
+// Ma nei log mostri:
+console.log(`Balance: ${balance/100} bit`);  // Dividi per 100 per mostrare bit reali
+```
+
+**RICORDA SEMPRE:**
+- **1 bit = quello che vedi su Bustabit = quello di cui parliamo**
+- Gli script internamente moltiplicano x100 (satoshi) ma **questo è un dettaglio implementativo**
+- **Noi ragioniamo SEMPRE in bit reali**
+
+---
+
 ## REGOLE FONDAMENTALI
 
 ### 1. File Temporanei di Test
@@ -82,6 +127,30 @@ bustabit-scripts/
 
 ## Come Testare Algoritmi
 
+### ⚠️ IMPORTANTE: Conversione Balance nel Simulatore
+
+**IL SIMULATORE MOLTIPLICA AUTOMATICAMENTE I BALANCE PER 100!**
+
+```javascript
+// Quando passi al simulatore:
+startingBalance: 1000    // → diventa 100000 internamente
+workingBalance: 1000     // → diventa 100000 internamente
+baseBet: 1               // → diventa 100 internamente
+
+// Quindi:
+// 1000 bits nel simulatore = 1000 bits effettivi
+// NON moltiplicare manualmente per 100!
+```
+
+**Su Bustabit:**
+- 1000 bits in config = 1000 bits effettivi ✅
+- 100 bits baseBet = 1 bit effettivo ✅
+
+**Nel Simulatore:**
+- `startingBalance: 1000` = 1000 bits effettivi ✅
+- `workingBalance: 1000` = 1000 bits effettivi ✅
+- `baseBet: 1` = 1 bit effettivo ✅
+
 ### Test Algoritmo Finale
 ```bash
 cd bustabit-script-simulator
@@ -93,7 +162,7 @@ bun cli-tester.js ../scripts/other/PAOLOBET_HYBRID.js --checkpoints10M --seeds=1
 |---------|-------------|---------|
 | `--seeds=N` | Numero sessioni | 100 |
 | `--games=N` | Partite per sessione | 500 |
-| `--balance=N` | Balance iniziale (bits) | 10000 |
+| `--balance=N` | Balance iniziale (bits EFFETTIVI, simulatore converte) | 10000 |
 | `--checkpoints10M` | Usa 10M partite reali | - |
 | `--log` | Log verbose | false |
 

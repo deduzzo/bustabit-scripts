@@ -1,0 +1,71 @@
+[
+  {
+    "name": "TEST 1: VB 10K + TP 100%",
+    "config": {
+      "name": "TEST 1: VB 10K + TP 100%",
+      "virtualBalance": 1000000,
+      "targetProfitPercent": 100
+    },
+    "bets": 199971,
+    "gamesPlayed": 200000,
+    "efficiency": 99.9855,
+    "cycles": {
+      "totalCycles": 173,
+      "wonCycles": 29,
+      "lostCycles": 144,
+      "winRate": 16.76300578034682,
+      "maxLossStreak": 18
+    },
+    "martingale": {
+      "balanceNeeded": 5242870000,
+      "finalVB": 2621440000,
+      "totalLoss": 2621430000
+    }
+  },
+  {
+    "name": "TEST 2: VB 1K + TP 75%",
+    "config": {
+      "name": "TEST 2: VB 1K + TP 75%",
+      "virtualBalance": 100000,
+      "targetProfitPercent": 75
+    },
+    "bets": 198863,
+    "gamesPlayed": 200000,
+    "efficiency": 99.4315,
+    "cycles": {
+      "totalCycles": 1137,
+      "wonCycles": 531,
+      "lostCycles": 606,
+      "winRate": 46.701846965699204,
+      "maxLossStreak": 7
+    },
+    "martingale": {
+      "balanceNeeded": 658410,
+      "finalVB": 376663,
+      "totalLoss": 281747
+    }
+  },
+  {
+    "name": "TEST 3: VB 1K + TP 100% (baseline)",
+    "config": {
+      "name": "TEST 3: VB 1K + TP 100% (baseline)",
+      "virtualBalance": 100000,
+      "targetProfitPercent": 100
+    },
+    "bets": 199047,
+    "gamesPlayed": 200000,
+    "efficiency": 99.5235,
+    "cycles": {
+      "totalCycles": 953,
+      "wonCycles": 379,
+      "lostCycles": 574,
+      "winRate": 39.769150052465896,
+      "maxLossStreak": 8
+    },
+    "martingale": {
+      "balanceNeeded": 511000,
+      "finalVB": 256000,
+      "totalLoss": 255000
+    }
+  }
+]

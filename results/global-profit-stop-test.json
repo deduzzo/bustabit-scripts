@@ -1,0 +1,19 @@
+{
+  "hash": "6fd492d2cef433afe8051d100753c073f9c8230188b61657200f1a886f26eab0",
+  "games": 100000,
+  "timestamp": "2026-01-04T08:57:35.715Z",
+  "config": {
+    "startingBalance": 5000,
+    "workingBalance": 1000,
+    "targetProfitPercent": 75,
+    "globalTargetProfitPercent": 300
+  },
+  "results": {
+    "finalBalance": 0,
+    "profitPercent": -100,
+    "gamesPlayed": 100000,
+    "wonCycles": 4,
+    "lostCycles": 6,
+    "globalTargetReached": true
+  }
+}

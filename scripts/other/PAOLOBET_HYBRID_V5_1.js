@@ -33,19 +33,33 @@ var config = {
     // ═══════════════════════════════════════════════════════════════════════
     // IMPOSTAZIONI PRINCIPALI
     // ═══════════════════════════════════════════════════════════════════════
+    virtualBalance: {
+        value: 100000,
+        type: 'balance',
+        label: '[VIRTUALE] Balance virtuale per betting (100000=1000 bits consigliato)'
+    },
+    debugStopAfterFirstWin: {
+        value: 'no',
+        type: 'radio',
+        label: '[DEBUG] Ferma dopo primo TAKE PROFIT raggiunto (sessione vinta)',
+        options: {
+            yes: { value: 'yes', type: 'noop', label: 'Si' },
+            no: { value: 'no', type: 'noop', label: 'No' }
+        }
+    },
     takeProfit: {
-        value: 20,
+        value: 15,
         type: 'multiplier',
-        label: 'Take Profit % (20 consigliato)'
+        label: 'Take Profit % (15 OTTIMIZZATO - WR 52.4%, max 12 perdite consecutive)'
     },
 
     // ═══════════════════════════════════════════════════════════════════════
     // v5.1: STOP LOSS DINAMICO (più permissivo)
     // ═══════════════════════════════════════════════════════════════════════
     sessionStopLoss: {
-        value: 20,  // v5.0: 15% → v5.1: 20% (più spazio per recovery)
+        value: 20,  // v5.0: 15% → v5.1: 20% OTTIMIZZATO (bilanciato con TP 15%)
         type: 'multiplier',
-        label: '[v5.1] Session Stop Loss % (20 bilanciato, 0=OFF)'
+        label: '[v5.1] Session Stop Loss % (20 OTTIMIZZATO, 0=OFF)'
     },
 
     // ═══════════════════════════════════════════════════════════════════════
@@ -168,6 +182,23 @@ var startBalance = userInfo.balance;
 var currentMode = 1;  // 1 = PROGRESSIONE, 2 = RECOVERY
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// NOVITÀ v5.1: VIRTUAL BALANCE
+// ═══════════════════════════════════════════════════════════════════════════════
+var virtualBalance = config.virtualBalance.value;  // Già in satoshi/centesimi (100000 = 1000 bits)
+var virtualStartBalance = virtualBalance;           // Balance virtuale iniziale
+var sessionVirtualBalance = virtualBalance;         // Balance virtuale della sessione corrente (per TP/SL check)
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// NOVITÀ v5.1: CYCLE TRACKING (ciclo = dall'inizio al TP o SL)
+// ═══════════════════════════════════════════════════════════════════════════════
+var consecutiveLossSessions = 0;     // Sessioni perdenti consecutive (SL raggiunto senza TP)
+var maxConsecutiveLossSessions = 0;  // Massimo sessioni perdenti consecutive
+var totalSessions = 0;               // Totale sessioni completate (TP o SL)
+var wonSessions = 0;                 // Sessioni vinte (TP raggiunto)
+var currentSessionStartBalance = startBalance;  // Balance all'inizio della sessione corrente
+var sessionVirtualStartBalance = virtualBalance;  // Virtual balance all'inizio della sessione
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // NOVITÀ v5.0: LOCK-IN PROFIT
 // ═══════════════════════════════════════════════════════════════════════════════
 var lockedProfit = 0;           // Profitto "locked" che non può essere perso
@@ -202,7 +233,8 @@ var warmupComplete = false;
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function getBaseBet() {
-    return Math.floor(userInfo.balance * config.baseBetPercent.value / 100 / 100) * 100;
+    // Usa il virtualBalance per calcolare la bet, non il balance reale
+    return Math.floor(virtualBalance * config.baseBetPercent.value / 100 / 100) * 100;
 }
 
 /**
@@ -248,7 +280,7 @@ function resetMode2() {
 }
 
 function resetCycle() {
-    // Reset completo del ciclo - inizia un nuovo ciclo
+    // Reset interno del mini-ciclo Mode1/Mode2 (NON è una sessione completa)
     cycleStartBalance = userInfo.balance;
     cycleLoss = 0;
     currentMode = 1;
@@ -257,12 +289,90 @@ function resetCycle() {
 }
 
 function resetAll() {
+    // Reset dopo vittoria Mode1/Mode2 (continua la sessione verso il TP)
     currentMode = 1;
     resetMode1();
     resetMode2();
-    // Quando vinci, il ciclo è completato con successo - reset cycle loss
     cycleLoss = 0;
     cycleStartBalance = userInfo.balance;
+}
+
+function onSessionWin() {
+    // SESSIONE VINTA: Raggiunto Take Profit!
+    totalSessions++;
+    wonSessions++;
+    consecutiveLossSessions = 0;  // Reset perdite consecutive
+
+    var sessionProfit = userInfo.balance - currentSessionStartBalance;
+
+    log('');
+    log('🏆 SESSIONE VINTA! Take Profit Raggiunto');
+    log('   Sessione #' + totalSessions);
+    log('   Profitto sessione: +' + (sessionProfit / 100).toFixed(0) + ' bits');
+    log('   Win rate sessioni: ' + ((wonSessions / totalSessions) * 100).toFixed(1) + '%');
+    log('   Perdite consecutive: ' + consecutiveLossSessions + ' (Max: ' + maxConsecutiveLossSessions + ')');
+    log('');
+
+    // Resetta virtual balance per la nuova sessione
+    virtualBalance = virtualStartBalance;
+    sessionVirtualBalance = virtualStartBalance;
+    sessionVirtualStartBalance = virtualStartBalance;
+    currentSessionStartBalance = userInfo.balance;
+}
+
+function onSessionLoss() {
+    // SESSIONE PERSA: Raggiunto Stop Loss senza aver mai raggiunto TP
+    totalSessions++;
+    consecutiveLossSessions++;
+
+    // Aggiorna il massimo
+    if (consecutiveLossSessions > maxConsecutiveLossSessions) {
+        maxConsecutiveLossSessions = consecutiveLossSessions;
+    }
+
+    var sessionLoss = userInfo.balance - currentSessionStartBalance;
+
+    log('');
+    log('💔 SESSIONE PERSA! Stop Loss Raggiunto');
+    log('   Sessione #' + totalSessions);
+    log('   Perdita sessione: ' + (sessionLoss / 100).toFixed(0) + ' bits');
+    log('   Win rate sessioni: ' + ((wonSessions / totalSessions) * 100).toFixed(1) + '%');
+    log('   Perdite consecutive: ' + consecutiveLossSessions + ' (Max: ' + maxConsecutiveLossSessions + ')');
+    log('');
+
+    // Resetta virtual balance per la nuova sessione
+    virtualBalance = virtualStartBalance;
+    sessionVirtualBalance = virtualStartBalance;
+    sessionVirtualStartBalance = virtualStartBalance;
+    currentSessionStartBalance = userInfo.balance;
+}
+
+function showFinalStats() {
+    var totalProfit = userInfo.balance - startBalance;
+    var totalProfitPercent = (totalProfit / startBalance) * 100;
+    var winRate = totalSessions > 0 ? ((wonSessions / totalSessions) * 100) : 0;
+
+    log('');
+    log('╔═══════════════════════════════════════════════════════════════════════════╗');
+    log('║                         STATISTICHE FINALI                                ║');
+    log('╚═══════════════════════════════════════════════════════════════════════════╝');
+    log('');
+    log('SESSIONI (TP o SL):');
+    log('   Totali:              ' + totalSessions);
+    log('   Vinte (TP):          ' + wonSessions + ' (' + winRate.toFixed(1) + '%)');
+    log('   Perse (SL):          ' + (totalSessions - wonSessions));
+    log('   Max Perdite Consec:  ' + maxConsecutiveLossSessions);
+    log('');
+    log('BALANCE:');
+    log('   Iniziale:            ' + (startBalance / 100).toFixed(0) + ' bits');
+    log('   Finale:              ' + (userInfo.balance / 100).toFixed(0) + ' bits');
+    log('   Profitto:            ' + (totalProfit >= 0 ? '+' : '') + (totalProfit / 100).toFixed(0) + ' bits (' + (totalProfitPercent >= 0 ? '+' : '') + totalProfitPercent.toFixed(2) + '%)');
+    log('');
+    log('EFFICIENZA:');
+    log('   Partite giocate:     ' + gameCount);
+    log('   Bets piazzate:       ' + userInfo.bets);
+    log('   Bet efficiency:      ' + ((userInfo.bets / gameCount) * 100).toFixed(1) + '%');
+    log('');
 }
 
 /**
@@ -295,33 +405,6 @@ function checkPartialTakeProfit() {
         log('   Lock ' + config.partialTP2Lock.value + '% = ' + (lockAmount2 / 100).toFixed(0) + ' bits');
         log('   Locked totale: ' + (lockedProfit / 100).toFixed(0) + ' bits');
     }
-}
-
-/**
- * ═══════════════════════════════════════════════════════════════════════════════
- * NOVITÀ v5.0: SESSION STOP LOSS (protezione da tail risk)
- * ═══════════════════════════════════════════════════════════════════════════════
- */
-function checkSessionStopLoss() {
-    if (config.sessionStopLoss.value === 0) return false;
-
-    // Calcola drawdown dal balance iniziale (considerando locked profit)
-    var effectiveBalance = userInfo.balance + lockedProfit;
-    var drawdownPercent = ((effectiveBalance - startBalance) / startBalance) * 100;
-
-    if (drawdownPercent <= -config.sessionStopLoss.value) {
-        log('');
-        log('🛑 SESSION STOP LOSS: ' + drawdownPercent.toFixed(1) + '% (limite: -' + config.sessionStopLoss.value + '%)');
-        log('   Balance: ' + (userInfo.balance / 100).toFixed(0) + ' bits');
-        log('   Locked: ' + (lockedProfit / 100).toFixed(0) + ' bits');
-        log('   Totale: ' + (effectiveBalance / 100).toFixed(0) + ' bits');
-        log('');
-
-        stop('SESSION STOP LOSS -' + config.sessionStopLoss.value + '%');
-        return true;
-    }
-
-    return false;
 }
 
 /**
@@ -424,27 +507,6 @@ engine.on('GAME_STARTING', function() {
     // ═══════════════════════════════════════════════════════════════════════
     checkPartialTakeProfit();
 
-    // ═══════════════════════════════════════════════════════════════════════
-    // NOVITÀ v5.0: CHECK SESSION STOP LOSS
-    // ═══════════════════════════════════════════════════════════════════════
-    if (checkSessionStopLoss()) {
-        return;
-    }
-
-    // Check take profit finale (include locked profit)
-    var effectiveBalance = userInfo.balance + lockedProfit;
-    var profitPercent = ((effectiveBalance - startBalance) / startBalance) * 100;
-    if (profitPercent >= config.takeProfit.value) {
-        log('');
-        log('🎯 TAKE PROFIT FINALE: +' + profitPercent.toFixed(1) + '%');
-        log('   Balance: ' + (userInfo.balance / 100).toFixed(0) + ' bits');
-        log('   Locked: ' + (lockedProfit / 100).toFixed(0) + ' bits');
-        log('   Totale: ' + (effectiveBalance / 100).toFixed(0) + ' bits');
-        log('');
-        stop('TAKE PROFIT');
-        return;
-    }
-
     // Se sospeso, non puntare
     if (isSuspended) {
         return;
@@ -458,12 +520,11 @@ engine.on('GAME_STARTING', function() {
         var bet = Math.floor(getMode1Bet(mode1Step) / 100) * 100;
         if (bet < 100) bet = 100;
 
+        // Check balance REALE (non virtuale) - se insufficiente, ciclo perso
         if (bet > userInfo.balance) {
-            log('⚠️ Modo1: balance insufficiente, switch a Mode 2');
-            currentMode = 2;
-            mode2LossToRecover = mode1TotalLoss;
-            mode2Bets = 0;
-            resetMode1();
+            log('⚠️ Modo1: balance REALE insufficiente (' + (userInfo.balance/100).toFixed(0) + ' < ' + (bet/100).toFixed(0) + ')');
+            log('🔄 CICLO PERSO - Reset con virtual balance');
+            resetCycle();
             return;
         }
 
@@ -488,10 +549,11 @@ engine.on('GAME_STARTING', function() {
             log('📐 Recovery: bet=' + (bet/100).toFixed(0) + ' bits per recuperare ' + (mode2LossToRecover/100).toFixed(0) + ' bits');
         }
 
+        // Check balance REALE (non virtuale) - se insufficiente, ciclo perso
         if (bet > userInfo.balance) {
-            log('⚠️ RECOVERY IMPOSSIBILE: serve ' + (bet/100).toFixed(0) + ' bits');
-            log('🔄 Reset forzato → MODO 1');
-            resetAll();
+            log('⚠️ Modo2: balance REALE insufficiente (' + (userInfo.balance/100).toFixed(0) + ' < ' + (bet/100).toFixed(0) + ')');
+            log('🔄 CICLO PERSO - Reset con virtual balance');
+            resetCycle();
             return;
         }
 
@@ -533,6 +595,9 @@ engine.on('GAME_ENDED', function(data) {
             var grossProfit = Math.floor(wager * (cashedAt - 1));
             var netProfit = grossProfit - mode1TotalLoss;
 
+            // Aggiorna virtual balance: sottrai wager perso + aggiungi vincita totale
+            sessionVirtualBalance = sessionVirtualBalance - wager + Math.floor(wager * cashedAt);
+
             if (mode1Step === 0) {
                 log('✅ WIN +' + (grossProfit / 100).toFixed(0) + ' bits @ ' + cashedAt.toFixed(2) + 'x');
             } else {
@@ -540,7 +605,8 @@ engine.on('GAME_ENDED', function(data) {
             }
             resetMode1();
         } else {
-            // PERSO
+            // PERSO - sottrai wager dal virtual balance
+            sessionVirtualBalance -= wager;
             mode1TotalLoss += wager;
             cycleLoss += wager;  // Track cycle loss
 
@@ -582,6 +648,9 @@ engine.on('GAME_ENDED', function(data) {
             var profit = Math.floor(wager * (cashedAt - 1));
             var netProfit = profit - mode2LossToRecover;
 
+            // Aggiorna virtual balance: sottrai wager perso + aggiungi vincita totale
+            sessionVirtualBalance = sessionVirtualBalance - wager + Math.floor(wager * cashedAt);
+
             log('');
             log('🎉 RECOVERY COMPLETATO @ ' + cashedAt.toFixed(2) + 'x');
             log('   Netto: ' + (netProfit >= 0 ? '+' : '') + (netProfit / 100).toFixed(0) + ' bits');
@@ -589,7 +658,8 @@ engine.on('GAME_ENDED', function(data) {
 
             resetAll();
         } else {
-            // PERSO
+            // PERSO - sottrai wager dal virtual balance
+            sessionVirtualBalance -= wager;
             mode2LossToRecover += wager;
             cycleLoss += wager;  // Track cycle loss
 
@@ -608,12 +678,52 @@ engine.on('GAME_ENDED', function(data) {
         }
     }
 
-    // Log periodico (include locked profit)
+    // ═══════════════════════════════════════════════════════════════════════
+    // CHECK TAKE PROFIT / STOP LOSS SUL VIRTUAL BALANCE (dopo aggiornamento)
+    // ═══════════════════════════════════════════════════════════════════════
+    var virtualProfitPercent = ((sessionVirtualBalance - sessionVirtualStartBalance) / sessionVirtualStartBalance) * 100;
+
+    // Check TAKE PROFIT
+    if (virtualProfitPercent >= config.takeProfit.value) {
+        log('');
+        log('🎯 SESSIONE COMPLETATA - TAKE PROFIT: +' + virtualProfitPercent.toFixed(1) + '%');
+        log('   Virtual Balance: ' + (sessionVirtualBalance / 100).toFixed(0) + ' bits (start: ' + (sessionVirtualStartBalance / 100).toFixed(0) + ')');
+        log('   Real Balance: ' + (userInfo.balance / 100).toFixed(0) + ' bits');
+        log('');
+        onSessionWin();  // Resetta virtual balance e aggiorna statistiche
+
+        // DEBUG: ferma dopo primo TP raggiunto
+        if (config.debugStopAfterFirstWin.value === 'yes') {
+            log('🐛 DEBUG: Chiamando stop() dopo primo TP...');
+            showFinalStats();
+            stop('DEBUG: Primo TAKE PROFIT raggiunto (+' + config.takeProfit.value + '%)');
+            log('🐛 DEBUG: stop() chiamato');
+        }
+        return;
+    }
+
+    // Check STOP LOSS
+    if (virtualProfitPercent <= -config.sessionStopLoss.value) {
+        log('');
+        log('🛑 SESSIONE COMPLETATA - STOP LOSS: ' + virtualProfitPercent.toFixed(1) + '% (limite: -' + config.sessionStopLoss.value + '%)');
+        log('   Virtual Balance: ' + (sessionVirtualBalance / 100).toFixed(0) + ' bits (start: ' + (sessionVirtualStartBalance / 100).toFixed(0) + ')');
+        log('   Real Balance: ' + (userInfo.balance / 100).toFixed(0) + ' bits');
+        log('');
+        onSessionLoss();
+        return;  // Continua a giocare (non ferma lo script)
+    }
+
+    // Log periodico (include locked profit e statistiche sessioni)
     var effectiveBalance = userInfo.balance + lockedProfit;
     var profitPercent = ((effectiveBalance - startBalance) / startBalance) * 100;
-    if (gameCount % 100 === 0) {
+    if (gameCount % 10 === 0) {
         var lockInfo = lockedProfit > 0 ? ' | 🔒' + (lockedProfit/100).toFixed(0) : '';
-        log('📊 #' + gameCount + ' | Mode: ' + currentMode + ' | ' + (profitPercent >= 0 ? '+' : '') + profitPercent.toFixed(1) + '%' + lockInfo);
+        var sessionsInfo = '';
+        if (totalSessions > 0) {
+            var winRate = ((wonSessions / totalSessions) * 100).toFixed(1);
+            sessionsInfo = ' | 📈 Sessioni: ' + wonSessions + 'W/' + (totalSessions - wonSessions) + 'L (' + winRate + '%)';
+        }
+        log('📊 #' + gameCount + ' | Mode: ' + currentMode + ' | ' + (profitPercent >= 0 ? '+' : '') + profitPercent.toFixed(1) + '%' + lockInfo + sessionsInfo);
     }
 });
 
@@ -628,9 +738,13 @@ log('║        PARAMETRI BILANCIATI - WIN RATE + TAIL RISK PROTECTION          
 log('╚═══════════════════════════════════════════════════════════════════════════╝');
 log('');
 log('🆕 NOVITÀ v5.1 (bilanciamento v5.0):');
+log('   • Virtual Balance: ' + (config.virtualBalance.value / 100) + ' bits (resetta ad ogni sessione: TP o SL)');
 log('   • Target bilanciati: 3.75x/11x (compromesso tra v4.2 e v5.0)');
 log('   • Session SL più permissivo: -' + config.sessionStopLoss.value + '% (v5.0: -15%)');
 log('   • Partial TP aggressivo: +' + config.partialTP1Target.value + '% (lock ' + config.partialTP1Lock.value + '%), +' + config.partialTP2Target.value + '% (lock ' + config.partialTP2Lock.value + '%)');
+if (config.debugStopAfterFirstWin.value === 'yes') {
+    log('   • 🐛 DEBUG MODE: Ferma dopo primo TAKE PROFIT raggiunto (sessione vinta con +' + config.takeProfit.value + '%)');
+}
 log('');
 var resumeInfo = config.resumeAt.value + 'x';
 if (config.resumeAfterGames.value > 0) {

@@ -1,0 +1,29 @@
+{
+  "hash": "6fd492d2cef433afe8051d100753c073f9c8230188b61657200f1a886f26eab0",
+  "games": 100000,
+  "gamesPlayed": 100000,
+  "timestamp": "2026-01-04T09:26:36.201Z",
+  "config": {
+    "startingBalance": 100000,
+    "workingBalance": 1000,
+    "targetProfitPercent": 75
+  },
+  "statistics": {
+    "totalCycles": 10,
+    "wonCycles": 4,
+    "lostCycles": 6,
+    "winRate": 40,
+    "maxConsecutiveLosses": 2,
+    "maxVBReached": 4255,
+    "minCapitalRequired": 4255,
+    "recommendedCapital": 6383
+  },
+  "lossStreaks": [
+    2,
+    2,
+    2
+  ],
+  "lossStreakDistribution": {
+    "2": 3
+  }
+}

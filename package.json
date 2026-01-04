@@ -1,0 +1,43 @@
+{
+  "name": "bustabit-scripts",
+  "version": "1.0.0",
+  "description": "Bustabit Scripts Testing System - Algoritmi di betting, sistema di simulazione, monitor e verifier",
+  "private": true,
+  "scripts": {
+    "simulator:start": "cd bustabit-script-simulator && npm start",
+    "simulator:build": "cd bustabit-script-simulator && npm run build",
+    "simulator:test": "cd bustabit-script-simulator && npm test",
+    "monitor-client:start": "cd bustabit-monitor-client && npm start",
+    "monitor-client:build": "cd bustabit-monitor-client && npm run build",
+    "monitor-server:start": "cd bustabit-monitor-server && npm start",
+    "ws-server:start": "cd bustabit-ws-server && npm start",
+    "verifier:dev": "cd verifier-main && npm run dev",
+    "verifier:build": "cd verifier-main && npm run build",
+    "verifier:preview": "cd verifier-main && npm run preview",
+    "test:quick": "cd bustabit-script-simulator && bun cli-tester.js ../scripts/martin/MARTIN_AI_READY.js --seeds=10 --games=100",
+    "test:martin": "cd bustabit-script-simulator && bun cli-tester.js ../scripts/martin/MARTIN_AI_READY.js --checkpoints10M --seeds=1000",
+    "test:paolobet": "cd bustabit-script-simulator && bun cli-tester.js ../scripts/other/PAOLOBET_HYBRID.js --checkpoints10M --seeds=1000",
+    "test:10m": "cd bustabit-script-simulator && bun cli-tester.js --checkpoints10M --seeds=1000",
+    "analyze:delays": "cd bustabit-script-simulator && bun analyze-delays.js",
+    "clean:test": "rm -rf bustabit-script-simulator/test/*",
+    "clean:results": "rm -rf results/*",
+    "install:all": "cd bustabit-script-simulator && npm install && cd ../bustabit-monitor-client && npm install && cd ../bustabit-monitor-server && npm install && cd ../bustabit-ws-server && npm install && cd ../verifier-main && npm install",
+    "postinstall": "echo 'Usa npm run install:all per installare le dipendenze di tutti i sottoprogetti'"
+  },
+  "keywords": [
+    "bustabit",
+    "betting",
+    "simulation",
+    "testing",
+    "provably-fair",
+    "monitor",
+    "verifier",
+    "websocket"
+  ],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
