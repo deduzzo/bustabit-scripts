@@ -1,0 +1,6152 @@
+{
+  "hash": "e1181e35af2e19942b6f3b3ec50ad74ed9ba5d0bbbb249210847bfa1",
+  "games": 1000000,
+  "timestamp": "2026-01-04T15:47:21.913Z",
+  "elapsed": 779.2,
+  "totalCombinations": 256,
+  "bestConfiguration": {
+    "config": {
+      "workingBalance": 1000,
+      "targetProfit": 40,
+      "payout": 2.5,
+      "multiplier": 1.4
+    },
+    "results": {
+      "gamesPlayed": 1000000,
+      "profit": 10577.800000000003,
+      "profitPercent": 10.577800000000002,
+      "wonCycles": 12,
+      "lostCycles": 10,
+      "winRate": 54.54545454545454,
+      "maxLossStreak": 4,
+      "maxVBReached": 100000,
+      "capitalRequired": 100000
+    },
+    "metrics": {
+      "roi": 10.577800000000002,
+      "score": 14.866700000000002
+    }
+  },
+  "top10": [
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    }
+  ],
+  "allResults": [
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 1000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 100000,
+        "capitalRequired": 100000
+      },
+      "metrics": {
+        "roi": 10.577800000000002,
+        "score": 14.866700000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 5000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 500000,
+        "capitalRequired": 500000
+      },
+      "metrics": {
+        "roi": 2.1155600000000008,
+        "score": 2.404460000000002
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 10000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1000000,
+        "capitalRequired": 1000000
+      },
+      "metrics": {
+        "roi": 1.0577800000000004,
+        "score": -3.653319999999999
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 40,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 50,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 75,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 2.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 3.1,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 3.5,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 1.4
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 1.6
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 1.8
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    },
+    {
+      "config": {
+        "workingBalance": 15000,
+        "targetProfit": 100,
+        "payout": 4,
+        "multiplier": 2
+      },
+      "results": {
+        "gamesPlayed": 1000000,
+        "profit": 10577.800000000003,
+        "profitPercent": 10.577800000000002,
+        "wonCycles": 12,
+        "lostCycles": 10,
+        "winRate": 54.54545454545454,
+        "maxLossStreak": 4,
+        "maxVBReached": 1500000,
+        "capitalRequired": 1500000
+      },
+      "metrics": {
+        "roi": 0.7051866666666669,
+        "score": -9.005913333333332
+      }
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "hash": "fbf0754c3af8d2f498126df3689f4cc7ab1531b438a85d3dc46a2238a31aecfe",
+  "games": 2000,
+  "timestamp": "2026-01-05T15:05:26.922Z",
+  "stepDownEnabled": {
+    "label": "STEP-DOWN ABILITATO",
+    "enableStepDown": true,
+    "results": {
+      "gamesPlayed": 2000,
+      "startBalance": 1000000,
+      "endBalance": 966947,
+      "profit": -33053,
+      "profitPercent": -3.3053,
+      "wonCycles": 4,
+      "lostCycles": 10,
+      "winRate": 28.57142857142857,
+      "maxLossStreak": 6,
+      "maxVBReached": 100000,
+      "forceResets": 1,
+      "stepDowns": [
+        {
+          "cycle": 3,
+          "from": 1,
+          "to": 0,
+          "bonus": false
+        },
+        {
+          "cycle": 5,
+          "from": 1,
+          "to": 0,
+          "bonus": false
+        },
+        {
+          "cycle": 9,
+          "from": 3,
+          "to": 2,
+          "bonus": false
+        }
+      ],
+      "cycleDetails": [
+        {
+          "cycle": 2,
+          "type": "LOST",
+          "lossStreak": 1
+        },
+        {
+          "cycle": 4,
+          "type": "LOST",
+          "lossStreak": 1
+        },
+        {
+          "cycle": 6,
+          "type": "LOST",
+          "lossStreak": 1
+        },
+        {
+          "cycle": 7,
+          "type": "LOST",
+          "lossStreak": 2
+        },
+        {
+          "cycle": 8,
+          "type": "LOST",
+          "lossStreak": 3
+        },
+        {
+          "cycle": 10,
+          "type": "LOST",
+          "lossStreak": 3
+        },
+        {
+          "cycle": 11,
+          "type": "LOST",
+          "lossStreak": 4
+        },
+        {
+          "cycle": 12,
+          "type": "LOST",
+          "lossStreak": 5
+        },
+        {
+          "cycle": 13,
+          "type": "LOST",
+          "lossStreak": 6
+        },
+        {
+          "cycle": 14,
+          "type": "LOST",
+          "lossStreak": 1
+        }
+      ]
+    },
+    "log": "\n==============================================================\n  MARTIN AI v4.8 - RECOVERY MARTINGALE + CYCLE TRACKING   \n==============================================================\n\nMODALITA 1 (NORMALE):\n   - Payout: 3.1x\n   - Base Bet: 1.00 bits\n   - Multiplier: 1.6x (CUSTOM)\n   - Bonus: +1 bit per le prime 3 perdite\n\nMODALITA 2 (RECUPERO MARTINGALE):\n   - Trigger: 16 perdite consecutive\n   - Payout: 2x\n   - Max tentativi: 2\n\nCAPITALE & TARGET (PER CICLO):\n   - Working Balance: 1000.00 bits\n   - Target Profit: 75% (+750.00 bits)\n   - Continue Cycles: SI (analisi multipli cicli)\n\n🎲 MARTINGALE SUL VIRTUAL BALANCE:\n   - ABILITATO: Aumenta VB dopo ogni perdita\n   - Moltiplicatore: ~2.33x (per TP 75%)\n   - VB Base: 1000.00 bits\n   - Reset a VB base dopo ogni vittoria\n   - Max Consecutive Losses: 6 (protezione capitale)\n\n📉 STEP-DOWN RECOVERY:\n   - ABILITATO: Strategia ibrida (40% debt retention)\n   - FASE ALTA (L4+): Obiettivo = tornare a L3 (zona sicura)\n     • L5+ → L3 (emergency, evita overflow)\n     • L4 → L3 (rientro in zona sicura)\n   - FASE BASSA (L1-3): Obiettivo = chiudere gradualmente con buffer\n     • L3 → L2 (conservativo), L2 → L0, L1 → L0\n   - Debt Retention: Mantieni 40% perdite (buffer protezione)\n   - Step-Down Dinamico INTRA-CICLO:\n     • Ogni 5 vittorie consecutive @ L4+ → scendi 1 livello\n     • Abbassa bet DURANTE il ciclo (non aspetta fine ciclo)\n\n==============================================================\n\nCYCLE #1 WON | Profit: +760 bits | WR: 100.0% (1W/0L) | Max Loss Streak: 0 | VB: 1000 bits\nCYCLE #2 LOST | Loss: -822 bits | WR: 50.0% (1W/1L) | Loss Streak: 1/1 | Next VB: 2095 bits\nCYCLE #3 WON | Profit: +1577 bits | WR: 66.7% (2W/1L) | Max Loss Streak: 1 | Down: L1→L0 | VB: 2095 bits\nCYCLE #4 LOST | Loss: -616 bits | WR: 50.0% (2W/2L) | Loss Streak: 1/1 | Next VB: 1822 bits\nCYCLE #5 WON | Profit: +1374 bits | WR: 60.0% (3W/2L) | Max Loss Streak: 1 | Down: L1→L0 | VB: 1822 bits\nCYCLE #6 LOST | Loss: -834 bits | WR: 50.0% (3W/3L) | Loss Streak: 1/1 | Next VB: 2112 bits\nCYCLE #7 LOST | Loss: -1342 bits | WR: 42.9% (3W/4L) | Loss Streak: 2/2 | Next VB: 3901 bits\nCYCLE #8 LOST | Loss: -3242 bits | WR: 37.5% (3W/5L) | Loss Streak: 3/3 (1x) | Next VB: 8223 bits\nCYCLE #9 WON | Profit: +6319 bits | WR: 44.4% (4W/5L) | Max Loss Streak: 3 | Streaks 3+: [3x:1] | Down: L3→L2 | VB: 8223 bits\n\n📉 STEP-DOWN RECOVERY (40% retention)\n   Livello 3 → Livello 2\n   VB: 8223 → 3889 bits\n   Debito: 5418 → 2167 bits (-3251 bits cancellati)\n   BaseBet: 4.00 bits\n\nCYCLE #10 LOST | Loss: -2980 bits | WR: 40.0% (4W/6L) | Loss Streak: 3/3 (2x) | Next VB: 7863 bits\nCYCLE #11 LOST | Loss: -5732 bits | WR: 36.4% (4W/7L) | Loss Streak: 4/4 (1x) | Next VB: 15506 bits\nCYCLE #12 LOST | Loss: -13102 bits | WR: 33.3% (4W/8L) | Loss Streak: 5/5 (1x) | Next VB: 32975 bits\n\n❌ ERRORE: BaseBet troppo grande!\n   newBaseBet calcolato: 16389.00 bits\n   Max consentito (1000x baseBet): 1000.00 bits\n   VB attuale: 32975.26 bits\n   Perdite accumulate: 23981.44 bits\n\n🛑 FERMANDO SCRIPT - Martingale esaurito, troppe perdite consecutive\nCYCLE #13 LOST | Loss: -13636 bits | WR: 30.8% (4W/9L) | Loss Streak: 6/6 (1x) | Next VB: 51157 bits\n\n⚠️  ═══════════════════════════════════════════════════════════════════════════\n   MAX CONSECUTIVE LOSSES RAGGIUNTO! (6/6)\n   Perdite accumulate: 23981 bits\n   🔄 RESET FORZATO AL VB BASE: 1000 bits\n   Ricomincio da zero per proteggere il capitale\n═══════════════════════════════════════════════════════════════════════════\n\nCYCLE #14 LOST | Loss: -924 bits | WR: 28.6% (4W/10L) | Loss Streak: 1/6 | Next VB: 2232 bits\n"
+  },
+  "stepDownDisabled": {
+    "label": "STEP-DOWN DISABILITATO (originale)",
+    "enableStepDown": false,
+    "results": {
+      "gamesPlayed": 2000,
+      "startBalance": 1000000,
+      "endBalance": 966947,
+      "profit": -33053,
+      "profitPercent": -3.3053,
+      "wonCycles": 4,
+      "lostCycles": 10,
+      "winRate": 28.57142857142857,
+      "maxLossStreak": 6,
+      "maxVBReached": 100000,
+      "forceResets": 1,
+      "stepDowns": [
+        {
+          "cycle": 3,
+          "from": 1,
+          "to": 0,
+          "bonus": false
+        },
+        {
+          "cycle": 5,
+          "from": 1,
+          "to": 0,
+          "bonus": false
+        },
+        {
+          "cycle": 9,
+          "from": 3,
+          "to": 2,
+          "bonus": false
+        }
+      ],
+      "cycleDetails": [
+        {
+          "cycle": 2,
+          "type": "LOST",
+          "lossStreak": 1
+        },
+        {
+          "cycle": 4,
+          "type": "LOST",
+          "lossStreak": 1
+        },
+        {
+          "cycle": 6,
+          "type": "LOST",
+          "lossStreak": 1
+        },
+        {
+          "cycle": 7,
+          "type": "LOST",
+          "lossStreak": 2
+        },
+        {
+          "cycle": 8,
+          "type": "LOST",
+          "lossStreak": 3
+        },
+        {
+          "cycle": 10,
+          "type": "LOST",
+          "lossStreak": 3
+        },
+        {
+          "cycle": 11,
+          "type": "LOST",
+          "lossStreak": 4
+        },
+        {
+          "cycle": 12,
+          "type": "LOST",
+          "lossStreak": 5
+        },
+        {
+          "cycle": 13,
+          "type": "LOST",
+          "lossStreak": 6
+        },
+        {
+          "cycle": 14,
+          "type": "LOST",
+          "lossStreak": 1
+        }
+      ]
+    },
+    "log": "\n==============================================================\n  MARTIN AI v4.8 - RECOVERY MARTINGALE + CYCLE TRACKING   \n==============================================================\n\nMODALITA 1 (NORMALE):\n   - Payout: 3.1x\n   - Base Bet: 1.00 bits\n   - Multiplier: 1.6x (CUSTOM)\n   - Bonus: +1 bit per le prime 3 perdite\n\nMODALITA 2 (RECUPERO MARTINGALE):\n   - Trigger: 16 perdite consecutive\n   - Payout: 2x\n   - Max tentativi: 2\n\nCAPITALE & TARGET (PER CICLO):\n   - Working Balance: 1000.00 bits\n   - Target Profit: 75% (+750.00 bits)\n   - Continue Cycles: SI (analisi multipli cicli)\n\n🎲 MARTINGALE SUL VIRTUAL BALANCE:\n   - ABILITATO: Aumenta VB dopo ogni perdita\n   - Moltiplicatore: ~2.33x (per TP 75%)\n   - VB Base: 1000.00 bits\n   - Reset a VB base dopo ogni vittoria\n   - Max Consecutive Losses: 6 (protezione capitale)\n\n📉 STEP-DOWN RECOVERY:\n   - ABILITATO: Strategia ibrida (40% debt retention)\n   - FASE ALTA (L4+): Obiettivo = tornare a L3 (zona sicura)\n     • L5+ → L3 (emergency, evita overflow)\n     • L4 → L3 (rientro in zona sicura)\n   - FASE BASSA (L1-3): Obiettivo = chiudere gradualmente con buffer\n     • L3 → L2 (conservativo), L2 → L0, L1 → L0\n   - Debt Retention: Mantieni 40% perdite (buffer protezione)\n   - Step-Down Dinamico INTRA-CICLO:\n     • Ogni 5 vittorie consecutive @ L4+ → scendi 1 livello\n     • Abbassa bet DURANTE il ciclo (non aspetta fine ciclo)\n\n==============================================================\n\nCYCLE #1 WON | Profit: +760 bits | WR: 100.0% (1W/0L) | Max Loss Streak: 0 | VB: 1000 bits\nCYCLE #2 LOST | Loss: -822 bits | WR: 50.0% (1W/1L) | Loss Streak: 1/1 | Next VB: 2095 bits\nCYCLE #3 WON | Profit: +1577 bits | WR: 66.7% (2W/1L) | Max Loss Streak: 1 | Down: L1→L0 | VB: 2095 bits\nCYCLE #4 LOST | Loss: -616 bits | WR: 50.0% (2W/2L) | Loss Streak: 1/1 | Next VB: 1822 bits\nCYCLE #5 WON | Profit: +1374 bits | WR: 60.0% (3W/2L) | Max Loss Streak: 1 | Down: L1→L0 | VB: 1822 bits\nCYCLE #6 LOST | Loss: -834 bits | WR: 50.0% (3W/3L) | Loss Streak: 1/1 | Next VB: 2112 bits\nCYCLE #7 LOST | Loss: -1342 bits | WR: 42.9% (3W/4L) | Loss Streak: 2/2 | Next VB: 3901 bits\nCYCLE #8 LOST | Loss: -3242 bits | WR: 37.5% (3W/5L) | Loss Streak: 3/3 (1x) | Next VB: 8223 bits\nCYCLE #9 WON | Profit: +6319 bits | WR: 44.4% (4W/5L) | Max Loss Streak: 3 | Streaks 3+: [3x:1] | Down: L3→L2 | VB: 8223 bits\n\n📉 STEP-DOWN RECOVERY (40% retention)\n   Livello 3 → Livello 2\n   VB: 8223 → 3889 bits\n   Debito: 5418 → 2167 bits (-3251 bits cancellati)\n   BaseBet: 4.00 bits\n\nCYCLE #10 LOST | Loss: -2980 bits | WR: 40.0% (4W/6L) | Loss Streak: 3/3 (2x) | Next VB: 7863 bits\nCYCLE #11 LOST | Loss: -5732 bits | WR: 36.4% (4W/7L) | Loss Streak: 4/4 (1x) | Next VB: 15506 bits\nCYCLE #12 LOST | Loss: -13102 bits | WR: 33.3% (4W/8L) | Loss Streak: 5/5 (1x) | Next VB: 32975 bits\n\n❌ ERRORE: BaseBet troppo grande!\n   newBaseBet calcolato: 16389.00 bits\n   Max consentito (1000x baseBet): 1000.00 bits\n   VB attuale: 32975.26 bits\n   Perdite accumulate: 23981.44 bits\n\n🛑 FERMANDO SCRIPT - Martingale esaurito, troppe perdite consecutive\nCYCLE #13 LOST | Loss: -13636 bits | WR: 30.8% (4W/9L) | Loss Streak: 6/6 (1x) | Next VB: 51157 bits\n\n⚠️  ═══════════════════════════════════════════════════════════════════════════\n   MAX CONSECUTIVE LOSSES RAGGIUNTO! (6/6)\n   Perdite accumulate: 23981 bits\n   🔄 RESET FORZATO AL VB BASE: 1000 bits\n   Ricomincio da zero per proteggere il capitale\n═══════════════════════════════════════════════════════════════════════════\n\nCYCLE #14 LOST | Loss: -924 bits | WR: 28.6% (4W/10L) | Loss Streak: 1/6 | Next VB: 2232 bits\n"
+  },
+  "comparison": {
+    "profitDifference": 0,
+    "cyclesDifference": 0,
+    "winner": "Similar"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "hash": "e1181e35af2e19942b6f3b3ec50ad74ed9ba5d0bbbb249210847bfa1",
+  "games": 1000000,
+  "timestamp": "2026-01-04T15:26:53.998Z",
+  "configA": {
+    "label": "CONFIG A - DEFAULT (WB=1000, TP=75%)",
+    "config": {
+      "workingBalance": 100000,
+      "targetProfit": 75,
+      "recoveryTrigger": 16
+    },
+    "results": {
+      "gamesPlayed": 1000000,
+      "startBalance": 100000,
+      "endBalance": 110577.8,
+      "profit": 10577.800000000003,
+      "profitPercent": 10.577800000000002,
+      "elapsed": "2.8",
+      "cycles": {
+        "won": 12,
+        "lost": 10,
+        "total": 22,
+        "winRate": 54.54545454545454
+      },
+      "maxLossStreak": 4,
+      "maxVBReached": 100000
+    }
+  },
+  "configB": {
+    "label": "CONFIG B - RECOVERY ENABLED (WB=15000, TP=40%)",
+    "config": {
+      "workingBalance": 1500000,
+      "targetProfit": 40,
+      "recoveryTrigger": 16
+    },
+    "results": {
+      "gamesPlayed": 1000000,
+      "startBalance": 100000,
+      "endBalance": 110577.8,
+      "profit": 10577.800000000003,
+      "profitPercent": 10.577800000000002,
+      "elapsed": "3.0",
+      "cycles": {
+        "won": 12,
+        "lost": 10,
+        "total": 22,
+        "winRate": 54.54545454545454
+      },
+      "maxLossStreak": 4,
+      "maxVBReached": 1500000
+    }
+  },
+  "comparison": {
+    "profitDifference": 0,
+    "profitPercentDifference": 0,
+    "winner": "Tie",
+    "capitalDifference": 1400000
+  }
+}
