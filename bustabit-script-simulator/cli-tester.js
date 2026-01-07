@@ -668,6 +668,7 @@ async function massiveTest(scriptPath, options = {}) {
 
 let HASH_CHECKPOINTS = null;
 let HASH_CHECKPOINTS_10M = null;
+let CUSTOM_HASHES = null;
 
 try {
     const checkpointsModule = require('./data/hash-checkpoints.js');
@@ -697,19 +698,21 @@ CLI MASSIVE TESTER - Test algoritmi bustabit senza UI
 Uso: node cli-tester.js <script-path> [options]
 
 Options:
-  --seeds=N         Numero di seed/sessioni da testare (default: 100)
-  --games=N         Numero di giochi per sessione (default: 500)
-  --balance=N       Balance iniziale in bits (default: 10000)
-  --hash=HASH       Hash base per i test
-  --checkpoints     Usa i 101 hash checkpoint (1M partite, ogni 10k)
-  --checkpoints10M  Usa i 10,001 hash checkpoint (10M partite, ogni 1k)
-  --log             Abilita log degli script (verbose)
-  --help            Mostra questo help
+  --seeds=N             Numero di seed/sessioni da testare (default: 100)
+  --games=N             Numero di giochi per sessione (default: 500)
+  --balance=N           Balance iniziale in bits (default: 10000)
+  --hash=HASH           Hash base per i test
+  --checkpoints         Usa i 101 hash checkpoint (1M partite, ogni 10k)
+  --checkpoints10M      Usa i 10,001 hash checkpoint (10M partite, ogni 1k)
+  --custom-hashes=FILE  Usa hash da file JSON (array di stringhe hash)
+  --log                 Abilita log degli script (verbose)
+  --help                Mostra questo help
 
 Esempi:
   node cli-tester.js ../scripts/martin/SUPER_SMART_v2.js --seeds=100 --games=500
   node cli-tester.js ../scripts/martin/SUPER_SMART_v2.js --checkpoints --games=1000
   node cli-tester.js ../scripts/martin/SUPER_SMART_v6_ULTIMATE.js --checkpoints10M --seeds=1000 --games=5000
+  node cli-tester.js ../scripts/martin/algorithm.js --custom-hashes=./data/custom-hashes-11k-gap-array.json --games=20000
         `);
         process.exit(0);
     }
@@ -722,6 +725,7 @@ Esempi:
         baseHash: '357bba5cd16d7d9395a0aab681ceefb4415dc2d8a7529493c48e7b57d74a4ed8',
         useCheckpoints: false,
         useCheckpoints10M: false,
+        customHashesFile: null,
         enableLog: false
     };
 
@@ -738,17 +742,57 @@ Esempi:
             options.useCheckpoints10M = true;
         } else if (arg === '--checkpoints') {
             options.useCheckpoints = true;
+        } else if (arg.startsWith('--custom-hashes=')) {
+            options.customHashesFile = arg.split('=')[1];
         } else if (arg === '--log') {
             options.enableLog = true;
         }
     }
 
+    // Se usa custom hashes file (priorità massima)
+    if (options.customHashesFile) {
+        try {
+            const customHashesPath = path.resolve(options.customHashesFile);
+            const customHashesData = JSON.parse(fs.readFileSync(customHashesPath, 'utf8'));
+
+            // Supporta sia array di stringhe che array di oggetti con campo 'hash'
+            let hashes;
+            if (Array.isArray(customHashesData) && customHashesData.length > 0) {
+                if (typeof customHashesData[0] === 'string') {
+                    hashes = customHashesData;
+                } else if (customHashesData[0].hash) {
+                    hashes = customHashesData.map(item => item.hash);
+                } else {
+                    throw new Error('Formato hash non riconosciuto');
+                }
+            } else {
+                throw new Error('File deve contenere un array di hash');
+            }
+
+            const maxSeeds = options.numSeeds || hashes.length;
+            options.numSeeds = Math.min(maxSeeds, hashes.length);
+            options.hashCheckpoints = hashes.slice(0, options.numSeeds).map((hash, idx) => ({
+                hash,
+                gameNumber: idx
+            }));
+            options.useCheckpoints = true;
+
+            console.log(`✓ Caricati ${options.numSeeds} hash custom da: ${options.customHashesFile}`);
+        } catch (e) {
+            console.error(`❌ Errore caricamento custom hashes: ${e.message}`);
+            process.exit(1);
+        }
+    }
     // Se usa checkpoints 10M (priorità su 1M)
-    if (options.useCheckpoints10M && HASH_CHECKPOINTS_10M) {
-        // Limita a numSeeds se specificato, altrimenti usa tutti
-        const maxSeeds = options.numSeeds || HASH_CHECKPOINTS_10M.length;
-        options.numSeeds = Math.min(maxSeeds, HASH_CHECKPOINTS_10M.length);
-        options.hashCheckpoints = HASH_CHECKPOINTS_10M.slice(0, options.numSeeds);
+    else if (options.useCheckpoints10M && HASH_CHECKPOINTS_10M) {
+        // MODIFICA TEMPORANEA: Gap minimo 5000 partite (prendi 1 ogni 5 checkpoint)
+        const GAP_MULTIPLIER = 5; // Gap di 5000 partite invece di 1000
+        const filteredCheckpoints = HASH_CHECKPOINTS_10M.filter((_, index) => index % GAP_MULTIPLIER === 0);
+
+        // Limita a numSeeds se specificato, altrimenti usa tutti i filtrati
+        const maxSeeds = options.numSeeds || filteredCheckpoints.length;
+        options.numSeeds = Math.min(maxSeeds, filteredCheckpoints.length);
+        options.hashCheckpoints = filteredCheckpoints.slice(0, options.numSeeds);
         options.useCheckpoints = true;
     }
     // Se usa checkpoints 1M

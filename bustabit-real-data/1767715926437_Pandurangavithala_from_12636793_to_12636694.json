@@ -1,0 +1,13 @@
+{
+  "filter": "Pandurangavithala",
+  "scrapedAt": "2026-01-06T16:12:06.437Z",
+  "config": {
+    "startGameId": 12636793,
+    "endGameId": 12636694,
+    "numGames": 100,
+    "gamesChecked": 100,
+    "gamesFound": 0,
+    "totalPlayers": 0
+  },
+  "games": []
+}

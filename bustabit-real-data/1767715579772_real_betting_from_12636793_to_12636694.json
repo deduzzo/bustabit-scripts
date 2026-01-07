@@ -1,0 +1,12 @@
+{
+  "player": "Pandurangavithala",
+  "scrapedAt": "2026-01-06T16:06:19.772Z",
+  "config": {
+    "startGameId": 12636793,
+    "endGameId": 12636694,
+    "numGames": 100,
+    "gamesChecked": 100,
+    "gamesPlayed": 0
+  },
+  "games": []
+}

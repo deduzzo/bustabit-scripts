@@ -89,6 +89,58 @@ results/
 - Formato: `NOME_SCRIPT-results.json`
 - Questi file contengono l'output completo dei test (config, summary, results)
 
+### 4. Script per Bustabit - UNA SOLA VERSIONE
+
+**⚠️ REGOLA CRITICA: GLI SCRIPT VANNO SCRITTI SOLO PER BUSTABIT**
+
+**NON creare MAI due versioni dello stesso script (una per Bustabit e una per il simulatore).**
+
+**Procedura corretta:**
+1. Sviluppa e testa SEMPRE nella cartella `bustabit-script-simulator/test/` usando file temporanei
+2. Una volta ottimizzato, crea LA VERSIONE FINALE in `scripts/` **SOLO per Bustabit**
+3. Gli script in `scripts/` devono essere pronti per essere copiati direttamente su Bustabit.com
+4. **NON creare versioni "_simulator.js"** - esiste solo la versione Bustabit
+
+**Esempio corretto:**
+```
+✅ scripts/other/PAOLOBET_HYBRID.js           # SOLO questa versione
+✅ bustabit-script-simulator/test/test-paolobet.js  # File temporaneo per sviluppo
+❌ scripts/other/PAOLOBET_HYBRID_simulator.js # MAI creare questa versione
+```
+
+**Per testare:**
+- Usa `cli-tester.js` che può eseguire DIRETTAMENTE gli script Bustabit
+- Non serve una versione separata per il simulatore
+
+### 5. Reverse Engineering di Algoritmi
+**CARTELLA DEDICATA AL REVERSE ENGINEERING:**
+```
+bustabit-reverse-eng/
+```
+
+**Scopo:**
+- Analizzare dati di betting raccolti tramite scraping
+- Identificare pattern e strategie di altri giocatori
+- Ricostruire algoritmi basati sui dati reali
+
+**Struttura:**
+```
+bustabit-reverse-eng/
+├── README.md                    # Guida completa al reverse engineering
+├── data/                        # File JSON con dati scraped (*.json)
+├── analyze-player-strategy.js  # Script principale di analisi
+└── results/                     # Algoritmi ricostruiti (*.js)
+```
+
+**Come usare:**
+1. Raccogli dati con lo scraper in `bustabit-scraping/`
+2. Sposta i file JSON in `bustabit-reverse-eng/data/`
+3. Analizza: `node analyze-player-strategy.js data/FILE.json PLAYER_NAME`
+4. Ricostruisci l'algoritmo in `results/PLAYER_NAME.js`
+5. Testa con il simulatore
+
+**Documentazione completa:** Vedi `bustabit-reverse-eng/README.md`
+
 ---
 
 ## Struttura Progetto
@@ -114,6 +166,15 @@ bustabit-scripts/
 │   ├── PAOLOBET_HYBRID-results.json
 │   ├── MARTIN_AI_READY-results.json
 │   └── ...                       # Un file -results.json per script testato
+│
+├── bustabit-reverse-eng/         # REVERSE ENGINEERING (vedi README.md)
+│   ├── README.md                 # Guida completa
+│   ├── data/                     # File JSON scraped
+│   ├── analyze-player-strategy.js  # Script di analisi
+│   └── results/                  # Algoritmi ricostruiti
+│
+├── bustabit-scraping/            # Tampermonkey scraper
+│   └── bustabit-scraper-v2.user.js  # Script per Chrome
 │
 └── bustabit-script-simulator/    # Simulatore e strumenti
     ├── cli-tester.js             # TESTER PRINCIPALE (usa sempre questo!)
@@ -350,14 +411,53 @@ rm -rf test/*
 
 ---
 
+## API Bustabit - Config Types
+
+**IMPORTANTE: Gestione corretta dei tipi di configurazione**
+
+### Type: 'balance' (Satoshi)
+```javascript
+baseBet: { value: 10000, type: 'balance', label: 'Base Bet' }
+// 10000 satoshi = 100 bits
+// config.baseBet.value → 10000 (già in satoshi)
+```
+
+### Type: 'multiplier' (Double)
+```javascript
+targetHigh: { value: 15.00, type: 'multiplier', label: 'Target High' }
+// config.targetHigh.value → 15.00 (double, NON centesimi!)
+// ❌ NON moltiplicare per 100!
+```
+
+### engine.bet(wager, target)
+```javascript
+// ✅ CORRETTO
+var wager = config.baseBet.value;      // 10000 satoshi
+var target = config.targetHigh.value;  // 15.00 (double)
+engine.bet(wager, target);
+
+// ❌ SBAGLIATO
+engine.bet(wager, target * 100);  // NO! creerebbe 1500x invece di 15x
+```
+
+### Regola Fondamentale
+**NON moltiplicare MAI i multiplier per 100 quando usi `engine.bet()`**
+- Bustabit accetta direttamente il valore double
+- Solo `type: 'balance'` usa satoshi (già moltiplicato per 100)
+- Solo `type: 'multiplier'` usa double (15.00 resta 15.00)
+
+---
+
 ## Note per Claude
 
-1. **USA SEMPRE cli-tester.js** per test finali
-2. **USA SEMPRE --checkpoints10M** per risultati affidabili
-3. **CREA file temporanei SOLO in test/** - mai altrove
-4. **ELIMINA file temporanei** dopo ottimizzazione
-5. **I dati hash sono in data/** - non modificare
-6. **DOCUMENTAZIONE script va in scriptsDocs/** - un file .md per script
-7. **FILE RISULTATI (.json) vanno in results/** - mai in scripts/
-8. **NON creare riepiloghi sparsi** - usa scriptsDocs/NOME_SCRIPT.md
-9. **Aggiorna sempre il file .md dello script** dopo ottimizzazioni/modifiche
+1. **⚠️ CREA SCRIPT SOLO PER BUSTABIT** - MAI creare versioni "_simulator.js"
+2. **⚠️ MULTIPLIER = DOUBLE** - NON moltiplicare per 100 quando usi engine.bet()
+3. **USA SEMPRE cli-tester.js** per test finali
+4. **USA SEMPRE --checkpoints10M** per risultati affidabili
+5. **CREA file temporanei SOLO in test/** - mai altrove
+6. **ELIMINA file temporanei** dopo ottimizzazione
+7. **I dati hash sono in data/** - non modificare
+8. **DOCUMENTAZIONE script va in scriptsDocs/** - un file .md per script
+9. **FILE RISULTATI (.json) vanno in results/** - mai in scripts/
+10. **NON creare riepiloghi sparsi** - usa scriptsDocs/NOME_SCRIPT.md
+11. **Aggiorna sempre il file .md dello script** dopo ottimizzazioni/modifiche

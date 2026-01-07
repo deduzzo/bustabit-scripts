@@ -1,0 +1,38 @@
+{
+  "script": "temp-tracking-verbose",
+  "config": {
+    "numSeeds": 1,
+    "gamesPerSeed": 20000,
+    "startingBalance": 5000000,
+    "baseHash": "58980580571f4a771f80d97448942135da3e94fb804db660bcf2442fabf7d4ca"
+  },
+  "summary": {
+    "avgProfit": 38.9234,
+    "medianProfit": 38.9234,
+    "stdDev": 0,
+    "sharpeRatio": 0,
+    "winRate": 100,
+    "targetRate": 0,
+    "minProfit": 38.9234,
+    "maxProfit": 38.9234,
+    "avgBets": 19864,
+    "avgGames": 20000,
+    "betEfficiency": 99.3
+  },
+  "results": [
+    {
+      "seed": 0,
+      "profit": 1946170,
+      "profitPercent": 38.9234,
+      "bets": 19864,
+      "gamesPlayed": 20000,
+      "winStreak": 12,
+      "loseStreak": 22,
+      "balanceATH": 7076870,
+      "balanceATL": 3627530,
+      "profitATH": 2076870,
+      "profitATL": -1372470,
+      "finalBalance": 6946170
+    }
+  ]
+}

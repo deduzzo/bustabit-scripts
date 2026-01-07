@@ -1,0 +1,8337 @@
+{
+  "filter": "Pandurangavithala",
+  "scrapedAt": "2026-01-06T21:58:08.890Z",
+  "config": {
+    "startGameId": 12637715,
+    "endGameId": 12636716,
+    "numGames": 1000,
+    "gamesFound": 1000
+  },
+  "games": [
+    {
+      "gameId": 12637715,
+      "bust": 1.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637714,
+      "bust": 1.6,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637713,
+      "bust": 4.41,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637712,
+      "bust": 2.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637711,
+      "bust": 2.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637710,
+      "bust": 2.22,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637709,
+      "bust": 3.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637708,
+      "bust": 1.5,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637707,
+      "bust": 1.96,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637706,
+      "bust": 7.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637705,
+      "bust": 1.38,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637704,
+      "bust": 1.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637703,
+      "bust": 68.56,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.35,
+      "profit": 198874.95,
+      "won": true
+    },
+    {
+      "gameId": 12637702,
+      "bust": 72.51,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 23.61,
+      "profit": 336821.17,
+      "won": true
+    },
+    {
+      "gameId": 12637701,
+      "bust": 1.35,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637700,
+      "bust": 185.04,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 13.09,
+      "profit": 180104.73,
+      "won": true
+    },
+    {
+      "gameId": 12637699,
+      "bust": 6.66,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637698,
+      "bust": 1.92,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637697,
+      "bust": 2.82,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637696,
+      "bust": 1.2,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637695,
+      "bust": 26.76,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 12.98,
+      "profit": 178466.06,
+      "won": true
+    },
+    {
+      "gameId": 12637694,
+      "bust": 2.29,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637693,
+      "bust": 1.9,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637692,
+      "bust": 8.37,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637691,
+      "bust": 16.83,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 16,
+      "profit": 223455,
+      "won": true
+    },
+    {
+      "gameId": 12637690,
+      "bust": 3.36,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637689,
+      "bust": 1.22,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637688,
+      "bust": 1.1,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637687,
+      "bust": 2.93,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637686,
+      "bust": 1.23,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637685,
+      "bust": 1.57,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637684,
+      "bust": 1.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637683,
+      "bust": 3.71,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637682,
+      "bust": 3.64,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637681,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637680,
+      "bust": 2.66,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637679,
+      "bust": 2.29,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637678,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637677,
+      "bust": 1.27,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637676,
+      "bust": 1.48,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637675,
+      "bust": 1.67,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637674,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637673,
+      "bust": 1.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637671,
+      "bust": 4.44,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637670,
+      "bust": 1.89,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637669,
+      "bust": 147.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 11.58,
+      "profit": 157610.26,
+      "won": true
+    },
+    {
+      "gameId": 12637668,
+      "bust": 14.51,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 12.13,
+      "profit": 165803.61,
+      "won": true
+    },
+    {
+      "gameId": 12637667,
+      "bust": 3.98,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637666,
+      "bust": 1.45,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637665,
+      "bust": 1.14,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637664,
+      "bust": 3.23,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637663,
+      "bust": 1.75,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637662,
+      "bust": 387.57,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 12.56,
+      "profit": 172209.32,
+      "won": true
+    },
+    {
+      "gameId": 12637661,
+      "bust": 1.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637660,
+      "bust": 1.82,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637659,
+      "bust": 2.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637658,
+      "bust": 2.9,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637657,
+      "bust": 7.41,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637656,
+      "bust": 1.59,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637655,
+      "bust": 13.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 12.62,
+      "profit": 173103.14,
+      "won": true
+    },
+    {
+      "gameId": 12637654,
+      "bust": 2.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637653,
+      "bust": 3.07,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637652,
+      "bust": 1.9,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637651,
+      "bust": 3.92,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637649,
+      "bust": 3.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637648,
+      "bust": 1.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637647,
+      "bust": 5.62,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637646,
+      "bust": 5.2,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637645,
+      "bust": 3.43,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637644,
+      "bust": 3.27,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637643,
+      "bust": 43.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 11.78,
+      "profit": 160589.66,
+      "won": true
+    },
+    {
+      "gameId": 12637642,
+      "bust": 3.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637641,
+      "bust": 1.82,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637640,
+      "bust": 2.48,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637639,
+      "bust": 1.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637638,
+      "bust": 6.35,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637637,
+      "bust": 3.07,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637636,
+      "bust": 4.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637635,
+      "bust": 1.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637634,
+      "bust": 29.53,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 1.75,
+      "profit": 11172.75,
+      "won": true
+    },
+    {
+      "gameId": 12637633,
+      "bust": 7.71,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 1.75,
+      "profit": 11172.75,
+      "won": true
+    },
+    {
+      "gameId": 12637632,
+      "bust": 1.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637631,
+      "bust": 2.29,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637630,
+      "bust": 1.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637629,
+      "bust": 1.41,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637628,
+      "bust": 2.59,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637627,
+      "bust": 1.93,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637626,
+      "bust": 10.67,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637625,
+      "bust": 1.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637624,
+      "bust": 1.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637623,
+      "bust": 1.38,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637622,
+      "bust": 2.56,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637621,
+      "bust": 3.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637620,
+      "bust": 1.27,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637619,
+      "bust": 1.96,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637618,
+      "bust": 1.48,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637617,
+      "bust": 6.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637616,
+      "bust": 1.7,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637615,
+      "bust": 19.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 1.85,
+      "profit": 12662.45,
+      "won": true
+    },
+    {
+      "gameId": 12637614,
+      "bust": 2.35,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637613,
+      "bust": 3.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637612,
+      "bust": 3.47,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637611,
+      "bust": 1.28,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637610,
+      "bust": 1.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637609,
+      "bust": 2.96,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637608,
+      "bust": 1.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637607,
+      "bust": 1.21,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637606,
+      "bust": 4.38,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637605,
+      "bust": 3.28,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637588,
+      "bust": 1.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637587,
+      "bust": 1.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637586,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637585,
+      "bust": 1.46,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637584,
+      "bust": 6.91,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637583,
+      "bust": 1.19,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637582,
+      "bust": 2.14,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637580,
+      "bust": 1.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637579,
+      "bust": 1.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637578,
+      "bust": 1.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637577,
+      "bust": 2.39,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637576,
+      "bust": 1.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637575,
+      "bust": 1.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637574,
+      "bust": 1.82,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637573,
+      "bust": 1.39,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637572,
+      "bust": 1.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637570,
+      "bust": 1.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637569,
+      "bust": 1.76,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637568,
+      "bust": 1.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637567,
+      "bust": 12.18,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637566,
+      "bust": 1.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637565,
+      "bust": 3.96,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637564,
+      "bust": 4.53,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637563,
+      "bust": 1.64,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637562,
+      "bust": 2.94,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637561,
+      "bust": 1.48,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637560,
+      "bust": 2.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637559,
+      "bust": 1.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637558,
+      "bust": 1.61,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637557,
+      "bust": 2.95,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637556,
+      "bust": 3.37,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637555,
+      "bust": 5.75,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637554,
+      "bust": 1.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637553,
+      "bust": 1.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637552,
+      "bust": 3.7,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637551,
+      "bust": 4.41,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637550,
+      "bust": 4.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637549,
+      "bust": 2.94,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637547,
+      "bust": 2.07,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637546,
+      "bust": 2.54,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637545,
+      "bust": 1.43,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637544,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637543,
+      "bust": 2.21,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637542,
+      "bust": 2.69,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637541,
+      "bust": 6.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637537,
+      "bust": 34.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.64,
+      "profit": 203195.08,
+      "won": true
+    },
+    {
+      "gameId": 12637536,
+      "bust": 1.04,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637535,
+      "bust": 21.73,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 17.66,
+      "profit": 248184.02,
+      "won": true
+    },
+    {
+      "gameId": 12637534,
+      "bust": 1.78,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637533,
+      "bust": 21.99,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 13.42,
+      "profit": 185020.74,
+      "won": true
+    },
+    {
+      "gameId": 12637532,
+      "bust": 1.74,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637531,
+      "bust": 2.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637530,
+      "bust": 1.68,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637529,
+      "bust": 3.28,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637528,
+      "bust": 1.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637527,
+      "bust": 20.87,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.95,
+      "profit": 207813.15,
+      "won": true
+    },
+    {
+      "gameId": 12637526,
+      "bust": 1.4,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637525,
+      "bust": 1.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637523,
+      "bust": 1.25,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637522,
+      "bust": 1.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637521,
+      "bust": 3.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637520,
+      "bust": 1.99,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637519,
+      "bust": 4.04,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637517,
+      "bust": 1.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637516,
+      "bust": 1.41,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637515,
+      "bust": 1.65,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637514,
+      "bust": 1.4,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637512,
+      "bust": 2.99,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637510,
+      "bust": 14.78,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 13.41,
+      "profit": 184871.77,
+      "won": true
+    },
+    {
+      "gameId": 12637509,
+      "bust": 1.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637508,
+      "bust": 5.27,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637507,
+      "bust": 1.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637503,
+      "bust": 1.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637502,
+      "bust": 1.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637501,
+      "bust": 1.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637500,
+      "bust": 6.59,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637499,
+      "bust": 3.48,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637498,
+      "bust": 1.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637497,
+      "bust": 1.33,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637496,
+      "bust": 2.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637495,
+      "bust": 1.53,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637494,
+      "bust": 14.41,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 13.99,
+      "profit": 193512.03,
+      "won": true
+    },
+    {
+      "gameId": 12637493,
+      "bust": 1.33,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637492,
+      "bust": 30.22,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 12.38,
+      "profit": 169527.86,
+      "won": true
+    },
+    {
+      "gameId": 12637491,
+      "bust": 2.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637490,
+      "bust": 15.48,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637489,
+      "bust": 3.36,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637488,
+      "bust": 2.73,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637487,
+      "bust": 1.07,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637486,
+      "bust": 1.37,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637485,
+      "bust": 9.82,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637484,
+      "bust": 3.96,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637483,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637482,
+      "bust": 5.84,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637481,
+      "bust": 3.93,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637480,
+      "bust": 1.67,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637479,
+      "bust": 1.06,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637478,
+      "bust": 2.77,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637477,
+      "bust": 6.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637476,
+      "bust": 2.58,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637475,
+      "bust": 5.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637474,
+      "bust": 3.59,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637473,
+      "bust": 2.79,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637472,
+      "bust": 1.78,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637471,
+      "bust": 2.1,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637470,
+      "bust": 3.04,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637469,
+      "bust": 6.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637468,
+      "bust": 5.65,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637467,
+      "bust": 1.91,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637466,
+      "bust": 21.81,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 13.97,
+      "profit": 193214.09,
+      "won": true
+    },
+    {
+      "gameId": 12637465,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637464,
+      "bust": 1.98,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637463,
+      "bust": 2.92,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637462,
+      "bust": 1.06,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637461,
+      "bust": 1.07,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637460,
+      "bust": 1.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637459,
+      "bust": 1.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637458,
+      "bust": 3.45,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637457,
+      "bust": 150.59,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 17.2,
+      "profit": 241331.4,
+      "won": true
+    },
+    {
+      "gameId": 12637456,
+      "bust": 34.89,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 11.98,
+      "profit": 163569.06,
+      "won": true
+    },
+    {
+      "gameId": 12637455,
+      "bust": 1.52,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637454,
+      "bust": 1.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637453,
+      "bust": 1.35,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637452,
+      "bust": 1.28,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637451,
+      "bust": 16.85,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637450,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.29,
+      "profit": 197981.13,
+      "won": true
+    },
+    {
+      "gameId": 12637449,
+      "bust": 2.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637448,
+      "bust": 78.68,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.29,
+      "profit": 197981.13,
+      "won": true
+    },
+    {
+      "gameId": 12637446,
+      "bust": 8.39,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637445,
+      "bust": 7.72,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637444,
+      "bust": 8.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637443,
+      "bust": 6.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637442,
+      "bust": 1.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637441,
+      "bust": 2.18,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637440,
+      "bust": 4.19,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637439,
+      "bust": 1.72,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637436,
+      "bust": 1.64,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637435,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637434,
+      "bust": 1.45,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637433,
+      "bust": 1.46,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637432,
+      "bust": 3.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637431,
+      "bust": 1.29,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637430,
+      "bust": 1.69,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637429,
+      "bust": 2.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637428,
+      "bust": 15.82,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637427,
+      "bust": 1.06,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637426,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637425,
+      "bust": 1.07,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637424,
+      "bust": 1.84,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637423,
+      "bust": 2.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637422,
+      "bust": 1.41,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637421,
+      "bust": 1.43,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637420,
+      "bust": 1.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637419,
+      "bust": 3.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637418,
+      "bust": 1.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637417,
+      "bust": 1.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637416,
+      "bust": 24.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.03,
+      "profit": 194107.91,
+      "won": true
+    },
+    {
+      "gameId": 12637415,
+      "bust": 1.5,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637414,
+      "bust": 7.84,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 7.6,
+      "profit": 98320.2,
+      "won": true
+    },
+    {
+      "gameId": 12637413,
+      "bust": 6.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637412,
+      "bust": 10.73,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637411,
+      "bust": 1.61,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637410,
+      "bust": 2.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637409,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637408,
+      "bust": 3.87,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637407,
+      "bust": 3.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637406,
+      "bust": 1.68,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637405,
+      "bust": 17.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 15.01,
+      "profit": 208706.97,
+      "won": true
+    },
+    {
+      "gameId": 12637404,
+      "bust": 1.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637403,
+      "bust": 2.21,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637402,
+      "bust": 7.67,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637401,
+      "bust": 59.5,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 17.63,
+      "profit": 247737.11,
+      "won": true
+    },
+    {
+      "gameId": 12637400,
+      "bust": 2.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637399,
+      "bust": 7.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637398,
+      "bust": 3.48,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637397,
+      "bust": 5.41,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637396,
+      "bust": 151.39,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 19.93,
+      "profit": 282000.21,
+      "won": true
+    },
+    {
+      "gameId": 12637395,
+      "bust": 1.37,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637394,
+      "bust": 1.9,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637393,
+      "bust": 2.91,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637392,
+      "bust": 2.48,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637391,
+      "bust": 1.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637390,
+      "bust": 1.63,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637389,
+      "bust": 1.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637388,
+      "bust": 1.29,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637387,
+      "bust": 23.68,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 17.1,
+      "profit": 239841.7,
+      "won": true
+    },
+    {
+      "gameId": 12637386,
+      "bust": 1.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637385,
+      "bust": 1.4,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637384,
+      "bust": 2.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637383,
+      "bust": 1.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637382,
+      "bust": 8.46,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637381,
+      "bust": 5.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637380,
+      "bust": 3.18,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637379,
+      "bust": 18.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 15.17,
+      "profit": 211090.49,
+      "won": true
+    },
+    {
+      "gameId": 12637378,
+      "bust": 3.25,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637377,
+      "bust": 2.56,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637376,
+      "bust": 1.38,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637375,
+      "bust": 2.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637374,
+      "bust": 1.18,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637373,
+      "bust": 13.18,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 6.53,
+      "profit": 82380.41,
+      "won": true
+    },
+    {
+      "gameId": 12637372,
+      "bust": 8.69,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637371,
+      "bust": 1.5,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637370,
+      "bust": 2.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637369,
+      "bust": 1.6,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637368,
+      "bust": 3.27,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637367,
+      "bust": 1.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637366,
+      "bust": 1.62,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637365,
+      "bust": 1.2,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637364,
+      "bust": 1.55,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637363,
+      "bust": 1.22,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637362,
+      "bust": 13.5,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 7.19,
+      "profit": 92212.43,
+      "won": true
+    },
+    {
+      "gameId": 12637361,
+      "bust": 11.43,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637360,
+      "bust": 2.36,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637359,
+      "bust": 2.82,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637358,
+      "bust": 2.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637357,
+      "bust": 66.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 18.01,
+      "profit": 253397.97,
+      "won": true
+    },
+    {
+      "gameId": 12637356,
+      "bust": 1.8,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637355,
+      "bust": 2.76,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637354,
+      "bust": 1.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637353,
+      "bust": 1.85,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637352,
+      "bust": 1.5,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637351,
+      "bust": 1.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637350,
+      "bust": 2.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637348,
+      "bust": 2.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637347,
+      "bust": 3.07,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637346,
+      "bust": 1.56,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637345,
+      "bust": 5.57,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637344,
+      "bust": 1.83,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637343,
+      "bust": 14.56,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637342,
+      "bust": 1.36,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637341,
+      "bust": 1.56,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637340,
+      "bust": 7.18,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637339,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.98,
+      "profit": 208260.06,
+      "won": true
+    },
+    {
+      "gameId": 12637338,
+      "bust": 1.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637337,
+      "bust": 2.76,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637336,
+      "bust": 1.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637335,
+      "bust": 2.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637334,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637333,
+      "bust": 1.21,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637332,
+      "bust": 1.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637331,
+      "bust": 5.98,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637330,
+      "bust": 1.86,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637329,
+      "bust": 11.67,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637328,
+      "bust": 1.47,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637327,
+      "bust": 1.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637326,
+      "bust": 4.75,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637325,
+      "bust": 2.58,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637324,
+      "bust": 2.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637323,
+      "bust": 1.21,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637322,
+      "bust": 19.07,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 15.32,
+      "profit": 213325.04,
+      "won": true
+    },
+    {
+      "gameId": 12637320,
+      "bust": 1.93,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637319,
+      "bust": 1.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637318,
+      "bust": 6.63,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637317,
+      "bust": 2.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637316,
+      "bust": 4.14,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637315,
+      "bust": 4.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637314,
+      "bust": 2.77,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637313,
+      "bust": 2.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637312,
+      "bust": 8.44,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637311,
+      "bust": 1.21,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637310,
+      "bust": 2.54,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637309,
+      "bust": 1.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637308,
+      "bust": 33.6,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.17,
+      "profit": 196193.49,
+      "won": true
+    },
+    {
+      "gameId": 12637307,
+      "bust": 6.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637306,
+      "bust": 85.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 16.61,
+      "profit": 232542.17,
+      "won": true
+    },
+    {
+      "gameId": 12637305,
+      "bust": 49.52,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 9.83,
+      "profit": 131540.51,
+      "won": true
+    },
+    {
+      "gameId": 12637304,
+      "bust": 12.33,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637303,
+      "bust": 5.76,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637302,
+      "bust": 2.06,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637301,
+      "bust": 1.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637299,
+      "bust": 1.53,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637297,
+      "bust": 3.2,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637296,
+      "bust": 2.1,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637295,
+      "bust": 1.88,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637294,
+      "bust": 1.25,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637293,
+      "bust": 2.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637290,
+      "bust": 1.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637289,
+      "bust": 1.1,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637288,
+      "bust": 3.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637287,
+      "bust": 2.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637286,
+      "bust": 2.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637285,
+      "bust": 3.84,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637284,
+      "bust": 17.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 6.33,
+      "profit": 79401.01,
+      "won": true
+    },
+    {
+      "gameId": 12637283,
+      "bust": 1.56,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637282,
+      "bust": 1.4,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637281,
+      "bust": 2.29,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637280,
+      "bust": 11.95,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637279,
+      "bust": 1.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637278,
+      "bust": 1.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637277,
+      "bust": 2.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637276,
+      "bust": 2.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637275,
+      "bust": 1.44,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637274,
+      "bust": 1.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637273,
+      "bust": 4.95,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637272,
+      "bust": 5.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637271,
+      "bust": 6.96,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637268,
+      "bust": 1.35,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637267,
+      "bust": 3.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637266,
+      "bust": 2.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637265,
+      "bust": 1.1,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637264,
+      "bust": 1.29,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637263,
+      "bust": 1.07,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637262,
+      "bust": 12.75,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637260,
+      "bust": 2.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637259,
+      "bust": 1.76,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637258,
+      "bust": 1.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637257,
+      "bust": 1.06,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637256,
+      "bust": 1.61,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637255,
+      "bust": 4.23,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637254,
+      "bust": 1.25,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637253,
+      "bust": 1.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637252,
+      "bust": 5.53,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637251,
+      "bust": 3.9,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637250,
+      "bust": 11.71,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637249,
+      "bust": 1.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637248,
+      "bust": 1.33,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637247,
+      "bust": 1.47,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637246,
+      "bust": 1.07,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637245,
+      "bust": 7.51,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637244,
+      "bust": 2.14,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637243,
+      "bust": 2.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637242,
+      "bust": 1.57,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637241,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 15.75,
+      "profit": 219730.75,
+      "won": true
+    },
+    {
+      "gameId": 12637240,
+      "bust": 1.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637239,
+      "bust": 1.77,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637238,
+      "bust": 1.43,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637237,
+      "bust": 5.25,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637236,
+      "bust": 12.93,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637235,
+      "bust": 1.56,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637234,
+      "bust": 2.36,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637233,
+      "bust": 1.29,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637232,
+      "bust": 1.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637231,
+      "bust": 1.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637230,
+      "bust": 1.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637229,
+      "bust": 5.96,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637228,
+      "bust": 6.94,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637227,
+      "bust": 2.04,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637226,
+      "bust": 3.35,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637225,
+      "bust": 5.69,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637224,
+      "bust": 1.81,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637223,
+      "bust": 6.67,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637222,
+      "bust": 1.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637221,
+      "bust": 1.54,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637220,
+      "bust": 1.8,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637219,
+      "bust": 3.87,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637218,
+      "bust": 1.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637217,
+      "bust": 2.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637216,
+      "bust": 1.2,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637215,
+      "bust": 1.76,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637214,
+      "bust": 30.57,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 15.38,
+      "profit": 214218.86,
+      "won": true
+    },
+    {
+      "gameId": 12637213,
+      "bust": 18.37,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 17.89,
+      "profit": 251610.33,
+      "won": true
+    },
+    {
+      "gameId": 12637212,
+      "bust": 1.78,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637211,
+      "bust": 1.67,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637210,
+      "bust": 4.67,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637209,
+      "bust": 1.19,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637208,
+      "bust": 4.72,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637207,
+      "bust": 2.72,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637206,
+      "bust": 1.27,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637205,
+      "bust": 1.19,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637204,
+      "bust": 1.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637203,
+      "bust": 1.2,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637202,
+      "bust": 1.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637201,
+      "bust": 8.79,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637200,
+      "bust": 1.88,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637199,
+      "bust": 1.93,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637198,
+      "bust": 1.82,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637197,
+      "bust": 1.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637196,
+      "bust": 3.48,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637195,
+      "bust": 1.92,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637194,
+      "bust": 2.4,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637192,
+      "bust": 1.45,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637188,
+      "bust": 1.04,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637187,
+      "bust": 1.83,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637186,
+      "bust": 1.7,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637185,
+      "bust": 56.9,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 19.42,
+      "profit": 274402.74,
+      "won": true
+    },
+    {
+      "gameId": 12637184,
+      "bust": 44.65,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 12.89,
+      "profit": 177125.33,
+      "won": true
+    },
+    {
+      "gameId": 12637183,
+      "bust": 14.7,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637182,
+      "bust": 1.33,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637181,
+      "bust": 6.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637180,
+      "bust": 4.87,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637179,
+      "bust": 1.55,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637178,
+      "bust": 2.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637177,
+      "bust": 2.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637176,
+      "bust": 5.62,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637175,
+      "bust": 33.27,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.63,
+      "profit": 203046.11,
+      "won": true
+    },
+    {
+      "gameId": 12637174,
+      "bust": 1.61,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637173,
+      "bust": 168.77,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 3.63,
+      "profit": 39179.11,
+      "won": true
+    },
+    {
+      "gameId": 12637172,
+      "bust": 12.23,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 11.84,
+      "profit": 161483.48,
+      "won": true
+    },
+    {
+      "gameId": 12637171,
+      "bust": 1.92,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637170,
+      "bust": 17.95,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 15.1,
+      "profit": 210047.7,
+      "won": true
+    },
+    {
+      "gameId": 12637169,
+      "bust": 17.38,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 12.61,
+      "profit": 172954.17,
+      "won": true
+    },
+    {
+      "gameId": 12637168,
+      "bust": 5.46,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637167,
+      "bust": 14.82,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637166,
+      "bust": 1.56,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637165,
+      "bust": 2.36,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637164,
+      "bust": 7.69,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637163,
+      "bust": 1.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637162,
+      "bust": 4.37,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637161,
+      "bust": 8.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637160,
+      "bust": 3.6,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637159,
+      "bust": 11.49,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 9.83,
+      "profit": 131540.51,
+      "won": true
+    },
+    {
+      "gameId": 12637158,
+      "bust": 1.76,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637157,
+      "bust": 2.23,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637156,
+      "bust": 11.37,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 10.86,
+      "profit": 146884.42,
+      "won": true
+    },
+    {
+      "gameId": 12637155,
+      "bust": 2.72,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637154,
+      "bust": 3.06,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637153,
+      "bust": 1.21,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637152,
+      "bust": 12.64,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637151,
+      "bust": 1.92,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637150,
+      "bust": 1.72,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637149,
+      "bust": 2.62,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637148,
+      "bust": 3.75,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637147,
+      "bust": 1.62,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637145,
+      "bust": 1.04,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637144,
+      "bust": 1.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637143,
+      "bust": 3.33,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637142,
+      "bust": 1.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637141,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637140,
+      "bust": 1.58,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637139,
+      "bust": 1.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637138,
+      "bust": 42.38,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 19.33,
+      "profit": 273062.01,
+      "won": true
+    },
+    {
+      "gameId": 12637137,
+      "bust": 1.58,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637136,
+      "bust": 1.61,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637135,
+      "bust": 1.93,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637134,
+      "bust": 2.18,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637133,
+      "bust": 1.5,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637132,
+      "bust": 40.6,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 16.2,
+      "profit": 226434.4,
+      "won": true
+    },
+    {
+      "gameId": 12637131,
+      "bust": 4.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637130,
+      "bust": 1.38,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637129,
+      "bust": 2.87,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637128,
+      "bust": 1.93,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637127,
+      "bust": 1.86,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637126,
+      "bust": 1.51,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637125,
+      "bust": 1.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637124,
+      "bust": 1.78,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637123,
+      "bust": 2.49,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637122,
+      "bust": 5.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637121,
+      "bust": 1.63,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637120,
+      "bust": 28.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 16.91,
+      "profit": 237011.27,
+      "won": true
+    },
+    {
+      "gameId": 12637119,
+      "bust": 5.81,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637118,
+      "bust": 1.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637117,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637116,
+      "bust": 26.5,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.38,
+      "profit": 199321.86,
+      "won": true
+    },
+    {
+      "gameId": 12637115,
+      "bust": 2.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637114,
+      "bust": 1.37,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637113,
+      "bust": 53.49,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.05,
+      "profit": 194405.85,
+      "won": true
+    },
+    {
+      "gameId": 12637112,
+      "bust": 1.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637111,
+      "bust": 1.22,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637110,
+      "bust": 1.19,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637109,
+      "bust": 36.19,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.85,
+      "profit": 206323.45,
+      "won": true
+    },
+    {
+      "gameId": 12637108,
+      "bust": 3.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637107,
+      "bust": 1.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637106,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637105,
+      "bust": 2.61,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637104,
+      "bust": 1.66,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637103,
+      "bust": 2.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637102,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637101,
+      "bust": 36.94,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.58,
+      "profit": 202301.26,
+      "won": true
+    },
+    {
+      "gameId": 12637100,
+      "bust": 1.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637099,
+      "bust": 1.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637098,
+      "bust": 2.38,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637097,
+      "bust": 6.99,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637096,
+      "bust": 3.43,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637095,
+      "bust": 1.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637094,
+      "bust": 3.59,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637093,
+      "bust": 4.87,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637092,
+      "bust": 5.68,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637091,
+      "bust": 10.18,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637090,
+      "bust": 1.99,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637089,
+      "bust": 2.53,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637088,
+      "bust": 1.06,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637087,
+      "bust": 2.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637086,
+      "bust": 1.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637085,
+      "bust": 3.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637084,
+      "bust": 7.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637083,
+      "bust": 1.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637082,
+      "bust": 1.19,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637081,
+      "bust": 3.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637080,
+      "bust": 3.29,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637079,
+      "bust": 24.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 16.3,
+      "profit": 227924.1,
+      "won": true
+    },
+    {
+      "gameId": 12637078,
+      "bust": 1.39,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637077,
+      "bust": 1.14,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637076,
+      "bust": 5.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637075,
+      "bust": 1.61,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637074,
+      "bust": 1.27,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637073,
+      "bust": 1.56,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637072,
+      "bust": 1.97,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637071,
+      "bust": 2.66,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637070,
+      "bust": 1.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637069,
+      "bust": 3.36,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637068,
+      "bust": 3.27,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637067,
+      "bust": 2.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637066,
+      "bust": 343.1,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 16.06,
+      "profit": 224348.82,
+      "won": true
+    },
+    {
+      "gameId": 12637065,
+      "bust": 1.64,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637064,
+      "bust": 1.22,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637063,
+      "bust": 2.64,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637062,
+      "bust": 1.95,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637061,
+      "bust": 6.25,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637060,
+      "bust": 31.83,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 17.73,
+      "profit": 249226.81,
+      "won": true
+    },
+    {
+      "gameId": 12637059,
+      "bust": 2.99,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637058,
+      "bust": 2.4,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637057,
+      "bust": 1.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637056,
+      "bust": 3.35,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637055,
+      "bust": 1.5,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637054,
+      "bust": 5.47,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637053,
+      "bust": 15.1,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.68,
+      "profit": 203790.96,
+      "won": true
+    },
+    {
+      "gameId": 12637052,
+      "bust": 1.47,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637051,
+      "bust": 8.62,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637050,
+      "bust": 2.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637049,
+      "bust": 4.21,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637048,
+      "bust": 3.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637047,
+      "bust": 5.86,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637046,
+      "bust": 17.88,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 13.88,
+      "profit": 191873.36,
+      "won": true
+    },
+    {
+      "gameId": 12637045,
+      "bust": 2.14,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637044,
+      "bust": 1.86,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637043,
+      "bust": 1.71,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637042,
+      "bust": 1.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637041,
+      "bust": 6.45,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637040,
+      "bust": 7.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637039,
+      "bust": 1.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637038,
+      "bust": 4.04,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637037,
+      "bust": 1.35,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637036,
+      "bust": 2.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637035,
+      "bust": 23.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 6,
+      "profit": 74485,
+      "won": true
+    },
+    {
+      "gameId": 12637034,
+      "bust": 1.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637033,
+      "bust": 1.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637032,
+      "bust": 1.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637031,
+      "bust": 1.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637030,
+      "bust": 9.14,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637029,
+      "bust": 2.62,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637028,
+      "bust": 1.45,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637027,
+      "bust": 1.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637026,
+      "bust": 1.38,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637025,
+      "bust": 5.82,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637024,
+      "bust": 2.6,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637023,
+      "bust": 3.47,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637022,
+      "bust": 1.06,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637021,
+      "bust": 2.35,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637020,
+      "bust": 2.79,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637019,
+      "bust": 2.76,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637018,
+      "bust": 11.69,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637017,
+      "bust": 9.19,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637016,
+      "bust": 27.83,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 13.55,
+      "profit": 186957.35,
+      "won": true
+    },
+    {
+      "gameId": 12637015,
+      "bust": 1.46,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637014,
+      "bust": 2.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637013,
+      "bust": 11.2,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637012,
+      "bust": 1.58,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637011,
+      "bust": 1.88,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637010,
+      "bust": 1.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637009,
+      "bust": 81.87,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 15.15,
+      "profit": 210792.55,
+      "won": true
+    },
+    {
+      "gameId": 12637008,
+      "bust": 2.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637007,
+      "bust": 2.64,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637006,
+      "bust": 6.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637005,
+      "bust": 1.19,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637004,
+      "bust": 2.61,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637003,
+      "bust": 5.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637002,
+      "bust": 1.4,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637001,
+      "bust": 4.1,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12637000,
+      "bust": 1.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636999,
+      "bust": 12.73,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636998,
+      "bust": 7.44,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636997,
+      "bust": 4.2,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636996,
+      "bust": 2.18,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636995,
+      "bust": 2.95,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636994,
+      "bust": 1.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636993,
+      "bust": 1.67,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636992,
+      "bust": 5.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636991,
+      "bust": 1.56,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636990,
+      "bust": 1.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636989,
+      "bust": 2.37,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636988,
+      "bust": 4.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636987,
+      "bust": 10.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636986,
+      "bust": 1.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636985,
+      "bust": 5.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636984,
+      "bust": 34.47,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 13.93,
+      "profit": 192618.21,
+      "won": true
+    },
+    {
+      "gameId": 12636983,
+      "bust": 17.85,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636982,
+      "bust": 1.47,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636981,
+      "bust": 672.92,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.74,
+      "profit": 204684.78,
+      "won": true
+    },
+    {
+      "gameId": 12636980,
+      "bust": 1.2,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636979,
+      "bust": 1.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636978,
+      "bust": 2.18,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636977,
+      "bust": 1.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636976,
+      "bust": 4.84,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636975,
+      "bust": 2.39,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636974,
+      "bust": 7.81,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636973,
+      "bust": 3.36,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636972,
+      "bust": 2.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636971,
+      "bust": 1.18,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636970,
+      "bust": 4.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636969,
+      "bust": 18.41,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 15.15,
+      "profit": 210792.55,
+      "won": true
+    },
+    {
+      "gameId": 12636968,
+      "bust": 1.58,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636967,
+      "bust": 1.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636966,
+      "bust": 2.89,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636965,
+      "bust": 17.47,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 15.49,
+      "profit": 215857.53,
+      "won": true
+    },
+    {
+      "gameId": 12636964,
+      "bust": 1.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636963,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636962,
+      "bust": 1.21,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636961,
+      "bust": 23.93,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 12.18,
+      "profit": 166548.46,
+      "won": true
+    },
+    {
+      "gameId": 12636960,
+      "bust": 3.51,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636959,
+      "bust": 19.63,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.23,
+      "profit": 197087.31,
+      "won": true
+    },
+    {
+      "gameId": 12636958,
+      "bust": 1.14,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636957,
+      "bust": 33.71,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 1.99,
+      "profit": 14748.03,
+      "won": true
+    },
+    {
+      "gameId": 12636954,
+      "bust": 1.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636953,
+      "bust": 1.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636952,
+      "bust": 1.46,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636949,
+      "bust": 1.33,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636947,
+      "bust": 1.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636946,
+      "bust": 1.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636945,
+      "bust": 1.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636944,
+      "bust": 6.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636943,
+      "bust": 1.47,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636942,
+      "bust": 2.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636940,
+      "bust": 1.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636939,
+      "bust": 1.4,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636938,
+      "bust": 1.33,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636937,
+      "bust": 3.23,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636936,
+      "bust": 1.6,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636935,
+      "bust": 2.21,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636934,
+      "bust": 3.9,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636933,
+      "bust": 2.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636932,
+      "bust": 1.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636931,
+      "bust": 1.84,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636930,
+      "bust": 1.31,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636929,
+      "bust": 1.49,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636928,
+      "bust": 2.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636927,
+      "bust": 2.37,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636926,
+      "bust": 1.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636925,
+      "bust": 1.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636924,
+      "bust": 3.52,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636923,
+      "bust": 8.65,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636922,
+      "bust": 1.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636921,
+      "bust": 1.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636920,
+      "bust": 2.72,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636919,
+      "bust": 3.23,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636918,
+      "bust": 4.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636917,
+      "bust": 1.58,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636916,
+      "bust": 3.48,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636915,
+      "bust": 1.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636914,
+      "bust": 3.2,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636913,
+      "bust": 1.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636912,
+      "bust": 1.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636911,
+      "bust": 1.06,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636910,
+      "bust": 1.06,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636908,
+      "bust": 12.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636907,
+      "bust": 4.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636906,
+      "bust": 5.81,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636905,
+      "bust": 2.97,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636904,
+      "bust": 1.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636903,
+      "bust": 6.77,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636902,
+      "bust": 2.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636901,
+      "bust": 3.74,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636900,
+      "bust": 2.75,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636899,
+      "bust": 1.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636898,
+      "bust": 1.13,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636897,
+      "bust": 1.87,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636896,
+      "bust": 1.9,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636895,
+      "bust": 1.35,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636894,
+      "bust": 4.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636893,
+      "bust": 17.25,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636892,
+      "bust": 1.39,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636891,
+      "bust": 1.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636890,
+      "bust": 2.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636889,
+      "bust": 1.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636888,
+      "bust": 2.84,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636887,
+      "bust": 1.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636886,
+      "bust": 1.04,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636885,
+      "bust": 1.35,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636884,
+      "bust": 2.29,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636883,
+      "bust": 2.6,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636882,
+      "bust": 1.41,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636881,
+      "bust": 1.49,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636880,
+      "bust": 79.88,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 16.36,
+      "profit": 228817.92,
+      "won": true
+    },
+    {
+      "gameId": 12636879,
+      "bust": 1.99,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636878,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636877,
+      "bust": 2.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636876,
+      "bust": 1.62,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636875,
+      "bust": 2.2,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636874,
+      "bust": 1.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636873,
+      "bust": 1.73,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636872,
+      "bust": 8.73,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636871,
+      "bust": 1.24,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636870,
+      "bust": 1.19,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636869,
+      "bust": 3.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636868,
+      "bust": 1.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636867,
+      "bust": 4.79,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636866,
+      "bust": 2.67,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636865,
+      "bust": 1.33,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636864,
+      "bust": 3.59,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636863,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636862,
+      "bust": 4.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636861,
+      "bust": 1.36,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636860,
+      "bust": 8.85,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636859,
+      "bust": 1.29,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636858,
+      "bust": 1.27,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636857,
+      "bust": 17.83,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.94,
+      "profit": 207664.18,
+      "won": true
+    },
+    {
+      "gameId": 12636856,
+      "bust": 1.21,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636855,
+      "bust": 1.76,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636854,
+      "bust": 7.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636853,
+      "bust": 1.83,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636852,
+      "bust": 1.01,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636851,
+      "bust": 2.53,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636850,
+      "bust": 3.6,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636849,
+      "bust": 4.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636848,
+      "bust": 4.47,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636847,
+      "bust": 1.04,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636846,
+      "bust": 5.47,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636845,
+      "bust": 3.35,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636844,
+      "bust": 1.49,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636843,
+      "bust": 4.51,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636842,
+      "bust": 9.46,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636841,
+      "bust": 2.44,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636840,
+      "bust": 1.51,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636839,
+      "bust": 1.07,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636838,
+      "bust": 1.28,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636837,
+      "bust": 15.75,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 15.32,
+      "profit": 213325.04,
+      "won": true
+    },
+    {
+      "gameId": 12636836,
+      "bust": 1.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636835,
+      "bust": 1.04,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636834,
+      "bust": 23.2,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 16.97,
+      "profit": 237905.09,
+      "won": true
+    },
+    {
+      "gameId": 12636833,
+      "bust": 2.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636832,
+      "bust": 30.86,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 14.42,
+      "profit": 199917.74,
+      "won": true
+    },
+    {
+      "gameId": 12636831,
+      "bust": 5.19,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636830,
+      "bust": 2.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636829,
+      "bust": 1.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636828,
+      "bust": 2.97,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636827,
+      "bust": 1.78,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636826,
+      "bust": 5.99,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636825,
+      "bust": 5.6,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636824,
+      "bust": 1.58,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636823,
+      "bust": 2.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636822,
+      "bust": 2.74,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636821,
+      "bust": 15.07,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636820,
+      "bust": 8.29,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636819,
+      "bust": 1.49,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636818,
+      "bust": 1.06,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636817,
+      "bust": 9.89,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636816,
+      "bust": 1.19,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636815,
+      "bust": 1.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636814,
+      "bust": 1.69,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636813,
+      "bust": 1.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636812,
+      "bust": 1.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636811,
+      "bust": 1.48,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636810,
+      "bust": 1.46,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636809,
+      "bust": 4.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636808,
+      "bust": 1.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636807,
+      "bust": 1.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636806,
+      "bust": 3.54,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636805,
+      "bust": 1.46,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636804,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636803,
+      "bust": 1.44,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636802,
+      "bust": 8.12,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636801,
+      "bust": 1.06,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636800,
+      "bust": 1.08,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636799,
+      "bust": 1.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636798,
+      "bust": 6.65,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636797,
+      "bust": 1.34,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636796,
+      "bust": 1.3,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636795,
+      "bust": 2.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636794,
+      "bust": 11.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636793,
+      "bust": 5.43,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636792,
+      "bust": 6.84,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636791,
+      "bust": 6.25,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636790,
+      "bust": 2.11,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636789,
+      "bust": 1.48,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636788,
+      "bust": 1.65,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636787,
+      "bust": 1.23,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636786,
+      "bust": 10.58,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636785,
+      "bust": 8.38,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636784,
+      "bust": 1.05,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636783,
+      "bust": 1.9,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636782,
+      "bust": 1.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636781,
+      "bust": 593.25,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 21.89,
+      "profit": 311198.33,
+      "won": true
+    },
+    {
+      "gameId": 12636780,
+      "bust": 1.03,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636779,
+      "bust": 1.52,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636778,
+      "bust": 3.61,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636777,
+      "bust": null,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636776,
+      "bust": 2.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636775,
+      "bust": 31.55,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 22.64,
+      "profit": 322371.08,
+      "won": true
+    },
+    {
+      "gameId": 12636774,
+      "bust": 1.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636773,
+      "bust": 2.75,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636772,
+      "bust": 124.72,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 4.91,
+      "profit": 58247.27,
+      "won": true
+    },
+    {
+      "gameId": 12636771,
+      "bust": 2.09,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636770,
+      "bust": 1.65,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636769,
+      "bust": 1.15,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636768,
+      "bust": 1.4,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636767,
+      "bust": 2.16,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636766,
+      "bust": 1.38,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636765,
+      "bust": 3.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636764,
+      "bust": 1.26,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636763,
+      "bust": 1.49,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636762,
+      "bust": 2.95,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636761,
+      "bust": 3.37,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636760,
+      "bust": 1.64,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636759,
+      "bust": 1.36,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636757,
+      "bust": 1.83,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636756,
+      "bust": 2.28,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636753,
+      "bust": 1.18,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636752,
+      "bust": 11.77,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636751,
+      "bust": 26.41,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 13.73,
+      "profit": 189638.81,
+      "won": true
+    },
+    {
+      "gameId": 12636750,
+      "bust": 1.93,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636749,
+      "bust": 3.17,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636748,
+      "bust": 1.1,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636747,
+      "bust": 1.25,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636746,
+      "bust": 5.76,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636745,
+      "bust": 33.42,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": 12.51,
+      "profit": 171464.47,
+      "won": true
+    },
+    {
+      "gameId": 12636744,
+      "bust": 2.5,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636726,
+      "bust": 1.86,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636725,
+      "bust": 1.22,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636724,
+      "bust": 4.58,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636723,
+      "bust": 1.85,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636722,
+      "bust": 2.39,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636721,
+      "bust": 1.49,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636720,
+      "bust": 1.02,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636719,
+      "bust": 6.76,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636718,
+      "bust": 4.74,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636717,
+      "bust": 1.83,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    },
+    {
+      "gameId": 12636716,
+      "bust": 9.32,
+      "player": "Pandurangavithala",
+      "bet": 14897,
+      "cashedAt": null,
+      "profit": -14897,
+      "won": false
+    }
+  ]
+}

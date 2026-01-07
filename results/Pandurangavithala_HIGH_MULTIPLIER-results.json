@@ -1,0 +1,4024 @@
+{
+  "script": "Pandurangavithala_HIGH_MULTIPLIER",
+  "config": {
+    "numSeeds": 500,
+    "gamesPerSeed": 500,
+    "startingBalance": 100000000,
+    "baseHash": "357bba5cd16d7d9395a0aab681ceefb4415dc2d8a7529493c48e7b57d74a4ed8"
+  },
+  "summary": {
+    "avgProfit": -100,
+    "medianProfit": -100,
+    "stdDev": 0,
+    "sharpeRatio": 0,
+    "winRate": null,
+    "targetRate": null,
+    "minProfit": -100,
+    "maxProfit": -100,
+    "avgBets": null,
+    "avgGames": null,
+    "betEfficiency": null
+  },
+  "results": [
+    {
+      "seed": 0,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 1,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 2,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 3,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 4,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 5,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 6,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 7,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 8,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 9,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 10,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 11,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 12,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 13,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 14,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 15,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 16,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 17,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 18,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 19,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 20,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 21,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 22,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 23,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 24,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 25,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 26,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 27,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 28,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 29,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 30,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 31,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 32,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 33,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 34,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 35,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 36,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 37,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 38,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 39,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 40,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 41,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 42,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 43,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 44,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 45,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 46,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 47,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 48,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 49,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 50,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 51,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 52,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 53,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 54,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 55,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 56,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 57,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 58,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 59,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 60,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 61,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 62,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 63,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 64,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 65,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 66,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 67,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 68,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 69,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 70,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 71,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 72,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 73,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 74,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 75,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 76,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 77,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 78,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 79,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 80,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 81,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 82,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 83,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 84,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 85,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 86,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 87,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 88,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 89,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 90,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 91,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 92,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 93,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 94,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 95,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 96,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 97,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 98,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 99,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 100,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 101,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 102,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 103,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 104,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 105,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 106,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 107,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 108,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 109,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 110,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 111,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 112,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 113,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 114,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 115,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 116,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 117,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 118,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 119,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 120,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 121,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 122,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 123,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 124,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 125,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 126,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 127,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 128,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 129,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 130,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 131,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 132,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 133,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 134,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 135,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 136,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 137,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 138,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 139,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 140,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 141,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 142,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 143,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 144,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 145,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 146,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 147,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 148,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 149,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 150,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 151,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 152,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 153,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 154,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 155,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 156,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 157,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 158,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 159,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 160,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 161,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 162,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 163,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 164,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 165,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 166,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 167,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 168,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 169,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 170,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 171,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 172,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 173,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 174,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 175,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 176,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 177,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 178,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 179,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 180,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 181,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 182,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 183,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 184,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 185,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 186,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 187,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 188,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 189,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 190,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 191,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 192,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 193,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 194,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 195,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 196,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 197,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 198,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 199,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 200,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 201,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 202,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 203,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 204,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 205,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 206,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 207,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 208,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 209,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 210,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 211,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 212,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 213,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 214,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 215,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 216,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 217,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 218,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 219,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 220,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 221,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 222,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 223,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 224,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 225,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 226,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 227,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 228,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 229,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 230,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 231,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 232,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 233,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 234,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 235,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 236,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 237,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 238,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 239,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 240,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 241,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 242,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 243,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 244,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 245,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 246,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 247,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 248,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 249,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 250,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 251,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 252,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 253,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 254,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 255,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 256,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 257,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 258,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 259,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 260,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 261,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 262,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 263,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 264,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 265,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 266,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 267,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 268,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 269,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 270,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 271,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 272,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 273,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 274,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 275,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 276,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 277,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 278,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 279,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 280,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 281,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 282,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 283,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 284,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 285,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 286,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 287,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 288,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 289,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 290,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 291,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 292,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 293,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 294,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 295,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 296,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 297,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 298,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 299,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 300,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 301,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 302,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 303,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 304,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 305,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 306,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 307,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 308,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 309,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 310,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 311,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 312,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 313,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 314,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 315,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 316,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 317,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 318,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 319,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 320,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 321,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 322,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 323,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 324,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 325,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 326,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 327,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 328,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 329,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 330,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 331,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 332,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 333,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 334,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 335,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 336,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 337,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 338,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 339,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 340,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 341,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 342,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 343,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 344,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 345,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 346,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 347,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 348,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 349,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 350,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 351,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 352,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 353,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 354,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 355,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 356,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 357,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 358,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 359,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 360,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 361,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 362,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 363,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 364,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 365,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 366,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 367,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 368,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 369,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 370,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 371,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 372,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 373,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 374,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 375,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 376,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 377,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 378,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 379,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 380,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 381,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 382,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 383,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 384,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 385,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 386,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 387,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 388,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 389,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 390,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 391,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 392,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 393,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 394,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 395,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 396,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 397,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 398,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 399,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 400,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 401,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 402,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 403,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 404,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 405,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 406,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 407,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 408,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 409,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 410,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 411,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 412,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 413,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 414,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 415,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 416,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 417,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 418,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 419,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 420,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 421,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 422,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 423,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 424,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 425,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 426,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 427,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 428,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 429,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 430,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 431,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 432,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 433,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 434,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 435,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 436,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 437,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 438,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 439,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 440,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 441,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 442,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 443,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 444,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 445,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 446,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 447,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 448,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 449,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 450,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 451,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 452,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 453,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 454,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 455,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 456,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 457,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 458,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 459,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 460,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 461,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 462,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 463,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 464,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 465,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 466,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 467,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 468,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 469,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 470,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 471,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 472,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 473,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 474,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 475,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 476,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 477,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 478,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 479,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 480,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 481,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 482,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 483,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 484,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 485,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 486,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 487,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 488,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 489,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 490,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 491,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 492,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 493,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 494,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 495,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 496,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 497,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 498,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    },
+    {
+      "seed": 499,
+      "profit": -100000000,
+      "profitPercent": -100,
+      "bets": 0,
+      "gamesPlayed": 0,
+      "error": "game is not defined"
+    }
+  ]
+}
