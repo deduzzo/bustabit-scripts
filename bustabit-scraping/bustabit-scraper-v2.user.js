@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bustabit Game Data Scraper v2
 // @namespace    http://tampermonkey.net/
-// @version      2.0
+// @version      2.1
 // @description  Scrape game data from Bustabit - Control Panel Version
 // @author       Claude Code
 // @match        https://bustabit.com/game/*
@@ -9,6 +9,44 @@
 // @grant        none
 // @run-at       document-end
 // ==/UserScript==
+
+/*
+ * FEATURES:
+ * - Scrape up to 100,000 games
+ * - Filter by specific player
+ * - When filtering by player: collects ALL games (even when player didn't play)
+ *
+ * PLAYER DIDN'T PLAY DETECTION:
+ * When you filter by a specific player, the scraper includes ALL games in the output.
+ * To identify when a player DIDN'T play a game, check the JSON output:
+ *
+ * Player PLAYED:
+ * {
+ *   "gameId": 123456,
+ *   "bust": 2.45,
+ *   "player": "username",
+ *   "bet": 10000,           // ← has value
+ *   "cashedAt": 2.10,       // ← has value (or null if busted)
+ *   "profit": 11000,        // ← has value
+ *   "won": true             // ← has value
+ * }
+ *
+ * Player DIDN'T PLAY:
+ * {
+ *   "gameId": 123457,
+ *   "bust": 1.52,
+ *   "player": "username",
+ *   "bet": null,            // ← null = didn't play
+ *   "cashedAt": null,       // ← null = didn't play
+ *   "profit": null,         // ← null = didn't play
+ *   "won": null             // ← null = didn't play
+ * }
+ *
+ * This is CRITICAL for algorithm analysis because it shows:
+ * - When the player chose NOT to bet (skip pattern)
+ * - Real betting frequency (games played / total games)
+ * - Decision patterns based on previous busts
+ */
 
 (function() {
     'use strict';
@@ -18,7 +56,7 @@
     const gamesData = [];
     let CONFIG = {
         filterPlayer: '',
-        numGames: 10
+        numGames: 100
     };
 
     // Auto-cashout state
@@ -145,7 +183,7 @@
                     <div style="color: #aaa; font-size: 11px; margin-bottom: 4px;">Number of Games <span style="color: #555;">(double-click to edit)</span></div>
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <button id="games-minus" style="width: 32px; height: 32px; background: #333; border: 1px solid #555; border-radius: 6px; color: white; cursor: pointer; font-size: 18px;">−</button>
-                        <div id="games-value" style="flex: 1; text-align: center; background: #2a2a2a; padding: 6px; border-radius: 6px; font-weight: bold; color: #667eea; cursor: pointer; user-select: none;">10</div>
+                        <div id="games-value" style="flex: 1; text-align: center; background: #2a2a2a; padding: 6px; border-radius: 6px; font-weight: bold; color: #667eea; cursor: pointer; user-select: none;">100</div>
                         <button id="games-plus" style="width: 32px; height: 32px; background: #333; border: 1px solid #555; border-radius: 6px; color: white; cursor: pointer; font-size: 18px;">+</button>
                     </div>
                 </div>
@@ -254,7 +292,7 @@
 
         // Games controls - buttons
         document.getElementById('games-plus').onclick = () => {
-            CONFIG.numGames = Math.min(10000, CONFIG.numGames + (CONFIG.numGames >= 100 ? 10 : 1));
+            CONFIG.numGames = Math.min(100000, CONFIG.numGames + (CONFIG.numGames >= 100 ? 10 : 1));
             gamesValue.textContent = CONFIG.numGames;
         };
 
@@ -268,11 +306,11 @@
             const newValue = prompt('Enter number of games to scrape:', CONFIG.numGames);
             if (newValue !== null) {
                 const num = parseInt(newValue);
-                if (!isNaN(num) && num >= 1 && num <= 10000) {
+                if (!isNaN(num) && num >= 1 && num <= 100000) {
                     CONFIG.numGames = num;
                     gamesValue.textContent = num;
                 } else {
-                    alert('Please enter a number between 1 and 10000');
+                    alert('Please enter a number between 1 and 100000');
                 }
             }
         };
@@ -514,19 +552,27 @@
     function downloadResults() {
         let filteredData = gamesData;
         if (CONFIG.filterPlayer) {
+            // Include ALL games, even when player didn't play (important for strategy analysis)
+            // HOW TO DETECT IF PLAYER DIDN'T PLAY:
+            // - If player is NOT in the game.players array (pdata === undefined)
+            // - All betting fields (bet, cashedAt, profit, won) will be null
+            // - Only gameId and bust are populated
+            // This allows algorithm analysis to identify when the player CHOSE NOT to play
             filteredData = gamesData.map(game => {
                 const pdata = game.players.find(p => p.player === CONFIG.filterPlayer);
-                if (!pdata) return null;
+
+                // pdata === undefined → player didn't play this game
+                // All fields set to null except gameId and bust
                 return {
                     gameId: game.gameId,
                     bust: game.bust,
-                    player: pdata.player,
-                    bet: pdata.bet,
-                    cashedAt: pdata.cashedAt,
-                    profit: pdata.profit,
-                    won: pdata.won
+                    player: CONFIG.filterPlayer,
+                    bet: pdata ? pdata.bet : null,        // null = didn't play
+                    cashedAt: pdata ? pdata.cashedAt : null,  // null = didn't play
+                    profit: pdata ? pdata.profit : null,     // null = didn't play
+                    won: pdata ? pdata.won : null           // null = didn't play
                 };
-            }).filter(g => g !== null);
+            });
         }
 
         const startGameId = gamesData.length > 0 ? gamesData[0].gameId : 0;
@@ -557,13 +603,23 @@
 
         console.log('[SCRAPER] Downloaded:', a.download);
         if (CONFIG.filterPlayer && filteredData.length > 0) {
-            const wins = filteredData.filter(g => g.won).length;
-            const totalProfit = filteredData.reduce((sum, g) => sum + g.profit, 0);
-            const totalBet = filteredData.reduce((sum, g) => sum + g.bet, 0);
-            console.log(`Player: ${CONFIG.filterPlayer}`);
-            console.log(`Games: ${filteredData.length}, Wins: ${wins} (${(wins/filteredData.length*100).toFixed(1)}%)`);
-            console.log(`Profit: ${totalProfit >= 0 ? '+' : ''}${(totalProfit/100).toFixed(0)} bits`);
-            console.log(`ROI: ${((totalProfit/totalBet)*100).toFixed(2)}%`);
+            // Filter only games where player actually played for stats
+            const playedGames = filteredData.filter(g => g.bet !== null);
+            if (playedGames.length > 0) {
+                const wins = playedGames.filter(g => g.won).length;
+                const totalProfit = playedGames.reduce((sum, g) => sum + g.profit, 0);
+                const totalBet = playedGames.reduce((sum, g) => sum + g.bet, 0);
+                console.log(`Player: ${CONFIG.filterPlayer}`);
+                console.log(`Total games scraped: ${filteredData.length}`);
+                console.log(`Games played: ${playedGames.length} (${((playedGames.length/filteredData.length)*100).toFixed(1)}%)`);
+                console.log(`Wins: ${wins} (${(wins/playedGames.length*100).toFixed(1)}%)`);
+                console.log(`Profit: ${totalProfit >= 0 ? '+' : ''}${(totalProfit/100).toFixed(0)} bits`);
+                console.log(`ROI: ${((totalProfit/totalBet)*100).toFixed(2)}%`);
+            } else {
+                console.log(`Player: ${CONFIG.filterPlayer}`);
+                console.log(`Total games scraped: ${filteredData.length}`);
+                console.log(`Games played: 0 - Player didn't play in any of the scraped games`);
+            }
         }
     }
 

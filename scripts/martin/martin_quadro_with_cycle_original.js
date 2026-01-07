@@ -1,7 +1,78 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   MARTIN AI v5.1 - MARTINGALE VB + AGGRESSIVE FACTOR + CYCLE TOLERANCE
+   ═══════════════════════════════════════════════════════════════════════════
+
+   DESCRIZIONE:
+   Sistema di betting a due modalità con martingala sul Virtual Balance (VB).
+   Combina una strategia normale a payout alto con un sistema di recupero
+   martingala quando si verificano perdite consecutive.
+
+   MODALITÀ 1 - NORMALE:
+   - Punta a payout alto (default 3.1x)
+   - Aumenta la bet con moltiplicatore fisso dopo ogni perdita (default 1.6x)
+   - Bonus: +1 bit per le prime 3 perdite consecutive
+   - Switch a modalità Recovery dopo N perdite (default 16)
+
+   MODALITÀ 2 - RECOVERY (Martingala):
+   - Payout basso (default 2x)
+   - Calcola bet per recuperare tutte le perdite accumulate
+   - Max N tentativi (default 2) prima di dichiarare ciclo perso
+
+   SISTEMA CICLI:
+   - Ogni ciclo inizia con un Working Balance (VB)
+   - Target: guadagnare X% del VB (default 75%)
+   - Ciclo VINTO: resetta VB al valore base, inizia nuovo ciclo
+   - Ciclo PERSO: applica MARTINGALA SUL VB, aumenta capitale per prossimo ciclo
+
+   MARTINGALA SUL VIRTUAL BALANCE:
+   - Accumula perdite reali attraverso i cicli
+   - Formula: VB(n+1) = (Perdite Accumulate + Target Base) / (Target% / 100)
+   - Effetto: VB aumenta ~2.33x dopo ogni ciclo perso (con TP 75%)
+   - BaseBet scala proporzionalmente al nuovo VB
+   - Reset a VB base dopo ogni ciclo vinto
+
+   AGGRESSIVE FACTOR (NUOVO):
+   - Parametro intero (0-10) che aumenta il moltiplicatore nei primi cicli persi
+   - Formula: pow(value, 0.6) / 100 * 1.5 (escalation morbida +50% boost)
+   - 0 = OFF: comportamento standard (moltiplicatore costante)
+   - 4 = CONSIGLIATO: incremento bilanciato (es. 1.60 → 1.69 al ciclo 3)
+   - 10 = MAX: incremento massimo controllato (es. 1.60 → 1.78 al ciclo 3)
+   - Efficace nei cicli 1-3, poi riduce gradualmente (ciclo 4: -50%, ciclo 5: annullato)
+   - Scopo: recuperare più velocemente dopo le prime perdite di ciclo
+
+   CYCLE TOLERANCE (SAFETY):
+   - Percentuale (0-50%) che permette reset anche senza recupero completo
+   - 0 = OFF: deve recuperare 100% delle perdite accumulate + target profit
+   - 15% = CONSIGLIATO: può resettare se ha recuperato almeno 85% del target (bilanciato)
+   - 50% = MAX: può resettare se ha recuperato almeno 50% del target (molto conservativo)
+   - Attivo solo dal ciclo 1 in poi (al ciclo 0 non ha senso)
+   - Scopo: evitare bancarotta su streak lunghe, funziona come "stop loss"
+
+   PARAMETRI PRINCIPALI:
+   - workingBalance: Capitale per singolo ciclo (in satoshi: 100000 = 1000 bits)
+   - targetProfitPercent: % di profit per considerare ciclo vinto
+   - cycleTolerance: % tolleranza reset (0=off, 15=consigliato, max 50)
+   - payout: Moltiplicatore target in modalità normale
+   - baseBet: Puntata base iniziale
+   - customMult: Moltiplicatore personalizzato (0 = auto-calcolo)
+   - aggressiveFactor: Intensità escalation (0=off, 4=consigliato, 10=max)
+   - recoveryTrigger: Perdite consecutive prima di recovery mode
+   - recoveryMartingalePayout: Payout in modalità recovery
+   - recoveryCycles: Max tentativi recovery prima di dichiarare ciclo perso
+
+   LIMITI DI SICUREZZA:
+   - BaseBet max = 1000x il valore iniziale (protezione overflow)
+   - Recovery payout: 1.1x - 3.0x
+   - Recovery cycles: 1-20
+   - Global profit stop opzionale
+
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 var config = {
     // ===== CAPITALE E TARGET =====
     workingBalance: { value: 100000, type: 'balance', label: 'Working Balance (bits per ciclo - es. 100000=1000 bits)' },
     targetProfitPercent: { value: 75, type: 'multiplier', label: 'Target Profit % (stop ciclo quando raggiunto) [OTTIMALE: 75%]' },
+    cycleTolerance: { value: 0, type: 'multiplier', label: 'Cycle Tolerance % (0=off, 15=consigliato, max 50) - permette reset anche senza recupero totale (safety)' },
     continueCycles: {
         value: 'yes',
         type: 'radio',
@@ -16,6 +87,7 @@ var config = {
     payout: { value: 3.1, type: 'multiplier', label: 'Normal Mode Payout' },
     baseBet: { value: 100, type: 'balance', label: 'Base Bet' },
     customMult: { value: 1.6, type: 'multiplier', label: 'Custom Multiplier (0 = auto-calculate)' },
+    aggressiveFactor: { value: 0, type: 'multiplier', label: 'Aggressive Factor (0=off, 4=consigliato, 10=max) - incremento mult nei primi 3 cicli' },
 
     // ===== MODALITA 2 (RECUPERO MARTINGALE) =====
     recoveryTrigger: { value: 16, type: 'multiplier', label: 'Losses before recovery mode' },
@@ -32,9 +104,16 @@ var config = {
 // Configurazione base
 const workingBalance = config.workingBalance.value;
 const targetProfitPercent = config.targetProfitPercent.value;
+const cycleTolerance = Math.max(0, Math.min(50, config.cycleTolerance.value));  // Limita 0-50%
 const normalPayout = config.payout.value;
 let normalBaseBet = config.baseBet.value;  // let perché viene aggiornato con martingale
 const customMultValue = config.customMult.value;
+// Converte aggressiveFactor da intero (0-10) con formula MORBIDA (+50% boost)
+// Usa potenza 0.6 per rendere l'escalation più conservativa, poi applica boost 1.5x
+// 0 = off, 5 = moderato, 7 = consigliato, 10 = max
+const aggressiveFactorRaw = Math.max(0, Math.min(10, config.aggressiveFactor.value));  // Limita 0-10
+const aggressiveFactor = Math.pow(aggressiveFactorRaw, 0.6) / 100 * 1.5;  // Formula morbida +50%
+// Esempi: 1 → 0.015, 5 → 0.041, 7 → 0.050, 10 → 0.060
 
 const recoveryTrigger = config.recoveryTrigger.value;
 const recoveryMartingalePayout = Math.max(1.1, Math.min(3.0, config.recoveryMartingalePayout.value));
@@ -78,6 +157,60 @@ function calculateNormalMultiplier(payout, maxLosses) {
 
     const withMargin = result * 1.01;
     return Math.round(withMargin * 100) / 100;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CALCOLO MOLTIPLICATORE EFFETTIVO CON AGGRESSIVE FACTOR
+// ═══════════════════════════════════════════════════════════════════════════
+// Questa funzione calcola il moltiplicatore da usare basato sul numero di
+// cicli persi consecutivi, applicando l'aggressive factor.
+//
+// Logica:
+// - aggressiveFactor = 0: usa sempre baseMult (comportamento standard)
+// - aggressiveFactor > 0 e cicli <= 3: aumenta progressivamente (ADDITIVO)
+//   Formula: baseMult + (aggressiveFactor * cicli)
+// - cicli > 3: riduce gradualmente l'effetto per evitare escalation eccessiva
+//
+// Esempi con baseMult=1.6, escalation MORBIDA (+50% boost):
+// - Ciclo 0 (nessuna perdita): 1.60x
+//
+// aggressiveFactor = 1 (incremento 0.015 per ciclo):
+// - Ciclo 1: 1.615x, Ciclo 2: 1.63x, Ciclo 3: 1.645x
+//
+// aggressiveFactor = 4 (incremento 0.036 per ciclo) [CONSIGLIATO]:
+// - Ciclo 1: 1.636x, Ciclo 2: 1.672x, Ciclo 3: 1.708x
+//
+// aggressiveFactor = 10 (incremento 0.060 per ciclo):
+// - Ciclo 1: 1.66x, Ciclo 2: 1.72x, Ciclo 3: 1.78x
+//
+// - Ciclo 4+: riduce gradualmente (ciclo 4: -50%, ciclo 5: annullato)
+//
+// Valori consigliati (0-10):
+// - 0: OFF (sempre 1.60x)
+// - 4: CONSIGLIATO (bilanciato, 1.71 al ciclo 3)
+// - 10: MAX (aggressivo ma controllato, 1.78 al ciclo 3)
+function getEffectiveMultiplier(baseMult, lostCycles) {
+    // Se aggressive factor disabilitato, usa sempre il moltiplicatore base
+    if (aggressiveFactor <= 0) {
+        return baseMult;
+    }
+
+    // Nei primi 3 cicli persi, applica l'escalation additiva
+    if (lostCycles >= 1 && lostCycles <= 3) {
+        return baseMult + (aggressiveFactor * lostCycles);
+    }
+
+    // Dal ciclo 4 in poi, riduce gradualmente l'effetto
+    // Per evitare escalation infinita che renderebbe vano ogni tentativo
+    if (lostCycles >= 4) {
+        // Riduce l'effetto del 50% al ciclo 4, 75% al ciclo 5, poi torna a baseMult
+        const decayFactor = Math.max(0, 1 - ((lostCycles - 3) * 0.5));
+        const increment = aggressiveFactor * 3 * decayFactor;  // 3 = massimo boost
+        return baseMult + increment;
+    }
+
+    // Ciclo 0 (nessuna perdita): usa baseMult standard
+    return baseMult;
 }
 
 const normalMult = (customMultValue > 0)
@@ -156,7 +289,7 @@ function pfx(tag, msg, level = 2) { logV(level, `[${tag}] ${msg}`) }
 // ═══════════════════════════════════════════════════════════════════════════
 logV(1, '');
 logV(1, '==============================================================');
-logV(1, '  MARTIN AI v4.8 - RECOVERY MARTINGALE + CYCLE TRACKING   ');
+logV(1, '  MARTIN AI v5.1 - MARTINGALE VB + AGGRESSIVE + TOLERANCE  ');
 logV(1, '==============================================================');
 logV(1, '');
 logV(1, 'MODALITA 1 (NORMALE):');
@@ -166,6 +299,14 @@ if (customMultValue > 0) {
     logV(1, `   - Multiplier: ${normalMult}x (CUSTOM)`);
 } else {
     logV(1, `   - Multiplier: ${normalMult}x (AUTO-CALC)`);
+}
+if (aggressiveFactor > 0) {
+    logV(1, `   - Aggressive Factor: ${aggressiveFactorRaw}/10 (attivo cicli 1-3)`);
+    logV(1, `     → Ciclo 1: ${getEffectiveMultiplier(normalMult, 1).toFixed(2)}x`);
+    logV(1, `     → Ciclo 2: ${getEffectiveMultiplier(normalMult, 2).toFixed(2)}x`);
+    logV(1, `     → Ciclo 3: ${getEffectiveMultiplier(normalMult, 3).toFixed(2)}x`);
+} else {
+    logV(1, `   - Aggressive Factor: 0/10 (OFF - mult costante)`);
 }
 logV(1, `   - Bonus: +1 bit per le prime 3 perdite`);
 logV(1, '');
@@ -177,6 +318,11 @@ logV(1, '');
 logV(1, 'CAPITALE & TARGET (PER CICLO):');
 logV(1, `   - Working Balance: ${(workingBalance/100).toFixed(2)} bits`);
 logV(1, `   - Target Profit: ${targetProfitPercent}% (+${(targetProfitAbsolute/100).toFixed(2)} bits)`);
+if (cycleTolerance > 0) {
+    logV(1, `   - Cycle Tolerance: ${cycleTolerance}% (reset se recupera ${100-cycleTolerance}%+ del target)`);
+} else {
+    logV(1, `   - Cycle Tolerance: 0% (OFF - deve recuperare 100% del target)`);
+}
 logV(1, `   - Continue Cycles: ${config.continueCycles.value === 'yes' ? 'SI (analisi multipli cicli)' : 'NO (stop al primo TP)'}`);
 logV(1, '');
 logV(1, '🎲 MARTINGALE SUL VIRTUAL BALANCE:');
@@ -215,7 +361,14 @@ function onGameStarted() {
     // Target profit dinamico: se ci sono perdite accumulate, devi recuperarle + il TP base
     const cycleTargetProfit = realLossesAccumulated + targetProfitAbsolute;
 
-    if (normalModeProfit >= cycleTargetProfit) {
+    // Applica cycle tolerance (solo se > 0 e dal ciclo 1 in poi)
+    let adjustedTargetProfit = cycleTargetProfit;
+    if (cycleTolerance > 0 && consecutiveLossCycles > 0) {
+        // Con tolleranza 40%: se target è 1000, accetta anche 600 (60% del target)
+        adjustedTargetProfit = cycleTargetProfit * (1 - cycleTolerance / 100);
+    }
+
+    if (normalModeProfit >= adjustedTargetProfit) {
         // ═══════════════════════════════════════════════════════════════════════════
         // NOVITÀ: Ciclo VINTO
         // ═══════════════════════════════════════════════════════════════════════════
@@ -227,14 +380,24 @@ function onGameStarted() {
         sessionGames += currentRound;
         sessionCycles++;
 
+        // Check se ha usato la tolleranza per resettare prima del target completo
+        const usedTolerance = cycleTolerance > 0 && consecutiveLossCycles > 0 && normalModeProfit < cycleTargetProfit;
+        const toleranceInfo = usedTolerance ? ` [TOL: ${cycleTolerance}%]` : '';
+
         // Log minimale (verbosity 1+)
-        logV(1, `CYCLE #${totalCycles} WON | Profit: +${(normalModeProfit/100).toFixed(0)} bits | WR: ${((wonCycles/(wonCycles+lostCycles))*100).toFixed(1)}% (${wonCycles}W/${lostCycles}L) | Max Loss Streak: ${maxConsecutiveLossCycles} | VB: ${(currentWorkingBalance/100).toFixed(0)} bits`);
+        logV(1, `CYCLE #${totalCycles} WON${toleranceInfo} | Profit: +${(normalModeProfit/100).toFixed(0)} bits | WR: ${((wonCycles/(wonCycles+lostCycles))*100).toFixed(1)}% (${wonCycles}W/${lostCycles}L) | Max Loss Streak: ${maxConsecutiveLossCycles} | VB: ${(currentWorkingBalance/100).toFixed(0)} bits`);
 
         // Log dettagliato (verbosity 2)
         logV(2, '');
         logV(2, '🏆 CICLO VINTO!');
         logV(2, `   Ciclo #${totalCycles}`);
         logV(2, `   Profit: +${(normalModeProfit/100).toFixed(2)} bits (${targetProfitPercent}%)`);
+        if (usedTolerance) {
+            logV(2, `   ⚠️  RESET CON TOLLERANZA ${cycleTolerance}%`);
+            logV(2, `   Target Completo: ${(cycleTargetProfit/100).toFixed(2)} bits`);
+            logV(2, `   Target Adjustato: ${(adjustedTargetProfit/100).toFixed(2)} bits (${(100-cycleTolerance)}% del target)`);
+            logV(2, `   Perdite NON recuperate: ${((cycleTargetProfit - normalModeProfit)/100).toFixed(2)} bits`);
+        }
         logV(2, `   Cicli Totali: ${wonCycles}W / ${lostCycles}L (WR: ${((wonCycles/(wonCycles+lostCycles))*100).toFixed(1)}%)`);
         logV(2, `   Perdite consecutive: ${consecutiveLossCycles} (Max: ${maxConsecutiveLossCycles})`);
         logV(2, '');
@@ -376,7 +539,9 @@ function handleWin(lastGame, crash) {
             if (normalConsecutiveLosses >= recoveryTrigger) {
                 switchToRecoveryMode();
             } else {
-                currentBet = Math.ceil((currentBet / 100) * normalMult) * 100;
+                // Usa moltiplicatore effettivo basato sui cicli persi consecutivi
+                const effectiveMult = getEffectiveMultiplier(normalMult, consecutiveLossCycles);
+                currentBet = Math.ceil((currentBet / 100) * effectiveMult) * 100;
             }
         }
     } else {
@@ -431,7 +596,9 @@ function handleLoss(crash) {
         if (normalConsecutiveLosses >= recoveryTrigger) {
             switchToRecoveryMode();
         } else {
-            currentBet = Math.ceil((currentBet / 100) * normalMult) * 100;
+            // Usa moltiplicatore effettivo basato sui cicli persi consecutivi
+            const effectiveMult = getEffectiveMultiplier(normalMult, consecutiveLossCycles);
+            currentBet = Math.ceil((currentBet / 100) * effectiveMult) * 100;
         }
     } else {
         // RECOVERY LOSS
