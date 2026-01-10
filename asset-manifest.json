@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/bustabit-scripts/static/css/main.f8c52cf5.css",
+    "main.js": "/bustabit-scripts/static/js/main.5345d44a.js",
+    "index.html": "/bustabit-scripts/index.html",
+    "main.f8c52cf5.css.map": "/bustabit-scripts/static/css/main.f8c52cf5.css.map",
+    "main.5345d44a.js.map": "/bustabit-scripts/static/js/main.5345d44a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f8c52cf5.css",
+    "static/js/main.5345d44a.js"
+  ]
+}
