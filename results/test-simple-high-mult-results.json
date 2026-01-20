@@ -1,5 +1,5 @@
 {
-  "script": "MARTIN_AI_READY",
+  "script": "test-simple-high-mult",
   "config": {
     "numSeeds": 1,
     "gamesPerSeed": 10,
@@ -7,32 +7,32 @@
     "baseHash": "357bba5cd16d7d9395a0aab681ceefb4415dc2d8a7529493c48e7b57d74a4ed8"
   },
   "summary": {
-    "avgProfit": 0,
-    "medianProfit": 0,
+    "avgProfit": -0.29897,
+    "medianProfit": -0.29897,
     "stdDev": 0,
     "sharpeRatio": 0,
     "winRate": 0,
     "targetRate": 0,
-    "minProfit": 0,
-    "maxProfit": 0,
-    "avgBets": 0,
-    "avgGames": 10,
-    "betEfficiency": 0
+    "minProfit": -0.29897,
+    "maxProfit": -0.29897,
+    "avgBets": 1,
+    "avgGames": 0,
+    "betEfficiency": null
   },
   "results": [
     {
       "seed": 0,
-      "profit": 0,
-      "profitPercent": 0,
-      "bets": 0,
-      "gamesPlayed": 10,
+      "profit": -2989700,
+      "profitPercent": -0.29897,
+      "bets": 1,
+      "gamesPlayed": 0,
       "winStreak": 0,
       "loseStreak": 0,
       "balanceATH": 1000000000,
-      "balanceATL": 1000000000,
+      "balanceATL": 997010300,
       "profitATH": 0,
-      "profitATL": 0,
-      "finalBalance": 1000000000
+      "profitATL": -2989700,
+      "finalBalance": 997010300
     }
   ]
 }

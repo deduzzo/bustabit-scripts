@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   MARTIN AI v5.1 - MARTINGALE VB + AGGRESSIVE FACTOR + CYCLE TOLERANCE
+   MARTIN AI v5.2 - MARTINGALE VB + AGGRESSIVE + TOLERANCE + FLAT BET
    ═══════════════════════════════════════════════════════════════════════════
 
    DESCRIZIONE:
@@ -9,6 +9,7 @@
 
    MODALITÀ 1 - NORMALE:
    - Punta a payout alto (default 3.1x)
+   - OPZIONALE: N puntate flat prima della progressione (Flat Bet)
    - Aumenta la bet con moltiplicatore fisso dopo ogni perdita (default 1.6x)
    - Bonus: +1 bit per le prime 3 perdite consecutive
    - Switch a modalità Recovery dopo N perdite (default 16)
@@ -48,12 +49,23 @@
    - Attivo solo dal ciclo 1 in poi (al ciclo 0 non ha senso)
    - Scopo: evitare bancarotta su streak lunghe, funziona come "stop loss"
 
+   FLAT BET (NUOVO):
+   - Numero di puntate flat (stesso importo baseBet) prima della progressione
+   - 0 = OFF: inizia subito con la progressione martingala
+   - N > 0: esegue N puntate flat, poi inizia progressione se tutte perse
+   - Se VINCI durante le flat bet: reset, ricomincia con altre N flat bet
+   - Se PERDI tutte le N flat bet: inizia progressione (1, 1.6x, 2.56x, ecc.)
+   - Scopo: ridurre il rischio accettando profitti più bassi per vincita
+   - Esempio con flatBetCount=2: Flat1(loss) → Flat2(loss) → Progressione
+   - Esempio con win: Flat1(loss) → Flat2(WIN) → Flat1(reset) → ...
+
    PARAMETRI PRINCIPALI:
    - workingBalance: Capitale per singolo ciclo (in satoshi: 100000 = 1000 bits)
    - targetProfitPercent: % di profit per considerare ciclo vinto
    - cycleTolerance: % tolleranza reset (0=off, 15=consigliato, max 50)
    - payout: Moltiplicatore target in modalità normale
    - baseBet: Puntata base iniziale
+   - flatBetCount: Puntate flat prima della progressione (0=off)
    - customMult: Moltiplicatore personalizzato (0 = auto-calcolo)
    - aggressiveFactor: Intensità escalation (0=off, 4=consigliato, 10=max)
    - recoveryTrigger: Perdite consecutive prima di recovery mode
@@ -86,6 +98,7 @@ var config = {
     // ===== MODALITA 1 (NORMALE) =====
     payout: { value: 3.1, type: 'multiplier', label: 'Normal Mode Payout' },
     baseBet: { value: 100, type: 'balance', label: 'Base Bet' },
+    flatBetCount: { value: 1, type: 'multiplier', label: 'Flat Bet Count (0=off, N=numero puntate flat prima della progressione)' },
     customMult: { value: 1.6, type: 'multiplier', label: 'Custom Multiplier (0 = auto-calculate)' },
     aggressiveFactor: { value: 0, type: 'multiplier', label: 'Aggressive Factor (0=off, 4=consigliato, 10=max) - incremento mult nei primi 3 cicli' },
 
@@ -118,6 +131,9 @@ const aggressiveFactor = Math.pow(aggressiveFactorRaw, 0.6) / 100 * 1.5;  // For
 const recoveryTrigger = config.recoveryTrigger.value;
 const recoveryMartingalePayout = Math.max(1.1, Math.min(3.0, config.recoveryMartingalePayout.value));
 const MAX_RECOVERY_ATTEMPTS = Math.max(1, Math.min(20, config.recoveryCycles.value));
+
+// Flat Bet - numero di puntate flat prima della progressione (0 = disabilitato)
+const flatBetCount = Math.max(0, Math.floor(config.flatBetCount.value));
 
 const verbosityLevel = Math.max(0, Math.min(2, config.verbosityLevel.value));
 const globalTargetProfitPercent = config.globalTargetProfitPercent.value;
@@ -269,6 +285,9 @@ let currentBet = normalBaseBet;
 let currentPayout = normalPayout;
 let betPlacedThisRound = false;
 
+// Flat Bet tracking
+let flatBetRemaining = flatBetCount;  // Contatore flat bet rimanenti
+
 let normalModeProfit = 0;
 let balanceBeforeLossSequence = 0;
 let bonusPerLoss = 0;
@@ -289,7 +308,7 @@ function pfx(tag, msg, level = 2) { logV(level, `[${tag}] ${msg}`) }
 // ═══════════════════════════════════════════════════════════════════════════
 logV(1, '');
 logV(1, '==============================================================');
-logV(1, '  MARTIN AI v5.1 - MARTINGALE VB + AGGRESSIVE + TOLERANCE  ');
+logV(1, '  MARTIN AI v5.2 - MARTINGALE VB + AGGRESSIVE + FLAT BET   ');
 logV(1, '==============================================================');
 logV(1, '');
 logV(1, 'MODALITA 1 (NORMALE):');
@@ -307,6 +326,11 @@ if (aggressiveFactor > 0) {
     logV(1, `     → Ciclo 3: ${getEffectiveMultiplier(normalMult, 3).toFixed(2)}x`);
 } else {
     logV(1, `   - Aggressive Factor: 0/10 (OFF - mult costante)`);
+}
+if (flatBetCount > 0) {
+    logV(1, `   - Flat Bet: ${flatBetCount} puntate flat prima della progressione`);
+} else {
+    logV(1, `   - Flat Bet: 0 (OFF - inizia subito progressione)`);
 }
 logV(1, `   - Bonus: +1 bit per le prime 3 perdite`);
 logV(1, '');
@@ -513,17 +537,34 @@ function handleWin(lastGame, crash) {
             normalWins++;
             normalModeProfit = balance - initBalance;
 
-            pfx(`${modeTag}/W`, `WIN profit:+${(profit/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
+            // Log diverso se eravamo in flat bet
+            if (flatBetRemaining < flatBetCount) {
+                pfx(`${modeTag}/W`, `WIN (flat) profit:+${(profit/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
+            } else {
+                pfx(`${modeTag}/W`, `WIN profit:+${(profit/100).toFixed(2)} bal:${(balance/100).toFixed(2)}`);
+            }
 
             normalConsecutiveLosses = 0;
             currentBet = normalBaseBet;
             currentPayout = normalPayout;
             bonusPerLoss = 0;
+            flatBetRemaining = flatBetCount;  // RESET flat bet
             state = STATE.BETTING;
         } else {
             // CASHOUT PARZIALE
             normalLosses++;
 
+            // ═══════════════════════════════════════════════════════════════════════════
+            // FLAT BET: Se siamo ancora nelle puntate flat, non aumentiamo
+            // ═══════════════════════════════════════════════════════════════════════════
+            if (flatBetRemaining > 0) {
+                flatBetRemaining--;
+                pfx(`${modeTag}/F`, `FLAT PARTIAL @${lastGame.cashedAt}x bal:${(balance/100).toFixed(2)} [Flat:${flatBetRemaining}/${flatBetCount}]`);
+                // NON aumentiamo la bet, resta baseBet
+                return;
+            }
+
+            // Da qui in poi: progressione normale (flat bet esaurite)
             if (normalConsecutiveLosses === 0) {
                 balanceBeforeLossSequence = balance;
             }
@@ -581,6 +622,18 @@ function handleLoss(crash) {
     if (currentMode === MODE.NORMAL) {
         normalLosses++;
 
+        // ═══════════════════════════════════════════════════════════════════════════
+        // FLAT BET: Se siamo ancora nelle puntate flat, non aumentiamo
+        // ═══════════════════════════════════════════════════════════════════════════
+        if (flatBetRemaining > 0) {
+            flatBetRemaining--;
+            pfx(`${modeTag}/F`, `FLAT LOSS bal:${(balance/100).toFixed(2)} [Flat:${flatBetRemaining}/${flatBetCount}]`);
+            // NON aumentiamo la bet, resta baseBet
+            // NON incrementiamo normalConsecutiveLosses perché non siamo in progressione
+            return;
+        }
+
+        // Da qui in poi: progressione normale (flat bet esaurite)
         if (normalConsecutiveLosses === 0) {
             balanceBeforeLossSequence = balance + finalBet;
         }
@@ -641,6 +694,7 @@ function switchToNormalMode() {
 
     currentPayout = normalPayout;
     bonusPerLoss = 0;
+    flatBetRemaining = flatBetCount;  // RESET flat bet
     state = STATE.BETTING;
 
     pfx('MODE', `BACK TO NORMAL`);
@@ -730,6 +784,7 @@ function restartCycle() {
     normalModeProfit = 0;
     balanceBeforeLossSequence = 0;
     bonusPerLoss = 0;
+    flatBetRemaining = flatBetCount;  // RESET flat bet
 
     normalWins = 0;
     normalLosses = 0;

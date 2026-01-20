@@ -1,7 +1,7 @@
 {
   "name": "bustabit-script-simulator",
   "version": "0.3.0",
-  "homepage": "http://Mtihc.github.io/bustabit-script-simulator",
+  "homepage": "https://deduzzo.github.io/bustabit-scripts",
   "private": true,
   "dependencies": {
     "@noble/curves": "^2.0.1",
