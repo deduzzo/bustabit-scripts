@@ -11,7 +11,7 @@
    - Punta a payout alto (default 3.1x)
    - OPZIONALE: N puntate flat prima della progressione (Flat Bet)
    - Aumenta la bet con moltiplicatore fisso dopo ogni perdita (default 1.6x)
-   - Bonus: +1 bit per le prime 3 perdite consecutive
+   - Bonus: +baseBet per le prime 3 perdite consecutive (proporzionale)
    - Switch a modalità Recovery dopo N perdite (default 16)
 
    MODALITÀ 2 - RECOVERY (Martingala):
@@ -59,7 +59,16 @@
    - Esempio con flatBetCount=2: Flat1(loss) → Flat2(loss) → Progressione
    - Esempio con win: Flat1(loss) → Flat2(WIN) → Flat1(reset) → ...
 
+   SCALE FACTOR (NUOVO):
+   - Fattore di moltiplicazione per scalare baseBet e workingBalance insieme
+   - 1 = DEFAULT: usa i valori configurati normalmente
+   - 2 = RADDOPPIA: baseBet e workingBalance vengono moltiplicati per 2
+   - 0.5 = DIMEZZA: baseBet e workingBalance vengono dimezzati
+   - Mantiene sempre le proporzioni corrette tra tutti i parametri
+   - Scopo: cambiare facilmente la "size" del sistema senza modificare i singoli valori
+
    PARAMETRI PRINCIPALI:
+   - scaleFactor: Fattore di scala (1=default, 2=raddoppia baseBet+WB, 0.5=dimezza)
    - workingBalance: Capitale per singolo ciclo (in satoshi: 100000 = 1000 bits)
    - targetProfitPercent: % di profit per considerare ciclo vinto
    - cycleTolerance: % tolleranza reset (0=off, 15=consigliato, max 50)
@@ -81,6 +90,9 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 var config = {
+    // ===== FATTORE DI SCALA =====
+    scaleFactor: { value: 1, type: 'multiplier', label: 'Fattore di Moltiplicazione (1=default, 2=raddoppia baseBet e workingBalance, ecc.)' },
+
     // ===== CAPITALE E TARGET =====
     workingBalance: { value: 100000, type: 'balance', label: 'Working Balance (bits per ciclo - es. 100000=1000 bits)' },
     targetProfitPercent: { value: 75, type: 'multiplier', label: 'Target Profit % (stop ciclo quando raggiunto) [OTTIMALE: 75%]' },
@@ -115,11 +127,13 @@ var config = {
 };
 
 // Configurazione base
-const workingBalance = config.workingBalance.value;
+const scaleFactor = Math.max(0.1, config.scaleFactor.value);  // Minimo 0.1 per evitare valori nulli
+const workingBalance = Math.floor(config.workingBalance.value * scaleFactor);  // Scalato
 const targetProfitPercent = config.targetProfitPercent.value;
 const cycleTolerance = Math.max(0, Math.min(50, config.cycleTolerance.value));  // Limita 0-50%
 const normalPayout = config.payout.value;
-let normalBaseBet = config.baseBet.value;  // let perché viene aggiornato con martingale
+let normalBaseBet = Math.floor(config.baseBet.value * scaleFactor);  // Scalato (let perché viene aggiornato con martingale)
+const originalBaseBet = normalBaseBet;  // Salva il valore scalato originale per il bonus
 const customMultValue = config.customMult.value;
 // Converte aggressiveFactor da intero (0-10) con formula MORBIDA (+50% boost)
 // Usa potenza 0.6 per rendere l'escalation più conservativa, poi applica boost 1.5x
@@ -311,6 +325,12 @@ logV(1, '==============================================================');
 logV(1, '  MARTIN AI v5.2 - MARTINGALE VB + AGGRESSIVE + FLAT BET   ');
 logV(1, '==============================================================');
 logV(1, '');
+if (scaleFactor !== 1) {
+    logV(1, `⚡ SCALE FACTOR: ${scaleFactor}x (baseBet e workingBalance scalati)`);
+    logV(1, `   - Base Config: baseBet=${(config.baseBet.value/100).toFixed(2)}, WB=${(config.workingBalance.value/100).toFixed(0)}`);
+    logV(1, `   - Scalato:     baseBet=${(normalBaseBet/100).toFixed(2)}, WB=${(workingBalance/100).toFixed(0)}`);
+    logV(1, '');
+}
 logV(1, 'MODALITA 1 (NORMALE):');
 logV(1, `   - Payout: ${normalPayout}x`);
 logV(1, `   - Base Bet: ${(normalBaseBet/100).toFixed(2)} bits`);
@@ -332,7 +352,7 @@ if (flatBetCount > 0) {
 } else {
     logV(1, `   - Flat Bet: 0 (OFF - inizia subito progressione)`);
 }
-logV(1, `   - Bonus: +1 bit per le prime 3 perdite`);
+logV(1, `   - Bonus: +${(originalBaseBet/100).toFixed(2)} bits per le prime 3 perdite`);
 logV(1, '');
 logV(1, 'MODALITA 2 (RECUPERO MARTINGALE):');
 logV(1, `   - Trigger: ${recoveryTrigger} perdite consecutive`);
@@ -572,7 +592,7 @@ function handleWin(lastGame, crash) {
             normalConsecutiveLosses++;
 
             if (normalConsecutiveLosses <= MAX_BONUS_LOSSES) {
-                bonusPerLoss += 100;
+                bonusPerLoss += originalBaseBet;  // Proporzionale al baseBet (scalato)
             }
 
             pfx(`${modeTag}/P`, `PARZIALE @${lastGame.cashedAt}x [L:${normalConsecutiveLosses}/${recoveryTrigger}]`);
@@ -582,7 +602,8 @@ function handleWin(lastGame, crash) {
             } else {
                 // Usa moltiplicatore effettivo basato sui cicli persi consecutivi
                 const effectiveMult = getEffectiveMultiplier(normalMult, consecutiveLossCycles);
-                currentBet = Math.ceil((currentBet / 100) * effectiveMult) * 100;
+                // Arrotonda a multipli di originalBaseBet per mantenere proporzioni con scaleFactor
+                currentBet = Math.ceil((currentBet / originalBaseBet) * effectiveMult) * originalBaseBet;
             }
         }
     } else {
@@ -641,7 +662,7 @@ function handleLoss(crash) {
         normalConsecutiveLosses++;
 
         if (normalConsecutiveLosses <= MAX_BONUS_LOSSES) {
-            bonusPerLoss += 100;
+            bonusPerLoss += originalBaseBet;  // Proporzionale al baseBet (scalato)
         }
 
         pfx(`${modeTag}/L`, `LOSS bal:${(balance/100).toFixed(2)} [L:${normalConsecutiveLosses}/${recoveryTrigger}]`);
@@ -651,7 +672,8 @@ function handleLoss(crash) {
         } else {
             // Usa moltiplicatore effettivo basato sui cicli persi consecutivi
             const effectiveMult = getEffectiveMultiplier(normalMult, consecutiveLossCycles);
-            currentBet = Math.ceil((currentBet / 100) * effectiveMult) * 100;
+            // Arrotonda a multipli di originalBaseBet per mantenere proporzioni con scaleFactor
+            currentBet = Math.ceil((currentBet / originalBaseBet) * effectiveMult) * originalBaseBet;
         }
     } else {
         // RECOVERY LOSS
@@ -703,7 +725,8 @@ function switchToNormalMode() {
 function calculateRecoveryBet() {
     const payoutMultiplier = recoveryMartingalePayout - 1.0;
     currentBet = Math.ceil(totalLosses / payoutMultiplier);
-    currentBet = Math.ceil(currentBet / 100) * 100;
+    // Arrotonda a multipli di originalBaseBet per mantenere proporzioni con scaleFactor
+    currentBet = Math.ceil(currentBet / originalBaseBet) * originalBaseBet;
 
     pfx('REC/C', `bet ${(currentBet/100).toFixed(2)} to recover ${(totalLosses/100).toFixed(2)} @${recoveryMartingalePayout}x`);
 
@@ -808,7 +831,7 @@ function resetMartingale() {
     // Resetta a VB base dopo una vittoria
     currentWorkingBalance = baseWorkingBalance;
     realLossesAccumulated = 0;
-    normalBaseBet = config.baseBet.value;  // Reset anche baseBet al valore originale
+    normalBaseBet = originalBaseBet;  // Reset anche baseBet al valore originale (scalato)
     log('');
     log('🔄 MARTINGALE RESET → VB Base: ' + (baseWorkingBalance / 100).toFixed(0) + ' bits, BaseBet: ' + (normalBaseBet / 100).toFixed(4) + ' bits');
     log('');
@@ -841,13 +864,12 @@ function applyMartingale(cycleLoss) {
         return;
     }
 
-    const newBaseBet = scaledBet >= 100
-        ? Math.ceil(scaledBet / 100) * 100
-        : Math.ceil(scaledBet);
+    // Arrotonda a multipli di originalBaseBet per mantenere proporzioni con scaleFactor
+    const newBaseBet = Math.ceil(scaledBet / originalBaseBet) * originalBaseBet;
 
     // PROTEZIONE: verifica che newBaseBet non sia troppo grande
     // Limite massimo: 1000x il baseBet originale per evitare overflow catastrofici
-    const maxAllowedBet = config.baseBet.value * 1000;
+    const maxAllowedBet = originalBaseBet * 1000;  // Limite scalato
     if (newBaseBet > maxAllowedBet) {
         log('');
         log('❌ ERRORE: BaseBet troppo grande!');
